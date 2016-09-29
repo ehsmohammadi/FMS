@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{081BB795-014B-43AA-BF32-AB4D8D9F0D0C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MITD.FuelSecurity.Domain.Model</RootNamespace>
+    <AssemblyName>MITD.FuelSecurity.Domain.Model</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="MITD.Core">
+      <HintPath>..\..\Dependencies\MITD.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="MITD.Domain.Model, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Dependencies\MITD.Domain.Model.dll</HintPath>
+    </Reference>
+    <Reference Include="MITD.Domain.Repository">
+      <HintPath>..\..\Dependencies\MITD.Domain.Repository.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ActionType.cs" />
+    <Compile Include="Repository\IPartyCustomActionRepository.cs" />
+    <Compile Include="TestRole.cs" />
+    <Compile Include="ReadOnlyUser.cs" />
+    <Compile Include="IntegrationUser.cs" />
+    <Compile Include="AdminUser.cs" />
+    <Compile Include="CommercialUser.cs" />
+    <Compile Include="CommercialManagerUser.cs" />
+    <Compile Include="ErrorException\FuelSecurityException.cs" />
+    <Compile Include="EventLog.cs" />
+    <Compile Include="ExceptionLog.cs" />
+    <Compile Include="FinancialUser.cs" />
+    <Compile Include="FinancialManagerUser.cs" />
+    <Compile Include="Group.cs" />
+    <Compile Include="Log.cs" />
+    <Compile Include="LogLevel.cs" />
+    <Compile Include="Party.cs" />
+    <Compile Include="PartyCustomAction.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\ILogRepository.cs" />
+    <Compile Include="Repository\IUserRepository.cs" />
+    <Compile Include="Service\ILoggerService.cs" />
+    <Compile Include="Service\ILoggerServiceFactory.cs" />
+    <Compile Include="Service\ILogManagerService.cs" />
+    <Compile Include="Service\ISecurityServiceChecker.cs" />
+    <Compile Include="Service\LoggerServiceFactory.cs" />
+    <Compile Include="Service\LogManagerService.cs" />
+    <Compile Include="Service\SecurityServiceChecker.cs" />
+    <Compile Include="User.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

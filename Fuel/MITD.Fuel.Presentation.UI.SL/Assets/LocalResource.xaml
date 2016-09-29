@@ -1,0 +1,9 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:vm="clr-namespace:MITD.Fuel.Presentation.Logic.SL.ViewModels;assembly=MITD.Fuel.Presentation.Logic.SL"
+    xmlns:Enums="clr-namespace:MITD.Fuel.Presentation.Contracts.Enums;assembly=MITD.Fuel.Presentation.Contracts.SL">
+
+    <vm:OrderItemListVM x:Key="OrderItemListVM"/>
+    <vm:OrderVM         x:Key="OrderVM" /> 
+</ResourceDictionary>

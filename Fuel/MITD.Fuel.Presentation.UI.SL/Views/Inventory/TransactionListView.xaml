@@ -1,0 +1,276 @@
+﻿<ui:ViewBase x:Class="MITD.Fuel.Presentation.UI.SL.Views.Inventory.TransactionListView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:ui="http://schemas.mitd.com/silverlight/2012/xaml/presentation.ui"
+        xmlns:viewModels="clr-namespace:MITD.Fuel.Presentation.Logic.SL.ViewModels;assembly=MITD.Fuel.Presentation.Logic.SL"
+        xmlns:pd="clr-namespace:MITD.Presentation.UI.DateTimePicker.Views;assembly=MITD.Presentation.UI.SL"
+        xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
+        xmlns:converters="clr-namespace:MITD.Fuel.Presentation.UI.SL.Converters"
+        xmlns:controls="clr-namespace:MITD.Fuel.Presentation.UI.SL.Controls"
+        mc:Ignorable="d" d:DesignHeight="300"
+        d:DesignWidth="400" d:DataContext="{d:DesignInstance Type=viewModels:TransactionListVM}" Style="{StaticResource DefaultStyle}" 
+             >
+    <UserControl.Resources>
+        <converters:TransactionStatusConverter x:Key="TransactionStatusConverter" />
+        <converters:TransactionTypeConverter x:Key="TransactionTypeConverter" />
+        <converters:IsNotNullConverter x:Key="IsNotNullConverter" />
+        <converters:TransactionItemPricesConverter x:Key="TransactionItemPricesConverter" />
+        <Style x:Key="ComboBoxItemStyle" TargetType="ComboBoxItem">
+            <Setter Property="Height" Value="25" />
+        </Style>
+    </UserControl.Resources>
+    <Grid x:Name="MainLayoutGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition x:Name="FilterSectionGridRow" Height="Auto" />
+            <RowDefinition x:Name="ListSectionGridRow" Height="2*" />
+            <RowDefinition x:Name="DetailSectionGridRow" Height="*" />
+            <RowDefinition x:Name="DetailPriceSectionGridRow" Height="*" />
+        </Grid.RowDefinitions>
+        <Grid x:Name="FilterSectionGrid" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                Margin="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition x:Name="FilterControlsColumn" Width="Auto" />
+                <ColumnDefinition x:Name="FilterCommandsColumn" Width="*" />
+                <ColumnDefinition x:Name="FilterOperationCommandsColumn" Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Grid x:Name="FilterControlsGrid" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <!--================================================================================-->
+                <TextBlock x:Name="CompanyFilterTitle" Text="شرکت" Grid.Column="0" Grid.Row="0" Margin="5" />
+                <ui:ComboBoxEx x:Name="CompanyFilterCombo" 
+                                SelectedValueProper="{Binding Path=Filtering.SelectedCompany,Mode=TwoWay}"                            
+                                ItemsSource="{Binding Path=Filtering.Companies}"   
+                                SelectedItem="{Binding Path=Filtering.SelectedCompany,Mode=TwoWay}"                       
+                                SelectedValuePath="Id"  
+                                DisplayMemberPath="Name" 
+                        ItemContainerStyle="{StaticResource ComboBoxItemStyle}"
+                                Width="150" Grid.Column="1"  Grid.Row="0"  Height="25"  Margin="2"/>
+                <!--================================================================================-->
+                <TextBlock x:Name="WarehouseFilterTitle" Text="انبار" Grid.Column="2" Grid.Row="0" Margin="5" />
+                <controls:DataGridDropdownComboboxControl x:Name="WarehouseFilterCombo" 
+                           ItemsSource="{Binding Filtering.Warehouse}" 
+                           SelectedValuePath="Id" 
+                           SelectedValueProper="{Binding Path=Filtering.SelectedWarehouse.Id}" 
+                           SelectedItem="{Binding Path=Filtering.SelectedWarehouse, Mode=TwoWay}" 
+                           Width="150" Grid.Column="3"  Grid.Row="0"  Height="25"  Margin="2">
+                    <controls:DataGridDropdownComboboxControl.DataGridColumns>
+                        <sdk:DataGridTextColumn Binding="{Binding Name}" MinWidth="150" Header="نام"/>
+                        <sdk:DataGridTextColumn Binding="{Binding Code}" MinWidth="100" Header="کد"/>
+                    </controls:DataGridDropdownComboboxControl.DataGridColumns>
+                    <controls:DataGridDropdownComboboxControl.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <sdk:Label Content="{Binding Name}"/>
+                                <sdk:Label Content="-"/>
+                                <sdk:Label Content="{Binding Code}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </controls:DataGridDropdownComboboxControl.ItemTemplate>
+                </controls:DataGridDropdownComboboxControl>
+                <!--<ui:ComboBoxEx x:Name="WarehouseFilterCombo" 
+                                SelectedValueProper="{Binding Path=Filtering.SelectedWarehouse,Mode=TwoWay}"                            
+                                ItemsSource="{Binding Path=Filtering.Warehouse}"    
+                                SelectedItem="{Binding Path=Filtering.SelectedWarehouse,Mode=TwoWay}"             
+                                SelectedValuePath="Id"  
+                                DisplayMemberPath="Name" 
+                        ItemContainerStyle="{StaticResource ComboBoxItemStyle}"
+                                Width="150" Grid.Column="3"  Grid.Row="0"  Height="25"  Margin="2" />-->
+                <!--================================================================================-->
+                <TextBlock x:Name="TransactionTypeFilterTitle" Text="نوع عملیات" Grid.Column="0" Grid.Row="1" Margin="5" />
+                <ui:ComboBoxEx x:Name="TransactionTypeFilterCombo" 
+                                SelectedValueProper="{Binding Path=Filtering.SelectedTransactionType,Mode=TwoWay}"                            
+                                ItemsSource="{Binding Path=Filtering.TransactionTypes}"    
+                                SelectedValue="{Binding Path=Filtering.SelectedTransactionType,Mode=TwoWay}" 
+                                SelectedValuePath="Id"  
+                                DisplayMemberPath="Name" 
+                        ItemContainerStyle="{StaticResource ComboBoxItemStyle}"
+                                Width="150" Grid.Column="1"  Grid.Row="1"  Height="25"  Margin="2" />
+                <!--================================================================================-->
+                <TextBlock x:Name="TransactionStatusFilterTitle" Text="وضعیت" Grid.Column="2" Grid.Row="1" Margin="5" />
+                <ui:ComboBoxEx x:Name="TransactionStatusFilterCombo" 
+                                SelectedValueProper="{Binding Path=Filtering.SelectedTransactionStatus,Mode=TwoWay}"                            
+                                ItemsSource="{Binding Path=Filtering.TransactionStatus}" 
+                                SelectedValue="{Binding Path=Filtering.SelectedTransactionStatus,Mode=TwoWay}" 
+                                SelectedValuePath="Id"  
+                                DisplayMemberPath="Name" 
+                        ItemContainerStyle="{StaticResource ComboBoxItemStyle}"
+                                Width="150" Grid.Column="3"  Grid.Row="1"  Height="25"  Margin="2" />
+                <!--================================================================================-->
+                <TextBlock x:Name="FromDateFilterTitle" Text="از تاریخ" Grid.Column="0" Grid.Row="2" Margin="5" />
+                <!--<pd:PDatePicker x:Name="FromDatePicker" Grid.Column="1" Grid.Row="2" 
+                        SelectedDate="{Binding Filtering.FromDate, Mode=TwoWay}"  Margin="2"/>-->
+                <controls:MultiTypeDateTimeControl Height="24" 
+                        DisplayOrientation="Horizontal"
+                        CalendarType="Persian"
+                        DisplayMode="Date" x:Name="FromDatePicker" Grid.Column="1" Grid.Row="2" 
+                        SelectedDate="{Binding Filtering.FromDate, Mode=TwoWay}"  Margin="2"/>
+                <!--================================================================================-->
+                <TextBlock x:Name="ToDateFilterTitle" Text="تا تاریخ" Grid.Column="2" Grid.Row="2" Margin="5" />
+                <!--<pd:PDatePicker x:Name="ToDatePicker" Grid.Column="3" Grid.Row="2" 
+                        SelectedDate="{Binding Filtering.ToDate, Mode=TwoWay}"   Margin="2"/>-->
+                <controls:MultiTypeDateTimeControl Height="24" 
+                        DisplayOrientation="Horizontal"
+                        CalendarType="Persian"
+                        DisplayMode="Date" x:Name="ToDatePicker" Grid.Column="3" Grid.Row="2" 
+                        SelectedDate="{Binding Filtering.ToDate, Mode=TwoWay}"  Margin="2"/>
+                <!--================================================================================-->
+            </Grid>
+            <StackPanel x:Name="FilterCommandsGrid" Grid.Column="1" HorizontalAlignment="Stretch"
+                    VerticalAlignment="Bottom" FlowDirection="RightToLeft" Orientation="Horizontal">
+                <!--================================================================================-->
+                <Button x:Name="ViewButton" Width="100" Height="25" Margin="5,0"
+                        Content="{Binding ViewCommand.DisplayName}" Command="{Binding ViewCommand.Command}" />
+                <!--================================================================================-->
+            </StackPanel>
+            <StackPanel x:Name="FilterOperationCommands" Grid.Column="2" HorizontalAlignment="Stretch"
+                    VerticalAlignment="Bottom" FlowDirection="LeftToRight" Orientation="Horizontal">
+                <!--================================================================================-->
+                <Button x:Name="VoucherButton" Width="100" Height="25" Margin="5,0"
+                        Content="{Binding VoucherCommand.DisplayName}"
+                        Command="{Binding VoucherCommand.Command}" />
+                <!--================================================================================-->
+                <Button x:Name="PricingButton" Width="100" Height="25" Margin="5,0"
+                        Content="{Binding PricingCommand.DisplayName}"
+                        Command="{Binding PricingCommand.Command}" />
+                <!--================================================================================-->
+            </StackPanel>
+        </Grid>
+        <Grid x:Name="ListSectionGrid" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5">
+            <Grid.RowDefinitions>
+                <RowDefinition x:Name="ListTitleRow" Height="Auto" />
+                <RowDefinition x:Name="ListDataGridRow" Height="*" />
+                <RowDefinition x:Name="ListCommandsGridRow" Height="Auto" />
+            </Grid.RowDefinitions>
+            <!--================================================================================-->
+            <sdk:Label Grid.Row="0" Content="عملیات انبار" FontWeight="Bold"/>
+            <!--================================================================================-->
+            <sdk:DataGrid x:Name="TransactionDataGrid" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                    AutoGenerateColumns="False" IsReadOnly="True" ItemsSource="{Binding PagedTransactionData}"
+                    SelectedItem="{Binding SelectedTransaction, Mode=TwoWay}" SelectionMode="Single" FrozenColumnCount="2">
+                <sdk:DataGrid.Columns>
+                    <sdk:DataGridTextColumn Header="شناسه" Binding="{Binding Id}" />
+                    <sdk:DataGridTextColumn Header="کد" Binding="{Binding Code}" />
+                    <!--<sdk:DataGridTextColumn Header="شرح" Binding="{Binding Description}" />-->
+                    <sdk:DataGridTextColumn Header="نوع عملیات" Binding="{Binding Action, Converter={StaticResource TransactionTypeConverter}}" />
+                    <sdk:DataGridTextColumn Header="وضعیت" Binding="{Binding Status, Converter={StaticResource TransactionStatusConverter}}" />
+                    <sdk:DataGridTextColumn Header="تاریخ اثر" Binding="{Binding RegistrationDate}" />
+                    <sdk:DataGridTextColumn Header="انبار" Binding="{Binding Warehouse.Name}" />
+                    <sdk:DataGridTextColumn Header="عملیات" Binding="{Binding StoreTypes.InputName}" />
+                    <sdk:DataGridTextColumn Header="کاربر" Binding="{Binding UserCreator.Name}" />
+                    <sdk:DataGridTextColumn Header="مرجع عملیات" Binding="{Binding ReferenceType}" />
+                    <sdk:DataGridTextColumn Header="شماره مرجع" Binding="{Binding ReferenceNo}" />
+                    <sdk:DataGridTextColumn Header="شرح" Binding="{Binding Description}" />
+
+                </sdk:DataGrid.Columns>
+            </sdk:DataGrid>
+            <!--================================================================================-->
+            <StackPanel Grid.Row="2" HorizontalAlignment="Center" Orientation="Horizontal">
+                <!--================================================================================-->
+                <ui:CustomDataPager x:Name="TransactionListDataPager" Height="26" FontFamily="Tahoma" FontSize="11"
+                        Width="200" Source="{Binding PagedTransactionData, Mode=TwoWay}"
+                        PageSize="{Binding PagedTransactionData.PageSize, Mode=TwoWay, FallbackValue=10}"
+                        PageIndex="{Binding PagedTransactionData.PageIndex, Mode=TwoWay}" />
+
+                <Button x:Name="ViewInventoryTransactionReferenceButton" Width="100" Height="25" IsEnabled="{Binding SelectedTransaction, Converter={StaticResource IsNotNullConverter}}"
+                        Content="{Binding ViewInventoryTransactionReferenceCommand.DisplayName}" Command="{Binding ViewInventoryTransactionReferenceCommand.Command}"  Margin="2,0"/>
+                <!--================================================================================-->
+            </StackPanel>
+            <!--================================================================================-->
+        </Grid>
+        <Grid x:Name="DetailSectionGrid" Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                Margin="5">
+            <Grid.RowDefinitions>
+                <RowDefinition x:Name="DetailDataTitleRow" Height="Auto" />
+                <RowDefinition x:Name="DetailDataSectionGridRow" Height="*" />
+                <RowDefinition x:Name="DetailCommandsGridRow" Height="Auto" />
+            </Grid.RowDefinitions>
+            <!--================================================================================-->
+            <sdk:Label Grid.Row="0" Content="شرح ردیفها" FontWeight="Bold"/>
+            <!--================================================================================-->
+            <sdk:DataGrid x:Name="TransactionDetailDataGrid" Grid.Row="1" HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch" AutoGenerateColumns="False" IsReadOnly="True"
+                    ItemsSource="{Binding SelectedTransaction.Inventory_TransactionDetail}"
+                    SelectedItem="{Binding SelectedTransactionDetail, Mode=TwoWay}" SelectionMode="Single">
+                <sdk:DataGrid.Columns>
+                    <sdk:DataGridTextColumn Header="شناسه" Binding="{Binding Id}" />
+                    <sdk:DataGridTextColumn Header="ردیف" Binding="{Binding RowVersion}" />
+                    <sdk:DataGridTextColumn Header="شرح" Binding="{Binding Description}" />
+                    <sdk:DataGridTextColumn Header="کالا" Binding="{Binding Good.Name}" />
+                    <sdk:DataGridTextColumn Header="واحد" Binding="{Binding QuantityUnit.Name}" />
+                    <sdk:DataGridTextColumn Header="مقدار" Binding="{Binding QuantityAmount}" />
+                    <sdk:DataGridTextColumn Header="مبلغ کل (ارز پایه)" Binding="{Binding Converter={StaticResource TransactionItemPricesConverter},StringFormat=\{0:n0\}}" />
+                    <sdk:DataGridTextColumn Header="کاربر" Binding="{Binding UserCreator.Name}" />
+                    <sdk:DataGridTextColumn Header="تاریخ ایجاد" Binding="{Binding CreateDate}" />
+                </sdk:DataGrid.Columns>
+            </sdk:DataGrid>
+            <!--================================================================================-->
+            <StackPanel x:Name="DetailCommandsPanel" Grid.Row="2" HorizontalAlignment="Center" Orientation="Horizontal" Visibility="Collapsed">
+                <!--================================================================================-->
+                <!--<ui:CustomDataPager x:Name="TransactionDetailListDataPager" Height="26" FontFamily="Tahoma" FontSize="11"
+                        Width="200" Source="{Binding PagedTransactionDetailData, Mode=TwoWay}"
+                        PageSize="{Binding PagedTransactionDetailData.PageSize, Mode=TwoWay, FallbackValue=10}"
+                        PageIndex="{Binding PagedTransactionDetailData.PageIndex, Mode=TwoWay}" />-->
+                <!--================================================================================-->
+            </StackPanel>
+            <!--================================================================================-->
+        </Grid>
+        <Grid x:Name="DetailPriceSectionGrid" Grid.Row="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                Margin="5">
+            <Grid.RowDefinitions>
+                <RowDefinition x:Name="DetailPriceDataTitleRow" Height="Auto" />
+                <RowDefinition x:Name="DetailPriceDataSectionGridRow" Height="*" />
+                <RowDefinition x:Name="DetailPriceCommandsGridRow" Height="Auto" />
+            </Grid.RowDefinitions>
+            <!--================================================================================-->
+            <sdk:Label Grid.Row="0" Content="شرح قیمت گذاری" FontWeight="Bold"/>
+            <!--================================================================================-->
+            <sdk:DataGrid x:Name="TransactionDetailPriceDataGrid" Grid.Row="1" HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch" AutoGenerateColumns="False" IsReadOnly="True"
+                    ItemsSource="{Binding SelectedTransactionDetail.Inventory_TransactionDetailPrice}"
+                    SelectedItem="{Binding SelectedTransactionDetailPrice, Mode=TwoWay}" SelectionMode="Single">
+                <sdk:DataGrid.Columns>
+                    <sdk:DataGridTextColumn Header="شناسه" Binding="{Binding Id}" />
+                    <sdk:DataGridTextColumn Header="ردیف" Binding="{Binding RowVersion}" />
+                    <sdk:DataGridTextColumn Header="شرح" Binding="{Binding Description}" />
+                    <sdk:DataGridTextColumn Header="تاریخ اثر" Binding="{Binding RegistrationDate}" />
+                    <!--<sdk:DataGridTextColumn Header="کالا" Binding="{Binding Good.Name}" />-->
+                    <sdk:DataGridTextColumn Header="واحد" Binding="{Binding QuantityUnit.Name}" />
+                    <sdk:DataGridTextColumn Header="مقدار" Binding="{Binding QuantityAmount, StringFormat=\{0:n3\}}" />
+                    <sdk:DataGridTextColumn Header="نوع ارز" Binding="{Binding PriceUnit.Name}" />
+                    <sdk:DataGridTextColumn Header="فی ارزی" Binding="{Binding Fee, StringFormat=\{0:n2\}}" />
+                    <sdk:DataGridTextColumn Header="مبلغ ارزی" Binding="{Binding Price, StringFormat=\{0:n2\}}" />
+                    <sdk:DataGridTextColumn Header="نوع ارز پایه" Binding="{Binding MainCurrencyUnit.Name}" />
+                    <sdk:DataGridTextColumn Header="فی ارز پایه" Binding="{Binding FeeInMainCurrency, StringFormat=\{0:n0\}}" />
+                    <sdk:DataGridTextColumn Header="مبلغ ارز پایه" Binding="{Binding PriceInMainCurrency, StringFormat=\{0:n0\}}" />
+                    <sdk:DataGridTextColumn Header="کاربر" Binding="{Binding UserCreator.Name}" />
+                </sdk:DataGrid.Columns>
+            </sdk:DataGrid>
+            <!--================================================================================-->
+            <StackPanel x:Name="DetailPriceCommandsPanel" Grid.Row="2" HorizontalAlignment="Center" Orientation="Horizontal">
+                <!--================================================================================-->
+                <!--<ui:CustomDataPager x:Name="TransactionDetailPriceListDataPager" Height="26" FontFamily="Tahoma" FontSize="11"
+                        Width="200" Source="{Binding PagedTransactionDetailPriceData, Mode=TwoWay}"
+                        PageSize="{Binding PagedTransactionDetailPriceData.PageSize, Mode=TwoWay, FallbackValue=10}"
+                        PageIndex="{Binding PagedTransactionDetailPriceData.PageIndex, Mode=TwoWay}" Visibility="Collapsed"/>-->
+                <!--================================================================================-->
+                <Button x:Name="ViewInventoryTransactionDetailPricingReferenceButton" Width="100" Height="25" Margin="2,0" IsEnabled="{Binding SelectedTransactionDetailPrice, Converter={StaticResource IsNotNullConverter}}"
+                        Content="{Binding ViewInventoryTransactionDetailPricingReferenceCommand.DisplayName}" Command="{Binding ViewInventoryTransactionDetailPricingReferenceCommand.Command}" />
+
+            </StackPanel>
+            <!--================================================================================-->
+
+        </Grid>
+    </Grid>
+</ui:ViewBase>

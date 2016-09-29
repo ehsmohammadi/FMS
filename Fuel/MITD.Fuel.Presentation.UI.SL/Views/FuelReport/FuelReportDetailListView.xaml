@@ -1,0 +1,104 @@
+﻿  <UserControl:ViewBase
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:UserControl="clr-namespace:MITD.Presentation.UI;assembly=MITD.Presentation.UI.SL"
+    xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
+    xmlns:converters="clr-namespace:MITD.Fuel.Presentation.UI.SL.Converters"
+    xmlns:viewModels="clr-namespace:MITD.Fuel.Presentation.Logic.SL.ViewModels;assembly=MITD.Fuel.Presentation.Logic.SL"
+    x:Class="MITD.Fuel.Presentation.UI.SL.Views.FuelReportDetailListView" mc:Ignorable="d"
+    HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Style="{StaticResource DefaultStyle}" d:DataContext="{d:DesignInstance Type=viewModels:FuelReportDetailListVM}">
+   
+    <UserControl.Resources>
+        <converters:EnumToDescriptionConvertor x:Key="EnumToDescriptionConvertor"/>
+        <converters:IsNotNullConverter x:Key="IsNotNullConverter"/>
+        <converters:CurrencyTypeToPriceFormatConvertor x:Key="CurrencyTypeToPriceFormatConvertor"/>
+    </UserControl.Resources>
+   
+    <Grid x:Name="uxLayoutGrid"   HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*" ></RowDefinition>
+            <RowDefinition Height="*" ></RowDefinition>
+         
+        </Grid.RowDefinitions>
+            <Grid x:Name="uxGrid" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Grid.Row="0" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+            <sdk:DataGrid AutoGenerateColumns="False"  x:Name="uxDataGrid"  Grid.Row="0" IsReadOnly="True"
+                          VerticalAlignment="Stretch" SelectionMode="Single"
+                          ItemsSource="{Binding Path=FuelReportDetailVms}" 
+                          SelectedItem="{Binding Path=SelectedFuelReportDetailVm, Mode=TwoWay}" >
+                <sdk:DataGrid.Columns>
+                    <sdk:DataGridTextColumn Binding="{Binding Path=Entity.Id}" IsReadOnly="True"  CanUserResize="True" CanUserSort="True" Width="Auto" Header="سریال"   />
+                    <sdk:DataGridTextColumn Binding="{Binding Path=Entity.TankId}" IsReadOnly="True"  CanUserResize="True" CanUserSort="True" Width="Auto" Header="تانک"  Visibility="Collapsed" />
+                    <sdk:DataGridTextColumn Binding="{Binding Path=Entity.Good.Name}" IsReadOnly="True"   CanUserResize="True" CanUserSort="True" Width="Auto" Header="نوع کالا"   />
+                    <sdk:DataGridTextColumn Binding="{Binding Path=Entity.Good.Code}" IsReadOnly="True" CanUserResize="True" CanUserSort="True" Width="Auto" Header="کد کالا"   />
+                    <sdk:DataGridTextColumn Binding="{Binding Path=Entity.PreviousROB, StringFormat=\{0:n3\}}" IsReadOnly="True" CanUserResize="True" CanUserSort="True" Width="Auto" Header="موجودی گذشته" Foreground="#FF0A0A0A" />
+                    <sdk:DataGridTextColumn Binding="{Binding Path=Entity.ROB, StringFormat=\{0:n3\}}" IsReadOnly="True" CanUserResize="True" CanUserSort="True" Width="Auto" Header="موجودی جاری" Foreground="#FF0A0A0A" />
+                    <sdk:DataGridTextColumn Binding="{Binding Path=Entity.Good.Unit.Name}" IsReadOnly="True" CanUserResize="True" CanUserSort="True" Width="Auto" Header="واحد" />
+                    <sdk:DataGridTextColumn Binding="{Binding Path=Entity.Consumption, StringFormat=\{0:n3\}}" IsReadOnly="True" CanUserResize="True" CanUserSort="True" Width="Auto" Header="مصرف " Foreground="#FF0A0A0A"/>
+                    <sdk:DataGridTextColumn Binding="{Binding Path=Entity.Recieve, StringFormat=\{0:n3\}}" IsReadOnly="True" CanUserResize="True" CanUserSort="True" Width="Auto" Header="دریافت" Foreground="#FF0A0A0A"/>
+                    <sdk:DataGridTextColumn Binding="{Binding Path=Entity.ReceiveType, Converter={StaticResource EnumToDescriptionConvertor}}" IsReadOnly="True" CanUserResize="True" CanUserSort="True" Width="Auto" Header="نوع دریافت" Foreground="#FF0A0A0A"/>
+                    <sdk:DataGridTextColumn Binding="{Binding Path=Entity.FuelReportReceiveReferenceNoDto.Code}" IsReadOnly="True" CanUserResize="True" CanUserSort="True" Width="Auto" Header="شماره مرجع دریافت " Foreground="#FF0A0A0A"/>
+                    <sdk:DataGridTextColumn Binding="{Binding Path=Entity.Correction, StringFormat=\{0:n3\}}" IsReadOnly="True" CanUserResize="True" CanUserSort="True" Width="Auto" Header="تصحیح " Foreground="#FF0A0A0A"/>
+                    <sdk:DataGridTextColumn Binding="{Binding Path=Entity.CorrectionType, Converter={StaticResource EnumToDescriptionConvertor}}" IsReadOnly="True" CanUserResize="True" CanUserSort="True" Width="Auto" Header="نوع تصحیح " Foreground="#FF0A0A0A"/>
+                    <sdk:DataGridTextColumn Binding="{Binding Path=Entity.CorrectionPricingType, Converter={StaticResource EnumToDescriptionConvertor}}" IsReadOnly="True" CanUserResize="True" CanUserSort="True" Width="Auto" Header="قیمت گذاری تصحیح " Foreground="#FF0A0A0A"/>
+                    <sdk:DataGridTextColumn Binding="{Binding Path=Entity.CorrectionPrice, StringFormat=\{0:n2\}}" IsReadOnly="True" CanUserResize="True" CanUserSort="True" Width="Auto" Header="قیمت تصحیح" Foreground="#FF0A0A0A"/>
+                    <sdk:DataGridTextColumn Binding="{Binding Path=Entity.CurrencyDto.Name}" IsReadOnly="True" CanUserResize="True" CanUserSort="True" Width="Auto" Header="نوع ارز" Foreground="#FF0A0A0A"/>
+                    <sdk:DataGridTextColumn Binding="{Binding Path=Entity.FuelReportCorrectionReferenceNoDto.Code}" IsReadOnly="True" CanUserResize="True" CanUserSort="True" Width="Auto" Header="شماره مرجع تصحیح " Foreground="#FF0A0A0A"/>
+                    <sdk:DataGridTextColumn Binding="{Binding Path=Entity.Transfer, StringFormat=\{0:n3\}}" IsReadOnly="True" CanUserResize="True" CanUserSort="True" Width="Auto" Header="انتقال" Foreground="#FF0A0A0A"/>
+                    <sdk:DataGridTextColumn Binding="{Binding Path=Entity.TransferType, Converter={StaticResource EnumToDescriptionConvertor}}" IsReadOnly="True" CanUserResize="True" CanUserSort="True" Width="Auto" Header="نوع انتقال" Foreground="#FF0A0A0A"/>
+                    <sdk:DataGridTextColumn Binding="{Binding Path=Entity.FuelReportTransferReferenceNoDto.Code}" IsReadOnly="True"  CanUserResize="True" CanUserSort="True" Width="Auto" Header="شماره مرجع انتقال " Foreground="#FF0A0A0A"/>
+
+                </sdk:DataGrid.Columns>
+            </sdk:DataGrid>
+            <StackPanel Grid.Row="1" HorizontalAlignment="Center" Orientation="Horizontal">
+                <Button  Content="{Binding EditCommand.DisplayName}" Command="{Binding EditCommand.Command}" Width="75" Height="25" IsEnabled="{Binding SelectedFuelReportDetailVm, Converter={StaticResource IsNotNullConverter}}" />
+            </StackPanel>
+
+        </Grid>
+        <!--inventory operation-->
+        <Grid x:Name="uxInventoryOperationGrid" Grid.Row="1" 
+              VerticalAlignment="Stretch" HorizontalAlignment="Stretch"  >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" ></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <sdk:Label Content="لیست رسیدها و حواله های مرتبط" Grid.Row="0" IsRequired="True"/>
+            <!--ItemsSource="{Binding DataInventoryOperation}"-->
+            <sdk:DataGrid AutoGenerateColumns="False"  x:Name="uxFuelReportInventoryOperationDataGrid"  VerticalAlignment="Stretch" SelectionMode="Single"
+                      ItemsSource="{Binding AllInventoryOperations}" 
+                      Grid.Row="1" SelectedItem="{Binding SelectedInventoryOperation, Mode=TwoWay}">
+                <sdk:DataGrid.Columns>
+                    <!--code-->
+                    <sdk:DataGridTextColumn x:Name="uxOperationCodeCol" Binding="{Binding Path=Entity.Code}" IsReadOnly="True" CanUserResize="True" CanUserSort="True" Width="Auto" Header="کد" />
+                    <!--ActionType-->
+                    <sdk:DataGridTextColumn Binding="{Binding Path=Entity.ActionType}" IsReadOnly="True" CanUserResize="True" CanUserSort="True" Width="Auto" Header="نوع عملیات" />
+                    <!--ActionDate-->
+                    <sdk:DataGridTemplateColumn Header="تاريخ" >
+                        <sdk:DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Border HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                    <TextBlock Text="{Binding Path=Entity.ActionDate,Mode=TwoWay}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </DataTemplate>
+                        </sdk:DataGridTemplateColumn.CellTemplate>
+                    </sdk:DataGridTemplateColumn>
+                    <sdk:DataGridTemplateColumn>
+                        <sdk:DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Command="{Binding ViewInventoryOperationCommand.Command, Mode=TwoWay, UpdateSourceTrigger=Explicit}" Content="{Binding ViewInventoryOperationCommand.DisplayName, Mode=TwoWay}" />
+                            </DataTemplate>
+                        </sdk:DataGridTemplateColumn.CellTemplate>
+                    </sdk:DataGridTemplateColumn>
+                </sdk:DataGrid.Columns>
+
+            </sdk:DataGrid>
+        </Grid>
+    </Grid>
+
+
+</UserControl:ViewBase>

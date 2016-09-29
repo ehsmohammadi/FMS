@@ -1,0 +1,175 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F37EEC81-253A-4823-821B-B759E50689D9}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MITD.Fuel.Application.Test</RootNamespace>
+    <AssemblyName>MITD.Fuel.Application.Test</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+    <ReferencePath>$(ProgramFiles)\Common Files\microsoft shared\VSTT\$(VisualStudioVersion)\UITestExtensionPackages</ReferencePath>
+    <IsCodedUITest>False</IsCodedUITest>
+    <TestProjectType>UnitTest</TestProjectType>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Without Test|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Without Test\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="MITD.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\Dependencies\MITD.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="MITD.DataAccess.EF">
+      <HintPath>..\..\Dependencies\MITD.DataAccess.EF.dll</HintPath>
+    </Reference>
+    <Reference Include="MITD.Domain.Model, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\Dependencies\MITD.Domain.Model.dll</HintPath>
+    </Reference>
+    <Reference Include="MITD.Domain.Repository, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\Dependencies\MITD.Domain.Repository.dll</HintPath>
+    </Reference>
+    <Reference Include="MITD.Presentation">
+      <HintPath>..\..\Dependencies\MITD.Presentation.dll</HintPath>
+    </Reference>
+    <Reference Include="MITD.Services">
+      <HintPath>..\..\Dependencies\MITD.Services.dll</HintPath>
+    </Reference>
+    <Reference Include="MITD.Services.AntiCorruption">
+      <HintPath>..\..\Dependencies\MITD.Services.AntiCorruption.dll</HintPath>
+    </Reference>
+    <Reference Include="MITD.StorageSpace.Presentation.Contracts">
+      <HintPath>..\..\Dependencies\MITD.StorageSpace.Presentation.Contracts.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web.Extensions" />
+  </ItemGroup>
+  <Choose>
+    <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
+      <ItemGroup>
+        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+      </ItemGroup>
+    </When>
+    <Otherwise>
+      <ItemGroup>
+        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework" />
+      </ItemGroup>
+    </Otherwise>
+  </Choose>
+  <ItemGroup>
+    <Compile Include="FuelReportTests\FuelReportFacadeServiceTests.cs" />
+    <Compile Include="FuelReportTests\VoyageFacadeServiceTests.cs" />
+    <Compile Include="GoodFacadeServiceTests.cs" />
+    <Compile Include="MapperTest.cs" />
+    <Compile Include="OrderTest\OrderServiceTests.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="FuelReportTests\FuelReportAppServiceTests.cs" />
+    <Compile Include="GoodUnitConvertorDomainServiceTest1.cs" />
+    <Compile Include="BasicInfoFacadeServiceObjectsContainer.cs" />
+    <Compile Include="BasicInfoDomainServiceObjectsContainer.cs" />
+    <Compile Include="ScrapTests\ScrapAppServiceTests.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MITD.Fuel.ACL.Contracts\MITD.Fuel.ACL.Contracts.csproj">
+      <Project>{AB12495A-9A99-4F33-A9FA-507746BBA754}</Project>
+      <Name>MITD.Fuel.ACL.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MITD.Fuel.ACL.StorageSpace\MITD.Fuel.ACL.StorageSpace.csproj">
+      <Project>{86200bb9-7d71-43ac-8e01-9ee0277aac16}</Project>
+      <Name>MITD.Fuel.ACL.StorageSpace</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MITD.Fuel.Application\MITD.Fuel.Application.csproj">
+      <Project>{35467346-a533-4822-b29e-af6339ba4298}</Project>
+      <Name>MITD.Fuel.Application</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MITD.Fuel.Data.EF\MITD.Fuel.Data.EF.csproj">
+      <Project>{22FFBC88-AF0B-47B5-B013-07CC02078BF0}</Project>
+      <Name>MITD.Fuel.Data.EF</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MITD.Fuel.Domain.Model\MITD.Fuel.Domain.Model.csproj">
+      <Project>{F75008B5-5BFE-4570-B583-9C3E0468ED68}</Project>
+      <Name>MITD.Fuel.Domain.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MITD.Fuel.Infrastructure.Service\MITD.Fuel.Infrastructure.Service.csproj">
+      <Project>{8f8f2f51-de0d-4085-a3eb-6d18d7e29f3b}</Project>
+      <Name>MITD.Fuel.Infrastructure.Service</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MITD.Fuel.Integration.Inventory\MITD.Fuel.Integration.Inventory.csproj">
+      <Project>{5D04E907-986D-44C2-AE99-78A45C39E618}</Project>
+      <Name>MITD.Fuel.Integration.Inventory</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MITD.Fuel.Presentation.Contracts\MITD.Fuel.Presentation.Contracts.csproj">
+      <Project>{087D039B-81F3-4F11-BB55-647F0F4BD06D}</Project>
+      <Name>MITD.Fuel.Presentation.Contracts</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <Choose>
+    <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
+      <ItemGroup>
+        <Reference Include="Microsoft.VisualStudio.QualityTools.CodedUITestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="Microsoft.VisualStudio.TestTools.UITest.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="Microsoft.VisualStudio.TestTools.UITest.Extension, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="Microsoft.VisualStudio.TestTools.UITesting, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+      </ItemGroup>
+    </When>
+  </Choose>
+  <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

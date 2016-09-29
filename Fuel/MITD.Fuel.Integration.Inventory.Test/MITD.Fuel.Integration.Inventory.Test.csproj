@@ -1,0 +1,163 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{9BB5B648-28C0-4C52-AD4D-04168CB2786E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MITD.Fuel.Integration.Inventory.Test</RootNamespace>
+    <AssemblyName>MITD.Fuel.Integration.Inventory.Test</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+    <ReferencePath>$(ProgramFiles)\Common Files\microsoft shared\VSTT\$(VisualStudioVersion)\UITestExtensionPackages</ReferencePath>
+    <IsCodedUITest>False</IsCodedUITest>
+    <TestProjectType>UnitTest</TestProjectType>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Iesi.Collections">
+      <HintPath>..\packages\Iesi.Collections.3.2.0.1001\lib\Net35\Iesi.Collections.dll</HintPath>
+    </Reference>
+    <Reference Include="MITD.Core">
+      <HintPath>..\..\..\Implementation-Inventory\Modules\Dependencies\MITD.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="MITD.CurrencyAndMeasurement.Core">
+      <HintPath>..\..\..\Implementation-Inventory\Modules\Dependencies\MITD.CurrencyAndMeasurement.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="MITD.CurrencyAndMeasurement.Domain">
+      <HintPath>..\..\..\Implementation-Inventory\Modules\Dependencies\MITD.CurrencyAndMeasurement.Domain.dll</HintPath>
+    </Reference>
+    <Reference Include="MITD.CurrencyAndMeasurement.Domain.Contracts">
+      <HintPath>..\..\..\Implementation-Inventory\Modules\Dependencies\MITD.CurrencyAndMeasurement.Domain.Contracts.dll</HintPath>
+    </Reference>
+    <Reference Include="MITD.CurrencyAndMeasurement.Persistance.NH">
+      <HintPath>..\..\..\Implementation-Inventory\Modules\Dependencies\MITD.CurrencyAndMeasurement.Persistance.NH.dll</HintPath>
+    </Reference>
+    <Reference Include="MITD.DataAccess.EF">
+      <HintPath>..\..\..\Implementation-Inventory\Modules\Dependencies\MITD.DataAccess.EF.dll</HintPath>
+    </Reference>
+    <Reference Include="MITD.DataAccess.EF.Config.Castle">
+      <HintPath>..\..\..\Implementation-Inventory\Modules\Dependencies\MITD.DataAccess.EF.Config.Castle.dll</HintPath>
+    </Reference>
+    <Reference Include="MITD.Domain.Model">
+      <HintPath>..\..\..\Implementation-Inventory\Modules\Dependencies\MITD.Domain.Model.dll</HintPath>
+    </Reference>
+    <Reference Include="MITD.Domain.Repository">
+      <HintPath>..\..\..\Implementation-Inventory\Modules\Dependencies\MITD.Domain.Repository.dll</HintPath>
+    </Reference>
+    <Reference Include="MITD.Domain.Repository.Web">
+      <HintPath>..\..\..\Implementation-Inventory\Modules\Dependencies\MITD.Domain.Repository.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate">
+      <HintPath>..\packages\NHibernate.3.3.3.4001\lib\Net35\NHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="TIBA.Core">
+      <HintPath>..\..\..\Implementation-Inventory\Modules\Dependencies\TIBA.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="TIBA.DataAccess.NH">
+      <HintPath>..\..\..\Implementation-Inventory\Modules\Dependencies\TIBA.DataAccess.NH.dll</HintPath>
+    </Reference>
+    <Reference Include="TIBA.Domain.Model">
+      <HintPath>..\..\..\Implementation-Inventory\Modules\Dependencies\TIBA.Domain.Model.dll</HintPath>
+    </Reference>
+    <Reference Include="TIBA.Domain.Repository">
+      <HintPath>..\..\..\Implementation-Inventory\Modules\Dependencies\TIBA.Domain.Repository.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <Choose>
+    <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
+      <ItemGroup>
+        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+      </ItemGroup>
+    </When>
+    <Otherwise>
+      <ItemGroup>
+        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework" />
+      </ItemGroup>
+    </Otherwise>
+  </Choose>
+  <ItemGroup>
+    <Compile Include="UpdateCountSubmitedReciptFlowTest.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MITD.Fuel.Data.EF\MITD.Fuel.Data.EF.csproj">
+      <Project>{22ffbc88-af0b-47b5-b013-07cc02078bf0}</Project>
+      <Name>MITD.Fuel.Data.EF</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MITD.Fuel.Domain.Model\MITD.Fuel.Domain.Model.csproj">
+      <Project>{f75008b5-5bfe-4570-b583-9c3e0468ed68}</Project>
+      <Name>MITD.Fuel.Domain.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MITD.Fuel.Integration.Inventory\MITD.Fuel.Integration.Inventory.csproj">
+      <Project>{5d04e907-986d-44c2-ae99-78a45c39e618}</Project>
+      <Name>MITD.Fuel.Integration.Inventory</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Choose>
+    <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
+      <ItemGroup>
+        <Reference Include="Microsoft.VisualStudio.QualityTools.CodedUITestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="Microsoft.VisualStudio.TestTools.UITest.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="Microsoft.VisualStudio.TestTools.UITest.Extension, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="Microsoft.VisualStudio.TestTools.UITesting, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+      </ItemGroup>
+    </When>
+  </Choose>
+  <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,81 @@
+﻿<UserControl:ViewBase xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:UserControl="clr-namespace:MITD.Presentation.UI;assembly=MITD.Presentation.UI.SL"
+        xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
+        xmlns:converters="clr-namespace:MITD.Fuel.Presentation.UI.SL.Converters"
+        x:Class="MITD.Fuel.Presentation.UI.SL.Views.OrderItemView" mc:Ignorable="d"
+                       Style="{StaticResource DefaultStyle}" 
+                      >
+    <UserControl.Resources>
+        <DataTemplate x:Key="uxbzcombo">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="5" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Grid.Children>
+                    <TextBlock Grid.Column="0" Grid.Row="0" Text="{Binding Path=Name, Mode=OneWay}" />
+                    <TextBlock Grid.Column="2" Grid.Row="0" Text="{Binding Path=Code, Mode=OneWay}" />
+                </Grid.Children>
+            </Grid>
+        </DataTemplate>
+    </UserControl.Resources>
+    <Grid x:Name="uxLayoutGrid" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0,0,0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <!--labels-->
+        <sdk:Label Height="18" Content="نام کالا" Grid.Column="0" Grid.Row="0" Width="34"  HorizontalAlignment="Right"/>
+        <sdk:Label Height="18" Grid.Column="0" Grid.Row="1" Width="32" Content="کد کالا"  HorizontalAlignment="Right"/>
+        <sdk:Label Height="22" Grid.Column="0" Grid.Row="2" Width="43" Content="واحد کالا"  HorizontalAlignment="Right"/>
+        <sdk:Label Height="17" Grid.Row="3" Grid.Column="0" Width="34" Content="مقدار"  HorizontalAlignment="Right"/>
+        <sdk:Label Grid.Column="3" Grid.Row="0" Height="18" Width="76" Content="واحد اصلی" HorizontalAlignment="Right"/>
+        <sdk:Label Grid.Column="3" Grid.Row="1" Height="20" Width="92" Content="مقدار با واحد اصلی"  HorizontalAlignment="Right"/>
+        <sdk:Label Height="18" Grid.Row="5" Width="57" Content="توضیحات"  HorizontalAlignment="Right" VerticalAlignment="Top" Margin="5"/>
+        <!--textboxes-->
+        <TextBox Text="{Binding Path=Entity.Quantity,Mode=TwoWay, StringFormat=\{0:n3\}}" Grid.Column="1" Height="25" Grid.ColumnSpan="2" Margin="5"
+                Grid.Row="3" TextWrapping="Wrap" Width="150" />
+        <TextBox Text="{Binding Path=Entity.Description,Mode=TwoWay}" Grid.Column="1" Height="60" Grid.Row="5" Margin="5"
+                TextWrapping="Wrap"  Grid.ColumnSpan="5" />
+        <TextBox Text="{Binding Path=MainUnitValueDto.Name,Mode=OneWay}" IsReadOnly="True" Grid.Column="4"
+                Grid.ColumnSpan="2" Grid.Row="0" TextWrapping="Wrap" Height="25" Width="150" Margin="5" />
+        <TextBox Text="{Binding Path=MainUnitValueDto.Value,Mode=OneWay, StringFormat=\{0:n3\}}" IsReadOnly="True" Grid.Column="4"
+                Grid.ColumnSpan="2" Grid.Row="1" TextWrapping="Wrap" Height="25" Width="150" Margin="5"/>
+        <!--comboBox-->
+        <UserControl:ComboBoxEx ItemsSource="{Binding GoodDtos}" Grid.Column="1" Grid.Row="0" Width="150" Height="25" 
+                Grid.ColumnSpan="2" SelectedValueProper="{Binding GoodId, Mode=TwoWay}" DisplayMemberPath="Name" 
+                SelectedValuePath="Id" Margin="5">
+            <!--ItemTemplate="{StaticResource uxbzcombo}"-->
+        </UserControl:ComboBoxEx>
+        <TextBox Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" Width="150" Height="25" IsEnabled="False"
+                Text="{Binding Entity.Good.Code}" />
+        <UserControl:ComboBoxEx Grid.ColumnSpan="2" ItemsSource="{Binding Entity.Good.Units}" Grid.Column="1" Margin="5"
+                Grid.Row="2" Width="150" Height="25" SelectedValueProper="{Binding UnitId, Mode=TwoWay}"
+                SelectedValuePath="Id" DisplayMemberPath="Name"></UserControl:ComboBoxEx>
+        <!--button-->
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Column="0" Grid.ColumnSpan="6" Grid.Row="7">
+        <Button Content="{Binding SubmitCommand.DisplayName}" Command="{Binding SubmitCommand.Command}" Grid.Column="1"
+            Grid.Row="7" Width="75" Height="25" Margin="5"/>
+        <Button Content="{Binding CancelCommand.DisplayName}" Command="{Binding CancelCommand.Command}" Grid.Column="3"
+            Grid.Row="7" Width="75" Height="25" Margin="5"/>
+        </StackPanel>
+        <!--<Button Content="{Binding RefreshCommand.DisplayName}"  Command="{Binding RefreshCommand.Command}" Grid.Column="4" Grid.Row="2" Width="75" Height="25"/>-->
+    </Grid>
+</UserControl:ViewBase>

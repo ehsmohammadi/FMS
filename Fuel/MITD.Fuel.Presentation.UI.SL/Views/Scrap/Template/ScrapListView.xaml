@@ -1,0 +1,57 @@
+﻿<ui:ViewBase x:Class="MITD.Fuel.Presentation.UI.SL.Views.Scrap.ScrapListView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ui="http://schemas.mitd.com/silverlight/2012/xaml/presentation.ui"
+    xmlns:viewModels="clr-namespace:MITD.Fuel.Presentation.Logic.SL.ViewModels;assembly=MITD.Fuel.Presentation.Logic.SL"
+    mc:Ignorable="d"
+    d:DesignHeight="300" d:DesignWidth="400"
+    d:DataContext="{d:DesignInstance Type=viewModels:ScrapListVM}">
+
+    <UserControl.Resources></UserControl.Resources>
+
+    <Grid x:Name="MainLayoutGrid" Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition x:Name="FilterGridRow" Height="*"/>
+            <RowDefinition x:Name="DataSectionGridRow" Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid x:Name="FilterSectionGrid" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition x:Name="FilterControlsColumn" Width="*"/>
+                <ColumnDefinition x:Name="FilterCommandsColumn" Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid x:Name="FilterControlsGrid" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+            </Grid>
+            <Grid x:Name="FilterCommandsGrid" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Bottom">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Button x:Name="SearchButton" ></Button>
+            </Grid>
+        </Grid>
+        <Grid x:Name="DataSectionGrid" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <Grid.RowDefinitions>
+                <RowDefinition x:Name="ListSectionGridRow" Height="*"/>
+                <RowDefinition x:Name="DetailSectionGridRow" Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid x:Name="ListSectionGrid" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <Grid.RowDefinitions>
+                    <RowDefinition x:Name="ListDataGridRow" Height="*"/>
+                    <RowDefinition x:Name="ListCommandsGridRow" Height="Auto"/>
+                </Grid.RowDefinitions>
+            </Grid>
+            <Grid x:Name="DetailSectionGrid" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <Grid.RowDefinitions>
+                    <RowDefinition x:Name="DetailDataSectionGridRow" Height="*"/>
+                    <RowDefinition x:Name="DetailCommandsGridRow" Height="Auto"/>
+                </Grid.RowDefinitions>
+            </Grid>
+        </Grid>
+    </Grid>
+</ui:ViewBase>

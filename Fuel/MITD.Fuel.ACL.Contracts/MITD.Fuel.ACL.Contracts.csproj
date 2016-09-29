@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{AB12495A-9A99-4F33-A9FA-507746BBA754}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MITD.Fuel.ACL.Contracts</RootNamespace>
+    <AssemblyName>MITD.Fuel.ACL.Contracts</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Without Test|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Without Test\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="MITD.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\Dependencies\MITD.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="MITD.Domain.Model, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\Dependencies\MITD.Domain.Model.dll</HintPath>
+    </Reference>
+    <Reference Include="MITD.Presentation">
+      <HintPath>..\..\Dependencies\MITD.Presentation.dll</HintPath>
+    </Reference>
+    <Reference Include="MITD.Services">
+      <HintPath>..\..\Dependencies\MITD.Services.dll</HintPath>
+    </Reference>
+    <Reference Include="MITD.StorageSpace.Presentation.Contracts">
+      <HintPath>..\..\Dependencies\MITD.StorageSpace.Presentation.Contracts.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Adapters\IEnterprisePartyAntiCorruptionAdapter.cs" />
+    <Compile Include="Adapters\IGoodAntiCorruptionAdapter.cs" />
+    <Compile Include="AutomaticVoucher\ISendToFinancial.cs" />
+    <Compile Include="AutomaticVoucher\ICheckVoucher.cs" />
+    <Compile Include="AutomaticVoucher\IDeleteVoucher.cs" />
+    <Compile Include="AutomaticVoucher\IAddCharterInEndBackReciptVoucher.cs" />
+    <Compile Include="AutomaticVoucher\IAddCharterInEndConsumptionIssueVoucher.cs" />
+    <Compile Include="AutomaticVoucher\IAddCharterInEndIssueVoucher.cs" />
+    <Compile Include="AutomaticVoucher\IAddCharterInStartIssueDiffVoucher.cs" />
+    <Compile Include="AutomaticVoucher\IAddCharterInStartReceiptVoucher.cs" />
+    <Compile Include="AutomaticVoucher\IAddCharterOutEndReceiptVoucher.cs" />
+    <Compile Include="AutomaticVoucher\IAddCharterOutStartBackReceiptVoucher.cs" />
+    <Compile Include="AutomaticVoucher\IAddCharterOutStartConsumptionIssueVoucher.cs" />
+    <Compile Include="AutomaticVoucher\IAddCharterOutStartIssueVoucher.cs" />
+    <Compile Include="AutomaticVoucher\IAddMinusCorrectionReceiptVoucher.cs" />
+    <Compile Include="AutomaticVoucher\IAddOffhireVoucher.cs" />
+    <Compile Include="AutomaticVoucher\IAddPlusCorrectionReceiptVoucher.cs" />
+    <Compile Include="AutomaticVoucher\IAddPurchesInvoiceVoucher.cs" />
+    <Compile Include="AutomaticVoucher\IAddTransferBarjingInvoiceVoucher.cs" />
+    <Compile Include="AutomaticVoucher\IAddConsumptionIssueVoucher.cs" />
+    <Compile Include="AutomaticVoucher\IAddSaleTransitionIssueVoucher.cs" />
+    <Compile Include="ServiceWrappers\IVesselAntiCorruptionServiceWrapper.cs" />
+    <Compile Include="Mappers\IGoodAntiCorruptionMapper.cs" />
+    <Compile Include="Mappers\IEnterprisePartyAntiCorruptionMapper.cs" />
+    <Compile Include="Mappers\IVesselAntiCorruptionMapper.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServiceWrappers\IEnterprisePartyAntiCorruptionServiceWrapper.cs" />
+    <Compile Include="ServiceWrappers\IGoodAntiCorruptionServiceWrapper.cs" />
+    <Compile Include="ServiceWrappers\IGoodPartyAssignmentAntiCorruptionServiceWrapper.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MITD.Fuel.Domain.Model\MITD.Fuel.Domain.Model.csproj">
+      <Project>{f75008b5-5bfe-4570-b583-9c3e0468ed68}</Project>
+      <Name>MITD.Fuel.Domain.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

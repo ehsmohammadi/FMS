@@ -1,0 +1,482 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{AF34F472-86F6-4ABA-86C2-3FF63B84426E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MITD.AutomaticVoucher</RootNamespace>
+    <AssemblyName>MITD.AutomaticVoucher</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="MITD.Core">
+      <HintPath>..\..\Dependencies\MITD.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="MITD.CurrencyAndMeasurement.Domain.Contracts">
+      <HintPath>..\..\Dependencies\MITD.CurrencyAndMeasurement.Domain.Contracts.dll</HintPath>
+    </Reference>
+    <Reference Include="MITD.Domain.Model">
+      <HintPath>..\..\Dependencies\MITD.Domain.Model.dll</HintPath>
+    </Reference>
+    <Reference Include="MITD.Domain.Repository">
+      <HintPath>..\..\Dependencies\MITD.Domain.Repository.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Data\VoucherLog.cs">
+      <DependentUpon>VoucherLogModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\VoucherLogModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VoucherLogModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\VoucherLogModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VoucherLogModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\VoucherLogModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VoucherLogModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Data\VoucherTransferLog.cs">
+      <DependentUpon>VoucherLogModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FinancialService\SAPIDFinancialVoucherService.cs" />
+    <Compile Include="FinancialService\HafezFinancialVoucherService.cs" />
+    <Compile Include="FinancialService\SendToFinancialService.cs" />
+    <Compile Include="FinancialService\VoucherTransferLogService.cs" />
+    <Compile Include="Log\VoucherLogService.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service References\HDAFinancialService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\IRISLFinancialService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\SAPIDFinancialService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Services\AddCharterInEndBackReciptVoucher.cs" />
+    <Compile Include="Services\AddCharterInEndConsumptionIssueVoucher.cs" />
+    <Compile Include="Services\AddCharterInEndIssueVoucher.cs" />
+    <Compile Include="Services\AddCharterInStartIssueDiffVoucher.cs" />
+    <Compile Include="Services\AddCharterInStartReceiptVoucher.cs" />
+    <Compile Include="Services\AddCharterOutEndReceiptVoucher.cs" />
+    <Compile Include="Services\AddCharterOutStartBackReceiptVoucher.cs" />
+    <Compile Include="Services\AddCharterOutStartConsumptionIssueVoucher.cs" />
+    <Compile Include="Services\AddCharterOutStartIssueVoucher.cs" />
+    <Compile Include="Services\AddConsumptionIssueVoucher.cs" />
+    <Compile Include="Services\AddMinusCorrectionReceiptVoucher.cs" />
+    <Compile Include="Services\AddOffhireVoucher.cs" />
+    <Compile Include="Services\AddPlusCorrectionReceiptVoucher.cs" />
+    <Compile Include="Services\AddPurchesInvoiceVoucher.cs" />
+    <Compile Include="Services\AddSaleTransitionIssueVoucher.cs" />
+    <Compile Include="Services\AddTransferBarjingInvoiceVoucher.cs" />
+    <Compile Include="Services\CheckVoucher.cs" />
+    <Compile Include="Services\DeleteVoucher.cs" />
+    <Compile Include="Services\ExprBuilder.cs" />
+    <Compile Include="Services\AddReformVoucher.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MITD.Fuel.ACL.Contracts\MITD.Fuel.ACL.Contracts.csproj">
+      <Project>{ab12495a-9a99-4f33-a9fa-507746bba754}</Project>
+      <Name>MITD.Fuel.ACL.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MITD.Fuel.Domain.Model\MITD.Fuel.Domain.Model.csproj">
+      <Project>{f75008b5-5bfe-4570-b583-9c3e0468ed68}</Project>
+      <Name>MITD.Fuel.Domain.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config">
+      <SubType>Designer</SubType>
+    </None>
+    <EntityDeploy Include="Data\VoucherLogModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>VoucherLogModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Data\VoucherLogModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>VoucherLogModel.edmx</DependentUpon>
+      <LastGenOutput>VoucherLogModel.Context.cs</LastGenOutput>
+    </None>
+    <None Include="Data\VoucherLogModel.edmx.diagram">
+      <DependentUpon>VoucherLogModel.edmx</DependentUpon>
+    </None>
+    <None Include="Data\VoucherLogModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>VoucherLogModel.edmx</DependentUpon>
+      <LastGenOutput>VoucherLogModel.cs</LastGenOutput>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Service References\HDAFinancialService\AccServiceService.wsdl" />
+    <None Include="Service References\HDAFinancialService\MITD.AutomaticVoucher.HDAFinancialService.getAccFreeGroupListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\HDAFinancialService\MITD.AutomaticVoucher.HDAFinancialService.getAccFreeListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\HDAFinancialService\MITD.AutomaticVoucher.HDAFinancialService.getAccListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\HDAFinancialService\MITD.AutomaticVoucher.HDAFinancialService.getAccListWithNameResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\HDAFinancialService\MITD.AutomaticVoucher.HDAFinancialService.getAccUserIDResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\HDAFinancialService\MITD.AutomaticVoucher.HDAFinancialService.getArticleDetailsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\HDAFinancialService\MITD.AutomaticVoucher.HDAFinancialService.getBookingRateResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\HDAFinancialService\MITD.AutomaticVoucher.HDAFinancialService.getDurationResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\HDAFinancialService\MITD.AutomaticVoucher.HDAFinancialService.getLastUserSequenceResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\HDAFinancialService\MITD.AutomaticVoucher.HDAFinancialService.getVoucherPrintResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\HDAFinancialService\MITD.AutomaticVoucher.HDAFinancialService.loginResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\HDAFinancialService\MITD.AutomaticVoucher.HDAFinancialService.loginWithLanResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\HDAFinancialService\MITD.AutomaticVoucher.HDAFinancialService.logoutResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\HDAFinancialService\MITD.AutomaticVoucher.HDAFinancialService.removeHeaderResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\HDAFinancialService\MITD.AutomaticVoucher.HDAFinancialService.rspAccFreeSave.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\HDAFinancialService\MITD.AutomaticVoucher.HDAFinancialService.rspAccSave.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\HDAFinancialService\MITD.AutomaticVoucher.HDAFinancialService.rspHeaderRemove.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\HDAFinancialService\MITD.AutomaticVoucher.HDAFinancialService.rspHeaderSave.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\HDAFinancialService\MITD.AutomaticVoucher.HDAFinancialService.saveAccFreeResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\HDAFinancialService\MITD.AutomaticVoucher.HDAFinancialService.saveAccResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\HDAFinancialService\MITD.AutomaticVoucher.HDAFinancialService.saveHeaderResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\HDAFinancialService\MITD.AutomaticVoucher.HDAFinancialService.saveQuickHeaderResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\HDAFinancialService\MITD.AutomaticVoucher.HDAFinancialService.svcAcc.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\HDAFinancialService\MITD.AutomaticVoucher.HDAFinancialService.svcAccFree.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\HDAFinancialService\MITD.AutomaticVoucher.HDAFinancialService.svcAccFreeGroup.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\HDAFinancialService\MITD.AutomaticVoucher.HDAFinancialService.svcArticleDetail.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\HDAFinancialService\MITD.AutomaticVoucher.HDAFinancialService.svcDuration.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\HDAFinancialService\serviceVoucher.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\IRISLFinancialService\AccServiceService.wsdl" />
+    <None Include="Service References\IRISLFinancialService\MITD.AutomaticVoucher.IRISLFinancialService.getAccFreeGroupListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\IRISLFinancialService\MITD.AutomaticVoucher.IRISLFinancialService.getAccFreeListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\IRISLFinancialService\MITD.AutomaticVoucher.IRISLFinancialService.getAccListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\IRISLFinancialService\MITD.AutomaticVoucher.IRISLFinancialService.getAccListWithNameResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\IRISLFinancialService\MITD.AutomaticVoucher.IRISLFinancialService.getAccUserIDResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\IRISLFinancialService\MITD.AutomaticVoucher.IRISLFinancialService.getArticleDetailsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\IRISLFinancialService\MITD.AutomaticVoucher.IRISLFinancialService.getBookingRateResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\IRISLFinancialService\MITD.AutomaticVoucher.IRISLFinancialService.getDurationResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\IRISLFinancialService\MITD.AutomaticVoucher.IRISLFinancialService.getLastUserSequenceResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\IRISLFinancialService\MITD.AutomaticVoucher.IRISLFinancialService.getVoucherPrintResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\IRISLFinancialService\MITD.AutomaticVoucher.IRISLFinancialService.loginResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\IRISLFinancialService\MITD.AutomaticVoucher.IRISLFinancialService.loginWithLanResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\IRISLFinancialService\MITD.AutomaticVoucher.IRISLFinancialService.logoutResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\IRISLFinancialService\MITD.AutomaticVoucher.IRISLFinancialService.removeHeaderResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\IRISLFinancialService\MITD.AutomaticVoucher.IRISLFinancialService.rspAccFreeSave.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\IRISLFinancialService\MITD.AutomaticVoucher.IRISLFinancialService.rspAccSave.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\IRISLFinancialService\MITD.AutomaticVoucher.IRISLFinancialService.rspHeaderRemove.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\IRISLFinancialService\MITD.AutomaticVoucher.IRISLFinancialService.rspHeaderSave.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\IRISLFinancialService\MITD.AutomaticVoucher.IRISLFinancialService.saveAccFreeResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\IRISLFinancialService\MITD.AutomaticVoucher.IRISLFinancialService.saveAccResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\IRISLFinancialService\MITD.AutomaticVoucher.IRISLFinancialService.saveHeaderResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\IRISLFinancialService\MITD.AutomaticVoucher.IRISLFinancialService.saveQuickHeaderResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\IRISLFinancialService\MITD.AutomaticVoucher.IRISLFinancialService.svcAcc.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\IRISLFinancialService\MITD.AutomaticVoucher.IRISLFinancialService.svcAccFree.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\IRISLFinancialService\MITD.AutomaticVoucher.IRISLFinancialService.svcAccFreeGroup.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\IRISLFinancialService\MITD.AutomaticVoucher.IRISLFinancialService.svcArticleDetail.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\IRISLFinancialService\MITD.AutomaticVoucher.IRISLFinancialService.svcDuration.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\IRISLFinancialService\serviceVoucher.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SAPIDFinancialService\AccServiceService.wsdl" />
+    <None Include="Service References\SAPIDFinancialService\MITD.AutomaticVoucher.SAPIDFinancialService.getAccFreeGroupListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SAPIDFinancialService\MITD.AutomaticVoucher.SAPIDFinancialService.getAccFreeListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SAPIDFinancialService\MITD.AutomaticVoucher.SAPIDFinancialService.getAccListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SAPIDFinancialService\MITD.AutomaticVoucher.SAPIDFinancialService.getAccListWithNameResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SAPIDFinancialService\MITD.AutomaticVoucher.SAPIDFinancialService.getAccUserIDResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SAPIDFinancialService\MITD.AutomaticVoucher.SAPIDFinancialService.getArticleDetailsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SAPIDFinancialService\MITD.AutomaticVoucher.SAPIDFinancialService.getBookingRateResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SAPIDFinancialService\MITD.AutomaticVoucher.SAPIDFinancialService.getDurationResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SAPIDFinancialService\MITD.AutomaticVoucher.SAPIDFinancialService.getLastUserSequenceResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SAPIDFinancialService\MITD.AutomaticVoucher.SAPIDFinancialService.getVoucherPrintResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SAPIDFinancialService\MITD.AutomaticVoucher.SAPIDFinancialService.loginResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SAPIDFinancialService\MITD.AutomaticVoucher.SAPIDFinancialService.loginWithLanResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SAPIDFinancialService\MITD.AutomaticVoucher.SAPIDFinancialService.logoutResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SAPIDFinancialService\MITD.AutomaticVoucher.SAPIDFinancialService.removeHeaderResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SAPIDFinancialService\MITD.AutomaticVoucher.SAPIDFinancialService.rspAccFreeSave.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SAPIDFinancialService\MITD.AutomaticVoucher.SAPIDFinancialService.rspAccSave.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SAPIDFinancialService\MITD.AutomaticVoucher.SAPIDFinancialService.rspHeaderRemove.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SAPIDFinancialService\MITD.AutomaticVoucher.SAPIDFinancialService.rspHeaderSave.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SAPIDFinancialService\MITD.AutomaticVoucher.SAPIDFinancialService.saveAccFreeResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SAPIDFinancialService\MITD.AutomaticVoucher.SAPIDFinancialService.saveAccResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SAPIDFinancialService\MITD.AutomaticVoucher.SAPIDFinancialService.saveHeaderResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SAPIDFinancialService\MITD.AutomaticVoucher.SAPIDFinancialService.saveQuickHeaderResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SAPIDFinancialService\MITD.AutomaticVoucher.SAPIDFinancialService.svcAcc.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SAPIDFinancialService\MITD.AutomaticVoucher.SAPIDFinancialService.svcAccFree.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SAPIDFinancialService\MITD.AutomaticVoucher.SAPIDFinancialService.svcAccFreeGroup.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SAPIDFinancialService\MITD.AutomaticVoucher.SAPIDFinancialService.svcArticleDetail.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SAPIDFinancialService\MITD.AutomaticVoucher.SAPIDFinancialService.svcDuration.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SAPIDFinancialService\serviceVoucher.xsd">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\HDAFinancialService\" />
+    <WCFMetadataStorage Include="Service References\IRISLFinancialService\" />
+    <WCFMetadataStorage Include="Service References\SAPIDFinancialService\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\HDAFinancialService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\HDAFinancialService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\HDAFinancialService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\SAPIDFinancialService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\SAPIDFinancialService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\SAPIDFinancialService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\IRISLFinancialService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\IRISLFinancialService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\IRISLFinancialService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

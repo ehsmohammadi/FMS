@@ -1,0 +1,682 @@
+<SL:ViewBase xmlns:Views="clr-namespace:MITD.Fuel.Presentation.UI.SL.Views"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
+        xmlns:SL="clr-namespace:MITD.Presentation.UI;assembly=MITD.Presentation.UI.SL"
+        xmlns:converters="clr-namespace:MITD.Fuel.Presentation.UI.SL.Converters"
+        xmlns:viewModels="clr-namespace:MITD.Fuel.Presentation.FuelApp.Logic.SL.ViewModels;assembly=MITD.Fuel.Presentation.Logic.SL"
+        xmlns:controls="clr-namespace:MITD.Fuel.Presentation.UI.SL.Controls"
+        xmlns:toolkit1="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit"
+        xmlns:system="clr-namespace:System;assembly=mscorlib"
+
+        x:Class="MITD.Fuel.Presentation.FuelApp.UI.SL.Views.FuelReportListView" mc:Ignorable="d" 
+         HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+        d:DataContext="{d:DesignInstance Type=viewModels:FuelReportListVM}" Style="{StaticResource DefaultStyle}">
+
+    <UserControl.Resources>
+        <DataTemplate x:Key="uxComboTemplate">
+            <Grid Height="{Binding Height, RelativeSource={RelativeSource TemplatedParent}}"
+                    Width="{Binding Width, RelativeSource={RelativeSource TemplatedParent}}">
+                <sdk:Label Name="uxCode" Content="{Binding Path=Name}" />
+            </Grid>
+        </DataTemplate>
+
+        <converters:GregorianDateToPersianConverter x:Key="GregorianDateToPersianConverter"/>
+        <converters:IsNotNullConverter x:Key="IsNotNullConverter"/>
+        <converters:EmptyValueConverter x:Key="EmptyValueConverter"/>
+        <converters:EnumToDescriptionConvertor x:Key="EnumToDescriptionConvertor" />
+        <converters:FuelReportToDisplayBrushConvertor x:Key="FuelReportToDisplayBrushConvertor" />
+        <converters:WorkflowStageColorConverter x:Key="WorkflowStageColorConverter"/>
+        <converters:WorkflowStageFontWeightConverter x:Key="WorkflowStageFontWeightConverter"/>
+        <Style x:Name="uxMainFilterControlStyle" TargetType="FrameworkElement">
+            <Setter Property="Width" Value="120"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Height" Value="25"/>
+            <Setter Property="Margin" Value="5,2,5,2"/>
+        </Style>
+        <Style x:Name="uxMainFilterTextboxHalfSizeControlStyle" TargetType="FrameworkElement">
+            <Setter Property="Width" Value="120"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Height" Value="25"/>
+            <Setter Property="Margin" Value="5,2,5,2"/>
+        </Style>
+    </UserControl.Resources>
+    <Grid x:Name="uxLayoutGrid" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <!--filter grid-->
+        <Grid x:Name="uxFilterGrid" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <!--company-->
+            <TextBlock x:Name="uxCompanyLabel" Text="شرکت" Grid.Row="0" Grid.Column="0" Height="25" />
+            <ComboBox x:Name="uxCompanyCombo" ItemsSource="{Binding Path=CompaniesFilter}"
+                    SelectedItem="{Binding Path=CompaniesFilterSelected,Mode=TwoWay}"
+                    ItemTemplate="{StaticResource uxComboTemplate}" Grid.Row="0" Grid.Column="1"
+                    Style="{StaticResource ResourceKey=uxMainFilterControlStyle}" Width="150"/>
+            <!--vessel-->
+            <TextBlock x:Name="uxVesselLabel" Text="کشتی" Grid.Row="1" Grid.Column="0" Height="25" />
+            <!--DisplayMemberPath="Name"-->
+            <!--SelectedValuePath="Id"-->
+            <!--SelectedItem="{Binding Path=VesselsFilterSelected,Mode=TwoWay}"-->
+            <!--SelectedValue="{Binding Path=VesselsFilterSelected.Id}"-->
+            <!--<SL:ComboBoxEx x:Name="uxVesselCombo" 
+                           ItemsSource="{Binding CompaniesFilterSelected.VesselInCompanies}" 
+                           SelectedValuePath="Id" 
+                           SelectedValueProper="{Binding Path=VesselsFilterSelected.Id}" 
+                           SelectedItem="{Binding Path=VesselsFilterSelected, Mode=TwoWay}" 
+                           Grid.Row="1" Grid.Column="1" Width="150" 
+                           Style="{StaticResource ResourceKey=uxMainFilterControlStyle}">
+                <SL:ComboBoxEx.Resources>
+                    <ControlTemplate x:Key="ValidationToolTipTemplate">
+                        <Grid x:Name="Root" RenderTransformOrigin="0,0" Opacity="0" Margin="5,0">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="OpenStates">
+                                    <VisualStateGroup.Transitions>
+                                        <VisualTransition GeneratedDuration="0"/>
+                                        <VisualTransition GeneratedDuration="0:0:0.2" To="Open">
+                                            <Storyboard>
+                                                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="X" Storyboard.TargetName="xform">
+                                                    <SplineDoubleKeyFrame KeyTime="0:0:0.2" Value="0"/>
+                                                </DoubleAnimationUsingKeyFrames>
+                                                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity" Storyboard.TargetName="Root">
+                                                    <SplineDoubleKeyFrame KeyTime="0:0:0.2" Value="1"/>
+                                                </DoubleAnimationUsingKeyFrames>
+                                            </Storyboard>
+                                        </VisualTransition>
+                                    </VisualStateGroup.Transitions>
+                                    <VisualState x:Name="Closed">
+                                        <Storyboard>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity" Storyboard.TargetName="Root">
+                                                <SplineDoubleKeyFrame KeyTime="0" Value="0"/>
+                                            </DoubleAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Open">
+                                        <Storyboard>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="X" Storyboard.TargetName="xform">
+                                                <SplineDoubleKeyFrame KeyTime="0" Value="0"/>
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity" Storyboard.TargetName="Root">
+                                                <SplineDoubleKeyFrame KeyTime="0" Value="1"/>
+                                            </DoubleAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <Grid.RenderTransform>
+                                <TranslateTransform x:Name="xform" X="-25"/>
+                            </Grid.RenderTransform>
+                            <Border Background="#052A2E31" CornerRadius="5" Margin="4,4,-4,-4"/>
+                            <Border Background="#152A2E31" CornerRadius="4" Margin="3,3,-3,-3"/>
+                            <Border Background="#252A2E31" CornerRadius="3" Margin="2,2,-2,-2"/>
+                            <Border Background="#352A2E31" CornerRadius="2" Margin="1,1,-1,-1"/>
+                            <Border Background="#FFDC000C" CornerRadius="2"/>
+                            <Border CornerRadius="2">
+                                <TextBlock UseLayoutRounding="false" Text="{Binding (Validation.Errors)[0].ErrorContent}" TextWrapping="Wrap" Margin="8,4,8,4" MaxWidth="250" Foreground="White"/>
+                            </Border>
+                        </Grid>
+                    </ControlTemplate>
+                    <ControlTemplate x:Key="VesselComboBoxControlTemplate" TargetType="ComboBox">
+                    <Grid>
+                        <Grid.Resources>
+                            <Style x:Name="comboToggleStyle" TargetType="ToggleButton">
+                                <Setter Property="Foreground" Value="#FF333333"/>
+                                <Setter Property="Background" Value="#FF1F3B53"/>
+                                <Setter Property="BorderBrush">
+                                    <Setter.Value>
+                                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                            <GradientStop Color="#FFA3AEB9" Offset="0"/>
+                                            <GradientStop Color="#FF8399A9" Offset="0.375"/>
+                                            <GradientStop Color="#FF718597" Offset="0.375"/>
+                                            <GradientStop Color="#FF617584" Offset="1"/>
+                                        </LinearGradientBrush>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="BorderThickness" Value="1"/>
+                                <Setter Property="Padding" Value="3"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="ToggleButton">
+                                            <Grid>
+                                                <VisualStateManager.VisualStateGroups>
+                                                    <VisualStateGroup x:Name="CommonStates">
+                                                        <VisualState x:Name="Normal"/>
+                                                        <VisualState x:Name="MouseOver">
+                                                            <Storyboard>
+                                                                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity" Storyboard.TargetName="BackgroundOverlay">
+                                                                    <SplineDoubleKeyFrame KeyTime="0" Value="1"/>
+                                                                </DoubleAnimationUsingKeyFrames>
+                                                                <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill).(GradientBrush.GradientStops)[3].(GradientStop.Color)" Storyboard.TargetName="BackgroundGradient">
+                                                                    <SplineColorKeyFrame KeyTime="0" Value="#7FFFFFFF"/>
+                                                                </ColorAnimationUsingKeyFrames>
+                                                                <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill).(GradientBrush.GradientStops)[2].(GradientStop.Color)" Storyboard.TargetName="BackgroundGradient">
+                                                                    <SplineColorKeyFrame KeyTime="0" Value="#CCFFFFFF"/>
+                                                                </ColorAnimationUsingKeyFrames>
+                                                                <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill).(GradientBrush.GradientStops)[1].(GradientStop.Color)" Storyboard.TargetName="BackgroundGradient">
+                                                                    <SplineColorKeyFrame KeyTime="0" Value="#F2FFFFFF"/>
+                                                                </ColorAnimationUsingKeyFrames>
+                                                            </Storyboard>
+                                                        </VisualState>
+                                                        <VisualState x:Name="Pressed">
+                                                            <Storyboard>
+                                                                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity" Storyboard.TargetName="BackgroundOverlay2">
+                                                                    <SplineDoubleKeyFrame KeyTime="0" Value="1"/>
+                                                                </DoubleAnimationUsingKeyFrames>
+                                                                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="Highlight">
+                                                                    <SplineDoubleKeyFrame KeyTime="0" Value="1"/>
+                                                                </DoubleAnimationUsingKeyFrames>
+                                                                <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill).(GradientBrush.GradientStops)[1].(GradientStop.Color)" Storyboard.TargetName="BackgroundGradient">
+                                                                    <SplineColorKeyFrame KeyTime="0" Value="#E5FFFFFF"/>
+                                                                </ColorAnimationUsingKeyFrames>
+                                                                <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill).(GradientBrush.GradientStops)[2].(GradientStop.Color)" Storyboard.TargetName="BackgroundGradient">
+                                                                    <SplineColorKeyFrame KeyTime="0" Value="#BCFFFFFF"/>
+                                                                </ColorAnimationUsingKeyFrames>
+                                                                <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill).(GradientBrush.GradientStops)[3].(GradientStop.Color)" Storyboard.TargetName="BackgroundGradient">
+                                                                    <SplineColorKeyFrame KeyTime="0" Value="#6BFFFFFF"/>
+                                                                </ColorAnimationUsingKeyFrames>
+                                                                <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill).(GradientBrush.GradientStops)[0].(GradientStop.Color)" Storyboard.TargetName="BackgroundGradient">
+                                                                    <SplineColorKeyFrame KeyTime="0" Value="#F2FFFFFF"/>
+                                                                </ColorAnimationUsingKeyFrames>
+                                                            </Storyboard>
+                                                        </VisualState>
+                                                        <VisualState x:Name="Disabled" />
+                                                    </VisualStateGroup>
+                                                    <VisualStateGroup x:Name="CheckStates">
+                                                        <VisualState x:Name="Checked">
+                                                            <Storyboard>
+                                                                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="BackgroundOverlay3">
+                                                                    <SplineDoubleKeyFrame KeyTime="0" Value="1"/>
+                                                                </DoubleAnimationUsingKeyFrames>
+                                                                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="Highlight">
+                                                                    <SplineDoubleKeyFrame KeyTime="0" Value="1"/>
+                                                                </DoubleAnimationUsingKeyFrames>
+                                                                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="BackgroundGradient2">
+                                                                    <SplineDoubleKeyFrame KeyTime="0" Value="1"/>
+                                                                </DoubleAnimationUsingKeyFrames>
+                                                                <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill).(GradientBrush.GradientStops)[1].(GradientStop.Color)" Storyboard.TargetName="BackgroundGradient2">
+                                                                    <SplineColorKeyFrame KeyTime="0" Value="#E5FFFFFF"/>
+                                                                </ColorAnimationUsingKeyFrames>
+                                                                <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill).(GradientBrush.GradientStops)[2].(GradientStop.Color)" Storyboard.TargetName="BackgroundGradient2">
+                                                                    <SplineColorKeyFrame KeyTime="0" Value="#BCFFFFFF"/>
+                                                                </ColorAnimationUsingKeyFrames>
+                                                                <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill).(GradientBrush.GradientStops)[3].(GradientStop.Color)" Storyboard.TargetName="BackgroundGradient2">
+                                                                    <SplineColorKeyFrame KeyTime="0" Value="#6BFFFFFF"/>
+                                                                </ColorAnimationUsingKeyFrames>
+                                                                <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill).(GradientBrush.GradientStops)[0].(GradientStop.Color)" Storyboard.TargetName="BackgroundGradient2">
+                                                                    <SplineColorKeyFrame KeyTime="0" Value="#F2FFFFFF"/>
+                                                                </ColorAnimationUsingKeyFrames>
+                                                            </Storyboard>
+                                                        </VisualState>
+                                                        <VisualState x:Name="Unchecked"/>
+                                                    </VisualStateGroup>
+                                                    <VisualStateGroup x:Name="FocusStates">
+                                                        <VisualState x:Name="Focused">
+                                                            <Storyboard>
+                                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="FocusVisualElement" Storyboard.TargetProperty="Visibility" Duration="0">
+                                                                    <DiscreteObjectKeyFrame KeyTime="0">
+                                                                        <DiscreteObjectKeyFrame.Value>
+                                                                            <Visibility>Visible</Visibility>
+                                                                        </DiscreteObjectKeyFrame.Value>
+                                                                    </DiscreteObjectKeyFrame>
+                                                                </ObjectAnimationUsingKeyFrames>
+                                                            </Storyboard>
+                                                        </VisualState>
+                                                        <VisualState x:Name="Unfocused" />
+                                                    </VisualStateGroup>
+                                                </VisualStateManager.VisualStateGroups>
+                                                <Rectangle x:Name="Background" RadiusX="3" RadiusY="3" Fill="{TemplateBinding Background}" StrokeThickness="{TemplateBinding BorderThickness}" Stroke="{TemplateBinding BorderBrush}"/>
+                                                <Rectangle x:Name="BackgroundOverlay" Opacity="0" RadiusX="3" RadiusY="3" Fill="#FF448DCA" StrokeThickness="{TemplateBinding BorderThickness}" Stroke="#00000000"/>
+                                                <Rectangle x:Name="BackgroundOverlay2" Opacity="0" RadiusX="3" RadiusY="3" Fill="#FF448DCA" StrokeThickness="{TemplateBinding BorderThickness}" Stroke="#00000000"/>
+                                                <Rectangle x:Name="BackgroundGradient" RadiusX="2" RadiusY="2" StrokeThickness="1" Margin="{TemplateBinding BorderThickness}" Stroke="#FFFFFFFF">
+                                                    <Rectangle.Fill>
+                                                        <LinearGradientBrush StartPoint=".7,0" EndPoint=".7,1">
+                                                            <GradientStop Color="#FFFFFFFF" Offset="0" />
+                                                            <GradientStop Color="#F9FFFFFF" Offset="0.375" />
+                                                            <GradientStop Color="#E5FFFFFF" Offset="0.625" />
+                                                            <GradientStop Color="#C6FFFFFF" Offset="1" />
+                                                        </LinearGradientBrush>
+                                                    </Rectangle.Fill>
+                                                </Rectangle>
+                                                <Rectangle Opacity="0" x:Name="BackgroundOverlay3" RadiusX="3" RadiusY="3" Fill="#FF448DCA" StrokeThickness="{TemplateBinding BorderThickness}" Stroke="#00000000"/>
+                                                <Rectangle Opacity="0" x:Name="BackgroundGradient2" RadiusX="2" RadiusY="2" StrokeThickness="1" Margin="{TemplateBinding BorderThickness}" Stroke="#FFFFFFFF">
+                                                    <Rectangle.Fill>
+                                                        <LinearGradientBrush StartPoint=".7,0" EndPoint=".7,1">
+                                                            <GradientStop Color="#FFFFFFFF" Offset="0" />
+                                                            <GradientStop Color="#F9FFFFFF" Offset="0.375" />
+                                                            <GradientStop Color="#E5FFFFFF" Offset="0.625" />
+                                                            <GradientStop Color="#C6FFFFFF" Offset="1" />
+                                                        </LinearGradientBrush>
+                                                    </Rectangle.Fill>
+                                                </Rectangle>
+                                                <Rectangle x:Name="Highlight" RadiusX="2" RadiusY="2" Opacity="0" IsHitTestVisible="false" Stroke="#FF6DBDD1" StrokeThickness="1" Margin="{TemplateBinding BorderThickness}" />
+                                                <ContentPresenter
+    										x:Name="contentPresenter"
+    										Content="{TemplateBinding Content}"
+    										ContentTemplate="{TemplateBinding ContentTemplate}"
+    										HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+    										VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+    										Margin="{TemplateBinding Padding}"/>
+                                                <Rectangle x:Name="FocusVisualElement" RadiusX="3.5" Margin="1"  RadiusY="3.5" Stroke="#FF6DBDD1" StrokeThickness="1" Visibility="Collapsed" IsHitTestVisible="false" />
+                                            </Grid>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </Grid.Resources>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="MouseOver" />
+                                <VisualState x:Name="Disabled">
+                                    <Storyboard>
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="DisabledVisualElement">
+                                            <SplineDoubleKeyFrame KeyTime="00:00:00" Value=".55"/>
+                                        </DoubleAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="FocusStates">
+                                <VisualState x:Name="Focused">
+                                    <Storyboard>
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="FocusVisualElement">
+                                            <SplineDoubleKeyFrame KeyTime="00:00:00" Value="1"/>
+                                        </DoubleAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Unfocused"/>
+                                <VisualState x:Name="FocusedDropDown">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Duration="00:00:00" Storyboard.TargetName="PopupBorder" Storyboard.TargetProperty="(UIElement.Visibility)">
+                                            <DiscreteObjectKeyFrame KeyTime="00:00:00">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <Visibility>Visible</Visibility>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="ValidationStates">
+                                <VisualState x:Name="Valid"/>
+                                <VisualState x:Name="InvalidUnfocused">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ValidationErrorElement" Storyboard.TargetProperty="Visibility">
+                                            <DiscreteObjectKeyFrame KeyTime="0" >
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <Visibility>Visible</Visibility>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="InvalidFocused">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ValidationErrorElement" Storyboard.TargetProperty="Visibility">
+                                            <DiscreteObjectKeyFrame KeyTime="0" >
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <Visibility>Visible</Visibility>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="validationTooltip" Storyboard.TargetProperty="IsOpen">
+                                            <DiscreteObjectKeyFrame KeyTime="0" >
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <system:Boolean>True</system:Boolean>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Border x:Name="ContentPresenterBorder">
+                            <Grid>
+                                <ToggleButton x:Name="DropDownToggle" Style="{StaticResource comboToggleStyle}"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Margin="0" HorizontalContentAlignment="Right" Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}">
+                                    <Path x:Name="BtnArrow" Height="4" Width="8" Stretch="Uniform" Data="F1 M 301.14,-189.041L 311.57,-189.041L 306.355,-182.942L 301.14,-189.041 Z " Margin="0,0,6,0" HorizontalAlignment="Right">
+                                        <Path.Fill>
+                                            <SolidColorBrush x:Name="BtnArrowColor" Color="#FF333333"/>
+                                        </Path.Fill>
+                                    </Path>
+                                </ToggleButton>
+                                <ContentPresenter x:Name="ContentPresenter" 
+    						Margin="{TemplateBinding Padding}"  
+    						HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+    						VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+                                    <TextBlock Text=" " />
+                                </ContentPresenter>
+                            </Grid>
+                        </Border>
+                        <Rectangle x:Name="DisabledVisualElement" RadiusX="3" RadiusY="3" Fill="White" Opacity="0" IsHitTestVisible="false" />
+                        <Rectangle x:Name="FocusVisualElement" RadiusX="2" RadiusY="2" Margin="1"  Stroke="#FF6DBDD1" StrokeThickness="1" Opacity="0" IsHitTestVisible="false" />
+                        <Border x:Name="ValidationErrorElement" BorderThickness="1" CornerRadius="1" BorderBrush="#FFDB000C" Visibility="Collapsed">
+                            <ToolTipService.ToolTip>
+                                <ToolTip x:Name="validationTooltip" Template="{StaticResource ValidationToolTipTemplate}" Placement="Right" 
+    						PlacementTarget="{Binding RelativeSource={RelativeSource TemplatedParent}}" 
+    						DataContext="{Binding RelativeSource={RelativeSource TemplatedParent}}">
+                                    <ToolTip.Triggers>
+                                        <EventTrigger RoutedEvent="Canvas.Loaded">
+                                            <BeginStoryboard>
+                                                <Storyboard>
+                                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="validationTooltip" Storyboard.TargetProperty="IsHitTestVisible">
+                                                        <DiscreteObjectKeyFrame KeyTime="0" >
+                                                            <DiscreteObjectKeyFrame.Value>
+                                                                <system:Boolean>true</system:Boolean>
+                                                            </DiscreteObjectKeyFrame.Value>
+                                                        </DiscreteObjectKeyFrame>
+                                                    </ObjectAnimationUsingKeyFrames>
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </EventTrigger>
+                                    </ToolTip.Triggers>
+                                </ToolTip>
+                            </ToolTipService.ToolTip>
+                            <Grid Width="12" Height="12" HorizontalAlignment="Right" Margin="1,-4,-4,0" VerticalAlignment="Top" Background="Transparent">
+                                <Path Margin="1,3,0,0" Data="M 1,0 L6,0 A 2,2 90 0 1 8,2 L8,7 z" Fill="#FFDC000C"/>
+                                <Path Margin="1,3,0,0" Data="M 0,0 L2,0 L 8,6 L8,8" Fill="#ffffff"/>
+                            </Grid>
+                        </Border>
+                        <Popup x:Name="Popup">
+                            <Border x:Name="PopupBorder" HorizontalAlignment="Stretch" Height="Auto" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}" CornerRadius="3">
+                                <Border.Background>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FFFFFFFF" Offset="0"/>
+                                        <GradientStop Color="#FFFEFEFE" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Border.Background>
+                                --><!--<ScrollViewer x:Name="ScrollViewer" BorderThickness="0" Padding="1">
+                            <ItemsPresenter/>
+                        </ScrollViewer>--><!--
+                                <sdk:DataGrid ItemsSource="{TemplateBinding ItemsSource}" AutoGenerateColumns="False"
+                                                  SelectedItem="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=SelectedItem, Mode=TwoWay}"
+                                                  SelectionMode="Single"
+                                                  IsReadOnly="True"
+                                                  MouseLeftButtonUp="VesselComboboxControlUIElement_OnMouseLeftButtonUp">
+                                    <sdk:DataGrid.Columns>
+                                        <sdk:DataGridTextColumn Header="نام" Binding="{Binding Name}" MinWidth="120"/>
+                                        <sdk:DataGridTextColumn Header="کد" Binding="{Binding Code}" MinWidth="50"/>
+                                    </sdk:DataGrid.Columns>
+                                </sdk:DataGrid>
+                            </Border>
+                        </Popup>
+                    </Grid>
+                </ControlTemplate>
+                </SL:ComboBoxEx.Resources>
+                <SL:ComboBoxEx.Template>
+                    <StaticResource ResourceKey="VesselComboBoxControlTemplate" />
+                </SL:ComboBoxEx.Template>
+                <SL:ComboBoxEx.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <sdk:Label Content="{Binding Name}"/>
+                            <sdk:Label Content="-"/>
+                            <sdk:Label Content="{Binding Code}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </SL:ComboBoxEx.ItemTemplate>
+            </SL:ComboBoxEx>-->
+
+            <controls:DataGridDropdownComboboxControl x:Name="uxVesselCombo" 
+                           ItemsSource="{Binding Path=CompaniesFilterSelected.VesselInCompanies}" 
+                           SelectedValuePath="Id" 
+                           SelectedValueProper="{Binding Path=VesselFilterSelected.Id}" 
+                           SelectedItem="{Binding Path=VesselFilterSelected, Mode=TwoWay}" 
+                           Grid.Row="1" Grid.Column="1" Width="150" Style="{StaticResource uxMainFilterControlStyle}">
+                <controls:DataGridDropdownComboboxControl.DataGridColumns>
+                    <sdk:DataGridTextColumn Binding="{Binding Name}" MinWidth="150" Header="نام"/>
+                    <sdk:DataGridTextColumn Binding="{Binding Code}" MinWidth="100" Header="کد"/>
+                </controls:DataGridDropdownComboboxControl.DataGridColumns>
+                <controls:DataGridDropdownComboboxControl.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <sdk:Label Content="{Binding Name}"/>
+                            <sdk:Label Content="-"/>
+                            <sdk:Label Content="{Binding Code}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </controls:DataGridDropdownComboboxControl.ItemTemplate>
+            </controls:DataGridDropdownComboboxControl>
+
+            <TextBlock x:Name="VesselReportCodeFilterTitle" Text="کد گزارش" Grid.Row="0" Grid.Column="2" Height="25" />
+            <TextBox x:Name="VesselReportCodeFilterText" Text="{Binding VesselReportCode, Mode=TwoWay, Converter={StaticResource EmptyValueConverter}}" Grid.Row="0" Grid.Column="3" Height="25" Style="{StaticResource ResourceKey=uxMainFilterTextboxHalfSizeControlStyle}" />
+
+            <!--from date-->
+            <TextBlock x:Name="uxFromLabel" Text="از تاریخ"  Grid.Row="0" Grid.Column="4" Height="25"/>
+            <!--<P:PDatePicker x:Name="uxFromDatePicker" SelectedDate="{Binding Path=FromDateFilter, Mode=TwoWay,Converter={StaticResource EmptyValueConverter}}"   Grid.Row="0" Grid.Column="5"    />-->
+            <controls:MultiTypeDateTimeControl Margin="5" Height="24" 
+                                           DisplayOrientation="Horizontal"
+                                           CalendarType="Persian"
+                                           DisplayMode="Date" x:Name="uxFromDatePicker" SelectedDate="{Binding Path=FromDateFilter, Mode=TwoWay}"   Grid.Row="0" Grid.Column="5"    />
+            <!--Style="{StaticResource ResourceKey=uxMainFilterControlStyle}"-->
+            <!--to date-->
+            <TextBlock x:Name="uxToLabel" Text="تا تاریخ"  Grid.Row="1" Grid.Column="4" Height="25"/>
+            <!--<P:PDatePicker x:Name="uxToDatePicker" SelectedDate="{Binding Path=ToDateFilter, Mode=TwoWay,Converter={StaticResource EmptyValueConverter}}"  Grid.Row="1" Grid.Column="5" />-->
+            <controls:MultiTypeDateTimeControl Margin="5" Height="24" 
+                                           DisplayOrientation="Horizontal"
+                                           CalendarType="Persian"
+                                           DisplayMode="Date" x:Name="uxToDatePicker" SelectedDate="{Binding Path=ToDateFilter, Mode=TwoWay}"  Grid.Row="1" Grid.Column="5" />
+
+            <TextBlock x:Name="FuelReportIdFilterTitle" Text="سریال سریرگ" Grid.Row="0" Grid.Column="6" Height="25" />
+            <TextBox x:Name="FuelReportIdFilterText" Text="{Binding FuelReportIdFilterValue, Mode=TwoWay, Converter={StaticResource EmptyValueConverter}}" Grid.Row="0" Grid.Column="7" Height="25" Style="{StaticResource ResourceKey=uxMainFilterTextboxHalfSizeControlStyle}"/>
+
+            <TextBlock x:Name="FuelReportDetailIdFilterTitle" Text="سریال جزء" Grid.Row="1" Grid.Column="6" Height="25" />
+            <TextBox x:Name="FuelReportDetailIdFilterText" Text="{Binding FuelReportDetailIdFilterValue, Mode=TwoWay, Converter={StaticResource EmptyValueConverter}}" Grid.Row="1" Grid.Column="7" Height="25" Style="{StaticResource ResourceKey=uxMainFilterTextboxHalfSizeControlStyle}" />
+
+            <Button Grid.Column="8" Grid.Row="1" Width="75" Height="25" Content="{Binding SearchCommand.DisplayName}"
+                    Command="{Binding SearchCommand.Command}" HorizontalAlignment="Left"></Button>
+        </Grid>
+        <!--fuelReport Grid-->
+        <Grid x:Name="uxFuelReportGrid" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <!--fuelreport data grid-->
+            <sdk:Label Content="ردیفهای گزارش سوخت" IsRequired="True" Grid.Row="0"/>
+            <sdk:DataGrid AutoGenerateColumns="False" x:Name="uxFuelReportDataGrid" VerticalAlignment="Stretch" FrozenColumnCount="2"
+                    SelectionMode="Single" ItemsSource="{Binding Data}" SelectedItem="{Binding Selected, Mode=TwoWay}" SelectionChanged="UxFuelReportDataGrid_OnSelectionChanged"
+                    Grid.Row="1" IsReadOnly="True">
+                <sdk:DataGrid.Columns>
+                    <sdk:DataGridTemplateColumn CanUserResize="False" CanUserSort="False" Width="Auto" >
+                        <sdk:DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Rectangle RadiusX="2" RadiusY="2" Width="17" Height="17">
+                                    <Rectangle.Fill>
+                                        <SolidColorBrush Color="{Binding Converter={StaticResource FuelReportToDisplayBrushConvertor}}"></SolidColorBrush>
+                                    </Rectangle.Fill>
+                                </Rectangle>
+                            </DataTemplate>
+                        </sdk:DataGridTemplateColumn.CellTemplate>
+                    </sdk:DataGridTemplateColumn>
+                    <!--<SolidColorBrush Color="{Binding RowColor}"></SolidColorBrush>-->
+                    <!--<RadialGradientBrush GradientOrigin="5,5" RadiusX="15" RadiusY="15" Center="4,4" ColorInterpolationMode="SRgbLinearInterpolation" >
+                        <RadialGradientBrush.GradientStops>
+                            <GradientStop Color="#100255255255" Offset="0"></GradientStop>
+                            <GradientStop Color="{Binding RowColor}" Offset="1"></GradientStop>
+                        </RadialGradientBrush.GradientStops>
+                    </RadialGradientBrush>-->
+                    <!--id-->
+                    <sdk:DataGridTextColumn Binding="{Binding HasUpdateRequest}" CanUserResize="True" CanUserSort="False" 
+                            Width="Auto" Header="در انتظار بروزرسانی" />
+
+                    <sdk:DataGridTextColumn Binding="{Binding Id}" CanUserResize="True" CanUserSort="False" 
+                            Width="Auto" Header="سریال" />
+                    <sdk:DataGridTextColumn Binding="{Binding VesselInCompanyDto.Name}" CanUserResize="True" 
+                            CanUserSort="False" Width="Auto" Header="کشتی" />
+                    <sdk:DataGridTextColumn Binding="{Binding VesselInCompanyDto.Code}" CanUserResize="True"
+                            CanUserSort="False" Width="Auto" Header="کد کشتی" />
+                    <!--FuelReportType-->
+                    <sdk:DataGridTemplateColumn Header="نوع">
+                        <sdk:DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding FuelReportType}" HorizontalAlignment="Center"
+                                            VerticalAlignment="Center" />
+                            </DataTemplate>
+                        </sdk:DataGridTemplateColumn.CellTemplate>
+                    </sdk:DataGridTemplateColumn>
+                    <!--Voyage-->
+                    <sdk:DataGridTemplateColumn Header="سفر" x:Name="uxVoyage">
+                        <sdk:DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Border HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                    <TextBlock Text="{Binding Voyage.Description}"
+                                            HorizontalAlignment="Center" VerticalAlignment="Center" Margin="3,0"/>
+                                </Border>
+                            </DataTemplate>
+                        </sdk:DataGridTemplateColumn.CellTemplate>
+                    </sdk:DataGridTemplateColumn>
+                    <!--ReportDate-->
+                    <sdk:DataGridTemplateColumn Header="تاریخ میلادی">
+                        <sdk:DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding EventDate, StringFormat='yyyy/MM/dd HH:mm:ss'}" FlowDirection="LeftToRight"
+                                            HorizontalAlignment="Center" VerticalAlignment="Center" Margin="3,0"/>
+                            </DataTemplate>
+                        </sdk:DataGridTemplateColumn.CellTemplate>
+                    </sdk:DataGridTemplateColumn>
+
+                    <sdk:DataGridTextColumn Header="تاریخ شمسی" Binding="{Binding EventDate, Converter={StaticResource GregorianDateToPersianConverter}}">
+                        <sdk:DataGridTextColumn.ElementStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="FlowDirection" Value="LeftToRight"/>
+                                <Setter Property="Margin" Value="3,0"/>
+                            </Style>
+                        </sdk:DataGridTextColumn.ElementStyle>
+                    </sdk:DataGridTextColumn>
+
+                    <sdk:DataGridTemplateColumn  Header="وضعیت جاری" CanUserReorder="True" CanUserResize="True" CanUserSort="True" Width="Auto">
+                        <sdk:DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Margin="3" Text="{Binding ApproveStatus}" FontWeight="{Binding ApproveStatus, Converter={StaticResource WorkflowStageFontWeightConverter}}" Foreground="{Binding ApproveStatus, Converter={StaticResource WorkflowStageColorConverter}}" VerticalAlignment="Center"/>
+                            </DataTemplate>
+                        </sdk:DataGridTemplateColumn.CellTemplate>
+                    </sdk:DataGridTemplateColumn>
+                    <sdk:DataGridTextColumn Binding="{Binding VesselEventReportViewDto.PortName}" CanUserResize="True"
+                            CanUserSort="False" Width="Auto" Header="Port Name " />
+                    <sdk:DataGridTextColumn Binding="{Binding VesselEventReportViewDto.PortTime, StringFormat=\{0:n2\}}" CanUserResize="True"
+                            CanUserSort="False" Width="Auto" Header="Port Time"/>
+                    <sdk:DataGridTextColumn Binding="{Binding VesselEventReportViewDto.AtSeaLatitudeDegree, StringFormat=\{0:n2\}}" CanUserResize="True"
+                            CanUserSort="False" Width="Auto" Header="Sea Latitude Degree"/>
+                    <sdk:DataGridTextColumn Binding="{Binding VesselEventReportViewDto.AtSeaLatitudeMinute, StringFormat=\{0:n2\}}" CanUserResize="True"
+                            CanUserSort="False" Width="Auto" Header="Sea Latitude Minute"/>
+                    <sdk:DataGridTextColumn Binding="{Binding VesselEventReportViewDto.AtSeaLongitudeDegree, StringFormat=\{0:n2\}}" CanUserResize="True"
+                            CanUserSort="False" Width="Auto" Header="Sea Longitude Degree"/>
+                    <sdk:DataGridTextColumn Binding="{Binding VesselEventReportViewDto.AtSeaLongitudeMinute, StringFormat=\{0:n2\}}" CanUserResize="True"
+                            CanUserSort="False" Width="Auto" Header="Sea Longitude Minute"/>
+                    <sdk:DataGridTextColumn Binding="{Binding VesselEventReportViewDto.ObsDist, StringFormat=\{0:n2\}}" CanUserResize="True"
+                            CanUserSort="False" Width="Auto" Header="ObsDist"/>
+                    <sdk:DataGridTextColumn Binding="{Binding VesselEventReportViewDto.EngDist, StringFormat=\{0:n2\}}" CanUserResize="True"
+                            CanUserSort="False" Width="Auto" Header="EngDist"/>
+                    <sdk:DataGridTextColumn Binding="{Binding VesselEventReportViewDto.SteamTime, StringFormat=\{0:n2\}}" CanUserResize="True"
+                            CanUserSort="False" Width="Auto" Header="Steam Time"/>
+                    <sdk:DataGridTextColumn Binding="{Binding VesselEventReportViewDto.AvObsSpeed, StringFormat=\{0:n2\}}" CanUserResize="True"
+                            CanUserSort="False" Width="Auto" Header="Av Obs Speed"/>
+                    <sdk:DataGridTextColumn Binding="{Binding VesselEventReportViewDto.AvEngSpeed, StringFormat=\{0:n2\}}" CanUserResize="True"
+                            CanUserSort="False" Width="Auto" Header="Av Eng Speed"/>
+                    <sdk:DataGridTextColumn Binding="{Binding VesselEventReportViewDto.Rpm}" CanUserResize="True"
+                            CanUserSort="False" Width="Auto" Header="RPM"/>
+                    <sdk:DataGridTextColumn Binding="{Binding VesselEventReportViewDto.Slip, StringFormat=\{0:n2\}}" CanUserResize="True"
+                            CanUserSort="False" Width="Auto" Header="Slip"/>
+                    <sdk:DataGridTextColumn Binding="{Binding VesselEventReportViewDto.WindDir, StringFormat=\{0:n2\}}" CanUserResize="True"
+                            CanUserSort="False" Width="Auto" Header="Wind Dir"/>
+                    <sdk:DataGridTextColumn Binding="{Binding VesselEventReportViewDto.WindForce, StringFormat=\{0:n2\}}" CanUserResize="True"
+                            CanUserSort="False" Width="Auto" Header="Wind Force"/>
+                    <sdk:DataGridTextColumn Binding="{Binding VesselEventReportViewDto.SeaDir, StringFormat=\{0:n2\}}" CanUserResize="True"
+                            CanUserSort="False" Width="Auto" Header="Sea Dir"/>
+                    <sdk:DataGridTextColumn Binding="{Binding VesselEventReportViewDto.SeaForce, StringFormat=\{0:n2\}}" CanUserResize="True"
+                            CanUserSort="False" Width="Auto" Header="Sea Force"/>
+                    <sdk:DataGridTextColumn Binding="{Binding VesselEventReportViewDto.ConsInPortFw, StringFormat=\{0:n3\}}" CanUserResize="True"
+                            CanUserSort="False" Width="Auto" Header="Cons In Port FW"/>
+                    <sdk:DataGridTextColumn Binding="{Binding VesselEventReportViewDto.ConsAtSeaFw, StringFormat=\{0:n3\}}" CanUserResize="True"
+                            CanUserSort="False" Width="Auto" Header="Cons At Sea FW"/>
+                    <sdk:DataGridTextColumn Binding="{Binding VesselEventReportViewDto.ReceivedFw, StringFormat=\{0:n3\}}" CanUserResize="True"
+                            CanUserSort="False" Width="Auto" Header="Received FW"/>
+                    <sdk:DataGridTextColumn Binding="{Binding VesselEventReportViewDto.EtaPort}" CanUserResize="True"
+                            CanUserSort="False" Width="Auto" Header="Eta Port"/>
+                    <sdk:DataGridTextColumn Binding="{Binding VesselEventReportViewDto.EtaDate}" CanUserResize="True"
+                            CanUserSort="False" Width="Auto" Header="Eta Date"/>
+                    <!--Description-->
+                    <sdk:DataGridTextColumn Binding="{Binding Description}" CanUserResize="True" Width="150"
+                            CanUserSort="False" Header="عنوان" />
+                    <!--code-->
+                    <sdk:DataGridTextColumn x:Name="uxCodeCol" Binding="{Binding Code}" CanUserResize="True" CanUserSort="False" Width="Auto" Header="کد گزارش کشتی" />
+                    <!--user in charge-->
+                    <sdk:DataGridTextColumn Binding="{Binding UserInChargName}" CanUserResize="True"
+                            CanUserSort="False" Width="Auto" Header="کاربر مسئول " />
+                </sdk:DataGrid.Columns>
+            </sdk:DataGrid>
+
+            <StackPanel Grid.Row="2" HorizontalAlignment="Center" Orientation="Vertical">
+                <toolkit1:WrapPanel HorizontalAlignment="Center" Orientation="Horizontal" Margin="2">
+                    <Border BorderThickness="1">
+                        <StackPanel Orientation="Horizontal">
+                            <sdk:Label>تعداد کل</sdk:Label>
+                            <TextBox x:Name="TotalCount" Text="{Binding Data.TotalItemCount, Mode=TwoWay}" Width="40" FontFamily="tahoma" FontSize="11" Height="20" IsReadOnly="True" Margin="3"></TextBox>
+                            <sdk:Label>تعداد در صفحه</sdk:Label>
+                            <TextBox x:Name="PageSize" Text="{Binding Data.PageSize, Mode=TwoWay}" Width="40" FontFamily="tahoma" FontSize="11" Height="20" Margin="3"></TextBox>
+                        </StackPanel>
+                    </Border>
+                    <SL:CustomDataPager x:Name="uxPager" Height="25" FontFamily="Tahoma" FontSize="11" Width="200"
+                                    Source="{Binding Data, Mode=TwoWay}" 
+                                    PageSize="{Binding Data.PageSize, Mode=TwoWay, FallbackValue=10}"
+                        PageIndex="{Binding Data.PageIndex, Mode=TwoWay}"/>
+                </toolkit1:WrapPanel>
+                <toolkit1:WrapPanel HorizontalAlignment="Center" Orientation="Horizontal" Margin="2">
+                    <Button Content="{Binding EditCommand.DisplayName}" Command="{Binding EditCommand.Command}" Width="80"
+                        Height="25" Margin="2,0" IsEnabled="{Binding Path=Selected, Converter={StaticResource IsNotNullConverter}}" />
+                    <Button Content="{Binding ApproveCommand.DisplayName}" Command="{Binding ApproveCommand.Command}"
+                        Width="80" Height="25" Margin="2,0" IsEnabled="{Binding Path=Selected, Converter={StaticResource IsNotNullConverter}}"/>
+                    <Button Content="{Binding RejectCommand.DisplayName}" Command="{Binding RejectCommand.Command}"
+                        Width="80" Height="25" Margin="2,0" IsEnabled="{Binding Path=Selected, Converter={StaticResource IsNotNullConverter}}"/>
+                    <Button Content="{Binding ViewOriginalReportCommand.DisplayName}" Command="{Binding ViewOriginalReportCommand.Command}"
+                        Width="80" Height="25" IsEnabled="{Binding Path=Selected, Converter={StaticResource IsNotNullConverter}}" Margin="2,0" />
+                    <Button Content="{Binding DeleteCommand.DisplayName}" Command="{Binding DeleteCommand.Command}" Width="80"
+                        Height="25" Margin="2,0" IsEnabled="{Binding Path=Selected, Converter={StaticResource IsNotNullConverter}}" />
+
+                    <Button Content="{Binding ApproveBatchCommand.DisplayName}" Command="{Binding ApproveBatchCommand.Command}"
+                        Width="120" Height="25" Margin="2,0" IsEnabled="{Binding Path=Selected, Converter={StaticResource IsNotNullConverter}}"/>
+                    <Button Content="{Binding RevertBatchCommand.DisplayName}" Command="{Binding RevertBatchCommand.Command}"
+                        Width="120" Height="25" Margin="2,0" IsEnabled="{Binding Path=Selected, Converter={StaticResource IsNotNullConverter}}"/>
+
+                    <!--<Button Content="{Binding RevertConsumptionCommand.DisplayName}" Command="{Binding RevertConsumptionCommand.Command}"
+                        Width="80" Height="25" Margin="2,0" IsEnabled="{Binding Path=Selected, Converter={StaticResource IsNotNullConverter}}"/>-->
+                    <Button Content="{Binding RefreshVoyagesCommand.DisplayName}" Command="{Binding RefreshVoyagesCommand.Command}"
+                        Width="120" Height="25" Margin="2,0" />
+
+                </toolkit1:WrapPanel>
+            </StackPanel>
+            <!--buttons-->
+
+        </Grid>
+        <!--Fuel Report Detail-->
+        <Grid x:Name="uxOrderDetailGrid" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <sdk:Label Content="مقادیر سوختها" IsRequired="True" Grid.Row="0"/>
+            <Views:FuelReportDetailListView x:Name="uxFuelReportDetailListView" Grid.Row="1"/>
+        </Grid>
+    </Grid>
+</SL:ViewBase>

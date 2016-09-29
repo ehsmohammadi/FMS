@@ -1,0 +1,517 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{86200BB9-7D71-43AC-8E01-9EE0277AAC16}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MITD.Fuel.ACL.StorageSpace</RootNamespace>
+    <AssemblyName>MITD.Fuel.ACL.StorageSpace</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Without Test|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Without Test\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="MITD.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\Dependencies\MITD.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="MITD.Domain.Model, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\Dependencies\MITD.Domain.Model.dll</HintPath>
+    </Reference>
+    <Reference Include="MITD.Domain.Repository, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\Dependencies\MITD.Domain.Repository.dll</HintPath>
+    </Reference>
+    <Reference Include="MITD.Presentation">
+      <HintPath>..\..\Dependencies\MITD.Presentation.dll</HintPath>
+    </Reference>
+    <Reference Include="MITD.Services">
+      <HintPath>..\..\Dependencies\MITD.Services.dll</HintPath>
+    </Reference>
+    <Reference Include="MITD.Services.AntiCorruption">
+      <HintPath>..\..\Dependencies\MITD.Services.AntiCorruption.dll</HintPath>
+    </Reference>
+    <Reference Include="MITD.StorageSpace.Presentation.Contracts">
+      <HintPath>..\..\Dependencies\MITD.StorageSpace.Presentation.Contracts.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Newtonsoft.Json.6.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Omu.ValueInjecter">
+      <HintPath>..\..\Dependencies\Omu.ValueInjecter.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Adapter\EnterprisePartyAntiCorruptionAdapter.cs" />
+    <Compile Include="Adapter\GoodAntiCorruptionAdapter.cs" />
+    <Compile Include="Class1.cs" />
+    <Compile Include="ClientHelper.cs" />
+    <Compile Include="DomainServices\ActivityLocationDomainService.cs" />
+    <Compile Include="DomainServices\Events\FinanceNotifier.cs" />
+    <Compile Include="DomainServices\Events\InventoryOperationNotifier.MiniStock.cs" />
+    <Compile Include="DomainServices\InventoryManagementDomainService.cs" />
+    <Compile Include="DomainServices\InventoryTransactionDomainService.cs" />
+    <Compile Include="DomainServices\OffhireManagementSystemDomainService.cs" />
+    <Compile Include="DomainServices\EffectiveFactorDomainService.cs" />
+    <Compile Include="DomainServices\CurrencyDomainService.cs" />
+    <Compile Include="DomainServices\CompanyDomainService.cs" />
+    <Compile Include="DomainServices\GoodUnitDomainService.cs" />
+    <Compile Include="DomainServices\GoodDomainService.cs" />
+    <Compile Include="DomainServices\TankDomainService.cs" />
+    <Compile Include="DomainServices\VesselDomainService.cs" />
+    <Compile Include="DomainServices\VoyageDomainService.cs" />
+    <Compile Include="Mappers\EnterprisePartyAntiCorruptionMapper.cs" />
+    <Compile Include="Mappers\GoodAntiCorruptionMapper.cs" />
+    <Compile Include="Mappers\VesselAntiCorruptionMapper.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service References\HDAVoucherService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\IRISLVoucherService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\OffhireService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\SAPIDVoucherService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="ServiceWrappers\EnterprisePartyAntiCorruptionServiceWrapper.cs" />
+    <Compile Include="ServiceWrappers\GoodAntiCorruptionServiceWrapper.cs" />
+    <Compile Include="ServiceWrappers\GoodAssignmentAntiCorruptionServiceWrapper.cs" />
+    <Compile Include="ServiceWrappers\VesselAntiCorruptionServiceWrapper.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Service\MITD.Fuel.Integration.Finance.Basis\MITD.Fuel.Integration.Finance.Basis.csproj">
+      <Project>{4531621A-03BA-42AD-8107-9D18CB592D70}</Project>
+      <Name>MITD.Fuel.Integration.Finance.Basis</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MITD.Fuel.ACL.Contracts\MITD.Fuel.ACL.Contracts.csproj">
+      <Project>{AB12495A-9A99-4F33-A9FA-507746BBA754}</Project>
+      <Name>MITD.Fuel.ACL.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MITD.Fuel.Data.EF\MITD.Fuel.Data.EF.csproj">
+      <Project>{22FFBC88-AF0B-47B5-B013-07CC02078BF0}</Project>
+      <Name>MITD.Fuel.Data.EF</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MITD.Fuel.Domain.Model\MITD.Fuel.Domain.Model.csproj">
+      <Project>{F75008B5-5BFE-4570-B583-9C3E0468ED68}</Project>
+      <Name>MITD.Fuel.Domain.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MITD.Fuel.Infrastructure.Service\MITD.Fuel.Infrastructure.Service.csproj">
+      <Project>{8f8f2f51-de0d-4085-a3eb-6d18d7e29f3b}</Project>
+      <Name>MITD.Fuel.Infrastructure.Service</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MITD.Fuel.Integration.Inventory\MITD.Fuel.Integration.Inventory.csproj">
+      <Project>{5D04E907-986D-44C2-AE99-78A45C39E618}</Project>
+      <Name>MITD.Fuel.Integration.Inventory</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MITD.Fuel.Integration.Offhire\MITD.Fuel.Integration.Offhire\MITD.Fuel.Integration.Offhire.csproj">
+      <Project>{e7a7fc73-063c-4888-9a6d-158b50be968a}</Project>
+      <Name>MITD.Fuel.Integration.Offhire</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MITD.Fuel.Presentation.Contracts\MITD.Fuel.Presentation.Contracts.csproj">
+      <Project>{087D039B-81F3-4F11-BB55-647F0F4BD06D}</Project>
+      <Name>MITD.Fuel.Presentation.Contracts</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+    <None Include="Service References\HDAVoucherService\AccServiceService.wsdl" />
+    <None Include="Service References\HDAVoucherService\MITD.Fuel.ACL.StorageSpace.HDAVoucherService.getAccFreeGroupListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\HDAVoucherService\MITD.Fuel.ACL.StorageSpace.HDAVoucherService.getAccFreeListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\HDAVoucherService\MITD.Fuel.ACL.StorageSpace.HDAVoucherService.getAccListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\HDAVoucherService\MITD.Fuel.ACL.StorageSpace.HDAVoucherService.getAccListWithNameResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\HDAVoucherService\MITD.Fuel.ACL.StorageSpace.HDAVoucherService.getAccUserIDResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\HDAVoucherService\MITD.Fuel.ACL.StorageSpace.HDAVoucherService.getArticleDetailsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\HDAVoucherService\MITD.Fuel.ACL.StorageSpace.HDAVoucherService.getBookingRateResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\HDAVoucherService\MITD.Fuel.ACL.StorageSpace.HDAVoucherService.getDurationResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\HDAVoucherService\MITD.Fuel.ACL.StorageSpace.HDAVoucherService.getLastUserSequenceResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\HDAVoucherService\MITD.Fuel.ACL.StorageSpace.HDAVoucherService.getVoucherPrintResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\HDAVoucherService\MITD.Fuel.ACL.StorageSpace.HDAVoucherService.loginResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\HDAVoucherService\MITD.Fuel.ACL.StorageSpace.HDAVoucherService.loginWithLanResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\HDAVoucherService\MITD.Fuel.ACL.StorageSpace.HDAVoucherService.logoutResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\HDAVoucherService\MITD.Fuel.ACL.StorageSpace.HDAVoucherService.removeHeaderResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\HDAVoucherService\MITD.Fuel.ACL.StorageSpace.HDAVoucherService.rspAccFreeSave.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\HDAVoucherService\MITD.Fuel.ACL.StorageSpace.HDAVoucherService.rspAccSave.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\HDAVoucherService\MITD.Fuel.ACL.StorageSpace.HDAVoucherService.rspHeaderRemove.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\HDAVoucherService\MITD.Fuel.ACL.StorageSpace.HDAVoucherService.rspHeaderSave.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\HDAVoucherService\MITD.Fuel.ACL.StorageSpace.HDAVoucherService.saveAccFreeResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\HDAVoucherService\MITD.Fuel.ACL.StorageSpace.HDAVoucherService.saveAccResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\HDAVoucherService\MITD.Fuel.ACL.StorageSpace.HDAVoucherService.saveHeaderResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\HDAVoucherService\MITD.Fuel.ACL.StorageSpace.HDAVoucherService.saveQuickHeaderResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\HDAVoucherService\MITD.Fuel.ACL.StorageSpace.HDAVoucherService.svcAcc.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\HDAVoucherService\MITD.Fuel.ACL.StorageSpace.HDAVoucherService.svcAccFree.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\HDAVoucherService\MITD.Fuel.ACL.StorageSpace.HDAVoucherService.svcAccFreeGroup.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\HDAVoucherService\MITD.Fuel.ACL.StorageSpace.HDAVoucherService.svcArticleDetail.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\HDAVoucherService\MITD.Fuel.ACL.StorageSpace.HDAVoucherService.svcDuration.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\HDAVoucherService\serviceVoucher.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\IRISLVoucherService\AccServiceService.wsdl" />
+    <None Include="Service References\IRISLVoucherService\MITD.Fuel.ACL.StorageSpace.IRISLVoucherService.getAccFreeGroupListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\IRISLVoucherService\MITD.Fuel.ACL.StorageSpace.IRISLVoucherService.getAccFreeListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\IRISLVoucherService\MITD.Fuel.ACL.StorageSpace.IRISLVoucherService.getAccListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\IRISLVoucherService\MITD.Fuel.ACL.StorageSpace.IRISLVoucherService.getAccListWithNameResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\IRISLVoucherService\MITD.Fuel.ACL.StorageSpace.IRISLVoucherService.getAccUserIDResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\IRISLVoucherService\MITD.Fuel.ACL.StorageSpace.IRISLVoucherService.getArticleDetailsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\IRISLVoucherService\MITD.Fuel.ACL.StorageSpace.IRISLVoucherService.getBookingRateResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\IRISLVoucherService\MITD.Fuel.ACL.StorageSpace.IRISLVoucherService.getLastUserSequenceResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\IRISLVoucherService\MITD.Fuel.ACL.StorageSpace.IRISLVoucherService.getVoucherPrintResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\IRISLVoucherService\MITD.Fuel.ACL.StorageSpace.IRISLVoucherService.loginResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\IRISLVoucherService\MITD.Fuel.ACL.StorageSpace.IRISLVoucherService.loginWithLanResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\IRISLVoucherService\MITD.Fuel.ACL.StorageSpace.IRISLVoucherService.logoutResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\IRISLVoucherService\MITD.Fuel.ACL.StorageSpace.IRISLVoucherService.removeHeaderResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\IRISLVoucherService\MITD.Fuel.ACL.StorageSpace.IRISLVoucherService.rspAccFreeSave.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\IRISLVoucherService\MITD.Fuel.ACL.StorageSpace.IRISLVoucherService.rspAccSave.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\IRISLVoucherService\MITD.Fuel.ACL.StorageSpace.IRISLVoucherService.rspHeaderRemove.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\IRISLVoucherService\MITD.Fuel.ACL.StorageSpace.IRISLVoucherService.rspHeaderSave.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\IRISLVoucherService\MITD.Fuel.ACL.StorageSpace.IRISLVoucherService.saveAccFreeResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\IRISLVoucherService\MITD.Fuel.ACL.StorageSpace.IRISLVoucherService.saveAccResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\IRISLVoucherService\MITD.Fuel.ACL.StorageSpace.IRISLVoucherService.saveHeaderResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\IRISLVoucherService\MITD.Fuel.ACL.StorageSpace.IRISLVoucherService.saveQuickHeaderResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\IRISLVoucherService\MITD.Fuel.ACL.StorageSpace.IRISLVoucherService.svcAcc.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\IRISLVoucherService\MITD.Fuel.ACL.StorageSpace.IRISLVoucherService.svcAccFree.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\IRISLVoucherService\MITD.Fuel.ACL.StorageSpace.IRISLVoucherService.svcAccFreeGroup.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\IRISLVoucherService\MITD.Fuel.ACL.StorageSpace.IRISLVoucherService.svcArticleDetail.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\IRISLVoucherService\serviceVoucher.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\OffhireService\MITD.Fuel.ACL.StorageSpace.OffhireService.OffhireData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\OffhireService\MITD.Fuel.ACL.StorageSpace.OffhireService.UpdateResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SAPIDVoucherService\AccServiceService.wsdl" />
+    <None Include="Service References\SAPIDVoucherService\MITD.Fuel.ACL.StorageSpace.SAPIDVoucherService.getAccFreeGroupListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SAPIDVoucherService\MITD.Fuel.ACL.StorageSpace.SAPIDVoucherService.getAccFreeListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SAPIDVoucherService\MITD.Fuel.ACL.StorageSpace.SAPIDVoucherService.getAccListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SAPIDVoucherService\MITD.Fuel.ACL.StorageSpace.SAPIDVoucherService.getAccListWithNameResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SAPIDVoucherService\MITD.Fuel.ACL.StorageSpace.SAPIDVoucherService.getAccUserIDResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SAPIDVoucherService\MITD.Fuel.ACL.StorageSpace.SAPIDVoucherService.getArticleDetailsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SAPIDVoucherService\MITD.Fuel.ACL.StorageSpace.SAPIDVoucherService.getBookingRateResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SAPIDVoucherService\MITD.Fuel.ACL.StorageSpace.SAPIDVoucherService.getDurationResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SAPIDVoucherService\MITD.Fuel.ACL.StorageSpace.SAPIDVoucherService.getLastUserSequenceResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SAPIDVoucherService\MITD.Fuel.ACL.StorageSpace.SAPIDVoucherService.getVoucherPrintResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SAPIDVoucherService\MITD.Fuel.ACL.StorageSpace.SAPIDVoucherService.loginResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SAPIDVoucherService\MITD.Fuel.ACL.StorageSpace.SAPIDVoucherService.loginWithLanResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SAPIDVoucherService\MITD.Fuel.ACL.StorageSpace.SAPIDVoucherService.logoutResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SAPIDVoucherService\MITD.Fuel.ACL.StorageSpace.SAPIDVoucherService.removeHeaderResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SAPIDVoucherService\MITD.Fuel.ACL.StorageSpace.SAPIDVoucherService.rspAccFreeSave.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SAPIDVoucherService\MITD.Fuel.ACL.StorageSpace.SAPIDVoucherService.rspAccSave.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SAPIDVoucherService\MITD.Fuel.ACL.StorageSpace.SAPIDVoucherService.rspHeaderRemove.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SAPIDVoucherService\MITD.Fuel.ACL.StorageSpace.SAPIDVoucherService.rspHeaderSave.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SAPIDVoucherService\MITD.Fuel.ACL.StorageSpace.SAPIDVoucherService.saveAccFreeResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SAPIDVoucherService\MITD.Fuel.ACL.StorageSpace.SAPIDVoucherService.saveAccResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SAPIDVoucherService\MITD.Fuel.ACL.StorageSpace.SAPIDVoucherService.saveHeaderResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SAPIDVoucherService\MITD.Fuel.ACL.StorageSpace.SAPIDVoucherService.saveQuickHeaderResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SAPIDVoucherService\MITD.Fuel.ACL.StorageSpace.SAPIDVoucherService.svcAcc.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SAPIDVoucherService\MITD.Fuel.ACL.StorageSpace.SAPIDVoucherService.svcAccFree.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SAPIDVoucherService\MITD.Fuel.ACL.StorageSpace.SAPIDVoucherService.svcAccFreeGroup.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SAPIDVoucherService\MITD.Fuel.ACL.StorageSpace.SAPIDVoucherService.svcArticleDetail.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SAPIDVoucherService\MITD.Fuel.ACL.StorageSpace.SAPIDVoucherService.svcDuration.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SAPIDVoucherService\serviceVoucher.xsd">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\HDAVoucherService\" />
+    <WCFMetadataStorage Include="Service References\IRISLVoucherService\" />
+    <WCFMetadataStorage Include="Service References\OffhireService\" />
+    <WCFMetadataStorage Include="Service References\SAPIDVoucherService\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\OffhireService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\OffhireService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\OffhireService\OffhireManagementService1.wsdl" />
+    <None Include="Service References\OffhireService\OffhireManagementService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\OffhireService\OffhireManagementService31.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\OffhireService\OffhireManagementService32.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\OffhireService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\OffhireService\OffhireManagementService1.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\IRISLVoucherService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\IRISLVoucherService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\IRISLVoucherService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\HDAVoucherService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\HDAVoucherService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\HDAVoucherService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\SAPIDVoucherService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\SAPIDVoucherService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\SAPIDVoucherService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

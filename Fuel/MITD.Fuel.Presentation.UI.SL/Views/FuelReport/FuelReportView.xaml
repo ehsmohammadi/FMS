@@ -1,0 +1,95 @@
+<UserControl:ViewBase
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:UserControl="clr-namespace:MITD.Presentation.UI;assembly=MITD.Presentation.UI.SL"
+                      xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
+    xmlns:VM="clr-namespace:MITD.Fuel.Presentation.Logic.SL.ViewModels;assembly=MITD.Fuel.Presentation.Logic.SL"
+    xmlns:ViewModels="clr-namespace:MITD.Fuel.Presentation.FuelApp.Logic.SL.ViewModels;assembly=MITD.Fuel.Presentation.Logic.SL"
+    xmlns:controls="clr-namespace:MITD.Fuel.Presentation.UI.SL.Controls"
+    x:Class="MITD.Fuel.Presentation.FuelApp.UI.SL.Views.FuelReportView"
+                      mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=ViewModels:FuelReportVM}"
+     Style="{StaticResource DefaultStyle}" >
+
+    <UserControl.Resources>
+        <ViewModels:FuelReportVM x:Key="ViewModel"></ViewModels:FuelReportVM>
+        <Style x:Name="uxMainFilterControlStyle" TargetType="FrameworkElement">
+            <Setter Property="Width" Value="200"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Height" Value="25"/>
+            <Setter Property="Margin" Value="5,0,5,5"/>
+        </Style>
+        <DataTemplate x:Key="uxComboTemplate" >
+            <Grid Height="{Binding Height, RelativeSource={RelativeSource TemplatedParent}}"  Width="{Binding Width, RelativeSource={RelativeSource TemplatedParent}}" >
+                <sdk:Label Name="uxName" Content="{Binding Path=Name}"/>
+
+            </Grid>
+        </DataTemplate>
+    </UserControl.Resources>
+
+    <Grid x:Name="uxLayoutGrid"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <Grid Margin="10" Background="white" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="70" />
+                <ColumnDefinition Width="200" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40" />
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="40"/>
+            </Grid.RowDefinitions>
+
+
+            <!--labels-->
+            <sdk:Label Grid.Column="0" Grid.Row="0"    Margin="5"  Content="تاریخ"  />
+            <sdk:Label Grid.Column="0" Grid.Row="1"    Margin="5"  Content="کد گزارش"/>
+            <sdk:Label Grid.Column="0" Grid.Row="2"    Margin="5"   Content="نوع گزارش"  />
+            <sdk:Label Grid.Column="0" Grid.Row="3"    Margin="5"   Content="شماره سفر"  />
+            <!--textboxes-->
+            <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding Path=Entity.EventDate}" Width="180" Height="25" IsReadOnly="True" />
+            <TextBox Grid.Column="1" Grid.Row="1" Text="{Binding Path=Entity.Code}" Width="180" Height="25" IsReadOnly="True"/>
+            <TextBox Grid.Column="1" Grid.Row="2" Text="{Binding Path=ReportType}" Width="180" Height="25" IsReadOnly="True"/>
+            <!--ComboBox-->
+            <!--<UserControl:ComboBoxEx 
+                ItemsSource="{Binding Voyages}"
+                SelectedValueProper="{Binding Entity.Voyage.Id,Mode=TwoWay}"
+                SelectedValuePath="Id" DisplayMemberPath="Code"
+                Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="2"  Width="180" Height="25">
+
+            </UserControl:ComboBoxEx>-->
+
+            <!--SelectedItem="{Binding Path=Entity.Voyage, Mode=TwoWay}"-->
+            <controls:DataGridDropdownComboboxControl x:Name="uxVesselCombo" 
+                           ItemsSource="{Binding Path=Voyages}" 
+                           SelectedValuePath="Id" 
+                           SelectedValueProper="{Binding Path=Entity.Voyage.Id}"
+                           SelectedItem="{Binding Path=Entity.Voyage, Mode=TwoWay}"
+                            
+                           Grid.Column="1" Grid.Row="3" Width="180" Height="25">
+                <controls:DataGridDropdownComboboxControl.DataGridColumns>
+                    <sdk:DataGridTextColumn Binding="{Binding Code}" MinWidth="100" Header="شماره سفر"/>
+                    <sdk:DataGridTextColumn Binding="{Binding StartDate}" MinWidth="120" Header="تاریخ شروع"/>
+                    <sdk:DataGridTextColumn Binding="{Binding EndDate}" MinWidth="120" Header="تاریخ پایان"/>
+                </controls:DataGridDropdownComboboxControl.DataGridColumns>
+                <controls:DataGridDropdownComboboxControl.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <sdk:Label Content="{Binding Code}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </controls:DataGridDropdownComboboxControl.ItemTemplate>
+            </controls:DataGridDropdownComboboxControl>
+
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="4" Grid.Column="1">
+                <!--button-->
+                <Button Content="{Binding SubmitCommand.DisplayName}" Command="{Binding SubmitCommand.Command}" Margin="5" VerticalAlignment="Top"  Width="80" Height="25" IsEnabled="{Binding Entity.EnableCommercialEditing}"/>
+                <Button Content="{Binding CancelCommand.DisplayName}" Command="{Binding CancelCommand.Command}" Margin="5" VerticalAlignment="Top"  Width="80" Height="25" />
+            </StackPanel>
+        </Grid>
+    </Grid>
+</UserControl:ViewBase>

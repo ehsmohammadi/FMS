@@ -1,0 +1,435 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://services.accounting.ngs/" name="AccServiceService" targetNamespace="http://services.accounting.ngs/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <xsd:schema>
+      <xsd:import schemaLocation="http://ngs-test.irisl.net:8009/Acc/2/serviceVoucher?xsd=1" namespace="http://services.accounting.ngs/" />
+    </xsd:schema>
+  </types>
+  <message name="login">
+    <part name="parameters" element="tns:login" />
+  </message>
+  <message name="loginResponse">
+    <part name="parameters" element="tns:loginResponse" />
+  </message>
+  <message name="NGSServiceException">
+    <part name="fault" element="tns:NGSServiceException" />
+  </message>
+  <message name="logout">
+    <part name="parameters" element="tns:logout" />
+  </message>
+  <message name="logoutResponse">
+    <part name="parameters" element="tns:logoutResponse" />
+  </message>
+  <message name="loginWithLan">
+    <part name="parameters" element="tns:loginWithLan" />
+  </message>
+  <message name="loginWithLanResponse">
+    <part name="parameters" element="tns:loginWithLanResponse" />
+  </message>
+  <message name="saveHeader">
+    <part name="parameters" element="tns:saveHeader" />
+  </message>
+  <message name="saveHeaderResponse">
+    <part name="parameters" element="tns:saveHeaderResponse" />
+  </message>
+  <message name="saveQuickHeader">
+    <part name="parameters" element="tns:saveQuickHeader" />
+  </message>
+  <message name="saveQuickHeaderResponse">
+    <part name="parameters" element="tns:saveQuickHeaderResponse" />
+  </message>
+  <message name="removeHeader">
+    <part name="parameters" element="tns:removeHeader" />
+  </message>
+  <message name="removeHeaderResponse">
+    <part name="parameters" element="tns:removeHeaderResponse" />
+  </message>
+  <message name="saveAcc">
+    <part name="parameters" element="tns:saveAcc" />
+  </message>
+  <message name="saveAccResponse">
+    <part name="parameters" element="tns:saveAccResponse" />
+  </message>
+  <message name="saveAccFree">
+    <part name="parameters" element="tns:saveAccFree" />
+  </message>
+  <message name="saveAccFreeResponse">
+    <part name="parameters" element="tns:saveAccFreeResponse" />
+  </message>
+  <message name="getLastUserSequence">
+    <part name="parameters" element="tns:getLastUserSequence" />
+  </message>
+  <message name="getLastUserSequenceResponse">
+    <part name="parameters" element="tns:getLastUserSequenceResponse" />
+  </message>
+  <message name="getAccUserID">
+    <part name="parameters" element="tns:getAccUserID" />
+  </message>
+  <message name="getAccUserIDResponse">
+    <part name="parameters" element="tns:getAccUserIDResponse" />
+  </message>
+  <message name="getArticleDetails">
+    <part name="parameters" element="tns:getArticleDetails" />
+  </message>
+  <message name="getArticleDetailsResponse">
+    <part name="parameters" element="tns:getArticleDetailsResponse" />
+  </message>
+  <message name="getAccList">
+    <part name="parameters" element="tns:getAccList" />
+  </message>
+  <message name="getAccListResponse">
+    <part name="parameters" element="tns:getAccListResponse" />
+  </message>
+  <message name="getAccListWithName">
+    <part name="parameters" element="tns:getAccListWithName" />
+  </message>
+  <message name="getAccListWithNameResponse">
+    <part name="parameters" element="tns:getAccListWithNameResponse" />
+  </message>
+  <message name="getAccFreeList">
+    <part name="parameters" element="tns:getAccFreeList" />
+  </message>
+  <message name="getAccFreeListResponse">
+    <part name="parameters" element="tns:getAccFreeListResponse" />
+  </message>
+  <message name="getAccFreeGroupList">
+    <part name="parameters" element="tns:getAccFreeGroupList" />
+  </message>
+  <message name="getAccFreeGroupListResponse">
+    <part name="parameters" element="tns:getAccFreeGroupListResponse" />
+  </message>
+  <message name="getBookingRate">
+    <part name="parameters" element="tns:getBookingRate" />
+  </message>
+  <message name="getBookingRateResponse">
+    <part name="parameters" element="tns:getBookingRateResponse" />
+  </message>
+  <message name="getVoucherPrint">
+    <part name="parameters" element="tns:getVoucherPrint" />
+  </message>
+  <message name="getVoucherPrintResponse">
+    <part name="parameters" element="tns:getVoucherPrintResponse" />
+  </message>
+  <message name="getDuration">
+    <part name="parameters" element="tns:getDuration" />
+  </message>
+  <message name="getDurationResponse">
+    <part name="parameters" element="tns:getDurationResponse" />
+  </message>
+  <portType name="AccService">
+    <operation name="login">
+      <input message="tns:login" />
+      <output message="tns:loginResponse" />
+      <fault name="NGSServiceException" message="tns:NGSServiceException" />
+    </operation>
+    <operation name="logout">
+      <input message="tns:logout" />
+      <output message="tns:logoutResponse" />
+      <fault name="NGSServiceException" message="tns:NGSServiceException" />
+    </operation>
+    <operation name="loginWithLan">
+      <input message="tns:loginWithLan" />
+      <output message="tns:loginWithLanResponse" />
+      <fault name="NGSServiceException" message="tns:NGSServiceException" />
+    </operation>
+    <operation name="saveHeader">
+      <input message="tns:saveHeader" />
+      <output message="tns:saveHeaderResponse" />
+      <fault name="NGSServiceException" message="tns:NGSServiceException" />
+    </operation>
+    <operation name="saveQuickHeader">
+      <input message="tns:saveQuickHeader" />
+      <output message="tns:saveQuickHeaderResponse" />
+      <fault name="NGSServiceException" message="tns:NGSServiceException" />
+    </operation>
+    <operation name="removeHeader">
+      <input message="tns:removeHeader" />
+      <output message="tns:removeHeaderResponse" />
+      <fault name="NGSServiceException" message="tns:NGSServiceException" />
+    </operation>
+    <operation name="saveAcc">
+      <input message="tns:saveAcc" />
+      <output message="tns:saveAccResponse" />
+      <fault name="NGSServiceException" message="tns:NGSServiceException" />
+    </operation>
+    <operation name="saveAccFree">
+      <input message="tns:saveAccFree" />
+      <output message="tns:saveAccFreeResponse" />
+      <fault name="NGSServiceException" message="tns:NGSServiceException" />
+    </operation>
+    <operation name="getLastUserSequence">
+      <input message="tns:getLastUserSequence" />
+      <output message="tns:getLastUserSequenceResponse" />
+      <fault name="NGSServiceException" message="tns:NGSServiceException" />
+    </operation>
+    <operation name="getAccUserID">
+      <input message="tns:getAccUserID" />
+      <output message="tns:getAccUserIDResponse" />
+      <fault name="NGSServiceException" message="tns:NGSServiceException" />
+    </operation>
+    <operation name="getArticleDetails">
+      <input message="tns:getArticleDetails" />
+      <output message="tns:getArticleDetailsResponse" />
+      <fault name="NGSServiceException" message="tns:NGSServiceException" />
+    </operation>
+    <operation name="getAccList">
+      <input message="tns:getAccList" />
+      <output message="tns:getAccListResponse" />
+      <fault name="NGSServiceException" message="tns:NGSServiceException" />
+    </operation>
+    <operation name="getAccListWithName">
+      <input message="tns:getAccListWithName" />
+      <output message="tns:getAccListWithNameResponse" />
+      <fault name="NGSServiceException" message="tns:NGSServiceException" />
+    </operation>
+    <operation name="getAccFreeList">
+      <input message="tns:getAccFreeList" />
+      <output message="tns:getAccFreeListResponse" />
+      <fault name="NGSServiceException" message="tns:NGSServiceException" />
+    </operation>
+    <operation name="getAccFreeGroupList">
+      <input message="tns:getAccFreeGroupList" />
+      <output message="tns:getAccFreeGroupListResponse" />
+      <fault name="NGSServiceException" message="tns:NGSServiceException" />
+    </operation>
+    <operation name="getBookingRate">
+      <input message="tns:getBookingRate" />
+      <output message="tns:getBookingRateResponse" />
+      <fault name="NGSServiceException" message="tns:NGSServiceException" />
+    </operation>
+    <operation name="getVoucherPrint">
+      <input message="tns:getVoucherPrint" />
+      <output message="tns:getVoucherPrintResponse" />
+      <fault name="NGSServiceException" message="tns:NGSServiceException" />
+    </operation>
+    <operation name="getDuration">
+      <input message="tns:getDuration" />
+      <output message="tns:getDurationResponse" />
+      <fault name="NGSServiceException" message="tns:NGSServiceException" />
+    </operation>
+  </portType>
+  <binding name="AccServicePortBinding" type="tns:AccService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <operation name="login">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+      <fault name="NGSServiceException">
+        <soap:fault use="literal" name="NGSServiceException" namespace="" />
+      </fault>
+    </operation>
+    <operation name="logout">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+      <fault name="NGSServiceException">
+        <soap:fault use="literal" name="NGSServiceException" namespace="" />
+      </fault>
+    </operation>
+    <operation name="loginWithLan">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+      <fault name="NGSServiceException">
+        <soap:fault use="literal" name="NGSServiceException" namespace="" />
+      </fault>
+    </operation>
+    <operation name="saveHeader">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+      <fault name="NGSServiceException">
+        <soap:fault use="literal" name="NGSServiceException" namespace="" />
+      </fault>
+    </operation>
+    <operation name="saveQuickHeader">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+      <fault name="NGSServiceException">
+        <soap:fault use="literal" name="NGSServiceException" namespace="" />
+      </fault>
+    </operation>
+    <operation name="removeHeader">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+      <fault name="NGSServiceException">
+        <soap:fault use="literal" name="NGSServiceException" namespace="" />
+      </fault>
+    </operation>
+    <operation name="saveAcc">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+      <fault name="NGSServiceException">
+        <soap:fault use="literal" name="NGSServiceException" namespace="" />
+      </fault>
+    </operation>
+    <operation name="saveAccFree">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+      <fault name="NGSServiceException">
+        <soap:fault use="literal" name="NGSServiceException" namespace="" />
+      </fault>
+    </operation>
+    <operation name="getLastUserSequence">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+      <fault name="NGSServiceException">
+        <soap:fault use="literal" name="NGSServiceException" namespace="" />
+      </fault>
+    </operation>
+    <operation name="getAccUserID">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+      <fault name="NGSServiceException">
+        <soap:fault use="literal" name="NGSServiceException" namespace="" />
+      </fault>
+    </operation>
+    <operation name="getArticleDetails">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+      <fault name="NGSServiceException">
+        <soap:fault use="literal" name="NGSServiceException" namespace="" />
+      </fault>
+    </operation>
+    <operation name="getAccList">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+      <fault name="NGSServiceException">
+        <soap:fault use="literal" name="NGSServiceException" namespace="" />
+      </fault>
+    </operation>
+    <operation name="getAccListWithName">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+      <fault name="NGSServiceException">
+        <soap:fault use="literal" name="NGSServiceException" namespace="" />
+      </fault>
+    </operation>
+    <operation name="getAccFreeList">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+      <fault name="NGSServiceException">
+        <soap:fault use="literal" name="NGSServiceException" namespace="" />
+      </fault>
+    </operation>
+    <operation name="getAccFreeGroupList">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+      <fault name="NGSServiceException">
+        <soap:fault use="literal" name="NGSServiceException" namespace="" />
+      </fault>
+    </operation>
+    <operation name="getBookingRate">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+      <fault name="NGSServiceException">
+        <soap:fault use="literal" name="NGSServiceException" namespace="" />
+      </fault>
+    </operation>
+    <operation name="getVoucherPrint">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+      <fault name="NGSServiceException">
+        <soap:fault use="literal" name="NGSServiceException" namespace="" />
+      </fault>
+    </operation>
+    <operation name="getDuration">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+      <fault name="NGSServiceException">
+        <soap:fault use="literal" name="NGSServiceException" namespace="" />
+      </fault>
+    </operation>
+  </binding>
+  <service name="AccServiceService">
+    <port name="AccServicePort" binding="tns:AccServicePortBinding">
+      <soap:address location="http://ngs-test.irisl.net:8009/Acc/2/serviceVoucher" />
+    </port>
+  </service>
+</definitions>

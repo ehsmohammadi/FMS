@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Solution>
+  <Profile Name="Test ACL" SingleStartProjectGuid="">
+    <Exclude>
+      <Project Guid="22ffbc88-af0b-47b5-b013-07cc02078bf0" />
+      <Project Guid="994f4dbc-f25e-44d0-8e0d-3da218e153e9" />
+      <Project Guid="f75008b5-5bfe-4570-b583-9c3e0468ed68" />
+      <Project Guid="081bb795-014b-43aa-bf32-ab4d8d9f0d0c" />
+      <Project Guid="087d039b-81f3-4f11-bb55-647f0f4bd06d" />
+      <Project Guid="8d698e1d-b609-4d46-8d0d-33f4843e7af6" />
+      <Project Guid="d96b1b99-f292-49e1-be71-62156aaa1133" />
+      <Project Guid="0cd7ed92-954e-410b-b67b-12fbb61856e6" />
+      <Project Guid="ab12495a-9a99-4f33-a9fa-507746bba754" />
+      <Project Guid="86200bb9-7d71-43ac-8e01-9ee0277aac16" />
+      <Project Guid="35467346-a533-4822-b29e-af6339ba4298" />
+      <Project Guid="f37eec81-253a-4823-821b-b759e50689d9" />
+      <Project Guid="8f8f2f51-de0d-4085-a3eb-6d18d7e29f3b" />
+      <Project Guid="5d04e907-986d-44c2-ae99-78a45c39e618" />
+      <Project Guid="e7a7fc73-063c-4888-9a6d-158b50be968a" />
+      <Project Guid="c4681d34-c488-4bff-a180-def5f25a234d" />
+      <Project Guid="6bf00468-16b6-4af9-9e95-5cb8ac2511e1" />
+      <Project Guid="facbdc2c-0e05-476b-bc4f-d404ea9d9635" />
+      <Project Guid="97ca646e-526b-43a0-8c07-7acf8a281b71" />
+      <Project Guid="d8ec517a-0417-4f27-91cd-45ec7fc00cf0" />
+    </Exclude>
+  </Profile>
+</Solution>

@@ -1,0 +1,36 @@
+﻿<UserControl x:Name="MultiModeDateTimePickerControl" x:Class="MITD.Fuel.Presentation.UI.SL.Controls.MultiTypeDateTimeControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
+    xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit"
+    xmlns:views="clr-namespace:MITD.Presentation.UI.DateTimePicker.Views;assembly=MITD.Presentation.UI.SL"
+    xmlns:converters="clr-namespace:MITD.Fuel.Presentation.UI.SL.Converters"
+    xmlns:controls="clr-namespace:MITD.Fuel.Presentation.UI.SL.Controls"
+    xmlns:primitives="clr-namespace:System.Windows.Controls.Primitives;assembly=System.Windows.Controls"
+    mc:Ignorable="d" Loaded="MultiTypeDateTimeControl_OnLoaded">
+    <UserControl.Resources>
+        <converters:EnumToDescriptionConvertor x:Key="EnumToDescriptionConvertor"/>
+        <controls:OrientationToCalendarGridMarginConverter x:Key="OrientationToCalendarGridMarginConverter" />
+        <controls:IsReadonlyToIsEnabledConverter x:Key="IsReadonlyToIsEnabledConverter" />
+    </UserControl.Resources>
+    <StackPanel x:Name="MainStackPanel" Orientation="{Binding ElementName=MultiModeDateTimePickerControl, Path=DisplayOrientation}">
+        <Grid x:Name="DatePickerGrid" Width="150" Margin="{Binding ElementName=MultiModeDateTimePickerControl, Path=DisplayOrientation, Converter={StaticResource OrientationToCalendarGridMarginConverter}}">
+            <ComboBox x:Name="CalendarTypeComboBox" Grid.Column="0" SelectedValue="{Binding ElementName=MultiModeDateTimePickerControl, Path=CalendarType, Mode=TwoWay}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <sdk:Label Content="{Binding Converter={StaticResource EnumToDescriptionConvertor}}"></sdk:Label>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+            <Border Grid.Column="0" BorderThickness="1">
+                <Grid Background="GhostWhite" Margin="0,0,23,0">
+                    <sdk:DatePicker x:Name="GregorianDatePicker" SelectedDate="{Binding ElementName=MultiModeDateTimePickerControl, Path=SelectedDate, Mode=TwoWay}" IsTodayHighlighted="True" IsEnabled="{Binding ElementName=MultiModeDateTimePickerControl, Path=IsReadonly, Converter={StaticResource IsReadonlyToIsEnabledConverter}}"/>
+                    <views:PDatePicker  x:Name="PersianDatePicker"  SelectedDate="{Binding ElementName=MultiModeDateTimePickerControl, Path=SelectedDate, Mode=TwoWay}" IsEnabled="{Binding ElementName=MultiModeDateTimePickerControl, Path=IsReadonly, Converter={StaticResource IsReadonlyToIsEnabledConverter}}"/>
+                </Grid>
+            </Border>
+        </Grid>
+        <toolkit:TimePicker x:Name="TimePicker" Value="{Binding ElementName=MultiModeDateTimePickerControl, Path=SelectedTime, Mode=TwoWay}" IsEnabled="{Binding ElementName=MultiModeDateTimePickerControl, Path=IsReadonly, Converter={StaticResource IsReadonlyToIsEnabledConverter}}"/>
+    </StackPanel>
+</UserControl>

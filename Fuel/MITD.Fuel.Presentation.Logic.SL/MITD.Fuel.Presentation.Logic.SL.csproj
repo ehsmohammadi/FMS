@@ -1,0 +1,300 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{D96B1B99-F292-49E1-BE71-62156AAA1133}</ProjectGuid>
+    <ProjectTypeGuids>{A1591282-1198-4647-A2B1-27E5FF5F6F3B};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MITD.Fuel.Presentation.Logic.SL</RootNamespace>
+    <AssemblyName>MITD.Fuel.Presentation.Logic.SL</AssemblyName>
+    <TargetFrameworkIdentifier>Silverlight</TargetFrameworkIdentifier>
+    <TargetFrameworkVersion>v5.0</TargetFrameworkVersion>
+    <SilverlightVersion>$(TargetFrameworkVersion)</SilverlightVersion>
+    <SilverlightApplication>false</SilverlightApplication>
+    <ValidateXaml>true</ValidateXaml>
+    <ThrowErrorsInValidation>true</ThrowErrorsInValidation>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <!-- This property group is only here to support building this project using the 
+       MSBuild 3.5 toolset. In order to work correctly with this older toolset, it needs 
+       to set the TargetFrameworkVersion to v3.5 -->
+  <PropertyGroup Condition="'$(MSBuildToolsVersion)' == '3.5'">
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>Bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;TRACE;SILVERLIGHT</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>Bin\Release</OutputPath>
+    <DefineConstants>TRACE;SILVERLIGHT</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Without Test|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Without Test\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;SILVERLIGHT</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoStdLib>true</NoStdLib>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <NoConfig>true</NoConfig>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Castle.Core, Version=3.3.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Castle.Core.3.3.0\lib\sl5\Castle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Windsor, Version=3.3.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Castle.Windsor.3.3.0\lib\sl5\Castle.Windsor.dll</HintPath>
+    </Reference>
+    <Reference Include="MITD.Core.SL">
+      <HintPath>..\..\Dependencies\MITD.Core.SL.dll</HintPath>
+    </Reference>
+    <Reference Include="MITD.Presentation.SL">
+      <HintPath>..\..\Dependencies\MITD.Presentation.SL.dll</HintPath>
+    </Reference>
+    <Reference Include="mscorlib">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Newtonsoft.Json.6.0.3\lib\portable-net40+sl4+wp7+win8\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations, Version=5.0.5.0, Culture=neutral, PublicKeyToken=ddd0da4d3e678217, processorArchitecture=MSIL" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Windows">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="system">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Core">
+      <HintPath>$(TargetFrameworkDirectory)System.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Windows.Controls, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Windows.Data, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\Microsoft SDKs\Silverlight\v5.0\Libraries\Client\System.Windows.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Windows.Browser">
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\MITD.Fuel.Presentation.Contracts\Infrastructure\Extensions.cs">
+      <Link>Infrastructure\Extensions.cs</Link>
+    </Compile>
+    <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\FinancialAccountController.cs" />
+    <Compile Include="Controllers\Inventory\InventoryOperationReferenceTypes.cs" />
+    <Compile Include="Controllers\Reports\PeriodicalFuelStatisticsReportController.cs" />
+    <Compile Include="Controllers\Reports\InventoryQuantityReportController.cs" />
+    <Compile Include="Controllers\Reports\VesselDataReportController.cs" />
+    <Compile Include="Controllers\Reports\VoucherReportController.cs" />
+    <Compile Include="Controllers\CharterController.cs" />
+    <Compile Include="Controllers\Reports\CardexReportController.cs" />
+    <Compile Include="Controllers\Inventory\InventoryTransactionController.cs" />
+    <Compile Include="Controllers\OffhireController.cs" />
+    <Compile Include="Controllers\CurrencyController.cs" />
+    <Compile Include="Controllers\ScrapController.cs" />
+    <Compile Include="Controllers\InvoiceItemController.cs" />
+    <Compile Include="Controllers\InvoiceController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Controllers\VesselActivationController.cs" />
+    <Compile Include="Controllers\VesselController.cs" />
+    <Compile Include="Controllers\VoucherController.cs" />
+    <Compile Include="Controllers\VoucherSetingController.cs" />
+    <Compile Include="Controllers\VoyageController.cs" />
+    <Compile Include="Controllers\FuelReportDetailController.cs" />
+    <Compile Include="Controllers\OrderController.cs" />
+    <Compile Include="Controllers\OrderItemController.cs" />
+    <Compile Include="Controllers\ApprovmentController.cs" />
+    <Compile Include="Controllers\FuelReportController.cs" />
+    <Compile Include="Converters\DateToPersianAndGregorianTextConverter.cs" />
+    <Compile Include="Converters\OrderAssignementReferencesIdsConverter.cs" />
+    <Compile Include="Converters\VoucherGridBoolConverter.cs" />
+    <Compile Include="Converters\VoucherGridTxtConverter .cs" />
+    <Compile Include="Converters\VoucherGridBckgrndConverter.cs" />
+    <Compile Include="Infrastructure\ApiServicesEnum.cs" />
+    <Compile Include="Infrastructure\AreaEnum.cs" />
+    <Compile Include="Infrastructure\BusyIndicatorExtensions.cs" />
+    <Compile Include="Infrastructure\ComboBoxExtention.cs" />
+    <Compile Include="Infrastructure\EnumHelper.cs" />
+    <Compile Include="Infrastructure\FilteringUtils.cs" />
+    <Compile Include="Infrastructure\FuelAppLogicBootstrapper.cs" />
+    <Compile Include="Infrastructure\HostAddressHelper.cs" />
+    <Compile Include="Infrastructure\HttpUtil.cs" />
+    <Compile Include="Infrastructure\HttpVerbEnum.cs" />
+    <Compile Include="Infrastructure\IResolver.cs" />
+    <Compile Include="Infrastructure\PagedDataCollectionExtention.cs" />
+    <Compile Include="Infrastructure\PopupWindowOptions.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServiceWrapper\FiscalYearServiceWrapper.cs" />
+    <Compile Include="ServiceWrapper\FileServiceWrapper.cs" />
+    <Compile Include="ServiceWrapper\OriginalAccountServiceWrapper.cs" />
+    <Compile Include="ServiceWrapper\AccountServiceWrapper.cs" />
+    <Compile Include="ServiceWrapper\ApprovalFlowServiceWrapper.cs" />
+    <Compile Include="ServiceWrapper\Inventory\InventoryCompanyServiceWrapper.cs" />
+    <Compile Include="ServiceWrapper\Inventory\InventoryTransactionServiceWrapper.cs" />
+    <Compile Include="ServiceWrapper\OffhireServiceWrapper.cs" />
+    <Compile Include="ServiceWrapper\InvoiceServiceWrapper_AditionalPriceRelated.cs" />
+    <Compile Include="ServiceWrapper\ScrapServiceWrapper.cs" />
+    <Compile Include="ServiceWrapper\CurrencyServiceWrapper.cs" />
+    <Compile Include="ServiceWrapper\InvoiceServiceWrapper_InvoiceItemRelated.cs" />
+    <Compile Include="ServiceWrapper\InvoiceServiceWrapper.cs" />
+    <Compile Include="ServiceWrapper\CharterInServiceWrapper.cs" />
+    <Compile Include="ServiceWrapper\CharterOutServiceWrapper.cs" />
+    <Compile Include="ServiceWrapper\FuelReportCompanyServiceWrapper.cs" />
+    <Compile Include="ServiceWrapper\InventoryOperationServiceWrapper.cs" />
+    <Compile Include="ServiceWrapper\FuelReportServiceWrapper.cs" />
+    <Compile Include="ServiceWrapper\FuelReportVesselServiceWrapper.cs" />
+    <Compile Include="ServiceWrapper\VesselServiceWrapper.cs" />
+    <Compile Include="ServiceWrapper\VoucherServiceWrapper.cs" />
+    <Compile Include="ServiceWrapper\VoucherSetingServiceWrapper.cs" />
+    <Compile Include="ServiceWrapper\VoyageServiceWrapper.cs" />
+    <Compile Include="ServiceWrapper\CompanyServiceWrapper.cs" />
+    <Compile Include="ServiceWrapper\GoodServiceWrapper.cs" />
+    <Compile Include="ServiceWrapper\OrderServiceWrapper.cs" />
+    <Compile Include="ServiceWrapper\OrderServiceWrapper_OrderItemRelated.cs" />
+    <Compile Include="ServiceWrapper\UserServiceWrapper.cs" />
+    <Compile Include="ServiceWrapper\VesselInCompanyServiceWrapper.cs" />
+    <Compile Include="ViewModels\BasicInfo\CurrencyExchangeListVM.cs" />
+    <Compile Include="ViewModels\BasicInfo\CurrencyExchangeListFilteringVM.cs" />
+    <Compile Include="ViewModels\FuelBusyIndicatorVM.cs" />
+    <Compile Include="ViewModels\ApprovmentVM.cs" />
+    <Compile Include="ViewModels\Charter\CharterEndVM.cs" />
+    <Compile Include="ViewModels\Charter\CharterItemVM.cs" />
+    <Compile Include="ViewModels\Charter\CharterListVM.cs" />
+    <Compile Include="ViewModels\Charter\CharterStartVM.cs" />
+    <Compile Include="ViewModels\Charter\CharterVM.cs" />
+    <Compile Include="ViewModels\ComboBoxItem.cs" />
+    <Compile Include="ViewModels\ComboItemVM.cs" />
+    <Compile Include="ViewModels\BasicInfo\FinancialAccountListVM.cs" />
+    <Compile Include="ViewModels\DataGridCommandViewModel.cs" />
+    <Compile Include="ViewModels\Inventory\TransactionListFilteringVM.cs" />
+    <Compile Include="ViewModels\Inventory\TransactionListVM.cs" />
+    <Compile Include="ViewModels\Offhire\OffhireManagementSystemListVM.cs" />
+    <Compile Include="ViewModels\Offhire\OffhireDetailVM.cs" />
+    <Compile Include="ViewModels\Offhire\OffhireListFilteringVM.cs" />
+    <Compile Include="ViewModels\Offhire\OffhireListVM.cs" />
+    <Compile Include="ViewModels\Offhire\OffhireVM.cs" />
+    <Compile Include="ViewModels\Invoice\InvoiceAdditionalPriceVM.cs" />
+    <Compile Include="ViewModels\Invoice\InvoiceAdditionalPriceListVM.cs" />
+    <Compile Include="ViewModels\Order\OrderReferenceLookUpVM.cs" />
+    <Compile Include="ViewModels\Scrap\ScrapDetailVM.cs" />
+    <Compile Include="ViewModels\Scrap\ScrapListFilteringVM.cs" />
+    <Compile Include="ViewModels\Scrap\ScrapListVM.cs" />
+    <Compile Include="ViewModels\Scrap\ScrapVM.cs" />
+    <Compile Include="ViewModels\Invoice\InvoiceReferenceLookUpVM.cs" />
+    <Compile Include="ViewModels\Invoice\InvoiceListVM.cs" />
+    <Compile Include="ViewModels\Security\PartyCustomActionsVM.cs" />
+    <Compile Include="ViewModels\Security\Privilege.cs" />
+    <Compile Include="ViewModels\Security\UserGroupListVM.cs" />
+    <Compile Include="ViewModels\Security\UserGroupVM.cs" />
+    <Compile Include="ViewModels\Security\UserListVM.cs" />
+    <Compile Include="ViewModels\Security\ChangePassWordVM.cs" />
+    <Compile Include="ViewModels\Security\UserVM.cs" />
+    <Compile Include="ViewModels\UploaderVM.cs" />
+    <Compile Include="ViewModels\Vessel\VesselActivationItemVM.cs" />
+    <Compile Include="ViewModels\Vessel\VesselListFilteringVM.cs" />
+    <Compile Include="ViewModels\Vessel\VesselListVM.cs" />
+    <Compile Include="ViewModels\Vessel\VesselActivationVM.cs" />
+    <Compile Include="ViewModels\Vessel\VesselVM.cs" />
+    <Compile Include="ViewModels\Voucher\AccountListVM.cs" />
+    <Compile Include="ViewModels\Voucher\VoucherListVM.cs" />
+    <Compile Include="ViewModels\Voucher\VoucherSetingDetailVM.cs" />
+    <Compile Include="ViewModels\Voucher\VoucherSetingListVM.cs" />
+    <Compile Include="ViewModels\Voucher\VoucherSetingVM.cs" />
+    <Compile Include="ViewModels\VoyageLogVM.cs" />
+    <Compile Include="ViewModels\Invoice\InvoiceItemListVM.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ViewModels\Invoice\InvoiceItemVM.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ViewModels\Invoice\InvoiceVM.cs" />
+    <Compile Include="ViewModels\VoyageVM.cs" />
+    <Compile Include="ViewModels\VoyageListVM.cs" />
+    <Compile Include="ViewModels\FuelReportInventoryOperationVM.cs" />
+    <Compile Include="ViewModels\EnumItemVM.cs" />
+    <Compile Include="ViewModels\EnumVM.cs" />
+    <Compile Include="ViewModels\FuelReportDetailListVM.cs" />
+    <Compile Include="ViewModels\FuelReportDetailVM.cs" />
+    <Compile Include="ViewModels\FuelReportListVM.cs" />
+    <Compile Include="ViewModels\FuelReportVM.cs" />
+    <Compile Include="ViewModels\IApproveRejectVM.cs" />
+    <Compile Include="ViewModels\Order\OrderItemListVM.cs" />
+    <Compile Include="ViewModels\Order\OrderItemVM.cs" />
+    <Compile Include="ViewModels\Order\OrderListVM.cs" />
+    <Compile Include="ViewModels\Order\OrderVM.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="LocalizeResources\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Main\MITD.Main.Presentation.Logic.SL\MITD.Main.Presentation.Logic.SL.csproj">
+      <Project>{facbdc2c-0e05-476b-bc4f-d404ea9d9635}</Project>
+      <Name>MITD.Main.Presentation.Logic.SL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MITD.Fuel.Presentation.Contracts.SL\MITD.Fuel.Presentation.Contracts.SL.csproj">
+      <Project>{8d698e1d-b609-4d46-8d0d-33f4843e7af6}</Project>
+      <Name>MITD.Fuel.Presentation.Contracts.SL</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{A1591282-1198-4647-A2B1-27E5FF5F6F3B}">
+        <SilverlightProjectProperties />
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

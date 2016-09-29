@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SharedDataSet xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2010/01/shareddatasetdefinition">
+  <DataSet Name="DataSet1">
+    <Query>
+      <DataSourceReference>/MITD.FMS.Reports/FMSDataSource</DataSourceReference>
+      <DataSetParameters>
+        <DataSetParameter Name="@CompanyId">
+          <DefaultValue>3</DefaultValue>
+          <ReadOnly>false</ReadOnly>
+          <Nullable>true</Nullable>
+          <OmitFromQuery>false</OmitFromQuery>
+          <rd:DbType>Int64</rd:DbType>
+          <rd:IsMultiValued>false</rd:IsMultiValued>
+        </DataSetParameter>
+        <DataSetParameter Name="@WarehouseId">
+          <DefaultValue>18</DefaultValue>
+          <ReadOnly>false</ReadOnly>
+          <Nullable>true</Nullable>
+          <OmitFromQuery>false</OmitFromQuery>
+          <rd:DbType>Int64</rd:DbType>
+          <rd:IsMultiValued>false</rd:IsMultiValued>
+        </DataSetParameter>
+        <DataSetParameter Name="@QuantityUnitId">
+          <DefaultValue>1</DefaultValue>
+          <ReadOnly>false</ReadOnly>
+          <Nullable>true</Nullable>
+          <OmitFromQuery>false</OmitFromQuery>
+          <rd:DbType>Int64</rd:DbType>
+          <rd:IsMultiValued>false</rd:IsMultiValued>
+        </DataSetParameter>
+        <DataSetParameter Name="@GoodId">
+          <ReadOnly>false</ReadOnly>
+          <Nullable>true</Nullable>
+          <OmitFromQuery>false</OmitFromQuery>
+          <rd:DbType>Int64</rd:DbType>
+          <rd:IsMultiValued>false</rd:IsMultiValued>
+        </DataSetParameter>
+        <DataSetParameter Name="@From">
+          <DefaultValue>10/01/2014 00:00:00</DefaultValue>
+          <ReadOnly>false</ReadOnly>
+          <Nullable>true</Nullable>
+          <OmitFromQuery>false</OmitFromQuery>
+          <rd:DbType>DateTime</rd:DbType>
+          <rd:IsMultiValued>false</rd:IsMultiValued>
+        </DataSetParameter>
+        <DataSetParameter Name="@To">
+          <DefaultValue>12/30/2014 00:00:00</DefaultValue>
+          <ReadOnly>false</ReadOnly>
+          <Nullable>true</Nullable>
+          <OmitFromQuery>false</OmitFromQuery>
+          <rd:DbType>DateTime</rd:DbType>
+          <rd:IsMultiValued>false</rd:IsMultiValued>
+        </DataSetParameter>
+      </DataSetParameters>
+      <CommandType>StoredProcedure</CommandType>
+      <CommandText>Fuel.PeriodicalFuelStatistics</CommandText>
+      <rd:DesignerState><QueryDefinition xmlns="http://schemas.microsoft.com/ReportingServices/QueryDefinition/Relational"><Functions><SProc ColumnOwner="PeriodicalFuelStatistics" Schema="Fuel"><Parameter Name="@CompanyId"><Value>3</Value></Parameter><Parameter Name="@WarehouseId"><Value>18</Value></Parameter><Parameter Name="@QuantityUnitId"><Value>1</Value></Parameter><Parameter Name="@GoodId"><Null /></Parameter><Parameter Name="@From"><Value>10/01/2014 00:00:00</Value></Parameter><Parameter Name="@To"><Value>12/30/2014 00:00:00</Value></Parameter></SProc></Functions><SelectedColumns><ColumnExpression Schema="Fuel" ColumnOwner="PeriodicalFuelStatistics" ColumnName="Type" /><ColumnExpression Schema="Fuel" ColumnOwner="PeriodicalFuelStatistics" ColumnName="GoodId" /><ColumnExpression Schema="Fuel" ColumnOwner="PeriodicalFuelStatistics" ColumnName="GoodCode" /><ColumnExpression Schema="Fuel" ColumnOwner="PeriodicalFuelStatistics" ColumnName="GoodName" /><ColumnExpression Schema="Fuel" ColumnOwner="PeriodicalFuelStatistics" ColumnName="QuantityUnit" /><ColumnExpression Schema="Fuel" ColumnOwner="PeriodicalFuelStatistics" ColumnName="MainCurrencyUnit" /><ColumnExpression Schema="Fuel" ColumnOwner="PeriodicalFuelStatistics" ColumnName="QuantityAmount" /><ColumnExpression Schema="Fuel" ColumnOwner="PeriodicalFuelStatistics" ColumnName="TotalPrice" /><ColumnExpression Schema="Fuel" ColumnOwner="PeriodicalFuelStatistics" ColumnName="CompanyId" /><ColumnExpression Schema="Fuel" ColumnOwner="PeriodicalFuelStatistics" ColumnName="WarehouseId" /><ColumnExpression Schema="Fuel" ColumnOwner="PeriodicalFuelStatistics" ColumnName="Status" /><ColumnExpression Schema="Fuel" ColumnOwner="PeriodicalFuelStatistics" ColumnName="TypeId" /><ColumnExpression Schema="Fuel" ColumnOwner="PeriodicalFuelStatistics" ColumnName="TypeDisplayOrder" /><ColumnExpression Schema="Fuel" ColumnOwner="PeriodicalFuelStatistics" ColumnName="CompanyName" /><ColumnExpression Schema="Fuel" ColumnOwner="PeriodicalFuelStatistics" ColumnName="WarehouseName" /></SelectedColumns></QueryDefinition></rd:DesignerState>
+    </Query>
+    <Fields>
+      <Field Name="Type">
+        <DataField>Type</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="GoodId">
+        <DataField>GoodId</DataField>
+        <rd:TypeName>System.Int64</rd:TypeName>
+      </Field>
+      <Field Name="GoodCode">
+        <DataField>GoodCode</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="GoodName">
+        <DataField>GoodName</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="QuantityUnit">
+        <DataField>QuantityUnit</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="MainCurrencyUnit">
+        <DataField>MainCurrencyUnit</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="QuantityAmount">
+        <DataField>QuantityAmount</DataField>
+        <rd:TypeName>System.Decimal</rd:TypeName>
+      </Field>
+      <Field Name="TotalPrice">
+        <DataField>TotalPrice</DataField>
+        <rd:TypeName>System.Decimal</rd:TypeName>
+      </Field>
+      <Field Name="CompanyId">
+        <DataField>CompanyId</DataField>
+        <rd:TypeName>System.Int64</rd:TypeName>
+      </Field>
+      <Field Name="WarehouseId">
+        <DataField>WarehouseId</DataField>
+        <rd:TypeName>System.Int64</rd:TypeName>
+      </Field>
+      <Field Name="Status">
+        <DataField>Status</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="CompanyName">
+        <DataField>CompanyName</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="TypeDisplayOrder">
+        <DataField>TypeDisplayOrder</DataField>
+        <rd:TypeName>System.Int32</rd:TypeName>
+      </Field>
+      <Field Name="TypeId">
+        <DataField>TypeId</DataField>
+        <rd:TypeName>System.Int32</rd:TypeName>
+      </Field>
+      <Field Name="WarehouseName">
+        <DataField>WarehouseName</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+    </Fields>
+  </DataSet>
+  <rd:ReportServerUrl>http://hatefi-pc:802/ReportServer_SQL2012</rd:ReportServerUrl>
+</SharedDataSet>

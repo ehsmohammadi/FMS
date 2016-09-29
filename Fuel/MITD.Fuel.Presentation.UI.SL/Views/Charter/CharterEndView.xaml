@@ -1,0 +1,124 @@
+﻿<UserControl:ViewBase xmlns:Uploader="clr-namespace:MITD.Fuel.Presentation.UI.SL.Views.Uploader"  xmlns:Voucher="clr-namespace:MITD.Fuel.Presentation.UI.SL.Views.Voucher"  x:Class="MITD.Fuel.Presentation.UI.SL.Views.CharterEndView"
+     xmlns:P="clr-namespace:MITD.Presentation.UI.DateTimePicker.Views;assembly=MITD.Presentation.UI.SL"
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+     xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk" 
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:UserControl="clr-namespace:MITD.Presentation.UI;assembly=MITD.Presentation.UI.SL"
+                      xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit"
+                      mc:Ignorable="d"
+    d:DesignHeight="800" d:DesignWidth="800"
+                       Style="{StaticResource DefaultStyle}" 
+                      >
+
+    <Grid x:Name="LayoutRoot" Background="White" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="100*"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="100*"/>
+            <RowDefinition Height="100*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="200"/>
+        </Grid.ColumnDefinitions>
+
+        <!--Lable-->
+
+        <sdk:Label Grid.Column="0" Grid.Row="0" Content="شرکت" />
+        <sdk:Label Grid.Column="3" Grid.Row="0" Content="وضعیت" />
+        <sdk:Label Grid.Column="6" Grid.Row="1" Content="تاریخ پایان" />
+        <sdk:Label Grid.Column="6" Grid.Row="2" Content="زمان" />
+        <sdk:Label Grid.Column="0" Grid.Row="1" Content="کشتی" />
+        <sdk:Label Grid.Column="3" Grid.Row="1" Content="نوع" />
+        <sdk:Label Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" Content="لیست جزئیات پایان چارتر" />
+        <sdk:Label Grid.Column="0" Grid.Row="7" Grid.ColumnSpan="3" Content="لیست عملیات انبار برای پایان چارتر"/>
+
+        <!--Combo-->
+        <UserControl:ComboBoxEx Grid.Column="4" Grid.Row="1" Grid.ColumnSpan="2" Width="180" Height="25" 
+                                ItemsSource="{Binding CharterTypeEnums}"
+                                SelectedValueProper="{Binding SelectedCharterEndTypeId,Mode=TwoWay}"
+                                DisplayMemberPath="Name" SelectedValuePath="Id"
+                               
+                                >
+        </UserControl:ComboBoxEx>
+
+        <!--TextBox-->
+        <TextBox Text="{Binding Path=Entity.VesselInCompany.Name}" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" Width="200" Height="25" IsEnabled="False" Margin="5,0"/>
+        <TextBox Text="{Binding Path=CompanyName}" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2" Width="200" Height="25"  IsEnabled="False" Margin="5,0"/>
+        <TextBox Text="{Binding Path=Entity.CurrentStateName}" Grid.Column="4" Grid.Row="0" Grid.ColumnSpan="2" Width="180" Height="25"  IsEnabled="False"/>
+
+        <UserControl:ComboBoxEx Grid.Column="7" Grid.Row="0"  Width="180" Height="25" 
+                                ItemsSource="{Binding CalendarType}"
+                                SelectedValueProper="{Binding SelectedPickerTypeId,Mode=TwoWay}"
+                                DisplayMemberPath="Name"
+                                SelectedValuePath="Id"
+                                />
+
+        <StackPanel Grid.Column="7" Grid.Row="1"   Visibility="{Binding Path=ViewShamsiFlag, Mode=TwoWay}"  >
+            <P:PDatePicker    SelectedDate="{Binding Path=Entity.EndDate, Mode=TwoWay}"
+                 Width="180" Height="25" ></P:PDatePicker>
+
+        </StackPanel>
+
+        <sdk:DatePicker  SelectedDate="{Binding Path=Entity.EndDate, Mode=TwoWay}"
+                       Visibility="{Binding Path=ViewGerogyFlag, Mode=TwoWay}" Grid.Column="7" Grid.Row="1"  Width="160" Height="25" 
+                         
+                         ></sdk:DatePicker>
+        <toolkit:TimePicker Grid.Row="2" Grid.Column="7"  Width="160" Height="25" 
+                         Value="{Binding Path=Entity.EndDate, Mode=TwoWay}" 
+                            />
+
+        <!--DataGrid-->
+      <sdk:DataGrid  Name="uxCharterDetail" Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="7" AutoGenerateColumns="False" 
+                      ItemsSource="{Binding CharterItemDtos}"
+                      SelectedItem="{Binding SelectedCharterItem ,Mode=TwoWay}"
+                      
+                      >
+        <sdk:DataGrid.Columns>
+            <sdk:DataGridTextColumn Binding="{Binding Path=Good.Name}" Header="نوع سوخت" IsReadOnly="True"/>
+                <sdk:DataGridTextColumn Binding="{Binding Path=TankDto.Code}" Header="تانک" IsReadOnly="True"/>
+            <sdk:DataGridTextColumn Binding="{Binding Path=Rob, StringFormat=\{0:n3\}}" Header="موجودی" IsReadOnly="True"/>
+            <sdk:DataGridTextColumn Binding="{Binding Path=Good.Unit.Name}" Header="واحد" IsReadOnly="True"/>
+            <sdk:DataGridTextColumn Binding="{Binding Path=Fee, StringFormat=\{0:n2\}}" Header="فی" IsReadOnly="True"/>
+                <sdk:DataGridTextColumn Binding="{Binding Path=FeeOffhire, StringFormat=\{0:n2\}}" Header="فی Offhire" IsReadOnly="True"/>
+            </sdk:DataGrid.Columns>
+        </sdk:DataGrid>
+        <sdk:DataGrid Name="uxCharterInvOperation" Grid.Column="0" Grid.Row="8" Grid.ColumnSpan="7" AutoGenerateColumns="False"
+                      ItemsSource="{Binding DataInventoryOperation}"
+                      >
+            <sdk:DataGrid.Columns>
+                <sdk:DataGridTextColumn Binding="{Binding Path=ActionDate}" Header="تاریخ عملیات انبار" IsReadOnly="True"/>
+                <sdk:DataGridTextColumn Binding="{Binding Path=Code}" Header="شماره عملیات انبار" IsReadOnly="True"/>
+                <sdk:DataGridTextColumn Binding="{Binding Path=ActionType}" Header="نوع عملیات انبار" IsReadOnly="True"/>
+
+            </sdk:DataGrid.Columns>
+        </sdk:DataGrid>
+        <!--Button-->
+        <StackPanel  Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="7" Orientation="Horizontal" >
+            <Button Width="75" Height="25" Content="{Binding AddCommand.DisplayName}" Command="{Binding AddCommand.Command}" IsEnabled="{Binding ViewFlag}" Margin="5"></Button>
+            <Button Width="75" Height="25" Content="{Binding EditCommand.DisplayName}" Command="{Binding EditCommand.Command}" IsEnabled="{Binding ViewFlag}" Margin="5"></Button>
+            <Button Width="75" Height="25" Content="{Binding DeleteCommand.DisplayName}" Command="{Binding DeleteCommand.Command}" IsEnabled="{Binding ViewFlag}" Margin="5"></Button>
+        </StackPanel>
+
+        <StackPanel  Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="8" Orientation="Horizontal" HorizontalAlignment="Center" >
+            <Button Width="75" Height="25" Content="{Binding SubmitCommand.DisplayName}" Command="{Binding SubmitCommand.Command}" IsEnabled="{Binding ViewEndFlag}"  Margin="5"></Button>
+            <Button Width="75" Height="25" Content="{Binding CancelCommand.DisplayName}" Command="{Binding CancelCommand.Command}" Margin="5"></Button>
+        </StackPanel>
+    
+        <Uploader:UploaderView x:Name="UploaderView" Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="7" />
+    </Grid>
+</UserControl:ViewBase>

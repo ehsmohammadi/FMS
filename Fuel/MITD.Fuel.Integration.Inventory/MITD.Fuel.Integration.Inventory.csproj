@@ -1,0 +1,188 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{5D04E907-986D-44C2-AE99-78A45C39E618}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MITD.Fuel.Integration.Inventory</RootNamespace>
+    <AssemblyName>MITD.Fuel.Integration.Inventory</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Iesi.Collections">
+      <HintPath>..\..\packages\Iesi.Collections.3.2.0.1001\lib\Net35\Iesi.Collections.dll</HintPath>
+    </Reference>
+    <Reference Include="MITD.Core">
+      <HintPath>..\..\Dependencies\MITD.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="MITD.CurrencyAndMeasurement.Core">
+      <HintPath>..\..\Dependencies\MITD.CurrencyAndMeasurement.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="MITD.CurrencyAndMeasurement.Domain">
+      <HintPath>..\..\Dependencies\MITD.CurrencyAndMeasurement.Domain.dll</HintPath>
+    </Reference>
+    <Reference Include="MITD.CurrencyAndMeasurement.Domain.Contracts">
+      <HintPath>..\..\Dependencies\MITD.CurrencyAndMeasurement.Domain.Contracts.dll</HintPath>
+    </Reference>
+    <Reference Include="MITD.CurrencyAndMeasurement.Persistance.NH">
+      <HintPath>..\..\Dependencies\MITD.CurrencyAndMeasurement.Persistance.NH.dll</HintPath>
+    </Reference>
+    <Reference Include="MITD.DataAccess.EF">
+      <HintPath>..\..\Dependencies\MITD.DataAccess.EF.dll</HintPath>
+    </Reference>
+    <Reference Include="MITD.DataAccess.EF.Config.Castle">
+      <HintPath>..\..\Dependencies\MITD.DataAccess.EF.Config.Castle.dll</HintPath>
+    </Reference>
+    <Reference Include="MITD.Domain.Model">
+      <HintPath>..\..\Dependencies\MITD.Domain.Model.dll</HintPath>
+    </Reference>
+    <Reference Include="MITD.Domain.Repository, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Dependencies\MITD.Domain.Repository.dll</HintPath>
+    </Reference>
+    <Reference Include="MITD.Domain.Repository.Web">
+      <HintPath>..\..\Dependencies\MITD.Domain.Repository.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="MITD.Presentation">
+      <HintPath>..\..\Dependencies\MITD.Presentation.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate">
+      <HintPath>..\..\packages\NHibernate.3.3.3.4001\lib\Net35\NHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="TIBA.Core">
+      <HintPath>..\..\Dependencies\TIBA.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="TIBA.DataAccess.NH">
+      <HintPath>..\..\Dependencies\TIBA.DataAccess.NH.dll</HintPath>
+    </Reference>
+    <Reference Include="TIBA.Domain.Model">
+      <HintPath>..\..\Dependencies\TIBA.Domain.Model.dll</HintPath>
+    </Reference>
+    <Reference Include="TIBA.Domain.Repository">
+      <HintPath>..\..\Dependencies\TIBA.Domain.Repository.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Infrastructure\ExtensionMethods.cs" />
+    <Compile Include="UpdateCountSubmitedReciptCharterIn.cs" />
+    <Compile Include="UpdatePriceSubmitedReciptFactory.cs" />
+    <Compile Include="Utitlity.cs" />
+    <Content Include="Data\Stock Scripts\000-Drop Tables.sql" />
+    <Compile Include="ActivityChain.cs" />
+    <Compile Include="ConditionChain.cs" />
+    <Compile Include="ExceptionChain.cs" />
+    <Compile Include="IChain.cs" />
+    <Compile Include="InventoryOperationManager.cs" />
+    <Compile Include="UnitOfMeasuresAndCurrenciesRegsitrar.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Content Include="Data\Stock Scripts\009-Stored Procedures-Fuel.sql" />
+    <Content Include="Data\Stock Scripts\011-Values V 5 94-12-17.sql" />
+    <Content Include="Data\Stock Scripts\011-Values V 4.sql" />
+    <Content Include="Data\Stock Scripts\011-Values V 3.sql" />
+    <Content Include="Data\Stock Scripts\011-Values V 2.sql" />
+    <Content Include="Data\Stock Scripts\103-Add Company.IsMemberOfHolding - Drop UnitConverts.RowVersion.sql" />
+    <Content Include="Data\Stock Scripts\102-Add Code column to Currency Table.sql" />
+    <Content Include="Data\Stock Scripts\104-Revert Scenario Modification.sql" />
+    <Content Include="Data\Stock Scripts\ActivateWarehouse Sample Script.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Data\Stock Scripts\000-Drop DB.sql" />
+    <Content Include="Data\Stock Scripts\001-DB.sql" />
+    <Content Include="Data\Stock Scripts\002-Check Constraint Functions.sql" />
+    <Content Include="Data\Stock Scripts\003-Tables.sql" />
+    <Content Include="Data\Stock Scripts\004-Types.sql" />
+    <Content Include="Data\Stock Scripts\005-Functions.sql" />
+    <Content Include="Data\Stock Scripts\006-Views.sql" />
+    <Content Include="Data\Stock Scripts\007-Error Messages.sql" />
+    <Content Include="Data\Stock Scripts\008-Indexes.sql" />
+    <Content Include="Data\Stock Scripts\009-Stored Procedures.sql" />
+    <Content Include="Data\Stock Scripts\010-Triggers-Fuel.sql" />
+    <Content Include="Data\Stock Scripts\010-Triggers-Inventory.sql" />
+    <Content Include="Data\Stock Scripts\011-Initial Values - CompanyWarehouse.sql" />
+    <Content Include="Data\Stock Scripts\011-Initial Values.sql" />
+    <Content Include="Data\Stock Scripts\101-Create Inventory_Users view.sql" />
+    <Content Include="Data\Stock Scripts\Get Inventory Quantity.sql" />
+    <Content Include="Data\Stock Scripts\Inv Test Query1.sql" />
+    <Content Include="Data\Stock Scripts\Inventory Quantity Query.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MITD.Fuel.ACL.Contracts\MITD.Fuel.ACL.Contracts.csproj">
+      <Project>{ab12495a-9a99-4f33-a9fa-507746bba754}</Project>
+      <Name>MITD.Fuel.ACL.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MITD.Fuel.Data.EF\MITD.Fuel.Data.EF.csproj">
+      <Project>{22FFBC88-AF0B-47B5-B013-07CC02078BF0}</Project>
+      <Name>MITD.Fuel.Data.EF</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MITD.Fuel.Domain.Model\MITD.Fuel.Domain.Model.csproj">
+      <Project>{F75008B5-5BFE-4570-B583-9C3E0468ED68}</Project>
+      <Name>MITD.Fuel.Domain.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MITD.Fuel.Presentation.Contracts\MITD.Fuel.Presentation.Contracts.csproj">
+      <Project>{087D039B-81F3-4F11-BB55-647F0F4BD06D}</Project>
+      <Name>MITD.Fuel.Presentation.Contracts</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,5 @@
+If Errors of kind of ".ps files could not be loaded" occured, follwoing would resolve the problem:
+
+1- Run Powershell as Administrator (found in Star Menu)
+2- Enter command bellow:
+	> Set-ExecutionPolicy RemoteSigned

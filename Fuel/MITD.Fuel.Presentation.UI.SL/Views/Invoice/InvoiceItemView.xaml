@@ -1,0 +1,113 @@
+﻿<UserControl:ViewBase
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:UserControl="clr-namespace:MITD.Presentation.UI;assembly=MITD.Presentation.UI.SL"
+    xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
+    x:Class="MITD.Fuel.Presentation.UI.SL.Views.Invoice.InvoiceItemView"
+    xmlns:local="clr-namespace:MITD.Fuel.Presentation.Logic.SL.ViewModels;assembly=MITD.Fuel.Presentation.Logic.SL"
+    d:DataContext="{d:DesignInstance Type=local:InvoiceItemVM}"
+    
+      d:DesignHeight="400" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+   mc:Ignorable="d"
+     Style="{StaticResource DefaultStyle}" 
+    >
+
+    <UserControl.Resources>
+        <DataTemplate x:Key="uxbzcombo">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="5"/>
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <Grid.Children>
+                    <TextBlock Grid.Column="0" Grid.Row="0" Text="{Binding Path=Name, Mode=OneWay}"/>
+                    <TextBlock Grid.Column="2" Grid.Row="0" Text="{Binding Path=Code, Mode=OneWay}"/>
+                </Grid.Children>
+            </Grid>
+        </DataTemplate>
+    </UserControl.Resources>
+    <Grid x:Name="uxLayoutGrid"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0,0,0"  >
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" MinWidth="100"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+
+        </Grid.RowDefinitions>
+
+
+        <!--labels-->
+        <sdk:Label  Content="نام کالا" Grid.Row="0" Grid.Column="0"  HorizontalAlignment="Right" />
+        <sdk:Label  Content="کد کالا"   Grid.Row="0" Grid.Column="3"  HorizontalAlignment="Right" />
+        <sdk:Label  Content="واحد کالا" Grid.Row="1" Grid.Column="0"   HorizontalAlignment="Right"/>
+        <sdk:Label Content="واحد اصلی" Grid.Row="1" Grid.Column="3"   HorizontalAlignment="Right"/>
+        <sdk:Label Content="مقدار"    Grid.Row="2" Grid.Column="0"   HorizontalAlignment="Right"/>
+        <sdk:Label Content="مقدار با واحد اصلی" Grid.Row="2"  Grid.Column="3" HorizontalAlignment="Right"/>
+
+        <sdk:Label Content="فی"    Grid.Row="3" Grid.Column="0"    HorizontalAlignment="Right"/>
+        <sdk:Label Content="فی به ریال" Grid.Row="3"  Grid.Column="3" HorizontalAlignment="Right"/>
+
+
+        <sdk:Label Content="مبلغ"     Grid.Row="4"   Grid.Column="0"   HorizontalAlignment="Right"/>
+        <sdk:Label Content="مبلغ به ریال" Grid.Row="4"   Grid.Column="3" HorizontalAlignment="Right"/>
+
+        <sdk:Label Content="مبلغ تسهیم عوامل"     Grid.Row="5"   Grid.Column="0"   HorizontalAlignment="Right"/>
+        <sdk:Label Content="مبلغ تسهیم عوامل به ریال" Grid.Row="5"   Grid.Column="3"     HorizontalAlignment="Right"/>
+
+        <sdk:Label Content="درصد تسهیم عوامل"     Grid.Row="6"   Grid.Column="0"   HorizontalAlignment="Right"/>
+
+        <sdk:Label  Height="18"  Grid.Row="7" Width="57" Content="توضیحات" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+
+        <!--textboxes-->
+        <TextBox Grid.Row="0" Grid.Column="1"   Text="{Binding Path=Entity.GoodName,Mode=OneWay}" IsReadOnly="True"   TextWrapping="Wrap"  Grid.ColumnSpan="2" Height="25" Width="180" Margin="5"/>
+        <TextBox Grid.Row="0" Grid.Column="4"  Text="{Binding Entity.GoodCode}" IsReadOnly="True"   Grid.ColumnSpan="2"  Width="180" Height="25" Margin="5" />
+
+        <TextBox Grid.Row="1" Grid.Column="1"  Text="{Binding Entity.MeasuringUnitName}"   IsReadOnly="True"   Grid.ColumnSpan="2"  Width="180" Height="25" Margin="5" />
+        <TextBox Grid.Row="1" Grid.Column="4"   Text="{Binding Entity.MainUnitName}"  IsReadOnly="True"   Grid.ColumnSpan="2"  TextWrapping="Wrap"   Height="25" Width="180" Margin="5"/>
+
+        <TextBox Grid.Row="2" Grid.Column="1"  Text="{Binding Path=Entity.Quantity, StringFormat=\{0:n3\},Mode=TwoWay}"     IsReadOnly="{Binding Path=IsQuantityReadonly}" Grid.ColumnSpan="2" Width="180"  Height="25" Margin="5"/>
+        <TextBox Grid.Row="2" Grid.Column="4"   Text="{Binding Entity.QuantityWithMainUnit, StringFormat=\{0:n3\}}"      IsReadOnly="True"   Grid.ColumnSpan="2"  TextWrapping="Wrap"   Height="25" Width="180" Margin="5"/>
+
+
+        <TextBox  Grid.Row="3" Grid.Column="1"   Text="{Binding Path=Entity.Fee, StringFormat=\{0:n2\},Mode=TwoWay}" Grid.ColumnSpan="2"   TextWrapping="Wrap"  Width="180"  Height="25" Margin="5"/>
+        <TextBox  Grid.Row="3" Grid.Column="4"   Text="{Binding Entity.FeeInMainCurrency, StringFormat=\{0:n0\}}"      IsReadOnly="True"   Grid.ColumnSpan="2"   TextWrapping="Wrap"  Width="180" Height="25" Margin="5"/>
+
+
+        <TextBox  Grid.Row="4" Grid.Column="1"   Text="{Binding Entity.Price, StringFormat=\{0:n2\}}" IsReadOnly="True"  Grid.ColumnSpan="2"  TextWrapping="Wrap"   Height="25" Width="180" Margin="5"/>
+        <TextBox  Grid.Row="4" Grid.Column="4"   Text="{Binding Entity.PriceInMainCurrency, StringFormat=\{0:n0\}}" IsReadOnly="True"   Grid.ColumnSpan="2"  TextWrapping="Wrap"   Height="25" Width="180" Margin="5"/>
+
+
+        <TextBox  Grid.Row="5" Grid.Column="1"   Text="{Binding Entity.DivisionPrice, StringFormat=\{0:n2\}, Mode=TwoWay}" IsReadOnly="{Binding Path=IsDivisionPriceReadonly}"   Grid.ColumnSpan="2"  TextWrapping="Wrap"   Height="25" Width="180" Margin="5"/>
+        <TextBox  Grid.Row="5" Grid.Column="4"   Text="{Binding Entity.DivisionPriceInMainCurrency, StringFormat=\{0:n0\}}" IsReadOnly="True"   Grid.ColumnSpan="2"  TextWrapping="Wrap"   Height="25" Width="180" Margin="5"/>
+
+        <TextBox  Grid.Row="6" Grid.Column="1"   Text="{Binding Entity.DivisionPercent, StringFormat=\{0:n2\}}" IsReadOnly="True"   Grid.ColumnSpan="2"  TextWrapping="Wrap"   Height="25" Width="180" Margin="5"/>
+
+        <TextBox Grid.Row="7" Grid.Column="1"   Text="{Binding Path=Entity.Description,Mode=TwoWay}" TextWrapping="Wrap"  Margin="5" Grid.ColumnSpan="5" Grid.RowSpan="2" Height="75" VerticalScrollBarVisibility="Visible"/>
+
+        <!--button-->
+        <StackPanel HorizontalAlignment="Center" Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="6" Orientation="Horizontal">
+            <Button Content="{Binding SubmitCommand.DisplayName}"  Command="{Binding SubmitCommand.Command}" Width="75" Height="25" Margin="5"/>
+            <Button Content="{Binding CancelCommand.DisplayName}"  Command="{Binding CancelCommand.Command}"  Width="75" Height="25" Margin="5"/>
+        </StackPanel>
+    </Grid>
+</UserControl:ViewBase>

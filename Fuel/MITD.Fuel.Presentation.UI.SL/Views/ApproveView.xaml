@@ -1,0 +1,22 @@
+﻿<UserControl x:Class="MITD.Fuel.Presentation.UI.SL.Views.ApproveView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d" Height="54" Width="275">
+    <Grid HorizontalAlignment="Left" Height="54" VerticalAlignment="Top" Width="275">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="11*"/>
+            <ColumnDefinition Width="9*"/>
+
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50*"/>
+           
+        </Grid.RowDefinitions>
+        <Button Content="لغو تأیید" HorizontalAlignment="Left" Margin="20,21,0,14" Width="75"/>
+        <Button Content="تأیید" HorizontalAlignment="Left" Margin="21,18,0,0" VerticalAlignment="Top" Width="75" Grid.Column="1"/>
+    </Grid>
+
+
+</UserControl>

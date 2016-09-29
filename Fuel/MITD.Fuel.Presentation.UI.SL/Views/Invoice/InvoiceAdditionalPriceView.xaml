@@ -1,0 +1,92 @@
+﻿<UserControl:ViewBase
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:UserControl="clr-namespace:MITD.Presentation.UI;assembly=MITD.Presentation.UI.SL"
+                      xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
+    xmlns:P="clr-namespace:MITD.Presentation.UI.DateTimePicker.Views;assembly=MITD.Presentation.UI.SL"
+    x:Class="MITD.Fuel.Presentation.UI.SL.Views.Invoice.InvoiceAdditionalPriceView" 
+         mc:Ignorable="d"
+      d:DesignHeight="250" d:DesignWidth="600" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+    xmlns:Invoice="clr-namespace:MITD.Fuel.Presentation.Logic.SL.ViewModels.Invoice;assembly=MITD.Fuel.Presentation.Logic.SL"
+    xmlns:converters="clr-namespace:MITD.Fuel.Presentation.UI.SL.Converters"
+    d:DataContext="{d:DesignInstance Type=Invoice:InvoiceAdditionalPriceVM}"
+     Style="{StaticResource DefaultStyle}" >
+
+    <UserControl.Resources>
+        <UserControl:BoolToVisibilityConverter x:Key="VisibilityConverter" />
+        <converters:EnumToDescriptionConvertor x:Key="EnumToDescriptionConvertor"/>
+        <!--<DataTemplate x:Key="uxComboTemplate">
+            <Grid>
+              <Grid.Children>
+                    <TextBlock Grid.Column="0" Grid.Row="0" Text="{Binding Path=Name, Mode=OneWay}"/>
+                </Grid.Children>
+            </Grid>
+        </DataTemplate>-->
+    </UserControl.Resources>
+
+    <Grid Margin="10,10,10,10" Background="white" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" Name="uxInvoiceDataGrid"  >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+
+        </Grid.RowDefinitions>
+
+
+        <!--labels-->
+        <sdk:Label Grid.Column="0" Grid.Row="0" Content="نام عامل" />
+        <sdk:Label Grid.Column="0" Grid.Row="2"  Content="مبلغ" />
+        <sdk:Label Grid.Column="3" Grid.Row="0"  Content="نوع عامل"    />
+        <sdk:Label Grid.Column="0" Grid.Row="1"  Content="تسهیم پذیر"   />
+
+        <sdk:Label Grid.Column="3" Grid.Row="2" Content="مبلغ به ریال" />
+        <sdk:Label Grid.Column="0" Grid.Row="3" Content="توضیحات" />
+
+
+
+        <!--textboxes-->
+
+
+        <TextBox  Grid.Column="4" Grid.Row="0" Text="{Binding Entity.EffectiveFactorType, Converter={StaticResource EnumToDescriptionConvertor}}"  IsReadOnly="True"  Height="25" Width="190"  Margin="5"/>
+        <TextBox  Grid.Column="1" Grid.Row="2" Text="{Binding Entity.Price, Mode=TwoWay, StringFormat=\{0:n2\}}"    Height="25"  Margin="5"/>
+        <TextBox  Grid.Column="4" Grid.Row="2" Text="{Binding Entity.PriceInMainCurrency, StringFormat=\{0:n0\}}"  IsReadOnly="True"   Height="25" Width="190" Margin="5"/>
+        <!--button-->
+        <UserControl:ComboBoxEx ItemsSource="{Binding EffectiveFactors}" 
+                                SelectedValueProper="{Binding SelectedEffectiveFactorId, Mode=TwoWay}"
+                                SelectedValuePath="Id"  
+                                DisplayMemberPath="Name"
+                                Grid.Row="0" Grid.Column="1"   
+                                Width="180" Height="25" Margin="5"/>
+      
+        <CheckBox Grid.Row="1" Grid.Column="1" Margin="5" IsChecked="{Binding Entity.Divisionable,Mode=TwoWay}"/>
+        <TextBox Text="{Binding Entity.Description,Mode=TwoWay}" Grid.Row="3" Grid.Column="1"  MinHeight="60" TextWrapping="Wrap"   Grid.ColumnSpan="4" Grid.RowSpan="2" AcceptsReturn="True" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Visible"/>
+
+        <!--        <Views:InvoiceItemListView x:Name="uxInvoiceItemList"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Grid.Row="8"  Grid.ColumnSpan="7" Grid.Column="0"  />-->
+        <Grid x:Name="uxGrid" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Grid.Row="7" Grid.ColumnSpan="7">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="1" HorizontalAlignment="Center" Orientation="Horizontal">
+                <Button Content="{Binding SubmitCommand.DisplayName}" Command="{Binding SubmitCommand.Command}" Width="75" Height="25" Margin="5"/>
+                <Button Content="{Binding CancelCommand.DisplayName}" Command="{Binding CancelCommand.Command}" Width="75" Height="25" Margin="5"/>
+            </StackPanel>
+
+
+        </Grid>
+    </Grid>
+
+</UserControl:ViewBase>

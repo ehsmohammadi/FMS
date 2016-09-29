@@ -1,0 +1,480 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A1B56983-B12F-495D-A1FA-BAB0F85E8A1C}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DataAmendments</RootNamespace>
+    <AssemblyName>DataAmendments</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="MITD.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Dependencies\MITD.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="MITD.Domain.Repository, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Dependencies\MITD.Domain.Repository.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\MITD.Fuel.Domain.Model\Enums\CorrectionTypes.cs">
+      <Link>LinkedSources\CorrectionTypes.cs</Link>
+    </Compile>
+    <Compile Include="..\MITD.Fuel.Domain.Model\Enums\Inventory\InventoryOperationReferenceTypes.cs">
+      <Link>LinkedSources\InventoryOperationReferenceTypes.cs</Link>
+    </Compile>
+    <Compile Include="..\MITD.Fuel.Domain.Model\Enums\Inventory\TransactionType.cs">
+      <Link>LinkedSources\TransactionType.cs</Link>
+    </Compile>
+    <Compile Include="..\MITD.Fuel.Domain.Model\Enums\WorkflowStages.cs">
+      <Link>LinkedSources\WorkflowStages.cs</Link>
+    </Compile>
+    <Compile Include="..\MITD.Fuel.Domain.Model\Extensions\InventoryExtensions.cs">
+      <Link>LinkedSources\InventoryExtensions.cs</Link>
+    </Compile>
+    <Compile Include="Account.cs">
+      <DependentUpon>StorageSapaceDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AccountListView.cs">
+      <DependentUpon>StorageSapaceDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ActionType.cs">
+      <DependentUpon>StorageSapaceDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ActivityFlow.cs">
+      <DependentUpon>StorageSapaceDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ActivityLocation.cs">
+      <DependentUpon>StorageSapaceDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ApproveFlowConfig.cs">
+      <DependentUpon>StorageSapaceDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ApproveFlowConfigValidFuelUser.cs">
+      <DependentUpon>StorageSapaceDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AsgnSegmentTypeVoucherSetingDetail.cs">
+      <DependentUpon>StorageSapaceDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AsgnVoucherAcont.cs">
+      <DependentUpon>StorageSapaceDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Attachment.cs">
+      <DependentUpon>StorageSapaceDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Cardex_Result.cs">
+      <DependentUpon>StorageSapaceDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Charter.cs">
+      <DependentUpon>StorageSapaceDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CharterIn.cs">
+      <DependentUpon>StorageSapaceDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CharterItem.cs">
+      <DependentUpon>StorageSapaceDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CharterItemHistory.cs">
+      <DependentUpon>StorageSapaceDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CharterOut.cs">
+      <DependentUpon>StorageSapaceDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Company.cs">
+      <DependentUpon>StorageSapaceDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CompanyGoodUnitView.cs">
+      <DependentUpon>StorageSapaceDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CompanyGoodView.cs">
+      <DependentUpon>StorageSapaceDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CompanyVesselTankView.cs">
+      <DependentUpon>StorageSapaceDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CompanyVesselView.cs">
+      <DependentUpon>StorageSapaceDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CompanyView.cs">
+      <DependentUpon>StorageSapaceDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CurrencyView.cs">
+      <DependentUpon>StorageSapaceDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="C__VoyagesView.cs">
+      <DependentUpon>StorageSapaceDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EffectiveFactor.cs">
+      <DependentUpon>StorageSapaceDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EOVReportsView.cs">
+      <DependentUpon>StorageSapaceDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ErrorMessage.cs">
+      <DependentUpon>StorageSapaceDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EventLog.cs">
+      <DependentUpon>StorageSapaceDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ExceptionLog.cs">
+      <DependentUpon>StorageSapaceDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FinancialYear.cs">
+      <DependentUpon>StorageSapaceDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FreeAccount.cs">
+      <DependentUpon>StorageSapaceDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FuelReport.cs">
+      <DependentUpon>StorageSapaceDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FuelReportCommandLog.cs">
+      <DependentUpon>StorageSapaceDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FuelReportCommandLogDetail.cs">
+      <DependentUpon>StorageSapaceDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FuelReportDetail.cs">
+      <DependentUpon>StorageSapaceDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GetFuelOriginalData_Result.cs">
+      <DependentUpon>StorageSapaceDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GetVesselReportData_Result.cs">
+      <DependentUpon>StorageSapaceDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GetVesselReportShipNameData_Result.cs">
+      <DependentUpon>StorageSapaceDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GetVesselReportVoyageData_Result.cs">
+      <DependentUpon>StorageSapaceDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GetVesselsRunningValuesReport_Result.cs">
+      <DependentUpon>StorageSapaceDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Good.cs">
+      <DependentUpon>StorageSapaceDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Group.cs">
+      <DependentUpon>StorageSapaceDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HAFEZAccountListView.cs">
+      <DependentUpon>StorageSapaceDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HAFEZVoyagesView.cs">
+      <DependentUpon>StorageSapaceDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HAFIZAccountListView.cs">
+      <DependentUpon>StorageSapaceDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HAFIZVoyagesView.cs">
+      <DependentUpon>StorageSapaceDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="InventoryOperation.cs">
+      <DependentUpon>StorageSapaceDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="InventoryUser.cs">
+      <DependentUpon>StorageSapaceDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Invoice.cs">
+      <DependentUpon>StorageSapaceDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="InvoiceAdditionalPrice.cs">
+      <DependentUpon>StorageSapaceDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="InvoiceItem.cs">
+      <DependentUpon>StorageSapaceDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="JournalEntry.cs">
+      <DependentUpon>StorageSapaceDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Log.cs">
+      <DependentUpon>StorageSapaceDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Offhire.cs">
+      <DependentUpon>StorageSapaceDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OffhireDetail.cs">
+      <DependentUpon>StorageSapaceDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OffhireFuelTypeFuelGoodCode.cs">
+      <DependentUpon>StorageSapaceDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OffhireMeasureTypeFuelMeasureCode.cs">
+      <DependentUpon>StorageSapaceDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OperationReference.cs">
+      <DependentUpon>StorageSapaceDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Order.cs">
+      <DependentUpon>StorageSapaceDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OrderItem.cs">
+      <DependentUpon>StorageSapaceDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OrderItemBalance.cs">
+      <DependentUpon>StorageSapaceDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Parties_CustomActions.cs">
+      <DependentUpon>StorageSapaceDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Party.cs">
+      <DependentUpon>StorageSapaceDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PeriodicalFuelStatistics_Result.cs">
+      <DependentUpon>StorageSapaceDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PrimaryCoefficient_Result.cs">
+      <DependentUpon>StorageSapaceDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SAPIDAccountListView.cs">
+      <DependentUpon>StorageSapaceDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SAPIDVoyagesView.cs">
+      <DependentUpon>StorageSapaceDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Scrap.cs">
+      <DependentUpon>StorageSapaceDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ScrapDetail.cs">
+      <DependentUpon>StorageSapaceDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Segment.cs">
+      <DependentUpon>StorageSapaceDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SharedGoodView.cs">
+      <DependentUpon>StorageSapaceDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="StorageSapaceDataModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StorageSapaceDataModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="StorageSapaceDataModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StorageSapaceDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="StorageSapaceDataModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StorageSapaceDataModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="StoreType.cs">
+      <DependentUpon>StorageSapaceDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TimeBucket.cs">
+      <DependentUpon>StorageSapaceDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Transaction.cs">
+      <DependentUpon>StorageSapaceDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TransactionItem.cs">
+      <DependentUpon>StorageSapaceDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TransactionItemPrice.cs">
+      <DependentUpon>StorageSapaceDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TransactionItemPricesGetAll_Result.cs">
+      <DependentUpon>StorageSapaceDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TransactionItemsGetAll_Result.cs">
+      <DependentUpon>StorageSapaceDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TransactionsGetAll_Result.cs">
+      <DependentUpon>StorageSapaceDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Unit.cs">
+      <DependentUpon>StorageSapaceDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UnitConvert.cs">
+      <DependentUpon>StorageSapaceDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UnitView.cs">
+      <DependentUpon>StorageSapaceDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="User.cs">
+      <DependentUpon>StorageSapaceDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserInCompany.cs">
+      <DependentUpon>StorageSapaceDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Users1.cs">
+      <DependentUpon>StorageSapaceDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Users_Groups.cs">
+      <DependentUpon>StorageSapaceDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserView.cs">
+      <DependentUpon>StorageSapaceDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VersionInfo.cs">
+      <DependentUpon>StorageSapaceDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Vessel.cs">
+      <DependentUpon>StorageSapaceDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VesselEventReportsView.cs">
+      <DependentUpon>StorageSapaceDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VesselInCompany.cs">
+      <DependentUpon>StorageSapaceDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Voucher.cs">
+      <DependentUpon>StorageSapaceDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VoucherLog.cs">
+      <DependentUpon>StorageSapaceDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VoucherReportView.cs">
+      <DependentUpon>StorageSapaceDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VoucherSeting.cs">
+      <DependentUpon>StorageSapaceDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VoucherSetingDetail.cs">
+      <DependentUpon>StorageSapaceDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Voyage.cs">
+      <DependentUpon>StorageSapaceDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VoyageLog.cs">
+      <DependentUpon>StorageSapaceDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VoyagesView.cs">
+      <DependentUpon>StorageSapaceDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Warehouse.cs">
+      <DependentUpon>StorageSapaceDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Workflow.cs">
+      <DependentUpon>StorageSapaceDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WorkflowLog.cs">
+      <DependentUpon>StorageSapaceDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WorkflowLog_Old.cs">
+      <DependentUpon>StorageSapaceDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WorkflowStep.cs">
+      <DependentUpon>StorageSapaceDataModel.tt</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EntityDeploy Include="StorageSapaceDataModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>StorageSapaceDataModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="StorageSapaceDataModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>StorageSapaceDataModel.edmx</DependentUpon>
+      <LastGenOutput>StorageSapaceDataModel.Context.cs</LastGenOutput>
+    </None>
+    <None Include="StorageSapaceDataModel.edmx.diagram">
+      <DependentUpon>StorageSapaceDataModel.edmx</DependentUpon>
+    </None>
+    <None Include="StorageSapaceDataModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>StorageSapaceDataModel.edmx</DependentUpon>
+      <LastGenOutput>StorageSapaceDataModel.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MITD.Fuel.Domain.Model\MITD.Fuel.Domain.Model.csproj">
+      <Project>{F75008B5-5BFE-4570-B583-9C3E0468ED68}</Project>
+      <Name>MITD.Fuel.Domain.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

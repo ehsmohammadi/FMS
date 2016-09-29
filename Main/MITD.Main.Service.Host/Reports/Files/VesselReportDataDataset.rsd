@@ -1,0 +1,353 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SharedDataSet xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2010/01/shareddatasetdefinition">
+  <DataSet Name="DataSet1">
+    <Query>
+      <DataSourceReference>/MITD.FMS.Reports/FMSDataSource</DataSourceReference>
+      <DataSetParameters>
+        <DataSetParameter Name="@ShipCode">
+          <ReadOnly>false</ReadOnly>
+          <Nullable>true</Nullable>
+          <OmitFromQuery>false</OmitFromQuery>
+          <rd:DbType>String</rd:DbType>
+          <rd:IsMultiValued>false</rd:IsMultiValued>
+        </DataSetParameter>
+        <DataSetParameter Name="@VoyageNo">
+          <ReadOnly>false</ReadOnly>
+          <Nullable>true</Nullable>
+          <OmitFromQuery>false</OmitFromQuery>
+          <rd:DbType>String</rd:DbType>
+          <rd:IsMultiValued>false</rd:IsMultiValued>
+        </DataSetParameter>
+        <DataSetParameter Name="@FromDate">
+          <ReadOnly>false</ReadOnly>
+          <Nullable>true</Nullable>
+          <OmitFromQuery>false</OmitFromQuery>
+          <rd:DbType>DateTime</rd:DbType>
+          <rd:IsMultiValued>false</rd:IsMultiValued>
+        </DataSetParameter>
+        <DataSetParameter Name="@ToDate">
+          <ReadOnly>false</ReadOnly>
+          <Nullable>true</Nullable>
+          <OmitFromQuery>false</OmitFromQuery>
+          <rd:DbType>DateTime</rd:DbType>
+          <rd:IsMultiValued>false</rd:IsMultiValued>
+        </DataSetParameter>
+        <DataSetParameter Name="@PortTime">
+          <ReadOnly>false</ReadOnly>
+          <Nullable>true</Nullable>
+          <OmitFromQuery>false</OmitFromQuery>
+          <rd:DbType>Double</rd:DbType>
+          <rd:IsMultiValued>false</rd:IsMultiValued>
+        </DataSetParameter>
+        <DataSetParameter Name="@PortTimeMOL">
+          <ReadOnly>false</ReadOnly>
+          <Nullable>true</Nullable>
+          <OmitFromQuery>false</OmitFromQuery>
+          <rd:DbType>Double</rd:DbType>
+          <rd:IsMultiValued>false</rd:IsMultiValued>
+        </DataSetParameter>
+        <DataSetParameter Name="@LocationType">
+          <ReadOnly>false</ReadOnly>
+          <Nullable>true</Nullable>
+          <OmitFromQuery>false</OmitFromQuery>
+          <rd:DbType>String</rd:DbType>
+          <rd:IsMultiValued>false</rd:IsMultiValued>
+        </DataSetParameter>
+      </DataSetParameters>
+      <CommandType>StoredProcedure</CommandType>
+      <CommandText>Fuel.GetVesselReportData</CommandText>
+      <rd:DesignerState><QueryDefinition xmlns="http://schemas.microsoft.com/ReportingServices/QueryDefinition/Relational"><Functions><SProc ColumnOwner="GetVesselReportData" Schema="Fuel"><Parameter Name="@ShipCode"><Null /></Parameter><Parameter Name="@VoyageNo"><Null /></Parameter><Parameter Name="@FromDate"><Null /></Parameter><Parameter Name="@ToDate"><Null /></Parameter><Parameter Name="@PortTime"><Null /></Parameter><Parameter Name="@PortTimeMOL"><Null /></Parameter><Parameter Name="@LocationType"><Null /></Parameter></SProc></Functions><SelectedColumns><ColumnExpression Schema="Fuel" ColumnOwner="GetVesselReportData" ColumnName="ID" /><ColumnExpression Schema="Fuel" ColumnOwner="GetVesselReportData" ColumnName="DraftID" /><ColumnExpression Schema="Fuel" ColumnOwner="GetVesselReportData" ColumnName="ShipCode" /><ColumnExpression Schema="Fuel" ColumnOwner="GetVesselReportData" ColumnName="ConsNo" /><ColumnExpression Schema="Fuel" ColumnOwner="GetVesselReportData" ColumnName="ShipName" /><ColumnExpression Schema="Fuel" ColumnOwner="GetVesselReportData" ColumnName="VoyageNo" /><ColumnExpression Schema="Fuel" ColumnOwner="GetVesselReportData" ColumnName="Year" /><ColumnExpression Schema="Fuel" ColumnOwner="GetVesselReportData" ColumnName="Month" /><ColumnExpression Schema="Fuel" ColumnOwner="GetVesselReportData" ColumnName="Day" /><ColumnExpression Schema="Fuel" ColumnOwner="GetVesselReportData" ColumnName="PortName" /><ColumnExpression Schema="Fuel" ColumnOwner="GetVesselReportData" ColumnName="PortTime" /><ColumnExpression Schema="Fuel" ColumnOwner="GetVesselReportData" ColumnName="AtSeaLatitudeDegree" /><ColumnExpression Schema="Fuel" ColumnOwner="GetVesselReportData" ColumnName="AtSeaLatitudeMinute" /><ColumnExpression Schema="Fuel" ColumnOwner="GetVesselReportData" ColumnName="AtSeaLongitudeDegree" /><ColumnExpression Schema="Fuel" ColumnOwner="GetVesselReportData" ColumnName="AtSeaLongitudeMinute" /><ColumnExpression Schema="Fuel" ColumnOwner="GetVesselReportData" ColumnName="ObsDist" /><ColumnExpression Schema="Fuel" ColumnOwner="GetVesselReportData" ColumnName="EngDist" /><ColumnExpression Schema="Fuel" ColumnOwner="GetVesselReportData" ColumnName="SteamTime" /><ColumnExpression Schema="Fuel" ColumnOwner="GetVesselReportData" ColumnName="AvObsSpeed" /><ColumnExpression Schema="Fuel" ColumnOwner="GetVesselReportData" ColumnName="AvEngSpeed" /><ColumnExpression Schema="Fuel" ColumnOwner="GetVesselReportData" ColumnName="RPM" /><ColumnExpression Schema="Fuel" ColumnOwner="GetVesselReportData" ColumnName="Slip" /><ColumnExpression Schema="Fuel" ColumnOwner="GetVesselReportData" ColumnName="WindDir" /><ColumnExpression Schema="Fuel" ColumnOwner="GetVesselReportData" ColumnName="WindForce" /><ColumnExpression Schema="Fuel" ColumnOwner="GetVesselReportData" ColumnName="SeaDir" /><ColumnExpression Schema="Fuel" ColumnOwner="GetVesselReportData" ColumnName="SeaForce" /><ColumnExpression Schema="Fuel" ColumnOwner="GetVesselReportData" ColumnName="ROBHO" /><ColumnExpression Schema="Fuel" ColumnOwner="GetVesselReportData" ColumnName="ROBDO" /><ColumnExpression Schema="Fuel" ColumnOwner="GetVesselReportData" ColumnName="ROBMGO" /><ColumnExpression Schema="Fuel" ColumnOwner="GetVesselReportData" ColumnName="ROBFW" /><ColumnExpression Schema="Fuel" ColumnOwner="GetVesselReportData" ColumnName="ConsInPortHO" /><ColumnExpression Schema="Fuel" ColumnOwner="GetVesselReportData" ColumnName="ConsInPortDO" /><ColumnExpression Schema="Fuel" ColumnOwner="GetVesselReportData" ColumnName="ConsInPortMGO" /><ColumnExpression Schema="Fuel" ColumnOwner="GetVesselReportData" ColumnName="ConsInPortFW" /><ColumnExpression Schema="Fuel" ColumnOwner="GetVesselReportData" ColumnName="ConsAtSeaHO" /><ColumnExpression Schema="Fuel" ColumnOwner="GetVesselReportData" ColumnName="ConsAtSeaDO" /><ColumnExpression Schema="Fuel" ColumnOwner="GetVesselReportData" ColumnName="ConsAtSeaMGO" /><ColumnExpression Schema="Fuel" ColumnOwner="GetVesselReportData" ColumnName="ConsAtSeaFW" /><ColumnExpression Schema="Fuel" ColumnOwner="GetVesselReportData" ColumnName="ReceivedHO" /><ColumnExpression Schema="Fuel" ColumnOwner="GetVesselReportData" ColumnName="ReceivedDO" /><ColumnExpression Schema="Fuel" ColumnOwner="GetVesselReportData" ColumnName="ReceivedMGO" /><ColumnExpression Schema="Fuel" ColumnOwner="GetVesselReportData" ColumnName="ReceivedFW" /><ColumnExpression Schema="Fuel" ColumnOwner="GetVesselReportData" ColumnName="ETAPort" /><ColumnExpression Schema="Fuel" ColumnOwner="GetVesselReportData" ColumnName="ETADate" /><ColumnExpression Schema="Fuel" ColumnOwner="GetVesselReportData" ColumnName="Date" /><ColumnExpression Schema="Fuel" ColumnOwner="GetVesselReportData" ColumnName="DateIn" /><ColumnExpression Schema="Fuel" ColumnOwner="GetVesselReportData" ColumnName="DailyFuelCons" /><ColumnExpression Schema="Fuel" ColumnOwner="GetVesselReportData" ColumnName="Speed" /><ColumnExpression Schema="Fuel" ColumnOwner="GetVesselReportData" ColumnName="IsSM" /><ColumnExpression Schema="Fuel" ColumnOwner="GetVesselReportData" ColumnName="InPortOrAtSea" /><ColumnExpression Schema="Fuel" ColumnOwner="GetVesselReportData" ColumnName="ImportDate" /><ColumnExpression Schema="Fuel" ColumnOwner="GetVesselReportData" ColumnName="TransferHo" /><ColumnExpression Schema="Fuel" ColumnOwner="GetVesselReportData" ColumnName="TransferDo" /><ColumnExpression Schema="Fuel" ColumnOwner="GetVesselReportData" ColumnName="TransferFW" /><ColumnExpression Schema="Fuel" ColumnOwner="GetVesselReportData" ColumnName="TransferMGOLS" /><ColumnExpression Schema="Fuel" ColumnOwner="GetVesselReportData" ColumnName="CorrectionHo" /><ColumnExpression Schema="Fuel" ColumnOwner="GetVesselReportData" ColumnName="CorrectionDo" /><ColumnExpression Schema="Fuel" ColumnOwner="GetVesselReportData" ColumnName="CorrectionFW" /><ColumnExpression Schema="Fuel" ColumnOwner="GetVesselReportData" ColumnName="CorrectionMGOLS" /><ColumnExpression Schema="Fuel" ColumnOwner="GetVesselReportData" ColumnName="CorrectionTypeHo" /><ColumnExpression Schema="Fuel" ColumnOwner="GetVesselReportData" ColumnName="CorrectionTypeDo" /><ColumnExpression Schema="Fuel" ColumnOwner="GetVesselReportData" ColumnName="CorrectionTypeFW" /><ColumnExpression Schema="Fuel" ColumnOwner="GetVesselReportData" ColumnName="CorrectionTypeMGOLS" /><ColumnExpression Schema="Fuel" ColumnOwner="GetVesselReportData" ColumnName="Time" /><ColumnExpression Schema="Fuel" ColumnOwner="GetVesselReportData" ColumnName="FuelReportType" /><ColumnExpression Schema="Fuel" ColumnOwner="GetVesselReportData" ColumnName="State" /><ColumnExpression Schema="Fuel" ColumnOwner="GetVesselReportData" ColumnName="FuelReportTypeName" /><ColumnExpression Schema="Fuel" ColumnOwner="GetVesselReportData" ColumnName="LocationTypeName" /><ColumnExpression Schema="Fuel" ColumnOwner="GetVesselReportData" ColumnName="CorrectionHoValue" /><ColumnExpression Schema="Fuel" ColumnOwner="GetVesselReportData" ColumnName="CorrectionDoValue" /><ColumnExpression Schema="Fuel" ColumnOwner="GetVesselReportData" ColumnName="CorrectionFWValue" /><ColumnExpression Schema="Fuel" ColumnOwner="GetVesselReportData" ColumnName="CorrectionMGOLSValue" /></SelectedColumns></QueryDefinition></rd:DesignerState>
+    </Query>
+    <Fields>
+      <Field Name="ID">
+        <DataField>ID</DataField>
+        <rd:TypeName>System.Int32</rd:TypeName>
+      </Field>
+      <Field Name="DraftID">
+        <DataField>DraftID</DataField>
+        <rd:TypeName>System.Int32</rd:TypeName>
+      </Field>
+      <Field Name="ShipCode">
+        <DataField>ShipCode</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="ConsNo">
+        <DataField>ConsNo</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="ShipName">
+        <DataField>ShipName</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="VoyageNo">
+        <DataField>VoyageNo</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="Year">
+        <DataField>Year</DataField>
+        <rd:TypeName>System.Int32</rd:TypeName>
+      </Field>
+      <Field Name="Month">
+        <DataField>Month</DataField>
+        <rd:TypeName>System.Int32</rd:TypeName>
+      </Field>
+      <Field Name="Day">
+        <DataField>Day</DataField>
+        <rd:TypeName>System.Int32</rd:TypeName>
+      </Field>
+      <Field Name="PortName">
+        <DataField>PortName</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="PortTime">
+        <DataField>PortTime</DataField>
+        <rd:TypeName>System.Double</rd:TypeName>
+      </Field>
+      <Field Name="AtSeaLatitudeDegree">
+        <DataField>AtSeaLatitudeDegree</DataField>
+        <rd:TypeName>System.Double</rd:TypeName>
+      </Field>
+      <Field Name="AtSeaLatitudeMinute">
+        <DataField>AtSeaLatitudeMinute</DataField>
+        <rd:TypeName>System.Double</rd:TypeName>
+      </Field>
+      <Field Name="AtSeaLongitudeDegree">
+        <DataField>AtSeaLongitudeDegree</DataField>
+        <rd:TypeName>System.Double</rd:TypeName>
+      </Field>
+      <Field Name="AtSeaLongitudeMinute">
+        <DataField>AtSeaLongitudeMinute</DataField>
+        <rd:TypeName>System.Double</rd:TypeName>
+      </Field>
+      <Field Name="ObsDist">
+        <DataField>ObsDist</DataField>
+        <rd:TypeName>System.Double</rd:TypeName>
+      </Field>
+      <Field Name="EngDist">
+        <DataField>EngDist</DataField>
+        <rd:TypeName>System.Double</rd:TypeName>
+      </Field>
+      <Field Name="SteamTime">
+        <DataField>SteamTime</DataField>
+        <rd:TypeName>System.Double</rd:TypeName>
+      </Field>
+      <Field Name="AvObsSpeed">
+        <DataField>AvObsSpeed</DataField>
+        <rd:TypeName>System.Decimal</rd:TypeName>
+      </Field>
+      <Field Name="AvEngSpeed">
+        <DataField>AvEngSpeed</DataField>
+        <rd:TypeName>System.Double</rd:TypeName>
+      </Field>
+      <Field Name="RPM">
+        <DataField>RPM</DataField>
+        <rd:TypeName>System.Int32</rd:TypeName>
+      </Field>
+      <Field Name="Slip">
+        <DataField>Slip</DataField>
+        <rd:TypeName>System.Double</rd:TypeName>
+      </Field>
+      <Field Name="WindDir">
+        <DataField>WindDir</DataField>
+        <rd:TypeName>System.Double</rd:TypeName>
+      </Field>
+      <Field Name="WindForce">
+        <DataField>WindForce</DataField>
+        <rd:TypeName>System.Double</rd:TypeName>
+      </Field>
+      <Field Name="SeaDir">
+        <DataField>SeaDir</DataField>
+        <rd:TypeName>System.Double</rd:TypeName>
+      </Field>
+      <Field Name="SeaForce">
+        <DataField>SeaForce</DataField>
+        <rd:TypeName>System.Double</rd:TypeName>
+      </Field>
+      <Field Name="ROBHO">
+        <DataField>ROBHO</DataField>
+        <rd:TypeName>System.Decimal</rd:TypeName>
+      </Field>
+      <Field Name="ROBDO">
+        <DataField>ROBDO</DataField>
+        <rd:TypeName>System.Decimal</rd:TypeName>
+      </Field>
+      <Field Name="ROBMGO">
+        <DataField>ROBMGO</DataField>
+        <rd:TypeName>System.Decimal</rd:TypeName>
+      </Field>
+      <Field Name="ROBFW">
+        <DataField>ROBFW</DataField>
+        <rd:TypeName>System.Decimal</rd:TypeName>
+      </Field>
+      <Field Name="ConsInPortHO">
+        <DataField>ConsInPortHO</DataField>
+        <rd:TypeName>System.Decimal</rd:TypeName>
+      </Field>
+      <Field Name="ConsInPortDO">
+        <DataField>ConsInPortDO</DataField>
+        <rd:TypeName>System.Decimal</rd:TypeName>
+      </Field>
+      <Field Name="ConsInPortMGO">
+        <DataField>ConsInPortMGO</DataField>
+        <rd:TypeName>System.Decimal</rd:TypeName>
+      </Field>
+      <Field Name="ConsInPortFW">
+        <DataField>ConsInPortFW</DataField>
+        <rd:TypeName>System.Decimal</rd:TypeName>
+      </Field>
+      <Field Name="ConsAtSeaHO">
+        <DataField>ConsAtSeaHO</DataField>
+        <rd:TypeName>System.Decimal</rd:TypeName>
+      </Field>
+      <Field Name="ConsAtSeaDO">
+        <DataField>ConsAtSeaDO</DataField>
+        <rd:TypeName>System.Decimal</rd:TypeName>
+      </Field>
+      <Field Name="ConsAtSeaMGO">
+        <DataField>ConsAtSeaMGO</DataField>
+        <rd:TypeName>System.Decimal</rd:TypeName>
+      </Field>
+      <Field Name="ConsAtSeaFW">
+        <DataField>ConsAtSeaFW</DataField>
+        <rd:TypeName>System.Decimal</rd:TypeName>
+      </Field>
+      <Field Name="ReceivedHO">
+        <DataField>ReceivedHO</DataField>
+        <rd:TypeName>System.Decimal</rd:TypeName>
+      </Field>
+      <Field Name="ReceivedDO">
+        <DataField>ReceivedDO</DataField>
+        <rd:TypeName>System.Decimal</rd:TypeName>
+      </Field>
+      <Field Name="ReceivedMGO">
+        <DataField>ReceivedMGO</DataField>
+        <rd:TypeName>System.Decimal</rd:TypeName>
+      </Field>
+      <Field Name="ReceivedFW">
+        <DataField>ReceivedFW</DataField>
+        <rd:TypeName>System.Decimal</rd:TypeName>
+      </Field>
+      <Field Name="ETAPort">
+        <DataField>ETAPort</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="ETADate">
+        <DataField>ETADate</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="Date">
+        <DataField>Date</DataField>
+        <rd:TypeName>System.DateTime</rd:TypeName>
+      </Field>
+      <Field Name="DateIn">
+        <DataField>DateIn</DataField>
+        <rd:TypeName>System.DateTime</rd:TypeName>
+      </Field>
+      <Field Name="DailyFuelCons">
+        <DataField>DailyFuelCons</DataField>
+        <rd:TypeName>System.Double</rd:TypeName>
+      </Field>
+      <Field Name="Speed">
+        <DataField>Speed</DataField>
+        <rd:TypeName>System.Decimal</rd:TypeName>
+      </Field>
+      <Field Name="IsSM">
+        <DataField>IsSM</DataField>
+        <rd:TypeName>System.Boolean</rd:TypeName>
+      </Field>
+      <Field Name="InPortOrAtSea">
+        <DataField>InPortOrAtSea</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="ImportDate">
+        <DataField>ImportDate</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="TransferHo">
+        <DataField>TransferHo</DataField>
+        <rd:TypeName>System.Decimal</rd:TypeName>
+      </Field>
+      <Field Name="TransferDo">
+        <DataField>TransferDo</DataField>
+        <rd:TypeName>System.Decimal</rd:TypeName>
+      </Field>
+      <Field Name="TransferFW">
+        <DataField>TransferFW</DataField>
+        <rd:TypeName>System.Decimal</rd:TypeName>
+      </Field>
+      <Field Name="TransferMGOLS">
+        <DataField>TransferMGOLS</DataField>
+        <rd:TypeName>System.Decimal</rd:TypeName>
+      </Field>
+      <Field Name="CorrectionHo">
+        <DataField>CorrectionHo</DataField>
+        <rd:TypeName>System.Decimal</rd:TypeName>
+      </Field>
+      <Field Name="CorrectionDo">
+        <DataField>CorrectionDo</DataField>
+        <rd:TypeName>System.Decimal</rd:TypeName>
+      </Field>
+      <Field Name="CorrectionFW">
+        <DataField>CorrectionFW</DataField>
+        <rd:TypeName>System.Decimal</rd:TypeName>
+      </Field>
+      <Field Name="CorrectionMGOLS">
+        <DataField>CorrectionMGOLS</DataField>
+        <rd:TypeName>System.Decimal</rd:TypeName>
+      </Field>
+      <Field Name="CorrectionTypeHo">
+        <DataField>CorrectionTypeHo</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="CorrectionTypeDo">
+        <DataField>CorrectionTypeDo</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="CorrectionTypeFW">
+        <DataField>CorrectionTypeFW</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="CorrectionTypeMGOLS">
+        <DataField>CorrectionTypeMGOLS</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="Time">
+        <DataField>Time</DataField>
+        <rd:TypeName>System.TimeSpan</rd:TypeName>
+      </Field>
+      <Field Name="FuelReportType">
+        <DataField>FuelReportType</DataField>
+        <rd:TypeName>System.Byte</rd:TypeName>
+      </Field>
+      <Field Name="State">
+        <DataField>State</DataField>
+        <rd:TypeName>System.Byte</rd:TypeName>
+      </Field>
+      <Field Name="FuelReportTypeName">
+        <DataField>FuelReportTypeName</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="LocationTypeName">
+        <DataField>LocationTypeName</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="CorrectionHoValue">
+        <DataField>CorrectionHoValue</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="CorrectionDoValue">
+        <DataField>CorrectionDoValue</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="CorrectionFWValue">
+        <DataField>CorrectionFWValue</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="CorrectionMGOLSValue">
+        <DataField>CorrectionMGOLSValue</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+    </Fields>
+  </DataSet>
+  <rd:ReportServerUrl>http://localhost/ReportServer</rd:ReportServerUrl>
+</SharedDataSet>

@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SharedDataSet xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2010/01/shareddatasetdefinition">
+  <DataSet Name="DataSet1">
+    <Query>
+      <DataSourceReference>/MITD.FMS.Reports/MiniStock</DataSourceReference>
+      <DataSetParameters>
+        <DataSetParameter Name="@CompanyId">
+          <ReadOnly>false</ReadOnly>
+          <Nullable>true</Nullable>
+          <OmitFromQuery>false</OmitFromQuery>
+          <rd:DbType>Int32</rd:DbType>
+          <rd:IsMultiValued>false</rd:IsMultiValued>
+        </DataSetParameter>
+        <DataSetParameter Name="@AddAll">
+          <DefaultValue>=False</DefaultValue>
+          <ReadOnly>false</ReadOnly>
+          <Nullable>false</Nullable>
+          <OmitFromQuery>false</OmitFromQuery>
+          <rd:DbType>Object</rd:DbType>
+          <rd:IsMultiValued>false</rd:IsMultiValued>
+        </DataSetParameter>
+      </DataSetParameters>
+      <CommandText>SELECT * FROM (
+SELECT
+  NULL AS Id
+  ,NULL AS Code
+  ,' - All - ' AS Name
+  ,NULL AS CompanyId
+  ,1 AS IsActive
+  ,100000 AS UserCreatorId
+  ,GETDATE() AS CreateDate
+WHERE @AddAll = 1
+UNION
+SELECT
+  Inventory.Warehouse.Id
+  ,Inventory.Warehouse.Code
+  ,Inventory.Warehouse.Name
+  ,Inventory.Warehouse.CompanyId
+  ,Inventory.Warehouse.IsActive
+  ,Inventory.Warehouse.UserCreatorId
+  ,Inventory.Warehouse.CreateDate
+FROM
+  Inventory.Warehouse
+WHERE
+(@CompanyId IS NULL OR Inventory.Warehouse.CompanyId = @CompanyId)
+) Query 
+ORDER BY Query.Name</CommandText>
+      <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+    </Query>
+    <Fields>
+      <Field Name="Id">
+        <DataField>Id</DataField>
+        <rd:TypeName>System.Int64</rd:TypeName>
+      </Field>
+      <Field Name="Code">
+        <DataField>Code</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="Name">
+        <DataField>Name</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="CompanyId">
+        <DataField>CompanyId</DataField>
+        <rd:TypeName>System.Int64</rd:TypeName>
+      </Field>
+      <Field Name="IsActive">
+        <DataField>IsActive</DataField>
+        <rd:TypeName>System.Int32</rd:TypeName>
+      </Field>
+      <Field Name="UserCreatorId">
+        <DataField>UserCreatorId</DataField>
+        <rd:TypeName>System.Int32</rd:TypeName>
+      </Field>
+      <Field Name="CreateDate">
+        <DataField>CreateDate</DataField>
+        <rd:TypeName>System.DateTime</rd:TypeName>
+      </Field>
+    </Fields>
+  </DataSet>
+  <rd:ReportServerUrl>http://evaluation-srv/ReportServer</rd:ReportServerUrl>
+</SharedDataSet>

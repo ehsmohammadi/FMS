@@ -1,0 +1,79 @@
+﻿<UserControl:ViewBase xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk" 
+                      x:Class="MITD.Fuel.Presentation.UI.SL.Views.Vessel.VesselActivationItemView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:UserControl="clr-namespace:MITD.Presentation.UI;assembly=MITD.Presentation.UI.SL"
+    mc:Ignorable="d"
+    xmlns:viewModels="clr-namespace:MITD.Fuel.Presentation.Logic.SL.ViewModels;assembly=MITD.Fuel.Presentation.Logic.SL"
+    d:DesignHeight="200" d:DesignWidth="500"
+                       Style="{StaticResource DefaultStyle}" 
+                      d:DataContext="{d:DesignInstance Type=viewModels:VesselActivationItemVM}">
+
+    <Grid x:Name="LayoutRoot" Background="White" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="100*"/>
+            <ColumnDefinition Width="100*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+        </Grid.RowDefinitions>
+        <!--Lable-->
+        <sdk:Label Grid.Column="0" Grid.Row="0" Content="نوع سوخت" />
+        <sdk:Label Grid.Column="0" Grid.Row="1" Content="تانک" />
+        <sdk:Label Grid.Column="0" Grid.Row="2" Content="موجودی"/>
+        <sdk:Label Grid.Column="3" Grid.Row="0" Content="واحد"/>
+        <sdk:Label Grid.Column="3" Grid.Row="1" Content="فی"/>
+        <sdk:Label Grid.Column="3" Grid.Row="2" Content="نوع ارز"/>
+
+        <!--Combo-->
+
+        <UserControl:ComboBoxEx ItemsSource="{Binding GoodDtos}" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2" Width="180" Height="25"
+                                SelectedValueProper="{Binding GoodId, Mode=TwoWay, NotifyOnValidationError=True,ValidatesOnDataErrors=True}" 
+                                DisplayMemberPath="Name" SelectedValuePath="Id"  />
+
+        <UserControl:ComboBoxEx Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" Width="180" Height="25"
+                                   ItemsSource="{Binding TankDtos}"
+                                    SelectedValueProper="{Binding Entity.TankDto.Id,Mode=TwoWay}"
+                                SelectedItem="{Binding Path=Entity.TankDto , Mode=TwoWay}"
+                                    DisplayMemberPath="Code" SelectedValuePath="Id"
+                                    />
+
+        <UserControl:ComboBoxEx Grid.ColumnSpan="2" ItemsSource="{Binding Entity.Good.Units}" Grid.Column="4" Grid.Row="0" Width="180" Height="25" 
+                                               SelectedValueProper="{Binding UnitId, Mode=TwoWay,ValidatesOnDataErrors=True,NotifyOnValidationError=True}"
+                                SelectedItem="{Binding Entity.Good.Unit, Mode=TwoWay}"
+                                               SelectedValuePath="Id" DisplayMemberPath="Name"  />
+
+        <TextBox Grid.Column="4" Grid.Row="1" Grid.ColumnSpan="2" Width="180" Height="25"
+                 Text="{Binding Entity.Fee,Mode=TwoWay, StringFormat=\{0:n2\}
+            ,ValidatesOnNotifyDataErrors=True, NotifyOnValidationError=True}"
+                 
+                 />
+
+        <UserControl:ComboBoxEx Grid.Column="4" Grid.Row="2" Grid.ColumnSpan="2" Width="180" Height="25"
+                                   ItemsSource="{Binding CurrencyDtos}"
+                                    SelectedValueProper="{Binding Entity.CurrencyCode,Mode=TwoWay}"
+                                    DisplayMemberPath="Name" SelectedValuePath="Abbreviation"
+                                    />
+
+        <TextBox Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" Width="180" Height="25"
+                  Text="{Binding Entity.Rob,Mode=TwoWay, StringFormat=\{0:n3\}, 
+            ValidatesOnNotifyDataErrors=True, NotifyOnValidationError=True}"
+                 />
+        <!--Button-->
+        <StackPanel  Grid.Column="2" Grid.Row="3" Grid.ColumnSpan="3" Orientation="Horizontal" >
+
+            <Button Width="75" Height="25" Content="{Binding SubmitCommand.DisplayName}" Command="{Binding SubmitCommand.Command}"></Button>
+            <Button Width="75" Height="25" Content="{Binding CancelCommand.DisplayName}" Command="{Binding CancelCommand.Command}"></Button>
+
+        </StackPanel>
+    </Grid>
+</UserControl:ViewBase>

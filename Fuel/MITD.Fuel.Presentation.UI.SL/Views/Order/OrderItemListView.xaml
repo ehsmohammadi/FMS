@@ -1,0 +1,50 @@
+<UserControl:ViewBase
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                      xmlns:UserControl="clr-namespace:MITD.Presentation.UI;assembly=MITD.Presentation.UI.SL"
+                      xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
+    x:Class="MITD.Fuel.Presentation.UI.SL.Views.OrderItemListView"
+          Style="{StaticResource DefaultStyle}"        
+   
+     >
+    <!--d:DataContext="{Binding Source={StaticResource OrderItemListVM}}"-->
+
+    <Grid x:Name="uxLayoutGrid"   HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <Grid x:Name="uxGrid" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" MinHeight="60"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <sdk:DataGrid AutoGenerateColumns="False"  Name="uxDataGrid"  VerticalAlignment="Stretch" SelectionMode="Single"
+                      ItemsSource="{Binding Path=OrderItemVms}" 
+                      SelectedItem="{Binding Path=SelectedOrderItemVm, Mode=TwoWay}" >
+                <sdk:DataGrid.Columns>
+                    <sdk:DataGridTextColumn Binding="{Binding Path=Entity.Good.Name}"  CanUserResize="True" CanUserSort="True" Width="Auto" Header="نام کالا" Foreground="#FF0A0A0A"/>
+                    <sdk:DataGridTextColumn Binding="{Binding Path=Entity.Good.Code}"  CanUserResize="True" CanUserSort="True" Width="Auto" Header="کد کالا" Foreground="#FF0A0A0A"/>
+                    <sdk:DataGridTemplateColumn Header="واحد ">
+                        <sdk:DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Border HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                    <TextBlock Text="{Binding Path=Entity.Good.Unit.Name}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </DataTemplate>
+                        </sdk:DataGridTemplateColumn.CellTemplate>
+
+                    </sdk:DataGridTemplateColumn>
+                    <sdk:DataGridTextColumn Binding="{Binding Path=Entity.Quantity, StringFormat=\{0:n3\}}"  CanUserResize="True" CanUserSort="True" Width="Auto" Header="مقدار ردیف" Foreground="#FF0A0A0A"/>
+                    <sdk:DataGridTextColumn Binding="{Binding Path=Entity.OperatedQuantityInMainUnit, StringFormat=\{0:n3\}}"  CanUserResize="True" CanUserSort="True" Width="Auto" Header="مقدار دریافت شده" Foreground="#FF0A0A0A"/>
+                    <sdk:DataGridTextColumn Binding="{Binding Path=Entity.InvoicedInMainUnit, StringFormat=\{0:n3\}}"  CanUserResize="True" CanUserSort="True" Width="Auto" Header="مقدار صورتحساب شده" Foreground="#FF0A0A0A"/>
+                    <sdk:DataGridTextColumn Binding="{Binding Path=Entity.Description}"  CanUserResize="True" CanUserSort="True" Width="Auto" Header="توضیحات " Foreground="#FF0A0A0A"/>
+                </sdk:DataGrid.Columns>
+            </sdk:DataGrid>
+            <StackPanel Grid.Row="1" HorizontalAlignment="Center" Orientation="Horizontal">
+                <!--<UserControl:CustomDataPager Name="uxPager" Height="26" FontFamily="Tahoma" FontSize="11" PageSize="10" Width="200" Source="{Binding Path=OrderItemVms, Mode=TwoWay}"  />-->
+                <!--<Button Content="{Binding NextPageCommand.DisplayName}" Command="{Binding NextPageCommand.Command}" Width="75" Height="25"/>-->
+                <Button Content="{Binding AddCommand.DisplayName}" Command="{Binding AddCommand.Command}" Width="75" Height="25" Margin="2,0"/>
+                <Button Content="{Binding EditCommand.DisplayName}" Command="{Binding EditCommand.Command}" Width="75" Height="25" Margin="2,0"/>
+                <Button Content="{Binding DeleteCommand.DisplayName}" Command="{Binding DeleteCommand.Command}" Width="75" Height="25" Margin="2,0"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</UserControl:ViewBase>

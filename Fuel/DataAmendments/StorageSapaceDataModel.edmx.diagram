@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="5ebca6737d8947f395612ca910349354" Name="Diagram1">
+        <EntityTypeShape EntityType="StorageSpaceModel.ActivityLocation" Width="1.5" PointX="2.75" PointY="13.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="StorageSpaceModel.ActionType" Width="1.5" PointX="16.75" PointY="15.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="StorageSpaceModel.Group" Width="1.5" PointX="19" PointY="18.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="StorageSpaceModel.Party" Width="1.5" PointX="16.75" PointY="18.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="StorageSpaceModel.Parties_CustomActions" Width="1.5" PointX="19" PointY="15.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="StorageSpaceModel.User" Width="1.5" PointX="19" PointY="21.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="StorageSpaceModel.Users_Groups" Width="1.5" PointX="21.25" PointY="18.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="StorageSpaceModel.Account" Width="1.5" PointX="6" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="StorageSpaceModel.ActivityFlow" Width="1.5" PointX="20" PointY="33.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="StorageSpaceModel.ApproveFlowConfig" Width="1.5" PointX="0.75" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="StorageSpaceModel.ApproveFlowConfigValidFuelUser" Width="1.5" PointX="3" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="StorageSpaceModel.AsgnSegmentTypeVoucherSetingDetail" Width="1.5" PointX="5.25" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="StorageSpaceModel.AsgnVoucherAcont" Width="1.5" PointX="8.25" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="StorageSpaceModel.Attachment" Width="1.5" PointX="4.75" PointY="13.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="StorageSpaceModel.Charter" Width="1.5" PointX="5.25" PointY="17.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="StorageSpaceModel.CharterItem" Width="1.5" PointX="7.5" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="StorageSpaceModel.CharterItemHistory" Width="1.5" PointX="0.75" PointY="19.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="StorageSpaceModel.EffectiveFactor" Width="1.5" PointX="8.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="StorageSpaceModel.FreeAccount" Width="1.5" PointX="8.25" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="StorageSpaceModel.FuelReport" Width="1.5" PointX="7.5" PointY="21.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="StorageSpaceModel.FuelReportDetail" Width="1.5" PointX="9.75" PointY="20.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="StorageSpaceModel.InventoryOperation" Width="1.5" PointX="12" PointY="28" IsExpanded="true" />
+        <EntityTypeShape EntityType="StorageSpaceModel.Invoice" Width="1.5" PointX="9.75" PointY="13.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="StorageSpaceModel.InvoiceAdditionalPrice" Width="1.5" PointX="12" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="StorageSpaceModel.InvoiceItem" Width="1.5" PointX="12" PointY="14.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="StorageSpaceModel.JournalEntry" Width="1.5" PointX="8.25" PointY="56" IsExpanded="true" />
+        <EntityTypeShape EntityType="StorageSpaceModel.Log" Width="1.5" PointX="21.75" PointY="12.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="StorageSpaceModel.Offhire" Width="1.5" PointX="5.25" PointY="33.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="StorageSpaceModel.OffhireDetail" Width="1.5" PointX="7.5" PointY="34.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="StorageSpaceModel.Order" Width="1.5" PointX="5.25" PointY="26" IsExpanded="true" />
+        <EntityTypeShape EntityType="StorageSpaceModel.OrderItemBalance" Width="1.5" PointX="14.25" PointY="19.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="StorageSpaceModel.OrderItem" Width="1.5" PointX="7.5" PointY="11.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="StorageSpaceModel.Scrap" Width="1.5" PointX="5.25" PointY="39.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="StorageSpaceModel.ScrapDetail" Width="1.5" PointX="7.5" PointY="39.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="StorageSpaceModel.Segment" Width="1.5" PointX="10.5" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="StorageSpaceModel.UserInCompany" Width="1.5" PointX="21.25" PointY="21.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="StorageSpaceModel.Vessel" Width="1.5" PointX="0.75" PointY="27.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="StorageSpaceModel.VesselInCompany" Width="1.5" PointX="3" PointY="26.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="StorageSpaceModel.VoucherLog" Width="1.5" PointX="12.75" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="StorageSpaceModel.Voucher" Width="1.5" PointX="6" PointY="55.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="StorageSpaceModel.VoucherSetingDetail" Width="1.5" PointX="3" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="StorageSpaceModel.VoucherSeting" Width="1.5" PointX="0.75" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="StorageSpaceModel.Voyage" Width="1.5" PointX="5.25" PointY="43.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="StorageSpaceModel.VoyageLog" Width="1.5" PointX="5.25" PointY="47.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="StorageSpaceModel.Workflow" Width="1.5" PointX="5.25" PointY="52" IsExpanded="true" />
+        <EntityTypeShape EntityType="StorageSpaceModel.WorkflowLog" Width="1.5" PointX="9.75" PointY="29.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="StorageSpaceModel.WorkflowStep" Width="1.5" PointX="7.5" PointY="51.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="StorageSpaceModel.Company" Width="1.5" PointX="12.5" PointY="37.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="StorageSpaceModel.ErrorMessage" Width="1.5" PointX="2.75" PointY="23.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="StorageSpaceModel.FinancialYear" Width="1.5" PointX="19.75" PointY="25.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="StorageSpaceModel.Good" Width="1.5" PointX="17" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="StorageSpaceModel.InventoryUser" Width="1.5" PointX="0.75" PointY="14.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="StorageSpaceModel.OperationReference" Width="1.5" PointX="23.75" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="StorageSpaceModel.StoreType" Width="1.5" PointX="14.75" PointY="33.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="StorageSpaceModel.TimeBucket" Width="1.5" PointX="22" PointY="25.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="StorageSpaceModel.TransactionItemPrice" Width="1.5" PointX="21.5" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="StorageSpaceModel.TransactionItem" Width="1.5" PointX="19.25" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="StorageSpaceModel.Transaction" Width="1.5" PointX="17" PointY="34.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="StorageSpaceModel.UnitConvert" Width="1.5" PointX="17" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="StorageSpaceModel.Unit" Width="1.5" PointX="14.75" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="StorageSpaceModel.Warehouse" Width="1.5" PointX="14.75" PointY="37.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="StorageSpaceModel.OffhireFuelTypeFuelGoodCode" Width="1.5" PointX="23.75" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="StorageSpaceModel.OffhireMeasureTypeFuelMeasureCode" Width="1.5" PointX="23.75" PointY="17.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="StorageSpaceModel.FuelReportCommandLog" Width="1.5" PointX="14.75" PointY="25.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="StorageSpaceModel.FuelReportCommandLogDetail" Width="1.5" PointX="17" PointY="25.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="StorageSpaceModel.VersionInfo" Width="1.5" PointX="4.75" PointY="23.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="StorageSpaceModel.CharterIn" Width="1.5" PointX="7.5" PointY="28" IsExpanded="true" />
+        <EntityTypeShape EntityType="StorageSpaceModel.CharterOut" Width="1.5" PointX="7.5" PointY="30.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="StorageSpaceModel.EventLog" Width="1.5" PointX="24" PointY="12.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="StorageSpaceModel.ExceptionLog" Width="1.5" PointX="24" PointY="14.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="StorageSpaceModel.WorkflowLog_Old" Width="1.5" PointX="23.75" PointY="20.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="StorageSpaceModel.C__VoyagesView" Width="1.5" PointX="24.75" PointY="26.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="StorageSpaceModel.AccountListView" Width="1.5" PointX="10.75" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="StorageSpaceModel.CompanyGoodUnitView" Width="1.5" PointX="25.75" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="StorageSpaceModel.CompanyGoodView" Width="1.5" PointX="25.75" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="StorageSpaceModel.CompanyVesselTankView" Width="1.5" PointX="11.75" PointY="25.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="StorageSpaceModel.CompanyVesselView" Width="1.5" PointX="25.75" PointY="17.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="StorageSpaceModel.CompanyView" Width="1.5" PointX="25.75" PointY="20.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="StorageSpaceModel.CurrencyView" Width="1.5" PointX="25.75" PointY="23.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="StorageSpaceModel.SharedGoodView" Width="1.5" PointX="26.75" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="StorageSpaceModel.UnitView" Width="1.5" PointX="26.75" PointY="13.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="StorageSpaceModel.UserView" Width="1.5" PointX="19.75" PointY="29.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="StorageSpaceModel.VoyagesView" Width="1.5" PointX="21.75" PointY="29.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="StorageSpaceModel.HAFEZAccountListView" Width="1.5" PointX="26.75" PointY="26.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="StorageSpaceModel.HAFEZVoyagesView" Width="1.5" PointX="27.75" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="StorageSpaceModel.HAFIZAccountListView" Width="1.5" PointX="27.75" PointY="16.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="StorageSpaceModel.HAFIZVoyagesView" Width="1.5" PointX="14.75" PointY="30.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="StorageSpaceModel.SAPIDAccountListView" Width="1.5" PointX="16.75" PointY="30.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="StorageSpaceModel.SAPIDVoyagesView" Width="1.5" PointX="27.75" PointY="20.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="StorageSpaceModel.EOVReportsView" Width="1.5" PointX="23.75" PointY="30.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="StorageSpaceModel.VoucherReportView" Width="1.5" PointX="25.75" PointY="30.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="StorageSpaceModel.Users1" Width="1.5" PointX="27.75" PointY="30.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="StorageSpaceModel.VesselEventReportsView" Width="1.5" PointX="29.75" PointY="3.125" IsExpanded="true" />
+        <AssociationConnector Association="StorageSpaceModel.FK_Fuel_ActivityFlow_ActionTypeId_dbo_ActionTypes_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="StorageSpaceModel.FK_Parties_CustomActions_ActionTypeId_ActionTypes_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="StorageSpaceModel.FK_Groups_Id_Parties_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="StorageSpaceModel.FK_Users_Groups_GroupId_Groups_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="StorageSpaceModel.FK_Parties_CustomActions_PartyId_Parties_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="StorageSpaceModel.FK_Users_Id_Parties_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="StorageSpaceModel.FK_UserInCompany_UserId_SecurityUser_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="StorageSpaceModel.FK_Users_Groups_UserId_Users_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="StorageSpaceModel.FK_Account_AsgnVoucherAcont" ManuallyRouted="false" />
+        <AssociationConnector Association="StorageSpaceModel.FK_EffectiveFactor_Account" ManuallyRouted="false" />
+        <AssociationConnector Association="StorageSpaceModel.FK_Fuel_ActivityFlow_WorkflowNextStepId_Fuel_WorkflowStep_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="StorageSpaceModel.FK_Fuel_ActivityFlow_WorkflowStepId_Fuel_WorkflowStep_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="StorageSpaceModel.FK_ApproveFlowConfig_NextWorkflowStepId_ApproveFlowConfig_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="StorageSpaceModel.FK_ApproveFlowConfigValidFuelUsers_ApproveFlowConfigId_ApproveFlowConfig_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="StorageSpaceModel.FK_VoucherSetingDetail_AsgnSegmentTypeVoucherSetingDetail" ManuallyRouted="false" />
+        <AssociationConnector Association="StorageSpaceModel.FK_VoucherSetingDetail_AsgnVoucherAconts" ManuallyRouted="false" />
+        <AssociationConnector Association="StorageSpaceModel.FK_Charter_VesselInCompanyId_VesselInCompany_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="StorageSpaceModel.FK_CharterIn_Id_Charter_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="StorageSpaceModel.FK_CharterItem_CharterId_Charter_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="StorageSpaceModel.FK_CharterOut_Id_Charter_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="StorageSpaceModel.FK_FuelReport_CreatedCharterId_Charter_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="StorageSpaceModel.FK_InventoryOperation_CharterId_Charter_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="StorageSpaceModel.FK_WorkflowLog_CharterId_Charter_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="StorageSpaceModel.FK_InvoiceAdditionalPrices_EffectiveFactorId_EffectiveFactor_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="StorageSpaceModel.FK_Segment_EffectiveFactor" ManuallyRouted="false" />
+        <AssociationConnector Association="StorageSpaceModel.FK_Segment_FreeAccount" ManuallyRouted="false" />
+        <AssociationConnector Association="StorageSpaceModel.FK_FuelReport_VesselInCompanyId_VesselInCompany_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="StorageSpaceModel.FK_FuelReportDetail_FuelReportId_FuelReport_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="StorageSpaceModel.FK_InventoryOperation_Id_FuelReport_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="StorageSpaceModel.FK_WorkflowLog_FuelReportId_FuelReport_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="StorageSpaceModel.FK_InventoryOperation_FuelReportDetailId_FuelReportDetail_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="StorageSpaceModel.FK_OrderItemBalances_FuelReportDetailId_FuelReportDetail_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="StorageSpaceModel.FK_InventoryOperation_Scrap_Id_Scrap_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="StorageSpaceModel.FK_OrderItemBalances_InventoryOperationId_InventoryOperation_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="StorageSpaceModel.FK_Invoice_InvoiceRefrenceId_Invoice_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="StorageSpaceModel.FK_InvoiceAdditionalPrices_InvoiceId_Invoice_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="StorageSpaceModel.FK_InvoiceItems_InvoiceId_Invoice_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="StorageSpaceModel.FK_WorkflowLog_InvoiceId_Invoice_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="StorageSpaceModel.FK_OrderItemBalances_InvoiceItemId_InvoiceItems_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="StorageSpaceModel.FK_OrderItemBalances_PairingInvoiceItemId_InvoiceItems_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="StorageSpaceModel.FK_Segment_JournalEntries" ManuallyRouted="false" />
+        <AssociationConnector Association="StorageSpaceModel.FK_Voucher_JournalEntries_" ManuallyRouted="false" />
+        <AssociationConnector Association="StorageSpaceModel.FK_EventLogs_Id_Logs_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="StorageSpaceModel.FK_ExceptionLogs_Id_Logs_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="StorageSpaceModel.FK_Offhire_VesselInCompanyId_VesselInCompany_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="StorageSpaceModel.FK_OffhireDetail_Offhire_Id_Offhire_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="StorageSpaceModel.FK_WorkflowLog_OffhireId_Offhire_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="StorageSpaceModel.FK_Order_FromVesselInCompanyId_VesselInCompany_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="StorageSpaceModel.FK_Order_ToVesselInCompanyId_VesselInCompany_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="StorageSpaceModel.FK_OrderItems_OrderId_Order_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="StorageSpaceModel.FK_WorkflowLog_OrderId_Order_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="StorageSpaceModel.FK_OrderItemBalances_OrderItemId_OrderItems_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="StorageSpaceModel.FK_Scrap_VesselInCompanyId_VesselInCompany_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="StorageSpaceModel.FK_ScrapDetail_Scrap_Id_Scrap_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="StorageSpaceModel.FK_WorkflowLog_ScrapId_Scrap_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="StorageSpaceModel.FK_VesselInCompany_VesselId_Vessel_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="StorageSpaceModel.FK_Voyage_VesselInCompanyId_VesselInCompany_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="StorageSpaceModel.FK_VoyageLog_VesselInCompanyId_VesselInCompany_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="StorageSpaceModel.FK_VoucherSeting" ManuallyRouted="false" />
+        <AssociationConnector Association="StorageSpaceModel.FK_Fuel_WorkflowStep_WorkflowId_Fuel_Workflow_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="StorageSpaceModel.FK_WorkflowLog_CurrentWorkflowStepId_WorkflowStep_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="StorageSpaceModel.FK_Warehouse_CompanyId" ManuallyRouted="false" />
+        <AssociationConnector Association="StorageSpaceModel.FK_TimeBucket_FinancialYearId" ManuallyRouted="false" />
+        <AssociationConnector Association="StorageSpaceModel.FK_Goods_MainUnitId" ManuallyRouted="false" />
+        <AssociationConnector Association="StorageSpaceModel.FK_TransactionItems_GoodId" ManuallyRouted="false" />
+        <AssociationConnector Association="StorageSpaceModel.FK_Users_UserCreatorId" ManuallyRouted="false" />
+        <AssociationConnector Association="StorageSpaceModel.FK_Transaction_StoreTypesId" ManuallyRouted="false" />
+        <AssociationConnector Association="StorageSpaceModel.FK_TransactionItemPrices_MainCurrencyUnitId" ManuallyRouted="false" />
+        <AssociationConnector Association="StorageSpaceModel.FK_TransactionItemPrices_PriceUnitId" ManuallyRouted="false" />
+        <AssociationConnector Association="StorageSpaceModel.FK_TransactionItemPrices_QuantityUnitId" ManuallyRouted="false" />
+        <AssociationConnector Association="StorageSpaceModel.FK_TransactionItemPrices_TransactionItemsId" ManuallyRouted="false" />
+        <AssociationConnector Association="StorageSpaceModel.FK_TransactionItemPrices_TransactionReferenceId" ManuallyRouted="false" />
+        <AssociationConnector Association="StorageSpaceModel.FK_TransactionItems_QuantityUnitId" ManuallyRouted="false" />
+        <AssociationConnector Association="StorageSpaceModel.FK_TransactionItems_TransactionId" ManuallyRouted="false" />
+        <AssociationConnector Association="StorageSpaceModel.FK_Transaction_PricingReferenceId" ManuallyRouted="false" />
+        <AssociationConnector Association="StorageSpaceModel.FK_Transaction_WarehouseId" ManuallyRouted="false" />
+        <AssociationConnector Association="StorageSpaceModel.FK_UnitConverts_SubUnitId" ManuallyRouted="false" />
+        <AssociationConnector Association="StorageSpaceModel.FK_UnitConverts_UnitId" ManuallyRouted="false" />
+        <AssociationConnector Association="StorageSpaceModel.FuelReportCommandLogDetail_FuelReportCommandLogId_FuelReportCommandLog_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="StorageSpaceModel.InvoiceOrders" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

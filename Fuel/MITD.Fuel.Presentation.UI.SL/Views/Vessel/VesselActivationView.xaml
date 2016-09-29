@@ -1,0 +1,98 @@
+﻿<ui:ViewBase x:Class="MITD.Fuel.Presentation.UI.SL.Views.Vessel.VesselActivationView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:ui="http://schemas.mitd.com/silverlight/2012/xaml/presentation.ui"
+        xmlns:viewModels="clr-namespace:MITD.Fuel.Presentation.Logic.SL.ViewModels;assembly=MITD.Fuel.Presentation.Logic.SL"
+        xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
+        xmlns:converters="clr-namespace:MITD.Fuel.Presentation.UI.SL.Converters"
+        xmlns:views="clr-namespace:MITD.Presentation.UI.DateTimePicker.Views;assembly=MITD.Presentation.UI.SL"
+        xmlns:controls="clr-namespace:MITD.Fuel.Presentation.UI.SL.Controls"
+        mc:Ignorable="d" 
+        d:DesignWidth="400" 
+        d:DesignHeight="250"
+        d:DataContext="{d:DesignInstance Type=viewModels:VesselActivationVM}" Style="{StaticResource DefaultStyle}" >
+    <UserControl.Resources>
+        <converters:IsNotNullConverter x:Key="IsNotNullConverter" />
+        <Style x:Key="ComboBoxItemStyle" TargetType="ComboBoxItem">
+            <Setter Property="Height" Value="25" />
+        </Style>
+    </UserControl.Resources>
+    
+    <Grid x:Name="MainLayoutGrid" Background="White" MinWidth="300">
+        <Grid.RowDefinitions>
+            <RowDefinition x:Name="FieldsGridRow" Height="*"/>
+            <RowDefinition x:Name="CommandsGridRow" Height="Auto"/>
+            
+        </Grid.RowDefinitions>
+        <Border x:Name="FieldsBorder" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <Grid x:Name="FieldsGrid" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <!--================================================================================-->
+                <TextBlock x:Name="VesselCodeTitle" Grid.Row="0" Grid.Column="0" Margin="5" Text="کد شناور" />
+                <!--================================================================================-->
+                <TextBox IsEnabled="True" IsReadOnly="True" Grid.Row="0" Grid.Column="1" Text="{Binding Entity.Code, Mode=OneWay}"  TextWrapping="Wrap"   Width="150" Height="25" Margin="5"/>
+                <!--================================================================================-->
+                <TextBlock x:Name="OwnerNameTitle" Grid.Row="2" Grid.Column="0" Margin="5" Text="شرکت مالک" />
+                <!--================================================================================-->
+                <TextBox IsEnabled="True"  IsReadOnly="True" Grid.Row="2" Grid.Column="1" Text="{Binding Entity.Owner.Name, Mode=OneWay}"  TextWrapping="Wrap"   Width="150" Height="25" Margin="5"/>
+                <!--================================================================================-->
+                <TextBlock x:Name="ActivationDate" Grid.Row="3" Grid.Column="0" Margin="5" Text="تاریخ فعالسازی" Width="80" TextWrapping="Wrap" />
+                <!--<Button  x:Name="ActivationDateToggle" Grid.Row="3" Grid.Column="0" Margin="5" Command="{Binding ActivationDateDataEntryToggleCommand}" Width="150">
+                    <TextBlock x:Name="ActivationDateTitle" Margin="1" Text="{Binding ActivationDateDataEntryToggleDisplayName}" TextAlignment="Left" TextWrapping="Wrap" />
+                </Button>-->
+                <!--================================================================================-->
+                <controls:MultiTypeDateTimeControl Margin="5" Height="24" 
+                                           DisplayOrientation="Horizontal"
+                                           CalendarType="Persian" 
+                                           DisplayMode="Date" x:Name="uxPersianActivationDatePicker" SelectedDate="{Binding Path=ActivationDate, Mode=TwoWay}"   Grid.Row="3" Grid.Column="1"  HorizontalAlignment="Left" Visibility="{Binding IsActivationDateDataEntryInPersianCalendar}" />
+                <!--<sdk:DatePicker x:Name="uxGregorianActivationDatePicker" SelectedDate="{Binding Path=ActivationDate, Mode=TwoWay}"   Grid.Row="3" Grid.Column="1"  HorizontalAlignment="Left" Visibility="{Binding IsActivationDateDataEntryInGregorianCalendar}" IsTodayHighlighted="False" Height="24" ></sdk:DatePicker>-->
+                <!--<views:PDatePicker x:Name="uxPersianActivationDatePicker" SelectedDate="{Binding Path=ActivationDate, Mode=TwoWay}"   Grid.Row="3" Grid.Column="1"  HorizontalAlignment="Left" Visibility="{Binding IsActivationDateDataEntryInPersianCalendar}" />-->
+                <!--================================================================================-->
+                <TextBlock x:Name="FuelListTitle" Grid.Row="4" Grid.Column="0" Margin="5" Text="لیست سوختها" />
+                <!--================================================================================-->
+                <sdk:DataGrid Name="ActivationItemsGrid" Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="3" AutoGenerateColumns="False" 
+                      ItemsSource="{Binding VesselActivationItems}"
+                      SelectedItem="{Binding SelectedVesselActivationItem ,Mode=TwoWay}">
+                    <sdk:DataGrid.Columns>
+                        <sdk:DataGridTextColumn Binding="{Binding Path=Good.Name}" Header="نوع سوخت" IsReadOnly="True"/>
+                        <sdk:DataGridTextColumn Binding="{Binding Path=TankDto.Code}" Header="تانک" IsReadOnly="True"/>
+                        <sdk:DataGridTextColumn Binding="{Binding Path=Rob, StringFormat=\{0:n3\}}" Header="موجودی" IsReadOnly="True"/>
+                        <sdk:DataGridTextColumn Binding="{Binding Path=Good.Unit.Name}" Header="واحد" IsReadOnly="True"/>
+                        <sdk:DataGridTextColumn Binding="{Binding Path=Fee, StringFormat=\{0:n2\}}" Header="فی" IsReadOnly="True"/>
+                        <sdk:DataGridTextColumn Binding="{Binding Path=CurrencyCode}" Header="نوع ارز" IsReadOnly="True"/>
+                    </sdk:DataGrid.Columns>
+                </sdk:DataGrid>
+                <StackPanel  Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="3" Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Button Width="80" Height="25" Content="{Binding AddCommand.DisplayName}" Command="{Binding AddCommand.Command}" IsEnabled="{Binding ViewFlag}" Margin="5"></Button>
+                    <Button Width="80" Height="25" Content="{Binding DeleteCommand.DisplayName}" Command="{Binding DeleteCommand.Command}" IsEnabled="{Binding ViewFlag}" Margin="5"></Button>
+                </StackPanel>
+                <!--================================================================================-->
+            </Grid>
+        </Border>
+        <Border x:Name="CommandsBorder" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
+            <StackPanel FlowDirection="RightToLeft" HorizontalAlignment="Center" Orientation="Horizontal">
+                <Button x:Name="SubmitButton" Width="80" Height="25" Margin="5"
+                        Command="{Binding SubmitCommand.Command}"
+                        Content="{Binding SubmitCommand.DisplayName}"/>
+                <Button x:Name="CancelButton" Width="80" Height="25" Margin="5" 
+                        Command="{Binding CancelCommand.Command}"
+                        Content="{Binding CancelCommand.DisplayName}" />
+            </StackPanel>
+        </Border>
+    </Grid>
+</ui:ViewBase>

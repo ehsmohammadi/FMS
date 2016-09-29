@@ -1,0 +1,299 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{087D039B-81F3-4F11-BB55-647F0F4BD06D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MITD.Fuel.Presentation.Contracts</RootNamespace>
+    <AssemblyName>MITD.Fuel.Presentation.Contracts</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Without Test|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Without Test\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="MITD.Presentation">
+      <HintPath>..\..\Dependencies\MITD.Presentation.dll</HintPath>
+    </Reference>
+    <Reference Include="MITD.Services">
+      <HintPath>..\..\Dependencies\MITD.Services.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Newtonsoft.Json.6.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DTOs\AccountDto.cs" />
+    <Compile Include="DTOs\AccountDto_Server.cs" />
+    <Compile Include="DTOs\AttachmentDto.cs" />
+    <Compile Include="DTOs\AttachmentDto_Server.cs" />
+    <Compile Include="DTOs\FiscalYearDto.cs" />
+    <Compile Include="DTOs\FiscalYearDto_Server.cs" />
+    <Compile Include="DTOs\CurrencyExchangeDto_Server.cs" />
+    <Compile Include="DTOs\CurrencyExchangeDto.cs" />
+    <Compile Include="DTOs\VoucherEntityDto_Server.cs" />
+    <Compile Include="DTOs\VoucherEntityDto.cs" />
+    <Compile Include="DTOs\InventoryResultDto_Server.cs" />
+    <Compile Include="DTOs\InventoryResultDto.cs" />
+    <Compile Include="DTOs\InventoryResultItemDto_Server.cs" />
+    <Compile Include="DTOs\InventoryResultItemDto.cs" />
+    <Compile Include="DTOs\OrderAssignmentReferenceDto_Server.cs" />
+    <Compile Include="DTOs\OrderAssignmentReferenceDto.cs" />
+    <Compile Include="DTOs\Report\VesselEventReportViewDto_Server.cs" />
+    <Compile Include="DTOs\Report\VesselEventReportViewDto.cs" />
+    <Compile Include="DTOs\VesselActivationDto_Server.cs" />
+    <Compile Include="DTOs\VesselActivationDto.cs" />
+    <Compile Include="DTOs\VesselActivationItemDto.cs" />
+    <Compile Include="DTOs\VesselActivationItemDto_Server.cs" />
+    <Compile Include="DTOs\FuelReportCommandDto_Server.cs" />
+    <Compile Include="DTOs\Inventory\Server\Inventory_WarehouseDto_Server.cs" />
+    <Compile Include="DTOs\Inventory\Server\Inventory_UserDto_Server.cs" />
+    <Compile Include="DTOs\Inventory\Server\Inventory_UnitDto_Server.cs" />
+    <Compile Include="DTOs\Inventory\Server\Inventory_TransactionDto_Server.cs" />
+    <Compile Include="DTOs\Inventory\Server\Inventory_TransactionDetailPriceDto_Server.cs" />
+    <Compile Include="DTOs\Inventory\Server\Inventory_TransactionDetailDto_Server.cs" />
+    <Compile Include="DTOs\Inventory\Server\Inventory_StoreTypeDto_Server.cs" />
+    <Compile Include="DTOs\Inventory\Server\Inventory_GoodDto_Server.cs" />
+    <Compile Include="DTOs\Inventory\Server\Inventory_CompanyDto_Server.cs" />
+    <Compile Include="DTOs\Inventory\Inventory_GoodDto.cs" />
+    <Compile Include="DTOs\Inventory\Inventory_UserDto.cs" />
+    <Compile Include="DTOs\Inventory\Inventory_UnitDto.cs" />
+    <Compile Include="DTOs\Inventory\Inventory_StoreTypeDto.cs" />
+    <Compile Include="DTOs\Inventory\Inventory_WarehouseDto.cs" />
+    <Compile Include="DTOs\Inventory\Inventory_CompanyDto.cs" />
+    <Compile Include="DTOs\Inventory\Inventory_TransactionDto.cs" />
+    <Compile Include="DTOs\Inventory\Inventory_TransactionDetailDto.cs" />
+    <Compile Include="DTOs\Inventory\Inventory_TransactionDetailPriceDto.cs" />
+    <Compile Include="DTOs\JournalEntryDto.cs" />
+    <Compile Include="DTOs\JournalEntryDto_Server.cs" />
+    <Compile Include="DTOs\ResultFuelReportDto.cs" />
+    <Compile Include="DTOs\FuelReportCommandDto.cs" />
+    <Compile Include="DTOs\Security\ActionTypeDto.cs" />
+    <Compile Include="DTOs\Security\ActionTypeDto_Server.cs" />
+    <Compile Include="DTOs\Security\EventLogDto.cs" />
+    <Compile Include="DTOs\Security\ExceptionLogDto.cs" />
+    <Compile Include="DTOs\Security\LogDto.cs" />
+    <Compile Include="DTOs\Security\LogDto_Server.cs" />
+    <Compile Include="DTOs\Security\PartyDto.cs" />
+    <Compile Include="DTOs\Security\PartyDTOwithActions.cs" />
+    <Compile Include="DTOs\Security\PartyDto_Server.cs" />
+    <Compile Include="DTOs\Security\UserDescriptionDTO.cs" />
+    <Compile Include="DTOs\Security\UserDescriptionDTO_Server.cs" />
+    <Compile Include="DTOs\Security\FuelUserDto_Server.cs" />
+    <Compile Include="DTOs\Security\FuelUserDto.cs" />
+    <Compile Include="DTOs\Security\UserDto.cs" />
+    <Compile Include="DTOs\Security\UserDTOWithActions.cs" />
+    <Compile Include="DTOs\Security\UserGroupDescriptionDto.cs" />
+    <Compile Include="DTOs\Security\UserGroupDescriptionDto_Server.cs" />
+    <Compile Include="DTOs\Security\UserGroupDto.cs" />
+    <Compile Include="DTOs\Security\UserGroupDTOWithActions.cs" />
+    <Compile Include="DTOs\Security\UserGroupDtoWithActions_Server.cs" />
+    <Compile Include="DTOs\Security\UserState.cs" />
+    <Compile Include="DTOs\Security\UserState_Server.cs" />
+    <Compile Include="DTOs\VesselDto.cs" />
+    <Compile Include="DTOs\VesselDto_Server.cs" />
+    <Compile Include="DTOs\VoucherTransferLogDto_Server.cs" />
+    <Compile Include="DTOs\VoucherTransferLogDto.cs" />
+    <Compile Include="DTOs\VoucherSetingDetailDto.cs" />
+    <Compile Include="DTOs\VoucherSetingDetailDto_Server.cs" />
+    <Compile Include="DTOs\VoucherSetingDto.cs" />
+    <Compile Include="DTOs\VoucherSetingDto_Server.cs" />
+    <Compile Include="Enums\AttachmentType.cs" />
+    <Compile Include="Enums\CorrectionPricingTypeEnum.cs" />
+    <Compile Include="Enums\Inventory\TransactionStatusEnum.cs" />
+    <Compile Include="Enums\Inventory\TransactionTypeEnum.cs" />
+    <Compile Include="DTOs\VoucherDto.cs" />
+    <Compile Include="DTOs\VoucherDto_Server.cs" />
+    <Compile Include="Enums\OrderAssignementReferenceTypeEnum.cs" />
+    <Compile Include="Enums\ReferenceTypeEnum.cs" />
+    <Compile Include="Enums\ResultType.cs" />
+    <Compile Include="Enums\WorkflowStageEnum.cs" />
+    <Compile Include="FacadeServices\IAccountFacadeService.cs" />
+    <Compile Include="FacadeServices\IAttachmentFacadeService.cs" />
+    <Compile Include="FacadeServices\IFiscalYearFacadeService.cs" />
+    <Compile Include="FacadeServices\ILogFacadeService.cs" />
+    <Compile Include="FacadeServices\Inventory\IInventoryCompanyFacadeService.cs" />
+    <Compile Include="FacadeServices\Inventory\IInventoryTransactionFacadeService.cs" />
+    <Compile Include="FacadeServices\IOriginalAccountFacadeService.cs" />
+    <Compile Include="FacadeServices\ISecurityFacadeService.cs" />
+    <Compile Include="FacadeServices\IUnitOfMeasuresAndCurrenciesFacadeService.cs" />
+    <Compile Include="FacadeServices\IVesselFacadeService.cs" />
+    <Compile Include="FacadeServices\IVoucherFacadeService.cs" />
+    <Compile Include="FacadeServices\IVoucherSetingFacadeService.cs" />
+    <Compile Include="Infrastructure\EnumDescriptor.cs" />
+    <Compile Include="DTOs\ActivityLocationDto.cs" />
+    <Compile Include="DTOs\ActivityLocationDto_Server.cs" />
+    <Compile Include="DTOs\PricingValueDto_Server.cs" />
+    <Compile Include="DTOs\OffhireManagementSystemDto_Server.cs" />
+    <Compile Include="DTOs\OffhireDetailDto.cs" />
+    <Compile Include="DTOs\OffhireDetailDto_Server.cs" />
+    <Compile Include="DTOs\OffhireDto.cs" />
+    <Compile Include="DTOs\OffhireDto_Server.cs" />
+    <Compile Include="DTOs\OffhireManagementSystemDto.cs" />
+    <Compile Include="DTOs\EffectiveFactorDto_Server.cs" />
+    <Compile Include="DTOs\InvoiceAdditionalPriceDto_Server.cs" />
+    <Compile Include="DTOs\EffectiveFactorDto.cs" />
+    <Compile Include="DTOs\InvoiceAdditionalPriceDto.cs" />
+    <Compile Include="DTOs\PricingValueDto.cs" />
+    <Compile Include="DTOs\TankDto.cs" />
+    <Compile Include="DTOs\TankDto_Server.cs" />
+    <Compile Include="DTOs\ScrapDetailDto.cs" />
+    <Compile Include="DTOs\ScrapDetailDto_Server.cs" />
+    <Compile Include="DTOs\ScrapDto.cs" />
+    <Compile Include="DTOs\ScrapDto_Server.cs" />
+    <Compile Include="DTOs\VoyageLogDto.cs" />
+    <Compile Include="DTOs\VoyageLogDto_Server.cs" />
+    <Compile Include="DTOs\InvoiceItemDto_Server.cs" />
+    <Compile Include="Enums\AccountingTypesEnum.cs" />
+    <Compile Include="DTOs\ApproveFlowLogDto.cs" />
+    <Compile Include="DTOs\ApproveFlowLogDto_Server.cs" />
+    <Compile Include="DTOs\CharterDto.cs" />
+    <Compile Include="DTOs\CharterDto_Server.cs" />
+    <Compile Include="DTOs\CharterItemDto.cs" />
+    <Compile Include="DTOs\CharterItemDto_Server.cs" />
+    <Compile Include="DTOs\InvoiceDto.cs" />
+    <Compile Include="Enums\CharterEndTypeEnum.cs" />
+    <Compile Include="Enums\CharteringPartyType.cs" />
+    <Compile Include="Enums\CharterStateTypeEnum.cs" />
+    <Compile Include="Enums\DivisionMethodEnum.cs" />
+    <Compile Include="DTOs\InvoiceDto_Server.cs" />
+    <Compile Include="DTOs\ExceptionMessageDto_Server.cs" />
+    <Compile Include="DTOs\FuelReportInventoryResultDto.cs" />
+    <Compile Include="DTOs\FuelReportInventoryResultItemDto.cs" />
+    <Compile Include="DTOs\ExceptionMessageDto.cs" />
+    <Compile Include="DTOs\ExceptionMessageTypeDto.cs" />
+    <Compile Include="DTOs\InvoiceItemDto.cs" />
+    <Compile Include="Enums\EffectiveFactorTypeEnum.cs" />
+    <Compile Include="Enums\InvoiceTypeEnum.cs" />
+    <Compile Include="DTOs\MainUnitValueDto_Server.cs" />
+    <Compile Include="DTOs\MainUnitValueDto.cs" />
+    <Compile Include="DTOs\FuelReportCorrectionReferenceNoDto.cs" />
+    <Compile Include="DTOs\FuelReportCorrectionReferenceNoDto_Server.cs" />
+    <Compile Include="DTOs\CurrencyDto.cs" />
+    <Compile Include="DTOs\CurrencyDto_Server.cs" />
+    <Compile Include="DTOs\FuelReportInventoryOperationDto.cs" />
+    <Compile Include="DTOs\FuelReportInventoryOperationDto_Server.cs" />
+    <Compile Include="DTOs\FuelReportReciveReferenceNoDto.cs" />
+    <Compile Include="DTOs\FuelReportReciveReferenceNoDto_Server.cs" />
+    <Compile Include="DTOs\FuelReportTransferReferenceNoDto.cs" />
+    <Compile Include="DTOs\FuelReportTransferReferenceNoDto_Server.cs" />
+    <Compile Include="DTOs\VoyageDto_Server.cs" />
+    <Compile Include="DTOs\VoyageDto.cs" />
+    <Compile Include="DTOs\ReceiveTypeDto_Server.cs" />
+    <Compile Include="DTOs\FuelReportDetailDto.cs" />
+    <Compile Include="DTOs\FuelReportDetailDto_Server.cs" />
+    <Compile Include="DTOs\FuelReportDto.cs" />
+    <Compile Include="DTOs\FuelReportDto_Server.cs" />
+    <Compile Include="DTOs\ReceiveTypeDto.cs" />
+    <Compile Include="DTOs\TransferTypeDto.cs" />
+    <Compile Include="DTOs\TransferTypeDto_Server.cs" />
+    <Compile Include="Enums\ActionTypeEnum.cs" />
+    <Compile Include="DTOs\ApprovmentDto.cs" />
+    <Compile Include="DTOs\ApprovmentDto_Server.cs" />
+    <Compile Include="Enums\CharterType.cs" />
+    <Compile Include="Enums\CorrectionTypeEnum.cs" />
+    <Compile Include="Enums\DtoTypeEnum.cs" />
+    <Compile Include="DTOs\GoodUnitDto.cs" />
+    <Compile Include="DTOs\GoodUnitDto_Server.cs" />
+    <Compile Include="DTOs\GoodDto.cs" />
+    <Compile Include="DTOs\GoodDto_Server.cs" />
+    <Compile Include="DTOs\CompanyDto_Server.cs" />
+    <Compile Include="DTOs\OrderDto.cs" />
+    <Compile Include="DTOs\OrderDto_Server.cs" />
+    <Compile Include="DTOs\CompanyDto.cs" />
+    <Compile Include="DTOs\OrderItemDto.cs" />
+    <Compile Include="DTOs\OrderItemDto_Server.cs" />
+    <Compile Include="DTOs\VesselInCompanyDto.cs" />
+    <Compile Include="DTOs\VesselInCompanyDto_Server.cs" />
+    <Compile Include="Enums\FuelReportTypeEnum.cs" />
+    <Compile Include="Enums\InventoryResultDtoActionType.cs" />
+    <Compile Include="Enums\OffHirePricingType.cs" />
+    <Compile Include="Enums\OrderTypeEnum.cs" />
+    <Compile Include="Enums\ReceiveTypeEnum.cs" />
+    <Compile Include="Enums\TransferTypeEnum.cs" />
+    <Compile Include="Enums\VesselStateEnum.cs" />
+    <Compile Include="FacadeServices\IOffhireFacadeService.cs" />
+    <Compile Include="FacadeServices\ICharterOutFacadeService.cs" />
+    <Compile Include="FacadeServices\ICurrencyFacadeService.cs" />
+    <Compile Include="FacadeServices\IInvoiceFacadeService.cs" />
+    <Compile Include="FacadeServices\IApprovmentFacadeService.cs" />
+    <Compile Include="FacadeServices\ICharterInFacadeService.cs" />
+    <Compile Include="FacadeServices\IFuelReportCompanyFacadeService.cs" />
+    <Compile Include="FacadeServices\IFuelReportFacadeService.cs" />
+    <Compile Include="FacadeServices\IFuelReportInventoryResultFacadeService.cs" />
+    <Compile Include="FacadeServices\IFuelReportVesselFacadeService.cs" />
+    <Compile Include="FacadeServices\IScrapFacadeService.cs" />
+    <Compile Include="FacadeServices\IVoyageFacadeService.cs" />
+    <Compile Include="FacadeServices\ICompanyFacadeService.cs" />
+    <Compile Include="FacadeServices\IOrderFacadeService.cs" />
+    <Compile Include="FacadeServices\IGoodFacadeService.cs" />
+    <Compile Include="FacadeServices\IUserFacadeService.cs" />
+    <Compile Include="FacadeServices\IVesselInCompanyFacadeService.cs" />
+    <Compile Include="Infrastructure\Extensions.cs" />
+    <Compile Include="Infrastructure\ValidationDto.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MITD.Fuel.Domain.Model\MITD.Fuel.Domain.Model.csproj">
+      <Project>{F75008B5-5BFE-4570-B583-9C3E0468ED68}</Project>
+      <Name>MITD.Fuel.Domain.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MITD.FuelSecurity.Domain.Model\MITD.FuelSecurity.Domain.Model.csproj">
+      <Project>{081bb795-014b-43aa-bf32-ab4d8d9f0d0c}</Project>
+      <Name>MITD.FuelSecurity.Domain.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

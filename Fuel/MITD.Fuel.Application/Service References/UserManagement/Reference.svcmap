@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="fc3e045b-edd5-43fb-ba26-045ce1c58c3f" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="https://evaluation-srv:2012/services/UserManagement.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="UserManagementService.wsdl" MetadataType="Wsdl" ID="db327de8-2d0a-461b-a46b-96947ad692ef" SourceId="1" SourceUrl="https://evaluation-srv:2012/services/UserManagement.svc?wsdl" />
+    <MetadataFile FileName="UserManagement.xsd" MetadataType="Schema" ID="457fc520-9953-4d4e-9073-33200255d6d2" SourceId="1" SourceUrl="https://evaluation-srv:2012/services/UserManagement.svc?xsd=xsd1" />
+    <MetadataFile FileName="UserManagement.disco" MetadataType="Disco" ID="9301174b-9f40-4acc-98cf-00ba8adfcd88" SourceId="1" SourceUrl="https://evaluation-srv:2012/services/UserManagement.svc?disco" />
+    <MetadataFile FileName="UserManagement1.xsd" MetadataType="Schema" ID="4d43a67a-5e83-4b8a-bfaf-cbcb7089533f" SourceId="1" SourceUrl="https://evaluation-srv:2012/services/UserManagement.svc?xsd=xsd2" />
+    <MetadataFile FileName="UserManagement2.xsd" MetadataType="Schema" ID="61f96ee6-2fff-4eef-9708-721f6babc3d0" SourceId="1" SourceUrl="https://evaluation-srv:2012/services/UserManagement.svc?xsd=xsd0" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

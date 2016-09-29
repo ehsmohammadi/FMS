@@ -1,0 +1,153 @@
+﻿<UserControl:ViewBase
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
+    xmlns:viewModels="clr-namespace:MITD.Fuel.Presentation.Logic.SL.ViewModels;assembly=MITD.Fuel.Presentation.Logic.SL"
+    xmlns:UserControl="clr-namespace:MITD.Presentation.UI;assembly=MITD.Presentation.UI.SL"
+    xmlns:converters="clr-namespace:MITD.Fuel.Presentation.UI.SL.Converters"
+    x:Class="MITD.Fuel.Presentation.UI.SL.Views.FuelReportDetailView"
+    mc:Ignorable="d" d:DataContext="{d:DesignInstance d:Type=viewModels:FuelReportDetailVM}"
+     Style="{StaticResource DefaultStyle}" 
+    >
+    <UserControl.Resources>
+        <converters:EmptyValueConverter x:Key="EmptyValueConverter" />
+        <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </UserControl.Resources>
+    <Grid x:Name="LayoutRoot" Background="White" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" Width="900"  Margin="0,0,0,0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="40"/>
+        </Grid.RowDefinitions>
+
+        <!--Label-->
+        <sdk:Label  Grid.Column="0" Grid.Row="0" Content="کالا"  />
+        <sdk:Label Grid.Column="3" Grid.Row="0" Content="واحد کالا"  />
+        <sdk:Label Grid.Column="6" Grid.Row="0" Content="تانک" />
+        <sdk:Label  Grid.Row="1" Content="موجودی گذشته" />
+        <sdk:Label  Grid.Row="2" Content="میزان موجودی" />
+        <sdk:Label  Grid.Row="3" Content="میزان دریافت" />
+        <sdk:Label  Grid.Row="4" Content="میزان انتقال" />
+        <sdk:Label  Grid.Row="5"  Content="مقدار اصلاحی" />
+        <sdk:Label  Grid.Row="6" Content="نوع قیمت گذاری"  />
+        <sdk:Label  Grid.Row="7" Content="تصحیح قیمت" Visibility="{Binding IsCorrectionManualPricingActive, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+        <sdk:Label Grid.Column="3" Grid.Row="2" Content="میزان مصرف" />
+        <sdk:Label Grid.Column="3"  Grid.Row="3" Content="نوع دریافت" />
+        <sdk:Label Grid.Column="3" Grid.Row="4" Content="نوع انتقال"  />
+        <sdk:Label Grid.Column="3" Grid.Row="5" Content="نوع تصحیح" />
+        <sdk:Label Grid.Column="3"  Grid.Row="7" Content="نوع ارز" Visibility="{Binding IsCorrectionManualPricingActive, Converter={StaticResource BooleanToVisibilityConverter}}" />
+        <sdk:Label Grid.Column="6"  Grid.Row="3" Content="شماره مرجع دریافت"  />
+        <sdk:Label Grid.Column="6"  Grid.Row="4" Content="شماره مرجع انتقال"  />
+        <sdk:Label Grid.Column="0"  Grid.Row="7" Content="شماره مرجع تصحیح" Visibility="{Binding IsCorrectionLastIssuedConsumptionPricingActive, Converter={StaticResource BooleanToVisibilityConverter}}" />
+        <!--TextBox-->
+        <TextBox Width="180" Height="25" Text="{Binding Path=Entity.Good.Name}" Grid.Column="1"  Grid.Row="0" Grid.ColumnSpan="2" IsReadOnly="True"/>
+        <TextBox Width="180" Height="25" Text="{Binding Path=Entity.Good.Unit.Name}" Grid.Column="4" Grid.Row="0" Grid.ColumnSpan="2" IsReadOnly="True"/>
+        <TextBox Width="180" Height="25" Text="{Binding Path=Entity.TankId}" Grid.Column="7" Grid.Row="0" Grid.ColumnSpan="2" IsReadOnly="True"/>
+
+        <TextBox Width="180" Height="25" IsReadOnly="True"
+                Text="{Binding Entity.PreviousROB, StringFormat=\{0:n3\}, Mode=TwoWay,NotifyOnValidationError=True,ValidatesOnDataErrors=True, Converter={StaticResource EmptyValueConverter}}" Grid.Column="1"  Grid.Row="1" TextWrapping="Wrap"  Grid.ColumnSpan="2"/>
+        <TextBox Width="180" Height="25" IsReadOnly="True"
+                Text="{Binding Entity.ROB, StringFormat=\{0:n3\}, Mode=TwoWay,NotifyOnValidationError=True,ValidatesOnDataErrors=True, Converter={StaticResource EmptyValueConverter}}" Grid.Column="1"  Grid.Row="2" TextWrapping="Wrap"  Grid.ColumnSpan="2"/>
+        <TextBox Width="180" Height="25" IsReadOnly="True"
+                 Text="{Binding Entity.Consumption, StringFormat=\{0:n3\}, Mode=TwoWay}" Grid.Column="4"  Grid.Row="2" TextWrapping="Wrap" Grid.ColumnSpan="2"  />
+        <Grid Grid.Column="1"  Grid.Row="3"  Grid.ColumnSpan="2" Margin="10,0" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBox HorizontalAlignment="Stretch" Height="25" IsReadOnly="True" Grid.Column="0"
+                Text="{Binding Entity.Recieve, StringFormat=\{0:n3\}, Mode=TwoWay,NotifyOnValidationError=True, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource EmptyValueConverter}}" TextWrapping="Wrap" />
+            <Button Grid.Column="1" Height="25" Width="25" Command="{Binding FetchTrustIssueQuantityCommand.Command}" Visibility="{Binding IsTrustQuantityFetchPossible, Converter={StaticResource BooleanToVisibilityConverter}}"><Image Source="/MITD.Fuel.Presentation.UI.SL;component/Assets/refresh.png"></Image></Button>
+            <Button Grid.Column="1" Height="25" Width="25" Command="{Binding ClearTrustIssueQuantityCommand.Command}" Visibility="{Binding IsClearReceiveQuantityByTrustVisible, Converter={StaticResource BooleanToVisibilityConverter}}"><Image Source="/MITD.Fuel.Presentation.UI.SL;component/Assets/multiply-.png"></Image></Button>
+            
+        </Grid>
+        <TextBox Width="180" Height="25" IsReadOnly="True"
+                Text="{Binding Entity.Transfer, StringFormat=\{0:n3\}, Mode=TwoWay,NotifyOnValidationError=True, Converter={StaticResource EmptyValueConverter}}"  Grid.Column="1"  Grid.Row="4" TextWrapping="Wrap" Grid.ColumnSpan="2" />
+        <TextBox Width="180" Height="25" IsReadOnly="True"
+                Text="{Binding Entity.Correction, StringFormat=\{0:n3\}, Mode=TwoWay,NotifyOnValidationError=True, Converter={StaticResource EmptyValueConverter}}" Grid.Column="1"  Grid.Row="5" TextWrapping="Wrap" Grid.ColumnSpan="2" />
+        <TextBox Width="180" Height="25" 
+                Text="{Binding Entity.CorrectionPrice, StringFormat=\{0:n3\}, Mode=TwoWay,NotifyOnValidationError=True, Converter={StaticResource EmptyValueConverter}}" IsEnabled="{Binding IsCorrectionReferenceActive}" Grid.Column="1"  Grid.Row="7" TextWrapping="Wrap" Grid.ColumnSpan="2" 
+                 Visibility="{Binding IsCorrectionManualPricingActive, Converter={StaticResource BooleanToVisibilityConverter}}"
+                 />
+        
+        <!--ComboBoxEx-->
+
+        <UserControl:ComboBoxEx Grid.Column="4"   Grid.Row="3" Width="180" Height="25" IsEnabled="{Binding IsReceiveTypeActive, Mode=TwoWay}"
+                                SelectedValueProper="{Binding ReceiveId,Mode=TwoWay}" ItemsSource="{Binding ReceiveTypes}"  
+                                DisplayMemberPath="Name" SelectedValuePath="Id" Grid.ColumnSpan="2"/>
+
+        <UserControl:ComboBoxEx Grid.Column="4"  Grid.Row="4" Width="180" Height="25" IsEnabled="{Binding IsTransferTypeActive, Mode=TwoWay}"
+                                SelectedValueProper="{Binding TransferId,Mode=TwoWay}" 
+                                ItemsSource="{Binding TransferTypes}"  
+                                DisplayMemberPath="Name" SelectedValuePath="Id" Grid.ColumnSpan="2"/>
+
+        <UserControl:ComboBoxEx Grid.Column="4"  Grid.Row="5" Width="180" Height="25" Grid.ColumnSpan="2" 
+                                IsEnabled="{Binding IsCorrectionTypeActive, Mode=TwoWay}"
+                                SelectedValueProper="{Binding CorrectionTypeId, Mode=TwoWay}" 
+                                ItemsSource="{Binding CorrectionTypes}" 
+                                   DisplayMemberPath="Name" SelectedValuePath="Id"/>
+
+        <UserControl:ComboBoxEx Grid.Column="4"  Grid.Row="7" Width="180" Height="25" IsEnabled="{Binding IsCorrectionReferenceActive}"
+                                ItemsSource="{Binding CurrencyDtos}"
+                                SelectedItem="{Binding Entity.CurrencyDto,Mode=TwoWay}"
+                                SelectedValueProper="{Binding Entity.CurrencyDto.Id,Mode=TwoWay}" 
+                                SelectedValuePath="Id" DisplayMemberPath="Name"  Grid.ColumnSpan="2" 
+                                Visibility="{Binding IsCorrectionManualPricingActive, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+
+        <TextBox  Grid.Column="7"  Grid.Row="3"  Width="180" Height="25" Grid.ColumnSpan="2" Text="{Binding Entity.FuelReportReceiveReferenceNoDto.Code}" IsReadOnly="True" ></TextBox>
+        <UserControl:ComboBoxEx Grid.Column="7"  Grid.Row="3" Width="180" Height="25" 
+                ItemsSource="{Binding FuelReportReceiveReferenceNoDtos}"
+                SelectedItem="{Binding Entity.FuelReportReceiveReferenceNoDto,Mode=TwoWay}"
+                SelectedValueProper="{Binding Entity.FuelReportReceiveReferenceNoDto.Id,Mode=TwoWay}"
+                SelectedValuePath="Id" DisplayMemberPath="Code" Visibility="{Binding IsReceiveReferenceActive}"  
+                Grid.ColumnSpan="2" /> <!--IsEnabled="{Binding IsReceiveReferenceActive}"   -->
+
+        <TextBox  Grid.Column="7"  Grid.Row="4"  Width="180" Height="25" Grid.ColumnSpan="2" Text="{Binding Entity.FuelReportTransferReferenceNoDto.Code}" IsReadOnly="True"></TextBox>
+        <UserControl:ComboBoxEx Grid.Column="7"  Grid.Row="4" Width="180" Height="25" 
+                ItemsSource="{Binding FuelReportTransferReferenceNoDtos}"
+                SelectedItem="{Binding Entity.FuelReportTransferReferenceNoDto,Mode=TwoWay}"
+                SelectedValueProper="{Binding Entity.FuelReportTransferReferenceNoDto.Id,Mode=TwoWay}" 
+                SelectedValuePath="Id" DisplayMemberPath="Code" Visibility="{Binding IsTransferReferenceActive}" 
+                Grid.ColumnSpan="2" /> <!--IsEnabled="{Binding IsTransferReferenceActive}"-->
+
+        <UserControl:ComboBoxEx Grid.Column="1"  Grid.Row="6" Width="180" Height="25" 
+                ItemsSource="{Binding CorrectionPricingTypeItems}"
+                SelectedValueProper="{Binding CorrectionPricingTypeId,Mode=TwoWay}" 
+                IsEnabled="{Binding IsCorrectionPricingTypeActive, Mode=TwoWay}"
+                SelectedValuePath="Id" DisplayMemberPath="Name" 
+                Grid.ColumnSpan="2" />
+        
+        <UserControl:ComboBoxEx Grid.Column="1"  Grid.Row="7" Width="180" Height="25" 
+                ItemsSource="{Binding Entity.CorrectionReferenceNoDtos}"
+                SelectedItem="{Binding Entity.FuelReportCorrectionReferenceNoDto,Mode=TwoWay}"
+                SelectedValueProper="{Binding Entity.FuelReportCorrectionReferenceNoDto.Id,Mode=TwoWay}" 
+                SelectedValuePath="Id" DisplayMemberPath="Code" IsEnabled="{Binding IsCorrectionReferenceActive}"
+                Visibility="{Binding IsCorrectionLastIssuedConsumptionPricingActive, Converter={StaticResource BooleanToVisibilityConverter}}"
+                Grid.ColumnSpan="2" />
+        
+
+        <!--Button-->
+        <Button  Content="{Binding SubmitCommand.DisplayName}" Command="{Binding SubmitCommand.Command}"   Grid.Column="4"   Grid.Row="8" Width="80" Height="25" IsEnabled="{Binding IsEditingPossible}" />
+        <Button Content="{Binding CancelCommand.DisplayName}" Command="{Binding CancelCommand.Command}"  Grid.Column="5"   Grid.Row="8" Width="80" Height="25" />
+
+    </Grid>
+</UserControl:ViewBase>

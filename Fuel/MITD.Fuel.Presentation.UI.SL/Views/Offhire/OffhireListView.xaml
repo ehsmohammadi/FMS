@@ -1,0 +1,218 @@
+﻿<ui:ViewBase x:Class="MITD.Fuel.Presentation.UI.SL.Views.Offhire.OffhireListView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:ui="http://schemas.mitd.com/silverlight/2012/xaml/presentation.ui"
+        xmlns:viewModels="clr-namespace:MITD.Fuel.Presentation.Logic.SL.ViewModels;assembly=MITD.Fuel.Presentation.Logic.SL"
+        xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
+        xmlns:converters="clr-namespace:MITD.Fuel.Presentation.UI.SL.Converters"
+        xmlns:controls="clr-namespace:MITD.Fuel.Presentation.UI.SL.Controls"
+        mc:Ignorable="d" d:DesignHeight="300"
+        d:DesignWidth="400" d:DataContext="{d:DesignInstance Type=viewModels:OffhireListVM}"
+        Style="{StaticResource DefaultStyle}" >
+    <UserControl.Resources>
+        <converters:IsNotNullConverter x:Key="IsNotNullConverter" />
+        <converters:GregorianDateToPersianConverter x:Key="GregorianDateToPersianConverter"/>
+        <Style x:Key="ComboBoxItemStyle" TargetType="ComboBoxItem">
+            <Setter Property="Height" Value="25" />
+        </Style>
+    </UserControl.Resources>
+    <Grid x:Name="MainLayoutGrid" Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition x:Name="FilterSectionGridRow" Height="Auto" />
+            <RowDefinition x:Name="ListSectionGridRow" Height="*" />
+            <RowDefinition x:Name="DetailSectionGridRow" Height="*" />
+        </Grid.RowDefinitions>
+        <Grid x:Name="FilterSectionGrid" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition x:Name="FilterControlsColumn" Width="Auto" />
+                <ColumnDefinition x:Name="FilterCommandsColumn" Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Grid x:Name="FilterControlsGrid" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <!--================================================================================-->
+                <TextBlock x:Name="VesselFilterTitle" Text="کشـتی" Grid.Column="0" Grid.Row="0" Margin="5" />
+                <!--<ComboBox x:Name="VesselFilterCombo" Grid.Column="1" Grid.Row="0" Width="150" Height="25"
+                        Margin="0,5,10,5" ItemsSource="{Binding Filtering.Vessels, Mode=OneWay}"
+                        ItemContainerStyle="{StaticResource ComboBoxItemStyle}"
+                        SelectedItem="{Binding Filtering.SelectedVessel, Mode=TwoWay}" DisplayMemberPath="Name"
+                        SelectedValuePath="Id"></ComboBox>-->
+
+                <controls:DataGridDropdownComboboxControl x:Name="VesselFilterCombo" 
+                           ItemsSource="{Binding Filtering.Vessels}" 
+                           SelectedValuePath="Id" 
+                           SelectedValueProper="{Binding Path=Filtering.SelectedVessel.Id}" 
+                           SelectedItem="{Binding Path=Filtering.SelectedVessel, Mode=TwoWay}" 
+                            Grid.Column="1" Grid.Row="0" Width="150" Height="25" Margin="0,5,10,5">
+                    <controls:DataGridDropdownComboboxControl.DataGridColumns>
+                        <sdk:DataGridTextColumn Binding="{Binding Name}" MinWidth="150" Header="نام"/>
+                        <sdk:DataGridTextColumn Binding="{Binding Code}" MinWidth="100" Header="کد"/>
+                    </controls:DataGridDropdownComboboxControl.DataGridColumns>
+                    <controls:DataGridDropdownComboboxControl.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <sdk:Label Content="{Binding Name}"/>
+                                <sdk:Label Content="-"/>
+                                <sdk:Label Content="{Binding Code}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </controls:DataGridDropdownComboboxControl.ItemTemplate>
+                </controls:DataGridDropdownComboboxControl>
+
+                <!--================================================================================-->
+                <TextBlock x:Name="FromDateFilterTitle" Text="از تاریخ" Grid.Column="0" Grid.Row="1" Margin="5" />
+                <!--<pd:PDatePicker x:Name="FromDatePicker" Grid.Column="1" Grid.Row="1" Margin="0,5,10,5"
+                        SelectedDate="{Binding Filtering.FromDate, Mode=TwoWay}" />-->
+                <controls:MultiTypeDateTimeControl Height="24" 
+                                           DisplayOrientation="Horizontal"
+                                           CalendarType="Persian"
+                                           DisplayMode="Date" x:Name="FromDatePicker" Grid.Column="1" Grid.Row="1" Margin="0,5,10,5"
+                        SelectedDate="{Binding Filtering.FromDate, Mode=TwoWay}" />
+                <!--================================================================================-->
+                <TextBlock x:Name="ToDateFilterTitle" Text="تا تاریخ" Grid.Column="2" Grid.Row="1" Margin="5" />
+                <!--<pd:PDatePicker x:Name="ToDatePicker" Grid.Column="3" Grid.Row="1" Margin="0,5,10,5"
+                        SelectedDate="{Binding Filtering.ToDate, Mode=TwoWay}" />-->
+                <controls:MultiTypeDateTimeControl Height="24" 
+                                           DisplayOrientation="Horizontal"
+                                           CalendarType="Persian"
+                                           DisplayMode="Date" x:Name="ToDatePicker" Grid.Column="3" Grid.Row="1" Margin="0,5,10,5"
+                        SelectedDate="{Binding Filtering.ToDate, Mode=TwoWay}" />
+                <!--================================================================================-->
+            </Grid>
+            <StackPanel x:Name="FilterCommandsGrid" Grid.Column="1" HorizontalAlignment="Stretch"
+                    VerticalAlignment="Bottom" FlowDirection="RightToLeft" Orientation="Horizontal">
+                <!--================================================================================-->
+                <Button x:Name="SearchButton" Width="75" Height="25" Margin="5"
+                        Content="{Binding SearchCommand.DisplayName}" Command="{Binding SearchCommand.Command}" />
+                <!--================================================================================-->
+                <Button x:Name="ClearSearchButton" Width="100" Height="25" Margin="5,0" Visibility="Collapsed"
+                        Content="{Binding ClearSearchCommand.DisplayName}"
+                        Command="{Binding ClearSearchCommand.Command}" />
+                <!--================================================================================-->
+            </StackPanel>
+        </Grid>
+        <Grid x:Name="ListSectionGrid" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <Grid.RowDefinitions>
+                <RowDefinition x:Name="ListDataGridRow" Height="*" />
+                <RowDefinition x:Name="ListCommandsGridRow" Height="Auto" />
+            </Grid.RowDefinitions>
+            <!--================================================================================-->
+            <sdk:DataGrid x:Name="OffhireDataGrid" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                    AutoGenerateColumns="False" IsReadOnly="True" ItemsSource="{Binding PagedOffhireData}"
+                    SelectedItem="{Binding SelectedOffhire, Mode=TwoWay}" SelectionMode="Single">
+                <sdk:DataGrid.Columns>
+                    <sdk:DataGridTextColumn Header="شناسه" Binding="{Binding Id}" />
+                    <sdk:DataGridTextColumn Header="شماره مرجع در سیستم Offhire" Binding="{Binding ReferenceNumber}" />
+                    <sdk:DataGridTextColumn Header="کشتی" Binding="{Binding VesselInCompany.Name}" />
+                    <sdk:DataGridTextColumn Header="محل رخداد" Binding="{Binding OffhireLocation.Name}" />
+                    <sdk:DataGridTextColumn Header="تاریخ شروع" Binding="{Binding StartDateTime}" />
+                    <sdk:DataGridTextColumn Header="تاریخ شروع (شمسی)"
+                            Binding="{Binding StartDateTime, Converter={StaticResource GregorianDateToPersianConverter}}" />
+                    <sdk:DataGridTextColumn Header="تاریخ پایان" Binding="{Binding EndDateTime}" />
+                    <sdk:DataGridTextColumn Header="تاریخ پایان (شمسی)"
+                            Binding="{Binding EndDateTime, Converter={StaticResource GregorianDateToPersianConverter}}" />
+                    <sdk:DataGridTextColumn Header="شماره سفر" Binding="{Binding Voyage.Code}" /> 
+                    <sdk:DataGridTextColumn Header="نوع ارز سند" Binding="{Binding VoucherCurrency.Name}" />
+                    <sdk:DataGridTextColumn Header="تاریخ سند" Binding="{Binding VoucherDate}" />
+                    <sdk:DataGridTextColumn Header="کاربر مسئول" Binding="{Binding UserInCharge.Name}" />
+                    <sdk:DataGridTextColumn Header="وضعیت" Binding="{Binding CurrentState}" />
+                </sdk:DataGrid.Columns>
+            </sdk:DataGrid>
+            <!--================================================================================-->
+            <StackPanel Grid.Row="1" HorizontalAlignment="Center" Orientation="Horizontal">
+                <!--================================================================================-->
+                <ui:CustomDataPager x:Name="OffhireListDataPager" Height="26" FontFamily="Tahoma" FontSize="11"
+                        Width="200" Source="{Binding PagedOffhireData, Mode=TwoWay}"
+                        PageSize="{Binding PagedOffhireData.PageSize, Mode=TwoWay, FallbackValue=10}"
+                        PageIndex="{Binding PagedOffhireData.PageIndex, Mode=TwoWay}" />
+                <!--================================================================================-->
+                <Button x:Name="AddOffhireButton" Width="80" Content="{Binding AddOffhireCommand.DisplayName}"
+                        Command="{Binding AddOffhireCommand.Command}" IsEnabled="True" Margin="2,0" />
+                <!--================================================================================-->
+                <Button x:Name="EditOffhireButton" Width="80" Content="{Binding EditOffhireCommand.DisplayName}"
+                        Command="{Binding EditOffhireCommand.Command}"
+                        IsEnabled="{Binding SelectedOffhire, Converter={StaticResource IsNotNullConverter}}"  Margin="2,0"/>
+                <!--================================================================================-->
+                <Button x:Name="DeleteOffhireButton" Width="80" Content="{Binding DeleteOffhireCommand.DisplayName}"
+                        Command="{Binding DeleteOffhireCommand.Command}"
+                        IsEnabled="{Binding SelectedOffhire, Converter={StaticResource IsNotNullConverter}}" Margin="2,0"/>
+                <!--================================================================================-->
+                <Button x:Name="ApproveButton" Width="80" Content="{Binding ApproveCommand.DisplayName}"
+                        Command="{Binding ApproveCommand.Command}"
+                        IsEnabled="{Binding SelectedOffhire, Converter={StaticResource IsNotNullConverter}}" Margin="2,0" />
+                <!--================================================================================-->
+                <Button x:Name="RejectButton" Width="80" Content="{Binding RejectCommand.DisplayName}"
+                        Command="{Binding RejectCommand.Command}"
+                        IsEnabled="{Binding SelectedOffhire, Converter={StaticResource IsNotNullConverter}}" Margin="2,0" />
+                <!--================================================================================-->
+            </StackPanel>
+            <!--================================================================================-->
+        </Grid>
+        <Grid x:Name="DetailSectionGrid" Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <Grid.RowDefinitions>
+                <RowDefinition x:Name="DetailDataSectionGridRow" Height="*" />
+                <RowDefinition x:Name="DetailCommandsGridRow" Height="Auto" />
+                <RowDefinition x:Name="DetailInventoryOperationsGridRow" Height="*" />
+            </Grid.RowDefinitions>
+            <!--================================================================================-->
+            <sdk:DataGrid x:Name="OffhireDetailDataGrid" Grid.Row="0" HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch" AutoGenerateColumns="False" IsReadOnly="True"
+                    ItemsSource="{Binding PagedOffhireDetailData}"
+                    SelectedItem="{Binding SelectedOffhireDetail, Mode=TwoWay}" SelectionMode="Single">
+                <sdk:DataGrid.Columns>
+                    <!--<sdk:DataGridTextColumn Header="شناسه" Binding="{Binding Id}" />-->
+                    <sdk:DataGridTextColumn Header="نوع" Binding="{Binding Good.Name}" />
+                    <sdk:DataGridTextColumn Header="واحد" Binding="{Binding Unit.Name}" />
+                    <sdk:DataGridTextColumn Header="تانک" Binding="{Binding Tank.Code}" />
+                    <sdk:DataGridTextColumn Header="مقدار" Binding="{Binding Quantity, StringFormat=\{0:n3\}}" />
+                    <sdk:DataGridTextColumn Header="فـی (ارز سند)" Binding="{Binding FeeInVoucherCurrency, StringFormat=\{0:n2\}}" />
+                    <sdk:DataGridTextColumn Header="فـی (ریال)" Binding="{Binding FeeInMainCurrency, StringFormat=\{0:n0\}}" />
+                </sdk:DataGrid.Columns>
+            </sdk:DataGrid>
+            <!--================================================================================-->
+            <StackPanel x:Name="DetailCommandsPanel" Grid.Row="1" HorizontalAlignment="Center" Orientation="Horizontal">
+                <!--================================================================================-->
+                <ui:CustomDataPager x:Name="OffhireDetailListDataPager" Height="26" FontFamily="Tahoma" FontSize="11"
+                        Width="200" Source="{Binding PagedOffhireDetailData, Mode=TwoWay}"
+                        PageSize="{Binding PagedOffhireDetailData.PageSize, Mode=TwoWay, FallbackValue=10}"
+                        PageIndex="{Binding PagedOffhireDetailData.PageIndex, Mode=TwoWay}" />
+                <!--================================================================================-->
+                <!--<Button x:Name="AddOffhireDetailButton" Width="80" Content="{Binding AddOffhireDetailCommand.DisplayName}"
+                        Command="{Binding AddOffhireDetailCommand.Command}"
+                        IsEnabled="{Binding SelectedOffhire, Converter={StaticResource IsNotNullConverter}}" />
+                <Button x:Name="EditOffhireDetailButton" Width="80" Content="{Binding EditOffhireDetailCommand.DisplayName}"
+                        Command="{Binding EditOffhireDetailCommand.Command}"
+                        IsEnabled="{Binding SelectedOffhireDetail, Converter={StaticResource IsNotNullConverter}}" />
+                <Button x:Name="DeleteOffhireDetailButton" Width="80"
+                        Content="{Binding DeleteOffhireDetailCommand.DisplayName}"
+                        Command="{Binding DeleteOffhireCommand.Command}"
+                        IsEnabled="{Binding SelectedOffhireDetail, Converter={StaticResource IsNotNullConverter}}" />
+                -->
+            </StackPanel>
+            <!--================================================================================-->
+            <!--<tk:DockPanel x:Name="DetailInventoryOperations" Grid.Row="2" HorizontalAlignment="Stretch" 
+                        VerticalAlignment="Stretch" FlowDirection="RightToLeft">
+                <sdk:Label x:Name="InventoryOperationsTitle" tk:DockPanel.Dock="Top" Content="لیست رسیدها و حواله های مرتبط"/>
+                    <sdk:DataGrid x:Name="InventoryOperationDataGrid" AutoGenerateColumns="False"
+                            IsReadOnly="True" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                            SelectionMode="Single" ItemsSource="{Binding PagedInventoryOperationData}">
+                        <sdk:DataGrid.Columns>
+                            <sdk:DataGridTextColumn Binding="{Binding Code}" Header="کد" />
+                            <sdk:DataGridTextColumn Binding="{Binding ActionType}" Header="نوع عملیات انبارداری" />
+                            <sdk:DataGridTextColumn Binding="{Binding ActionDate}" Header="تاريخ عملیات انبارداری" />
+                        </sdk:DataGrid.Columns>
+                    </sdk:DataGrid>
+            </tk:DockPanel>-->
+        </Grid>
+    </Grid>
+</ui:ViewBase>

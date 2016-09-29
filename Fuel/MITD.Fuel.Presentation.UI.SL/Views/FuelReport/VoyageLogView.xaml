@@ -1,0 +1,64 @@
+<UserControl:ViewBase 
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
+    xmlns:views="clr-namespace:MITD.Fuel.Presentation.UI.SL.Views" 
+    xmlns:UserControl="clr-namespace:MITD.Presentation.UI;assembly=MITD.Presentation.UI.SL"
+    xmlns:ViewModels="clr-namespace:MITD.Fuel.Presentation.FuelApp.Logic.SL.ViewModels;assembly=MITD.Fuel.Presentation.Logic.SL"
+    xmlns:P="clr-namespace:MITD.Presentation.UI.DateTimePicker.Views;assembly=MITD.Presentation.UI.SL"
+    xmlns:SL="clr-namespace:MITD.Presentation.UI;assembly=MITD.Presentation.UI.SL"
+    xmlns:converters="clr-namespace:MITD.Fuel.Presentation.UI.SL.Converters"
+    x:Class="MITD.Fuel.Presentation.UI.SL.Views.VoyageLogView"
+    mc:Ignorable="d" d:DesignHeight="300" d:DesignWidth="400"  
+    HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+     Style="{StaticResource DefaultStyle}" 
+    >
+    <UserControl.Resources>
+        <converters:VoyageActiveStateConverter x:Key="VoyageActiveStateConverter"></converters:VoyageActiveStateConverter>
+        
+    </UserControl.Resources>
+    <Grid x:Name="uxLayoutGrid"   HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+
+        </Grid.RowDefinitions>
+        
+        
+        <!--VoyagesLog Grid-->
+        <Grid x:Name="uxVoyageLogGrid" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <!--Voyages data grid-->
+            <sdk:DataGrid AutoGenerateColumns="False"  x:Name="uxVoyageLogDataGrid"  VerticalAlignment="Stretch" SelectionMode="Single" IsReadOnly="True"
+                    ItemsSource="{Binding PagedData}" SelectedItem="{Binding SelectedVoyageLog, Mode=TwoWay}"
+                    Grid.Row="0">
+
+                <sdk:DataGrid.Columns>
+                    <sdk:DataGridTextColumn Binding="{Binding Path=Id}"  CanUserReorder="True" CanUserResize="True" CanUserSort="True" Width="Auto" Header="سريال "   />
+                    <sdk:DataGridTextColumn Binding="{Binding Path=VoyageNumber}" CanUserReorder="True" CanUserResize="True" CanUserSort="True" Width="Auto" Header="شماره سفر" />
+                    <sdk:DataGridTextColumn Binding="{Binding Path=ChangeDate}"  CanUserReorder="True" CanUserResize="True" CanUserSort="True" Width="Auto" Header="تاریخ ویرایش"   />
+                    <sdk:DataGridTextColumn Binding="{Binding Path=StartDate}"  CanUserReorder="True" CanUserResize="True" CanUserSort="True" Width="Auto" Header="تاریخ شروع "   />
+                    <sdk:DataGridTextColumn Binding="{Binding Path=EndDate}"  CanUserReorder="True" CanUserResize="True" CanUserSort="True" Width="Auto" Header="تاریخ پایان"   />
+                    <sdk:DataGridTextColumn Binding="{Binding Path=IsActive, Converter={StaticResource VoyageActiveStateConverter}}"  CanUserReorder="True" CanUserResize="True" CanUserSort="True" Width="Auto" Header="وضعیت"/>
+                    <sdk:DataGridTextColumn Binding="{Binding Path=VesselInCompany.Name}"  CanUserReorder="True" CanUserResize="True" CanUserSort="True" Width="Auto" Header="نام شناور"/>
+                    <sdk:DataGridTextColumn Binding="{Binding Path=VesselInCompany.Code}"  CanUserReorder="True" CanUserResize="True" CanUserSort="True" Width="Auto" Header="کد شناور"/>
+                    <sdk:DataGridTextColumn Binding="{Binding Path=Company.Name}"  CanUserReorder="True" CanUserResize="True" CanUserSort="True" Width="Auto" Header="شرکت" />
+                </sdk:DataGrid.Columns>
+
+            </sdk:DataGrid>
+            
+            <StackPanel Grid.Row="1" HorizontalAlignment="Center" Orientation="Horizontal">
+                <UserControl:CustomDataPager x:Name="uxVoyageLogPager" Height="26" FontFamily="Tahoma" FontSize="11" PageSize="{Binding PagedData.PageSize, Mode=TwoWay, TargetNullValue=10}" Width="200" Source="{Binding PagedData, Mode=TwoWay}" PageIndex="{Binding PagedData.PageIndex, Mode=TwoWay, TargetNullValue=1}"/>
+            </StackPanel>
+            <!--buttons-->
+            <StackPanel x:Name="uxButtonsPanel" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="2"/>
+        </Grid>
+    </Grid>
+</UserControl:ViewBase>

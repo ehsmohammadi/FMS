@@ -1,0 +1,352 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="StorageSpaceModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'StorageSpace.Fuel.EOVReportsView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="EOVReportsView">
+          <Key>
+            <PropertyRef Name="DraftID" />
+            <PropertyRef Name="FuelReportType" />
+            <PropertyRef Name="PortName" />
+            <PropertyRef Name="PortTime" />
+            <PropertyRef Name="AtSeaLatitudeDegree" />
+            <PropertyRef Name="AtSeaLatitudeMinute" />
+            <PropertyRef Name="AtSeaLongitudeDegree" />
+            <PropertyRef Name="AtSeaLongitudeMinute" />
+            <PropertyRef Name="ObsDist" />
+            <PropertyRef Name="EngDist" />
+            <PropertyRef Name="SteamTime" />
+            <PropertyRef Name="AvObsSpeed" />
+            <PropertyRef Name="AvEngSpeed" />
+            <PropertyRef Name="RPM" />
+            <PropertyRef Name="Slip" />
+            <PropertyRef Name="WindDir" />
+            <PropertyRef Name="WindForce" />
+            <PropertyRef Name="SeaDir" />
+            <PropertyRef Name="SeaForce" />
+            <PropertyRef Name="ROBHO" />
+            <PropertyRef Name="ROBDO" />
+            <PropertyRef Name="ROBMGO" />
+            <PropertyRef Name="ROBFW" />
+            <PropertyRef Name="ConsInPortHO" />
+            <PropertyRef Name="ConsInPortDO" />
+            <PropertyRef Name="ConsInPortMGO" />
+            <PropertyRef Name="ConsInPortFW" />
+            <PropertyRef Name="ConsAtSeaHO" />
+            <PropertyRef Name="ConsAtSeaDO" />
+            <PropertyRef Name="ConsAtSeaMGO" />
+            <PropertyRef Name="ConsAtSeaFW" />
+            <PropertyRef Name="ReceivedHO" />
+            <PropertyRef Name="ReceivedDO" />
+            <PropertyRef Name="ReceivedMGO" />
+            <PropertyRef Name="ReceivedFW" />
+            <PropertyRef Name="ETAPort" />
+            <PropertyRef Name="DateIn" />
+            <PropertyRef Name="IsSM" />
+            <PropertyRef Name="InPortOrAtSea" />
+            <PropertyRef Name="ShipCode" />
+            <PropertyRef Name="VoyageId" />
+          </Key>
+          <Property Name="DraftID" Type="int" Nullable="false" />
+          <Property Name="ShipID" Type="int" />
+          <Property Name="ConsNo" Type="int" />
+          <Property Name="ShipName" Type="varchar" MaxLength="50" />
+          <Property Name="VoyageNo" Type="nvarchar" MaxLength="200" />
+          <Property Name="Year" Type="int" />
+          <Property Name="Month" Type="int" />
+          <Property Name="Day" Type="int" />
+          <Property Name="Time" Type="time" Precision="7" />
+          <Property Name="FuelReportType" Type="int" Nullable="false" />
+          <Property Name="PortName" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="PortTime" Type="int" Nullable="false" />
+          <Property Name="AtSeaLatitudeDegree" Type="int" Nullable="false" />
+          <Property Name="AtSeaLatitudeMinute" Type="int" Nullable="false" />
+          <Property Name="AtSeaLongitudeDegree" Type="int" Nullable="false" />
+          <Property Name="AtSeaLongitudeMinute" Type="int" Nullable="false" />
+          <Property Name="ObsDist" Type="int" Nullable="false" />
+          <Property Name="EngDist" Type="int" Nullable="false" />
+          <Property Name="SteamTime" Type="int" Nullable="false" />
+          <Property Name="AvObsSpeed" Type="int" Nullable="false" />
+          <Property Name="AvEngSpeed" Type="int" Nullable="false" />
+          <Property Name="RPM" Type="int" Nullable="false" />
+          <Property Name="Slip" Type="int" Nullable="false" />
+          <Property Name="WindDir" Type="int" Nullable="false" />
+          <Property Name="WindForce" Type="int" Nullable="false" />
+          <Property Name="SeaDir" Type="int" Nullable="false" />
+          <Property Name="SeaForce" Type="int" Nullable="false" />
+          <Property Name="ROBHO" Type="int" Nullable="false" />
+          <Property Name="ROBDO" Type="int" Nullable="false" />
+          <Property Name="ROBMGO" Type="int" Nullable="false" />
+          <Property Name="ROBFW" Type="int" Nullable="false" />
+          <Property Name="ConsInPortHO" Type="int" Nullable="false" />
+          <Property Name="ConsInPortDO" Type="int" Nullable="false" />
+          <Property Name="ConsInPortMGO" Type="int" Nullable="false" />
+          <Property Name="ConsInPortFW" Type="int" Nullable="false" />
+          <Property Name="ConsAtSeaHO" Type="int" Nullable="false" />
+          <Property Name="ConsAtSeaDO" Type="int" Nullable="false" />
+          <Property Name="ConsAtSeaMGO" Type="int" Nullable="false" />
+          <Property Name="ConsAtSeaFW" Type="int" Nullable="false" />
+          <Property Name="ReceivedHO" Type="int" Nullable="false" />
+          <Property Name="ReceivedDO" Type="int" Nullable="false" />
+          <Property Name="ReceivedMGO" Type="int" Nullable="false" />
+          <Property Name="ReceivedFW" Type="int" Nullable="false" />
+          <Property Name="ETAPort" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="ETADate" Type="nvarchar" MaxLength="15" />
+          <Property Name="DateIn" Type="datetime" Nullable="false" />
+          <Property Name="IsSM" Type="int" Nullable="false" />
+          <Property Name="InPortOrAtSea" Type="int" Nullable="false" />
+          <Property Name="ImportDate" Type="nvarchar" MaxLength="15" />
+          <Property Name="ShipCode" Type="char" MaxLength="4" Nullable="false" />
+          <Property Name="VoyageId" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="StorageSpaceModelStoreContainer">
+          <EntitySet Name="EOVReportsView" EntityType="Self.EOVReportsView" store:Type="Views" store:Schema="Fuel">
+            <DefiningQuery>SELECT 
+    [EOVReportsView].[DraftID] AS [DraftID], 
+    [EOVReportsView].[ShipID] AS [ShipID], 
+    [EOVReportsView].[ConsNo] AS [ConsNo], 
+    [EOVReportsView].[ShipName] AS [ShipName], 
+    [EOVReportsView].[VoyageNo] AS [VoyageNo], 
+    [EOVReportsView].[Year] AS [Year], 
+    [EOVReportsView].[Month] AS [Month], 
+    [EOVReportsView].[Day] AS [Day], 
+    [EOVReportsView].[Time] AS [Time], 
+    [EOVReportsView].[FuelReportType] AS [FuelReportType], 
+    [EOVReportsView].[PortName] AS [PortName], 
+    [EOVReportsView].[PortTime] AS [PortTime], 
+    [EOVReportsView].[AtSeaLatitudeDegree] AS [AtSeaLatitudeDegree], 
+    [EOVReportsView].[AtSeaLatitudeMinute] AS [AtSeaLatitudeMinute], 
+    [EOVReportsView].[AtSeaLongitudeDegree] AS [AtSeaLongitudeDegree], 
+    [EOVReportsView].[AtSeaLongitudeMinute] AS [AtSeaLongitudeMinute], 
+    [EOVReportsView].[ObsDist] AS [ObsDist], 
+    [EOVReportsView].[EngDist] AS [EngDist], 
+    [EOVReportsView].[SteamTime] AS [SteamTime], 
+    [EOVReportsView].[AvObsSpeed] AS [AvObsSpeed], 
+    [EOVReportsView].[AvEngSpeed] AS [AvEngSpeed], 
+    [EOVReportsView].[RPM] AS [RPM], 
+    [EOVReportsView].[Slip] AS [Slip], 
+    [EOVReportsView].[WindDir] AS [WindDir], 
+    [EOVReportsView].[WindForce] AS [WindForce], 
+    [EOVReportsView].[SeaDir] AS [SeaDir], 
+    [EOVReportsView].[SeaForce] AS [SeaForce], 
+    [EOVReportsView].[ROBHO] AS [ROBHO], 
+    [EOVReportsView].[ROBDO] AS [ROBDO], 
+    [EOVReportsView].[ROBMGO] AS [ROBMGO], 
+    [EOVReportsView].[ROBFW] AS [ROBFW], 
+    [EOVReportsView].[ConsInPortHO] AS [ConsInPortHO], 
+    [EOVReportsView].[ConsInPortDO] AS [ConsInPortDO], 
+    [EOVReportsView].[ConsInPortMGO] AS [ConsInPortMGO], 
+    [EOVReportsView].[ConsInPortFW] AS [ConsInPortFW], 
+    [EOVReportsView].[ConsAtSeaHO] AS [ConsAtSeaHO], 
+    [EOVReportsView].[ConsAtSeaDO] AS [ConsAtSeaDO], 
+    [EOVReportsView].[ConsAtSeaMGO] AS [ConsAtSeaMGO], 
+    [EOVReportsView].[ConsAtSeaFW] AS [ConsAtSeaFW], 
+    [EOVReportsView].[ReceivedHO] AS [ReceivedHO], 
+    [EOVReportsView].[ReceivedDO] AS [ReceivedDO], 
+    [EOVReportsView].[ReceivedMGO] AS [ReceivedMGO], 
+    [EOVReportsView].[ReceivedFW] AS [ReceivedFW], 
+    [EOVReportsView].[ETAPort] AS [ETAPort], 
+    [EOVReportsView].[ETADate] AS [ETADate], 
+    [EOVReportsView].[DateIn] AS [DateIn], 
+    [EOVReportsView].[IsSM] AS [IsSM], 
+    [EOVReportsView].[InPortOrAtSea] AS [InPortOrAtSea], 
+    [EOVReportsView].[ImportDate] AS [ImportDate], 
+    [EOVReportsView].[ShipCode] AS [ShipCode], 
+    [EOVReportsView].[VoyageId] AS [VoyageId]
+    FROM [Fuel].[EOVReportsView] AS [EOVReportsView]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="StorageSpaceModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="StorageSpaceEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="EOVReportsViews" EntityType="StorageSpaceModel.EOVReportsView" />
+        </EntityContainer>
+        <EntityType Name="EOVReportsView">
+          <Key>
+            <PropertyRef Name="DraftID" />
+            <PropertyRef Name="FuelReportType" />
+            <PropertyRef Name="PortName" />
+            <PropertyRef Name="PortTime" />
+            <PropertyRef Name="AtSeaLatitudeDegree" />
+            <PropertyRef Name="AtSeaLatitudeMinute" />
+            <PropertyRef Name="AtSeaLongitudeDegree" />
+            <PropertyRef Name="AtSeaLongitudeMinute" />
+            <PropertyRef Name="ObsDist" />
+            <PropertyRef Name="EngDist" />
+            <PropertyRef Name="SteamTime" />
+            <PropertyRef Name="AvObsSpeed" />
+            <PropertyRef Name="AvEngSpeed" />
+            <PropertyRef Name="RPM" />
+            <PropertyRef Name="Slip" />
+            <PropertyRef Name="WindDir" />
+            <PropertyRef Name="WindForce" />
+            <PropertyRef Name="SeaDir" />
+            <PropertyRef Name="SeaForce" />
+            <PropertyRef Name="ROBHO" />
+            <PropertyRef Name="ROBDO" />
+            <PropertyRef Name="ROBMGO" />
+            <PropertyRef Name="ROBFW" />
+            <PropertyRef Name="ConsInPortHO" />
+            <PropertyRef Name="ConsInPortDO" />
+            <PropertyRef Name="ConsInPortMGO" />
+            <PropertyRef Name="ConsInPortFW" />
+            <PropertyRef Name="ConsAtSeaHO" />
+            <PropertyRef Name="ConsAtSeaDO" />
+            <PropertyRef Name="ConsAtSeaMGO" />
+            <PropertyRef Name="ConsAtSeaFW" />
+            <PropertyRef Name="ReceivedHO" />
+            <PropertyRef Name="ReceivedDO" />
+            <PropertyRef Name="ReceivedMGO" />
+            <PropertyRef Name="ReceivedFW" />
+            <PropertyRef Name="ETAPort" />
+            <PropertyRef Name="DateIn" />
+            <PropertyRef Name="IsSM" />
+            <PropertyRef Name="InPortOrAtSea" />
+            <PropertyRef Name="ShipCode" />
+            <PropertyRef Name="VoyageId" />
+          </Key>
+          <Property Name="DraftID" Type="Int32" Nullable="false" />
+          <Property Name="ShipID" Type="Int32" />
+          <Property Name="ConsNo" Type="Int32" />
+          <Property Name="ShipName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="VoyageNo" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Year" Type="Int32" />
+          <Property Name="Month" Type="Int32" />
+          <Property Name="Day" Type="Int32" />
+          <Property Name="FuelReportType" Type="Int32" Nullable="false" />
+          <Property Name="PortName" Type="String" Nullable="false" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="PortTime" Type="Int32" Nullable="false" />
+          <Property Name="AtSeaLatitudeDegree" Type="Int32" Nullable="false" />
+          <Property Name="AtSeaLatitudeMinute" Type="Int32" Nullable="false" />
+          <Property Name="AtSeaLongitudeDegree" Type="Int32" Nullable="false" />
+          <Property Name="AtSeaLongitudeMinute" Type="Int32" Nullable="false" />
+          <Property Name="ObsDist" Type="Int32" Nullable="false" />
+          <Property Name="EngDist" Type="Int32" Nullable="false" />
+          <Property Name="SteamTime" Type="Int32" Nullable="false" />
+          <Property Name="AvObsSpeed" Type="Int32" Nullable="false" />
+          <Property Name="AvEngSpeed" Type="Int32" Nullable="false" />
+          <Property Name="RPM" Type="Int32" Nullable="false" />
+          <Property Name="Slip" Type="Int32" Nullable="false" />
+          <Property Name="WindDir" Type="Int32" Nullable="false" />
+          <Property Name="WindForce" Type="Int32" Nullable="false" />
+          <Property Name="SeaDir" Type="Int32" Nullable="false" />
+          <Property Name="SeaForce" Type="Int32" Nullable="false" />
+          <Property Name="ROBHO" Type="Int32" Nullable="false" />
+          <Property Name="ROBDO" Type="Int32" Nullable="false" />
+          <Property Name="ROBMGO" Type="Int32" Nullable="false" />
+          <Property Name="ROBFW" Type="Int32" Nullable="false" />
+          <Property Name="ConsInPortHO" Type="Int32" Nullable="false" />
+          <Property Name="ConsInPortDO" Type="Int32" Nullable="false" />
+          <Property Name="ConsInPortMGO" Type="Int32" Nullable="false" />
+          <Property Name="ConsInPortFW" Type="Int32" Nullable="false" />
+          <Property Name="ConsAtSeaHO" Type="Int32" Nullable="false" />
+          <Property Name="ConsAtSeaDO" Type="Int32" Nullable="false" />
+          <Property Name="ConsAtSeaMGO" Type="Int32" Nullable="false" />
+          <Property Name="ConsAtSeaFW" Type="Int32" Nullable="false" />
+          <Property Name="ReceivedHO" Type="Int32" Nullable="false" />
+          <Property Name="ReceivedDO" Type="Int32" Nullable="false" />
+          <Property Name="ReceivedMGO" Type="Int32" Nullable="false" />
+          <Property Name="ReceivedFW" Type="Int32" Nullable="false" />
+          <Property Name="ETAPort" Type="String" Nullable="false" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="ETADate" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="DateIn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IsSM" Type="Int32" Nullable="false" />
+          <Property Name="InPortOrAtSea" Type="Int32" Nullable="false" />
+          <Property Name="ImportDate" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="ShipCode" Type="String" Nullable="false" MaxLength="4" FixedLength="true" Unicode="false" />
+          <Property Name="Time" Type="Time" Precision="7" />
+          <Property Name="VoyageId" Type="Int64" Nullable="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="StorageSpaceModelStoreContainer" CdmEntityContainer="StorageSpaceEntities">
+          <EntitySetMapping Name="EOVReportsViews">
+            <EntityTypeMapping TypeName="StorageSpaceModel.EOVReportsView">
+              <MappingFragment StoreEntitySet="EOVReportsView">
+                <ScalarProperty Name="VoyageId" ColumnName="VoyageId" />
+                <ScalarProperty Name="Time" ColumnName="Time" />
+                <ScalarProperty Name="ShipCode" ColumnName="ShipCode" />
+                <ScalarProperty Name="ImportDate" ColumnName="ImportDate" />
+                <ScalarProperty Name="InPortOrAtSea" ColumnName="InPortOrAtSea" />
+                <ScalarProperty Name="IsSM" ColumnName="IsSM" />
+                <ScalarProperty Name="DateIn" ColumnName="DateIn" />
+                <ScalarProperty Name="ETADate" ColumnName="ETADate" />
+                <ScalarProperty Name="ETAPort" ColumnName="ETAPort" />
+                <ScalarProperty Name="ReceivedFW" ColumnName="ReceivedFW" />
+                <ScalarProperty Name="ReceivedMGO" ColumnName="ReceivedMGO" />
+                <ScalarProperty Name="ReceivedDO" ColumnName="ReceivedDO" />
+                <ScalarProperty Name="ReceivedHO" ColumnName="ReceivedHO" />
+                <ScalarProperty Name="ConsAtSeaFW" ColumnName="ConsAtSeaFW" />
+                <ScalarProperty Name="ConsAtSeaMGO" ColumnName="ConsAtSeaMGO" />
+                <ScalarProperty Name="ConsAtSeaDO" ColumnName="ConsAtSeaDO" />
+                <ScalarProperty Name="ConsAtSeaHO" ColumnName="ConsAtSeaHO" />
+                <ScalarProperty Name="ConsInPortFW" ColumnName="ConsInPortFW" />
+                <ScalarProperty Name="ConsInPortMGO" ColumnName="ConsInPortMGO" />
+                <ScalarProperty Name="ConsInPortDO" ColumnName="ConsInPortDO" />
+                <ScalarProperty Name="ConsInPortHO" ColumnName="ConsInPortHO" />
+                <ScalarProperty Name="ROBFW" ColumnName="ROBFW" />
+                <ScalarProperty Name="ROBMGO" ColumnName="ROBMGO" />
+                <ScalarProperty Name="ROBDO" ColumnName="ROBDO" />
+                <ScalarProperty Name="ROBHO" ColumnName="ROBHO" />
+                <ScalarProperty Name="SeaForce" ColumnName="SeaForce" />
+                <ScalarProperty Name="SeaDir" ColumnName="SeaDir" />
+                <ScalarProperty Name="WindForce" ColumnName="WindForce" />
+                <ScalarProperty Name="WindDir" ColumnName="WindDir" />
+                <ScalarProperty Name="Slip" ColumnName="Slip" />
+                <ScalarProperty Name="RPM" ColumnName="RPM" />
+                <ScalarProperty Name="AvEngSpeed" ColumnName="AvEngSpeed" />
+                <ScalarProperty Name="AvObsSpeed" ColumnName="AvObsSpeed" />
+                <ScalarProperty Name="SteamTime" ColumnName="SteamTime" />
+                <ScalarProperty Name="EngDist" ColumnName="EngDist" />
+                <ScalarProperty Name="ObsDist" ColumnName="ObsDist" />
+                <ScalarProperty Name="AtSeaLongitudeMinute" ColumnName="AtSeaLongitudeMinute" />
+                <ScalarProperty Name="AtSeaLongitudeDegree" ColumnName="AtSeaLongitudeDegree" />
+                <ScalarProperty Name="AtSeaLatitudeMinute" ColumnName="AtSeaLatitudeMinute" />
+                <ScalarProperty Name="AtSeaLatitudeDegree" ColumnName="AtSeaLatitudeDegree" />
+                <ScalarProperty Name="PortTime" ColumnName="PortTime" />
+                <ScalarProperty Name="PortName" ColumnName="PortName" />
+                <ScalarProperty Name="FuelReportType" ColumnName="FuelReportType" />
+                <ScalarProperty Name="Day" ColumnName="Day" />
+                <ScalarProperty Name="Month" ColumnName="Month" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="VoyageNo" ColumnName="VoyageNo" />
+                <ScalarProperty Name="ShipName" ColumnName="ShipName" />
+                <ScalarProperty Name="ConsNo" ColumnName="ConsNo" />
+                <ScalarProperty Name="ShipID" ColumnName="ShipID" />
+                <ScalarProperty Name="DraftID" ColumnName="DraftID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="CopyToOutputDirectory" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

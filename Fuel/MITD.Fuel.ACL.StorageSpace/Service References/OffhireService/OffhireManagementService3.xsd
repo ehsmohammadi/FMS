@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/OffhireService.Service" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/OffhireService.Service" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="OffhireData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="EndDateTime" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="HasVoucher" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Location" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OffhireDetails" nillable="true" type="tns:ArrayOfOffhireDataItem" />
+      <xs:element minOccurs="0" name="ReferenceNumber" type="xs:long" />
+      <xs:element minOccurs="0" name="StartDateTime" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="VesselCode" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="OffhireData" nillable="true" type="tns:OffhireData" />
+  <xs:complexType name="ArrayOfOffhireDataItem">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="OffhireDataItem" nillable="true" type="tns:OffhireDataItem" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfOffhireDataItem" nillable="true" type="tns:ArrayOfOffhireDataItem" />
+  <xs:complexType name="OffhireDataItem">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="FuelType" type="tns:FuelType" />
+      <xs:element minOccurs="0" name="Quantity" type="xs:decimal" />
+      <xs:element minOccurs="0" name="TankCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UnitTypeCode" type="tns:FuelUnitType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="OffhireDataItem" nillable="true" type="tns:OffhireDataItem" />
+  <xs:simpleType name="FuelType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Ho" />
+      <xs:enumeration value="Do" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="FuelType" nillable="true" type="tns:FuelType" />
+  <xs:simpleType name="FuelUnitType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Ton" />
+      <xs:enumeration value="Liter" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="FuelUnitType" nillable="true" type="tns:FuelUnitType" />
+  <xs:complexType name="ArrayOfOffhireData">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="OffhireData" nillable="true" type="tns:OffhireData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfOffhireData" nillable="true" type="tns:ArrayOfOffhireData" />
+  <xs:complexType name="UpdateResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="IsSucceed" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RefrenceNumber" type="xs:long" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="UpdateResult" nillable="true" type="tns:UpdateResult" />
+</xs:schema>

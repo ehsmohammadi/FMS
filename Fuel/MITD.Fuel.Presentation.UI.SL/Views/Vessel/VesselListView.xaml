@@ -1,0 +1,159 @@
+﻿<ui:ViewBase x:Class="MITD.Fuel.Presentation.UI.SL.Views.Vessel.VesselListView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:ui="http://schemas.mitd.com/silverlight/2012/xaml/presentation.ui"
+        xmlns:viewModels="clr-namespace:MITD.Fuel.Presentation.Logic.SL.ViewModels;assembly=MITD.Fuel.Presentation.Logic.SL"
+        xmlns:pd="clr-namespace:MITD.Presentation.UI.DateTimePicker.Views;assembly=MITD.Presentation.UI.SL"
+        xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
+        xmlns:tk="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Toolkit"
+        xmlns:converters="clr-namespace:MITD.Fuel.Presentation.UI.SL.Converters" mc:Ignorable="d" d:DesignHeight="300"
+        d:DesignWidth="400" d:DataContext="{d:DesignInstance Type=viewModels:VesselListVM}"
+              Style="{StaticResource DefaultStyle}" 
+             >
+    <UserControl.Resources>
+        <converters:IsNotNullConverter x:Key="IsNotNullConverter" />
+        <Style x:Key="ComboBoxItemStyle" TargetType="ComboBoxItem">
+            <Setter Property="Height" Value="25" />
+        </Style>
+    </UserControl.Resources>
+    <Grid x:Name="MainLayoutGrid" Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition x:Name="FilterSectionGridRow" Height="Auto" />
+            <RowDefinition x:Name="ListSectionGridRow" Height="*" />
+            <RowDefinition x:Name="ActivationInfoSectionGridRow" Height="*" />
+            <RowDefinition x:Name="DetailSectionGridRow" Height="*" />
+        </Grid.RowDefinitions>
+        <Grid x:Name="FilterSectionGrid" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition x:Name="FilterControlsColumn" Width="Auto" />
+                <ColumnDefinition x:Name="FilterCommandsColumn" Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Grid x:Name="FilterControlsGrid" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <!--================================================================================-->
+                <TextBlock x:Name="CompanyFilterTitle" Text="شرکت مالک" Grid.Column="0" Grid.Row="0" Margin="5" />
+                <ComboBox x:Name="CompanyFilterCombo" Grid.Column="1" Grid.Row="0" Width="120" Height="25"
+                        Margin="0,5,10,5" ItemsSource="{Binding Filtering.Owners, Mode=OneWay}"
+                        ItemContainerStyle="{StaticResource ComboBoxItemStyle}"
+                        SelectedItem="{Binding Filtering.SelectedOwner, Mode=TwoWay}" DisplayMemberPath="Name"
+                        SelectedValuePath="Id"></ComboBox>
+                
+            </Grid>
+            <StackPanel x:Name="FilterCommandsGrid" Grid.Column="1" HorizontalAlignment="Stretch"
+                    VerticalAlignment="Bottom" FlowDirection="RightToLeft" Orientation="Horizontal">
+                <!--================================================================================-->
+                <Button x:Name="SearchButton" Width="100" Height="25" Margin="5"
+                        Content="{Binding SearchCommand.DisplayName}" Command="{Binding SearchCommand.Command}" />
+                <!--================================================================================-->
+                <Button x:Name="ClearSearchButton" Width="100" Height="25" Margin="5" Visibility="Collapsed"
+                        Content="{Binding ClearSearchCommand.DisplayName}"
+                        Command="{Binding ClearSearchCommand.Command}" />
+                <!--================================================================================-->
+            </StackPanel>
+        </Grid>
+        <Grid x:Name="ListSectionGrid" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <Grid.RowDefinitions>
+                <RowDefinition x:Name="ListDataGridRow" Height="*" />
+                <RowDefinition x:Name="ListCommandsGridRow" Height="Auto" />
+            </Grid.RowDefinitions>
+            <!--================================================================================-->
+            <sdk:DataGrid x:Name="VesselDataGrid" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                    AutoGenerateColumns="False" IsReadOnly="True" ItemsSource="{Binding PagedVesselData}"
+                    SelectedItem="{Binding SelectedVessel, Mode=TwoWay}" SelectionMode="Single">
+                <sdk:DataGrid.Columns>
+                    <sdk:DataGridTextColumn Header="کد شناور" Binding="{Binding Code}" />
+                    <sdk:DataGridTextColumn Header="شرکت مالک" Binding="{Binding Owner.Name}" />
+                </sdk:DataGrid.Columns>
+            </sdk:DataGrid>
+            <!--================================================================================-->
+            <StackPanel Grid.Row="1" HorizontalAlignment="Center" Orientation="Horizontal">
+                <!--================================================================================-->
+                <ui:CustomDataPager x:Name="VesselListDataPager" Height="26" FontFamily="Tahoma" FontSize="11"
+                        Width="200" Source="{Binding PagedVesselData, Mode=TwoWay}"
+                        PageSize="{Binding PagedVesselData.PageSize, Mode=TwoWay, FallbackValue=10}"
+                        PageIndex="{Binding PagedVesselData.PageIndex, Mode=TwoWay}"  Margin="2,0"/>
+                <!--================================================================================-->
+                <Button x:Name="AddVesselButton" Width="80" Content="{Binding AddVesselCommand.DisplayName}"
+                        Command="{Binding AddVesselCommand.Command}" IsEnabled="True"  Margin="2,0"/>
+                <!--================================================================================-->
+                <Button x:Name="ActivateVesselButton" Width="80" Content="{Binding ActivateVesselCommand.DisplayName}"
+                        Command="{Binding ActivateVesselCommand.Command}" IsEnabled="True"  Margin="2,0"/>
+                <!--================================================================================-->
+            </StackPanel>
+            <!--================================================================================-->
+        </Grid>
+        
+        <!--================================================================================-->
+        <!-- Activation Information Grid -->    
+        <!--================================================================================-->
+
+        <Grid x:Name="ActivationInfoSectionGrid" Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <!--================================================================================-->
+            <StackPanel Grid.Row="3" Grid.Column="0" Orientation="Horizontal">
+            
+            <TextBlock x:Name="ActivationDate"  Margin="5" Text="تاریخ فعالسازی" />
+            <!--================================================================================-->
+            <TextBox x:Name="txtActivationDate" Text="{Binding Path=ActivationDateToDisplay, Mode=TwoWay}"  MinWidth="150" HorizontalAlignment="Left" IsReadOnly="True" Height="25" />
+
+            </StackPanel>
+            <!--================================================================================-->
+            <TextBlock x:Name="FuelListTitle" Grid.Row="4" Grid.Column="0" Margin="5" Text="لیست سوختها در زمان فعالسازی" />
+            <!--================================================================================-->
+            <sdk:DataGrid Name="ActivationItemsGrid" Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="3" AutoGenerateColumns="False" 
+                      ItemsSource="{Binding VesselActivation.VesselActivationItemDtos}">
+                <sdk:DataGrid.Columns>
+                    <sdk:DataGridTextColumn Binding="{Binding Path=Good.Name}" Header="نوع سوخت" IsReadOnly="True"/>
+                    <sdk:DataGridTextColumn Binding="{Binding Path=Rob, StringFormat=\{0:n3\}}" Header="موجودی" IsReadOnly="True"/>
+                    <sdk:DataGridTextColumn Binding="{Binding Path=GoodUnit.Name}" Header="واحد" IsReadOnly="True"/>
+                    <sdk:DataGridTextColumn Binding="{Binding Path=Fee, StringFormat=\{0:n2\}}" Header="فی" IsReadOnly="True"/>
+                    <sdk:DataGridTextColumn Binding="{Binding Path=CurrencyCode}" Header="نوع ارز" IsReadOnly="True"/>
+                </sdk:DataGrid.Columns>
+            </sdk:DataGrid>
+        </Grid>
+
+        <!--================================================================================-->
+        <!-- Details Grid -->    
+        <!--================================================================================-->
+
+        <Grid x:Name="DetailSectionGrid" Grid.Row="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <Grid.RowDefinitions>
+                <RowDefinition x:Name="VesselInCompanyDataGridRow" Height="*" />
+            </Grid.RowDefinitions>
+            <!--================================================================================-->
+            <sdk:DataGrid x:Name="VesselInCompanyDataGrid" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                    AutoGenerateColumns="False" IsReadOnly="True" ItemsSource="{Binding PagedVesselInCompanyData}"
+                    SelectionMode="Single">
+                <sdk:DataGrid.Columns>
+                    <sdk:DataGridTextColumn Header="نام شناور" Binding="{Binding Name}" />
+                    <sdk:DataGridTextColumn Header="شرکت" Binding="{Binding Company.Name}" />
+                    <sdk:DataGridTextColumn Header="وضعیت" Binding="{Binding VesselState}" />
+                    <sdk:DataGridTextColumn Header="شرح" Binding="{Binding Description}" />
+                </sdk:DataGrid.Columns>
+            </sdk:DataGrid>
+            <!--================================================================================-->
+        </Grid>
+
+    </Grid>
+</ui:ViewBase>

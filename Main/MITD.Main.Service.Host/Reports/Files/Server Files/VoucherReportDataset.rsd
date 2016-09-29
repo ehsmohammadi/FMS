@@ -1,0 +1,152 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SharedDataSet xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2010/01/shareddatasetdefinition">
+  <DataSet Name="DataSet1">
+    <Query>
+      <DataSourceReference>/MITD.Fuel.Reports/VoucherReportDataSource</DataSourceReference>
+      <CommandText>SELECT
+  Fuel.VoucherReportView.VoucherId
+  ,Fuel.VoucherReportView.JournalEntryId
+  ,Fuel.VoucherReportView.VoucherCompany
+  ,Fuel.VoucherReportView.Description
+  ,Fuel.VoucherReportView.FinancialVoucherDate
+  ,Fuel.VoucherReportView.LocalVoucherDate
+  ,Fuel.VoucherReportView.LocalVoucherNo
+  ,Fuel.VoucherReportView.ReferenceNo
+  ,Fuel.VoucherReportView.VoucherRef
+  ,Fuel.VoucherReportView.ReferenceTypeId
+  ,Fuel.VoucherReportView.VoucherDetailTypeId
+  ,Fuel.VoucherReportView.VoucherTypeId
+  ,Fuel.VoucherReportView.AccountNo
+  ,Fuel.VoucherReportView.JournalEntryDescription
+  ,Fuel.VoucherReportView.JournalEntryVoucherRef
+  ,Fuel.VoucherReportView.ForeignAmount
+  ,Fuel.VoucherReportView.IrrAmount
+  ,Fuel.VoucherReportView.JournalEntryType
+  ,Fuel.VoucherReportView.JournalEntryCurrency
+--  ,Fuel.VoucherReportView.SegmentName
+--  ,Fuel.VoucherReportView.SegmentCode
+--  ,Fuel.VoucherReportView.SegmentTypeName
+--  ,Fuel.VoucherReportView.SegmentTypeCode
+  ,Fuel.VoucherReportView.UserName
+FROM
+	Fuel.VoucherReportView
+Group by  Fuel.VoucherReportView.VoucherId
+  ,Fuel.VoucherReportView.JournalEntryId
+  ,Fuel.VoucherReportView.VoucherCompany
+  ,Fuel.VoucherReportView.Description
+  ,Fuel.VoucherReportView.FinancialVoucherDate
+  ,Fuel.VoucherReportView.LocalVoucherDate
+  ,Fuel.VoucherReportView.LocalVoucherNo
+  ,Fuel.VoucherReportView.ReferenceNo
+  ,Fuel.VoucherReportView.VoucherRef
+  ,Fuel.VoucherReportView.ReferenceTypeId
+  ,Fuel.VoucherReportView.VoucherDetailTypeId
+  ,Fuel.VoucherReportView.VoucherTypeId
+  ,Fuel.VoucherReportView.AccountNo
+  ,Fuel.VoucherReportView.JournalEntryDescription
+  ,Fuel.VoucherReportView.JournalEntryVoucherRef
+  ,Fuel.VoucherReportView.ForeignAmount
+  ,Fuel.VoucherReportView.IrrAmount
+  ,Fuel.VoucherReportView.JournalEntryType
+  ,Fuel.VoucherReportView.JournalEntryCurrency
+  ,Fuel.VoucherReportView.SegmentName
+  ,Fuel.VoucherReportView.UserName
+ORDER BY
+	Fuel.VoucherReportView.VoucherId,
+	Fuel.VoucherReportView.LocalVoucherDate,
+	Fuel.VoucherReportView.JournalEntryType 
+ /*,
+	CASE Fuel.VoucherReportView.JournalEntryType WHEN 1 THEN 2 ELSE 1 END , 
+	CASE 
+	  WHEN Fuel.VoucherReportView.SegmentTypeCode = 1 THEN 1 
+	  WHEN Fuel.VoucherReportView.SegmentTypeCode = 2 THEN 3
+	  WHEN Fuel.VoucherReportView.SegmentTypeCode = 3 THEN 2
+	  WHEN Fuel.VoucherReportView.SegmentTypeCode = 4 THEN 4 END,
+       	Fuel.VoucherReportView.JournalEntryId*/</CommandText>
+      <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+    </Query>
+    <Fields>
+      <Field Name="VoucherCompany">
+        <DataField>VoucherCompany</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="VoucherId">
+        <DataField>VoucherId</DataField>
+        <rd:TypeName>System.Int64</rd:TypeName>
+      </Field>
+      <Field Name="Description">
+        <DataField>Description</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="JournalEntryId">
+        <DataField>JournalEntryId</DataField>
+        <rd:TypeName>System.Int64</rd:TypeName>
+      </Field>
+      <Field Name="FinancialVoucherDate">
+        <DataField>FinancialVoucherDate</DataField>
+        <rd:TypeName>System.DateTime</rd:TypeName>
+      </Field>
+      <Field Name="LocalVoucherDate">
+        <DataField>LocalVoucherDate</DataField>
+        <rd:TypeName>System.DateTime</rd:TypeName>
+      </Field>
+      <Field Name="LocalVoucherNo">
+        <DataField>LocalVoucherNo</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="ReferenceNo">
+        <DataField>ReferenceNo</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="VoucherRef">
+        <DataField>VoucherRef</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="ReferenceTypeId">
+        <DataField>ReferenceTypeId</DataField>
+        <rd:TypeName>System.Int32</rd:TypeName>
+      </Field>
+      <Field Name="VoucherDetailTypeId">
+        <DataField>VoucherDetailTypeId</DataField>
+        <rd:TypeName>System.Int32</rd:TypeName>
+      </Field>
+      <Field Name="VoucherTypeId">
+        <DataField>VoucherTypeId</DataField>
+        <rd:TypeName>System.Int32</rd:TypeName>
+      </Field>
+      <Field Name="AccountNo">
+        <DataField>AccountNo</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="JournalEntryDescription">
+        <DataField>JournalEntryDescription</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="JournalEntryVoucherRef">
+        <DataField>JournalEntryVoucherRef</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="ForeignAmount">
+        <DataField>ForeignAmount</DataField>
+        <rd:TypeName>System.Decimal</rd:TypeName>
+      </Field>
+      <Field Name="IrrAmount">
+        <DataField>IrrAmount</DataField>
+        <rd:TypeName>System.Decimal</rd:TypeName>
+      </Field>
+      <Field Name="JournalEntryType">
+        <DataField>JournalEntryType</DataField>
+        <rd:TypeName>System.Int32</rd:TypeName>
+      </Field>
+      <Field Name="JournalEntryCurrency">
+        <DataField>JournalEntryCurrency</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="UserName">
+        <DataField>UserName</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+    </Fields>
+  </DataSet>
+  <rd:ReportServerUrl>http://hatefi-pc:802/ReportServer_SQL2012</rd:ReportServerUrl>
+</SharedDataSet>

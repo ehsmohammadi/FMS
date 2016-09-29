@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://evaluation-srv:3350/OffhireManagementService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/OffhireService.Service" />
+  <xs:element name="GetFinalizedOffhire">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="referenceNumber" type="xs:long" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetFinalizedOffhireResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/OffhireService.Service" minOccurs="0" name="GetFinalizedOffhireResult" nillable="true" type="q1:OffhireData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetFinalizedOffhires">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="vesselCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="fromDate" nillable="true" type="xs:dateTime" />
+        <xs:element minOccurs="0" name="toDate" nillable="true" type="xs:dateTime" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetFinalizedOffhiresResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/OffhireService.Service" minOccurs="0" name="GetFinalizedOffhiresResult" nillable="true" type="q2:ArrayOfOffhireData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetVoucherStatus">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="refrenceNumber" type="xs:long" />
+        <xs:element minOccurs="0" name="voucherNo" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="fiscalYear" type="xs:int" />
+        <xs:element minOccurs="0" name="voucherDate" type="xs:dateTime" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetVoucherStatusResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/OffhireService.Service" minOccurs="0" name="SetVoucherStatusResult" nillable="true" type="q3:UpdateResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

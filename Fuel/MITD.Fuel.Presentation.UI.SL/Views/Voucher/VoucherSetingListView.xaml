@@ -1,0 +1,191 @@
+﻿<UserControl:ViewBase x:Class="MITD.Fuel.Presentation.UI.SL.Views.Voucher.VoucherSetingListView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+   
+    xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
+   xmlns:UserControl="clr-namespace:MITD.Presentation.UI;assembly=MITD.Presentation.UI.SL"
+    mc:Ignorable="d"
+    d:DesignHeight="300" d:DesignWidth="800"  Style="{StaticResource DefaultStyle}" >
+    <Grid x:Name="uxLayoutGrid" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <!--Field grid-->
+        <Grid x:Name="uxFilterGrid" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition Height="5" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="10" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="10" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <!--company-->
+            <TextBlock x:Name="uxCompanyLabel" Text="شرکت" Grid.Row="0" Grid.Column="0" Height="25" />
+            <TextBox IsReadOnly="True"  Grid.Row="0" Grid.Column="1" Width="180" Height="25" Text="{Binding Path=CompanyDto.Name,Mode=TwoWay}"></TextBox>
+
+
+
+
+            <!--VoucherType-->
+            <TextBlock x:Name="uxVoucherTypeLabel" Text="نوع سند" Grid.Row="0" Grid.Column="2" Height="25" />
+            <UserControl:ComboBoxEx x:Name="uxVoucherTypeCombo"
+                    ItemsSource="{Binding Path=VoucherTyps}"
+                    SelectedValueProper="{Binding Path=SelectedVoucherTypeId,Mode=TwoWay}" 
+                    DisplayMemberPath="Name" SelectedValuePath="Id"
+                    Grid.Row="0" Grid.Column="3" Width="180" Height="25" HorizontalAlignment="Left"
+                     />
+            <UserControl:ComboBoxEx x:Name="uxStateCombo" 
+                      ItemsSource="{Binding Path=VoucherDetailTyps}"
+                      Width="180" Height="25"
+                      SelectedValueProper="{Binding Path=SelectedVoucherDetailTypeId,Mode=TwoWay}"          
+                                    
+                       DisplayMemberPath="Name" SelectedValuePath="Id"
+                       Grid.Row="0" Grid.Column="5"   HorizontalAlignment="Left"   />
+            <Button Content="{Binding SearchCommand.DisplayName}" Command="{Binding SearchCommand.Command}"
+                        Width="75" Height="25"  Grid.Column="7" Grid.Row="0" />
+        </Grid>
+        <!--Grid -->
+        <Grid x:Name="uxVoucherSetingGrid" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="1" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <sdk:DataGrid AutoGenerateColumns="False" x:Name="uxVoucherSetingDataGrid" VerticalAlignment="Stretch" 
+                    SelectionMode="Single"   Grid.Column="0"
+                        ItemsSource="{Binding VoucherSetingDtos}" SelectedItem="{Binding VoucherSetingDto, Mode=TwoWay}">
+                <sdk:DataGrid.Columns>
+                    <sdk:DataGridTemplateColumn Header="شرکت">
+                        <sdk:DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Border HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                    <TextBlock Text="{Binding Company.Name}" HorizontalAlignment="Center"
+                                            VerticalAlignment="Center" />
+                                </Border>
+                            </DataTemplate>
+                        </sdk:DataGridTemplateColumn.CellTemplate>
+                    </sdk:DataGridTemplateColumn>
+                    <sdk:DataGridTemplateColumn Header="نوع سند">
+                        <sdk:DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Border HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                    <TextBlock Text="{Binding Path=VoucherTypeName}" HorizontalAlignment="Center"
+                                            VerticalAlignment="Center" />
+                                </Border>
+                            </DataTemplate>
+                        </sdk:DataGridTemplateColumn.CellTemplate>
+                    </sdk:DataGridTemplateColumn>
+                </sdk:DataGrid.Columns>
+            </sdk:DataGrid>
+
+            <sdk:DataGrid AutoGenerateColumns="False" x:Name="uxVoucherAccountDataGrid" VerticalAlignment="Stretch"
+                    SelectionMode="Single" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2"
+                        ItemsSource="{Binding Path=VoucherSetingDto.VoucherSetingDetails}" >
+                <sdk:DataGrid.Columns>
+                    <sdk:DataGridTemplateColumn Header="کالا">
+                        <sdk:DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Border HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                    <TextBlock Text="{Binding Path=GoodDto.Name}" HorizontalAlignment="Center"
+                                            VerticalAlignment="Center" />
+                                </Border>
+                            </DataTemplate>
+                        </sdk:DataGridTemplateColumn.CellTemplate>
+                    </sdk:DataGridTemplateColumn>
+                    <sdk:DataGridTemplateColumn Header="معین بدهکار">
+                        <sdk:DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Border HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                    <TextBlock Text="{Binding DebitAccountDto.Code}" HorizontalAlignment="Center"
+                                            VerticalAlignment="Center" />
+                                </Border>
+                            </DataTemplate>
+                        </sdk:DataGridTemplateColumn.CellTemplate>
+                    </sdk:DataGridTemplateColumn>
+                    <sdk:DataGridTemplateColumn Header="معین بستانکار">
+                        <sdk:DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Border HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                    <TextBlock Text="{Binding CreditAccountDto.Code}" HorizontalAlignment="Center"
+                                            VerticalAlignment="Center" />
+                                </Border>
+                            </DataTemplate>
+                        </sdk:DataGridTemplateColumn.CellTemplate>
+                    </sdk:DataGridTemplateColumn>
+                </sdk:DataGrid.Columns>
+            </sdk:DataGrid>
+
+            <sdk:Label Grid.Row="1" Content="تاریخچه تغییرات" Margin="5"></sdk:Label>
+            <sdk:DataGrid AutoGenerateColumns="False" x:Name="uxVoucherAccountHistoryDataGrid" VerticalAlignment="Stretch" Margin="0,10,0,0"
+                    SelectionMode="Single" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="2"
+                        ItemsSource="{Binding Path=VoucherSetingDto.HistoryVoucherSetingDetails}" >
+                <sdk:DataGrid.Columns>
+                    <sdk:DataGridTemplateColumn Header="کالا">
+                        <sdk:DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Border HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                    <TextBlock Text="{Binding Path=GoodDto.Name}" HorizontalAlignment="Center"
+                                            VerticalAlignment="Center" />
+                                </Border>
+                            </DataTemplate>
+                        </sdk:DataGridTemplateColumn.CellTemplate>
+                    </sdk:DataGridTemplateColumn>
+                    <sdk:DataGridTemplateColumn Header="معین بدهکار">
+                        <sdk:DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Border HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                    <TextBlock Text="{Binding DebitAccountDto.Code}" HorizontalAlignment="Center"
+                                            VerticalAlignment="Center" />
+                                </Border>
+                            </DataTemplate>
+                        </sdk:DataGridTemplateColumn.CellTemplate>
+                    </sdk:DataGridTemplateColumn>
+                    <sdk:DataGridTemplateColumn Header="معین بستانکار">
+                        <sdk:DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Border HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                    <TextBlock Text="{Binding CreditAccountDto.Code}" HorizontalAlignment="Center"
+                                            VerticalAlignment="Center" />
+                                </Border>
+                            </DataTemplate>
+                        </sdk:DataGridTemplateColumn.CellTemplate>
+                    </sdk:DataGridTemplateColumn>
+                </sdk:DataGrid.Columns>
+            </sdk:DataGrid>
+
+
+            <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="3" HorizontalAlignment="Center" Grid.ColumnSpan="3">
+                <Button Content="{Binding RejectCommand.DisplayName}" Command="{Binding RejectCommand.Command}"
+                        Width="100" Height="25" IsEnabled="False" Visibility="Collapsed" />
+
+
+                <Button Content="{Binding AddCommand.DisplayName}" Command="{Binding AddCommand.Command}"
+                        Width="75" Height="25"  />
+                <Button Content="{Binding UpdateCommand.DisplayName}" Command="{Binding UpdateCommand.Command}"
+                        Width="75" Height="25"  />
+
+            </StackPanel>
+
+        </Grid>
+    </Grid>
+</UserControl:ViewBase>

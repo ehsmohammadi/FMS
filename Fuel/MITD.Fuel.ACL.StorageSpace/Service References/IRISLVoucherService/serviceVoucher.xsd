@@ -1,0 +1,480 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://services.accounting.ngs/" targetNamespace="http://services.accounting.ngs/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import />
+  <xs:element name="NGSServiceException" type="tns:NGSServiceException" />
+  <xs:element name="getAccFreeGroupList" type="tns:getAccFreeGroupList" />
+  <xs:element name="getAccFreeGroupListResponse" type="tns:getAccFreeGroupListResponse" />
+  <xs:element name="getAccFreeList" type="tns:getAccFreeList" />
+  <xs:element name="getAccFreeListResponse" type="tns:getAccFreeListResponse" />
+  <xs:element name="getAccList" type="tns:getAccList" />
+  <xs:element name="getAccListResponse" type="tns:getAccListResponse" />
+  <xs:element name="getAccListWithName" type="tns:getAccListWithName" />
+  <xs:element name="getAccListWithNameResponse" type="tns:getAccListWithNameResponse" />
+  <xs:element name="getAccUserID" type="tns:getAccUserID" />
+  <xs:element name="getAccUserIDResponse" type="tns:getAccUserIDResponse" />
+  <xs:element name="getArticleDetails" type="tns:getArticleDetails" />
+  <xs:element name="getArticleDetailsResponse" type="tns:getArticleDetailsResponse" />
+  <xs:element name="getBookingRate" type="tns:getBookingRate" />
+  <xs:element name="getBookingRateResponse" type="tns:getBookingRateResponse" />
+  <xs:element name="getLastUserSequence" type="tns:getLastUserSequence" />
+  <xs:element name="getLastUserSequenceResponse" type="tns:getLastUserSequenceResponse" />
+  <xs:element name="getVoucherPrint" type="tns:getVoucherPrint" />
+  <xs:element name="getVoucherPrintResponse" type="tns:getVoucherPrintResponse" />
+  <xs:element name="login" type="tns:login" />
+  <xs:element name="loginResponse" type="tns:loginResponse" />
+  <xs:element name="loginWithLan" type="tns:loginWithLan" />
+  <xs:element name="loginWithLanResponse" type="tns:loginWithLanResponse" />
+  <xs:element name="logout" type="tns:logout" />
+  <xs:element name="logoutResponse" type="tns:logoutResponse" />
+  <xs:element name="removeHeader" type="tns:removeHeader" />
+  <xs:element name="removeHeaderResponse" type="tns:removeHeaderResponse" />
+  <xs:element name="saveAcc" type="tns:saveAcc" />
+  <xs:element name="saveAccFree" type="tns:saveAccFree" />
+  <xs:element name="saveAccFreeResponse" type="tns:saveAccFreeResponse" />
+  <xs:element name="saveAccResponse" type="tns:saveAccResponse" />
+  <xs:element name="saveHeader" type="tns:saveHeader" />
+  <xs:element name="saveHeaderResponse" type="tns:saveHeaderResponse" />
+  <xs:element name="saveQuickHeader" type="tns:saveQuickHeader" />
+  <xs:element name="saveQuickHeaderResponse" type="tns:saveQuickHeaderResponse" />
+  <xs:complexType name="getBookingRate">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="arg0" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="arg1" type="xs:string" />
+      <xs:element minOccurs="0" name="SessionKey" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getBookingRateResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" nillable="true" type="xs:decimal" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="NGSServiceException">
+    <xs:sequence>
+      <xs:element name="code" type="xs:int" />
+      <xs:element minOccurs="0" name="message" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getAccFreeGroupList">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="SessionKey" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getAccFreeGroupListResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" nillable="true" type="tns:svcAccFreeGroup" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="svcAccFreeGroup">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="code" type="xs:string" />
+      <xs:element name="levelCode" type="xs:short" />
+      <xs:element minOccurs="0" name="name" type="xs:string" />
+      <xs:element minOccurs="0" name="nameL" type="xs:string" />
+      <xs:element minOccurs="0" name="prefix" type="xs:string" />
+      <xs:element minOccurs="0" name="validDate" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="saveHeader">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="tns:svcHeadersData" />
+      <xs:element minOccurs="0" name="SessionKey" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="svcHeadersData">
+    <xs:sequence>
+      <xs:element name="doCompact" type="xs:boolean" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="headers" nillable="true" type="tns:svcHeader" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="svcHeader">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="articles" nillable="true" type="tns:svcArticle" />
+      <xs:element minOccurs="0" name="department" type="xs:string" />
+      <xs:element name="doSortDbCr" type="xs:boolean" />
+      <xs:element minOccurs="0" name="domain" type="xs:string" />
+      <xs:element minOccurs="0" name="explain" type="xs:string" />
+      <xs:element minOccurs="0" name="reference" type="xs:string" />
+      <xs:element name="userSequence" type="xs:int" />
+      <xs:element minOccurs="0" name="voucherDate" type="xs:string" />
+      <xs:element name="voucherNumber" type="xs:int" />
+      <xs:element name="voucherType" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="svcArticle">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="accountCode" type="xs:string" />
+      <xs:element minOccurs="0" name="accountFreeCode" type="xs:string" />
+      <xs:element minOccurs="0" name="accountFreeGroupCode" type="xs:string" />
+      <xs:element minOccurs="0" name="addonString" type="xs:string" />
+      <xs:element minOccurs="0" name="amount" type="xs:decimal" />
+      <xs:element minOccurs="0" name="articleParam" type="tns:svcArticleParam" />
+      <xs:element minOccurs="0" name="collect" type="tns:svcCollect" />
+      <xs:element minOccurs="0" name="currencyAmount" type="xs:decimal" />
+      <xs:element minOccurs="0" name="currencyCode" type="xs:string" />
+      <xs:element minOccurs="0" name="dbman" type="tns:svcDbman" />
+      <xs:element minOccurs="0" name="effectiveDate" type="xs:string" />
+      <xs:element minOccurs="0" name="explain" type="xs:string" />
+      <xs:element name="explainPriority" type="xs:int" />
+      <xs:element name="purposeID" type="xs:int" />
+      <xs:element minOccurs="0" name="recman" type="tns:svcRecman" />
+      <xs:element minOccurs="0" name="reference" type="xs:string" />
+      <xs:element minOccurs="0" name="tag" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="svcArticleParam">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="d1Code" type="xs:string" />
+      <xs:element minOccurs="0" name="d2Code" type="xs:string" />
+      <xs:element minOccurs="0" name="d3Code" type="xs:string" />
+      <xs:element minOccurs="0" name="extraAccountFreeCode" type="xs:string" />
+      <xs:element minOccurs="0" name="refAmount1" type="xs:decimal" />
+      <xs:element minOccurs="0" name="refDate1" type="xs:string" />
+      <xs:element minOccurs="0" name="refStr1" type="xs:string" />
+      <xs:element minOccurs="0" name="refStr2" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="svcCollect">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="subSystemRef" type="xs:string" />
+      <xs:element name="collectID" type="xs:int" />
+      <xs:element name="collectNo" type="xs:int" />
+      <xs:element minOccurs="0" name="benefCode" type="xs:string" />
+      <xs:element minOccurs="0" name="reasonCode" type="xs:string" />
+      <xs:element minOccurs="0" name="depositCode" type="xs:string" />
+      <xs:element minOccurs="0" name="depositTypeName" type="xs:string" />
+      <xs:element minOccurs="0" name="currencyCode" type="xs:string" />
+      <xs:element minOccurs="0" name="amount" type="xs:decimal" />
+      <xs:element minOccurs="0" name="reference" type="xs:string" />
+      <xs:element minOccurs="0" name="remark" type="xs:string" />
+      <xs:element minOccurs="0" name="collectTypeName" type="xs:string" />
+      <xs:element minOccurs="0" name="collectTypeCode" type="xs:string" />
+      <xs:element minOccurs="0" name="collectDate" type="xs:string" />
+      <xs:element name="guarantee" type="xs:boolean" />
+      <xs:element minOccurs="0" name="guaranteeTypeCode" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="svcDbman">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="dbmanDate" type="xs:string" />
+      <xs:element minOccurs="0" name="dueDate" type="xs:string" />
+      <xs:element minOccurs="0" name="planDate" type="xs:string" />
+      <xs:element minOccurs="0" name="deadlineDate" type="xs:string" />
+      <xs:element minOccurs="0" name="benefCode" type="xs:string" />
+      <xs:element name="priorityID" type="xs:int" />
+      <xs:element minOccurs="0" name="amount" type="xs:decimal" />
+      <xs:element minOccurs="0" name="currencyCode" type="xs:string" />
+      <xs:element minOccurs="0" name="reference" type="xs:string" />
+      <xs:element minOccurs="0" name="remark" type="xs:string" />
+      <xs:element minOccurs="0" name="ref2" type="xs:string" />
+      <xs:element minOccurs="0" name="ref3" type="xs:string" />
+      <xs:element minOccurs="0" name="ref4" type="xs:string" />
+      <xs:element minOccurs="0" name="ref5" type="xs:string" />
+      <xs:element minOccurs="0" name="dbmanTypeCode" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="svcRecman">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="recmanDate" type="xs:string" />
+      <xs:element minOccurs="0" name="dueDate" type="xs:string" />
+      <xs:element minOccurs="0" name="deadlineDate" type="xs:string" />
+      <xs:element minOccurs="0" name="reference" type="xs:string" />
+      <xs:element minOccurs="0" name="benefCode" type="xs:string" />
+      <xs:element minOccurs="0" name="recmanTypeCode" type="xs:string" />
+      <xs:element minOccurs="0" name="currencyCode" type="xs:string" />
+      <xs:element minOccurs="0" name="amount" type="xs:decimal" />
+      <xs:element minOccurs="0" name="ref2" type="xs:string" />
+      <xs:element minOccurs="0" name="ref3" type="xs:string" />
+      <xs:element minOccurs="0" name="ref4" type="xs:string" />
+      <xs:element minOccurs="0" name="ref5" type="xs:string" />
+      <xs:element minOccurs="0" name="remark" type="xs:string" />
+      <xs:element name="preliminary" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="saveHeaderResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" nillable="true" type="tns:rspHeaderSave" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="rspHeaderSave">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="error" type="xs:string" />
+      <xs:element name="errorCode" type="xs:int" />
+      <xs:element minOccurs="0" name="reference" type="xs:string" />
+      <xs:element name="userSequenceNo" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getArticleDetails">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="xs:string" />
+      <xs:element name="arg1" type="xs:int" />
+      <xs:element minOccurs="0" name="SessionKey" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getArticleDetailsResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" nillable="true" type="tns:svcArticleDetail" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="svcArticleDetail">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="accCode" type="xs:string" />
+      <xs:element minOccurs="0" name="amount" type="xs:decimal" />
+      <xs:element minOccurs="0" name="currCode" type="xs:string" />
+      <xs:element minOccurs="0" name="freeCode" type="xs:string" />
+      <xs:element minOccurs="0" name="groupFreeCode" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="removeHeader">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="tns:svcHeadersData" />
+      <xs:element minOccurs="0" name="SessionKey" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="removeHeaderResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" nillable="true" type="tns:rspHeaderRemove" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="rspHeaderRemove">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="error" type="xs:string" />
+      <xs:element name="errorCode" type="xs:int" />
+      <xs:element name="userSequenceNo" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="loginWithLan">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="LoginName" type="xs:string" />
+      <xs:element minOccurs="0" name="Password" type="xs:string" />
+      <xs:element minOccurs="0" name="Duration" type="xs:string" />
+      <xs:element minOccurs="0" name="Language" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="loginWithLanResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="SessionKey" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getAccFreeList">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="xs:string" />
+      <xs:element minOccurs="0" name="arg1" type="xs:string" />
+      <xs:element minOccurs="0" name="SessionKey" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getAccFreeListResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" nillable="true" type="tns:svcAccFree" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="svcAccFree">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="accFreeEx" type="tns:svcAccFreeEx" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="accountDirectCodes" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="accountFreeGroupCodes" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="baseAccountFreeGroupCode" type="xs:string" />
+      <xs:element minOccurs="0" name="budgetCode" type="xs:string" />
+      <xs:element minOccurs="0" name="code" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="currencyCodes" nillable="true" type="xs:string" />
+      <xs:element name="disabled" type="xs:boolean" />
+      <xs:element minOccurs="0" name="divisionCode" type="xs:string" />
+      <xs:element name="editAccountFree" type="xs:boolean" />
+      <xs:element name="levelCode" type="xs:short" />
+      <xs:element minOccurs="0" name="name" type="xs:string" />
+      <xs:element minOccurs="0" name="nameL" type="xs:string" />
+      <xs:element minOccurs="0" name="validDate" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="svcAccFreeEx">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="accFreeIndividual" type="tns:svcAccFreeIndividual" />
+      <xs:element minOccurs="0" name="accFreeLegal" type="tns:svcAccFreeLegal" />
+      <xs:element minOccurs="0" name="freeKind" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="svcAccFreeIndividual">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="address" type="xs:string" />
+      <xs:element minOccurs="0" name="email" type="xs:string" />
+      <xs:element minOccurs="0" name="email2" type="xs:string" />
+      <xs:element minOccurs="0" name="fax" type="xs:string" />
+      <xs:element minOccurs="0" name="lastName" type="xs:string" />
+      <xs:element minOccurs="0" name="locationCode" type="xs:string" />
+      <xs:element minOccurs="0" name="name" type="xs:string" />
+      <xs:element minOccurs="0" name="nationalCode" type="xs:string" />
+      <xs:element minOccurs="0" name="postalCode" type="xs:string" />
+      <xs:element minOccurs="0" name="tel" type="xs:string" />
+      <xs:element minOccurs="0" name="tel2" type="xs:string" />
+      <xs:element minOccurs="0" name="telCode" type="xs:string" />
+      <xs:element minOccurs="0" name="webSite" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="svcAccFreeLegal">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="accFreeLegalDirectors" nillable="true" type="tns:svcAccFreeLegalDirector" />
+      <xs:element minOccurs="0" name="address" type="xs:string" />
+      <xs:element minOccurs="0" name="company" type="xs:string" />
+      <xs:element minOccurs="0" name="ecoCode" type="xs:string" />
+      <xs:element minOccurs="0" name="email" type="xs:string" />
+      <xs:element minOccurs="0" name="email2" type="xs:string" />
+      <xs:element minOccurs="0" name="fax" type="xs:string" />
+      <xs:element minOccurs="0" name="legalKind" type="xs:string" />
+      <xs:element minOccurs="0" name="locationCode" type="xs:string" />
+      <xs:element minOccurs="0" name="nationalID" type="xs:string" />
+      <xs:element minOccurs="0" name="postalCode" type="xs:string" />
+      <xs:element minOccurs="0" name="registerNo" type="xs:string" />
+      <xs:element minOccurs="0" name="tel" type="xs:string" />
+      <xs:element minOccurs="0" name="tel2" type="xs:string" />
+      <xs:element minOccurs="0" name="telCode" type="xs:string" />
+      <xs:element minOccurs="0" name="webSite" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="svcAccFreeLegalDirector">
+    <xs:sequence>
+      <xs:element name="disabled" type="xs:boolean" />
+      <xs:element minOccurs="0" name="fullName" type="xs:string" />
+      <xs:element minOccurs="0" name="nationalID" type="xs:string" />
+      <xs:element minOccurs="0" name="tillDate" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="saveQuickHeader">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="tns:svcHeadersData" />
+      <xs:element minOccurs="0" name="SessionKey" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="saveQuickHeaderResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" nillable="true" type="tns:rspHeaderSave" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getAccUserID">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="SessionKey" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getAccUserIDResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getVoucherPrint">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="arg0" nillable="true" type="tns:svcVoucherReq" />
+      <xs:element minOccurs="0" name="arg1" type="xs:string" />
+      <xs:element minOccurs="0" name="arg2" type="xs:string" />
+      <xs:element minOccurs="0" name="SessionKey" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="svcVoucherReq">
+    <xs:sequence>
+      <xs:element name="userID" type="xs:int" />
+      <xs:element name="userSequence" type="xs:int" />
+      <xs:element minOccurs="0" name="voucherDate" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getVoucherPrintResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" nillable="true" type="xs:base64Binary" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="saveAcc">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="arg0" nillable="true" type="tns:svcAcc" />
+      <xs:element minOccurs="0" name="SessionKey" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="svcAcc">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="code" type="xs:string" />
+      <xs:element name="disabled" type="xs:boolean" />
+      <xs:element name="level" type="xs:int" />
+      <xs:element name="levelCode" type="xs:short" />
+      <xs:element minOccurs="0" name="name" type="xs:string" />
+      <xs:element minOccurs="0" name="nameL" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="saveAccResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" nillable="true" type="tns:rspAccSave" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="rspAccSave">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="code" type="xs:string" />
+      <xs:element minOccurs="0" name="error" type="xs:string" />
+      <xs:element name="errorCode" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="saveAccFree">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="arg0" nillable="true" type="tns:svcAccFree" />
+      <xs:element minOccurs="0" name="SessionKey" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="saveAccFreeResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" nillable="true" type="tns:rspAccFreeSave" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="rspAccFreeSave">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="code" type="xs:string" />
+      <xs:element minOccurs="0" name="error" type="xs:string" />
+      <xs:element name="errorCode" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="logout">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="SessionKey" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="logoutResponse">
+    <xs:sequence />
+  </xs:complexType>
+  <xs:complexType name="getLastUserSequence">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="SessionKey" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getLastUserSequenceResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getAccListWithName">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="xs:string" />
+      <xs:element minOccurs="0" name="arg1" type="xs:string" />
+      <xs:element minOccurs="0" name="SessionKey" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getAccListWithNameResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" nillable="true" type="tns:svcAcc" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getAccList">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="xs:string" />
+      <xs:element minOccurs="0" name="SessionKey" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getAccListResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" nillable="true" type="tns:svcAcc" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="login">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="LoginName" type="xs:string" />
+      <xs:element minOccurs="0" name="Password" type="xs:string" />
+      <xs:element minOccurs="0" name="Duration" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="loginResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="SessionKey" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

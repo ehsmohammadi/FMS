@@ -1,0 +1,149 @@
+﻿<UserControl:ViewBase xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
+                      x:Class="MITD.Fuel.Presentation.UI.SL.Views.CharterListView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+   xmlns:converters="clr-namespace:MITD.Fuel.Presentation.UI.SL.Converters" 
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:UserControl="clr-namespace:MITD.Presentation.UI;assembly=MITD.Presentation.UI.SL"
+    xmlns:controls="clr-namespace:MITD.Fuel.Presentation.UI.SL.Controls"
+    mc:Ignorable="d"
+    d:DesignHeight="300" d:DesignWidth="600"
+    Style="{StaticResource DefaultStyle}" 
+                      >
+    <UserControl.Resources>
+        <converters:GregorianDateToPersianConverter x:Key="GregorianDateToPersianConverter"/>
+        <converters:EmptyValueConverter x:Key="EmptyValueConverter"/>
+        <converters:WorkflowStageColorConverter x:Key="WorkflowStageColorConverter"/>
+        <converters:WorkflowStageFontWeightConverter x:Key="WorkflowStageFontWeightConverter"/>
+    </UserControl.Resources>
+   
+    
+    <Grid x:Name="LayoutRoot" Background="White" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="80"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="40*"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40*"/>
+        </Grid.RowDefinitions>
+        
+        <!--Lable-->
+        <sdk:Label Grid.Column="0" Grid.Row="0" Content="شرکت" Margin="2" />
+        <sdk:Label Grid.Column="0" Grid.Row="2" Content="سریال سربرگ" Margin="2"/>
+        <sdk:Label Grid.Column="0" Grid.Row="1" Content="از تاریخ" Margin="2" />
+        <sdk:Label Grid.Column="2" Grid.Row="1" Content="تا تاریخ" Margin="2"/>
+        <sdk:Label Grid.Column="2" Grid.Row="0" Content="کشتی" Margin="2" />
+        <!--Cmmbo-->
+        <UserControl:ComboBoxEx 
+            ItemsSource="{Binding CompanyDtos}"
+            SelectedValueProper="{Binding SelectedCompanyId, Mode=TwoWay}"
+            Grid.Column="1" Grid.Row="0" Height="25" Width="150"
+            DisplayMemberPath="Name" SelectedValuePath="Id"  Margin="3"/>
+        <TextBox Grid.Column="1" Grid.Row="2" Width="150" Height="25" Margin="3"
+                  Text="{Binding SelectedId,Mode=TwoWay, Converter={StaticResource EmptyValueConverter}}"></TextBox>
+        <controls:MultiTypeDateTimeControl Margin="5" Height="24" 
+                                           DisplayOrientation="Horizontal"
+                                           CalendarType="Persian"
+                                           DisplayMode="Date" SelectedDate="{Binding Path=StartDate, Mode=TwoWay}"
+                       Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left"/>
+        <controls:MultiTypeDateTimeControl Margin="5" Height="24" 
+                                           DisplayOrientation="Horizontal"
+                                           CalendarType="Persian"
+                                           DisplayMode="Date" SelectedDate="{Binding Path=EndDate, Mode=TwoWay}"
+                       Grid.Column="3" Grid.Row="1" HorizontalAlignment="Left"/>
+        <!--<sdk:DatePicker  SelectedDate="{Binding Path=StartDate, Mode=TwoWay}"
+                       Grid.Column="1" Grid.Row="1"  Width="180" Height="25"  HorizontalAlignment="Left" Margin="2"></sdk:DatePicker>
+        <sdk:DatePicker  SelectedDate="{Binding Path=EndDate, Mode=TwoWay}"
+                       Grid.Column="3" Grid.Row="1"  Width="180" Height="25" HorizontalAlignment="Left" Margin="2"></sdk:DatePicker>-->
+       
+        <!--<UserControl:ComboBoxEx Grid.Column="3" Grid.Row="0"  Width="150" Height="25" 
+                              
+                                ItemsSource="{Binding VesselInCompanyDtos}"
+                                DisplayMemberPath="Name"
+                                SelectedValueProper="{Binding SelectedVesselId,Mode=TwoWay}"
+                                 SelectedValuePath="Id"
+                                >
+
+        </UserControl:ComboBoxEx>-->
+        <controls:DataGridDropdownComboboxControl x:Name="uxVesselCombo" 
+                           ItemsSource="{Binding Path=VesselInCompanyDtos}" 
+                           SelectedValuePath="Id" 
+                           SelectedValueProper="{Binding Path=SelectedVesselId, Mode=TwoWay}" 
+                            Grid.Column="3" Grid.Row="0"  Width="150" Height="25" >
+            <controls:DataGridDropdownComboboxControl.DataGridColumns>
+                <sdk:DataGridTextColumn Binding="{Binding Name}" MinWidth="150" Header="نام"/>
+                <sdk:DataGridTextColumn Binding="{Binding Code}" MinWidth="100" Header="کد"/>
+            </controls:DataGridDropdownComboboxControl.DataGridColumns>
+            <controls:DataGridDropdownComboboxControl.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <sdk:Label Content="{Binding Name}"/>
+                        <sdk:Label Content="-"/>
+                        <sdk:Label Content="{Binding Code}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </controls:DataGridDropdownComboboxControl.ItemTemplate>
+        </controls:DataGridDropdownComboboxControl>
+
+        <!--Button-->
+        <Button Grid.Column="3" Grid.Row="2" Width="75" Height="25" Content="{Binding SearchCommand.DisplayName}" Command="{Binding SearchCommand.Command}" HorizontalAlignment="Left" Margin="5"></Button>
+        <StackPanel Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="5" Orientation="Horizontal" HorizontalAlignment="Center">
+            <UserControl:CustomDataPager Width="200" Height="25"  Source="{Binding CharterDtos,Mode=TwoWay}" Margin="2,0"  />
+            <Button Width="75" Height="25" Content="{Binding AddCommand.DisplayName}" Command="{Binding AddCommand.Command}" Margin="2,0" ></Button>
+            <Button Width="75" Height="25" Content="{Binding EditCommand.DisplayName}" Command="{Binding EditCommand.Command}" Margin="2,0" ></Button>
+            <Button Width="75" Height="25" Content="{Binding DeleteCommand.DisplayName}" Command="{Binding DeleteCommand.Command}" Margin="2,0" ></Button>
+            <Button Width="75" Height="25" Content="{Binding ApproveCommand.DisplayName}" Command="{Binding ApproveCommand.Command}" Margin="2,0" ></Button>
+            <Button Width="75" Height="25" Content="{Binding RejectCommand.DisplayName}" Command="{Binding RejectCommand.Command}" Margin="2,0" ></Button>
+        </StackPanel>
+        
+        <!--DataGrid-->
+        <sdk:DataGrid Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="5" AutoGenerateColumns="False" 
+               ItemsSource="{Binding CharterDtos}"
+               SelectedItem="{Binding SelectedCharter, Mode=TwoWay}" IsReadOnly="True">
+            <sdk:DataGrid.Columns>
+                <sdk:DataGridTextColumn Binding="{Binding Path=Id}"  Header="سریال سربرگ"  IsReadOnly="True" />
+                <sdk:DataGridTextColumn Binding="{Binding Path=VesselInCompany.Name}"  Header="نام کشتی"  IsReadOnly="True" />
+                <sdk:DataGridTextColumn Binding="{Binding Path=CharterStateType}" Header="نوع"  IsReadOnly="True"/>
+                <sdk:DataGridTextColumn Binding="{Binding Path=Owner.Name}" Header="مالک" IsReadOnly="True" />
+                <sdk:DataGridTextColumn Binding="{Binding Path=Charterer.Name}" Header="چارترر" IsReadOnly="True" />
+                <sdk:DataGridTextColumn Binding="{Binding Path=StartDate}" Header="تاریخ " IsReadOnly="True" />
+                <sdk:DataGridTextColumn Header="تاریخ  (شمسی)" Binding="{Binding Path=StartDate, Converter={StaticResource GregorianDateToPersianConverter}}" IsReadOnly="True" />
+                <sdk:DataGridTextColumn Binding="{Binding Path=Currency.Name}"  Header="ارز"  IsReadOnly="True" />
+                <!--<sdk:DataGridTextColumn Binding="{Binding Path=CurrentStateName}" Header="وضعیت "  IsReadOnly="True"/>-->
+                <sdk:DataGridTemplateColumn  Header="وضعیت جاری" CanUserReorder="True" CanUserResize="True" CanUserSort="True" Width="100">
+                    <sdk:DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Margin="3" Text="{Binding CurrentStateName}" FontWeight="{Binding ApproveStatus, Converter={StaticResource WorkflowStageFontWeightConverter}}" Foreground="{Binding ApproveStatus, Converter={StaticResource WorkflowStageColorConverter}}" VerticalAlignment="Center"/>
+                        </DataTemplate>
+                    </sdk:DataGridTemplateColumn.CellTemplate>
+                </sdk:DataGridTemplateColumn>
+            </sdk:DataGrid.Columns>
+        </sdk:DataGrid>
+
+        <sdk:DataGrid Name="uxCharterDetail" Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="5" AutoGenerateColumns="False" 
+                      ItemsSource="{Binding CharterItemDtos}"
+                    >
+            <sdk:DataGrid.Columns>
+                <sdk:DataGridTextColumn Binding="{Binding Path=Good.Name}" Header="نوع سوخت" IsReadOnly="True"/>
+                <sdk:DataGridTextColumn Binding="{Binding Path=TankDto.Code}" Header="تانک" IsReadOnly="True"/>
+                <sdk:DataGridTextColumn Binding="{Binding Path=Rob, StringFormat=\{0:n3\}}" Header="موجودی" IsReadOnly="True"/>
+                <sdk:DataGridTextColumn Binding="{Binding Path=Good.Unit.Name}" Header="واحد" IsReadOnly="True"/>
+                <sdk:DataGridTextColumn Binding="{Binding Path=Fee, StringFormat=\{0:n2\}}" Header="فی" IsReadOnly="True"/>
+                <sdk:DataGridTextColumn Binding="{Binding Path=FeeOffhire, StringFormat=\{0:n2\}}" Header="فی Offhire" IsReadOnly="True"/>
+
+            </sdk:DataGrid.Columns>
+        </sdk:DataGrid>
+
+
+
+    </Grid>
+</UserControl:ViewBase>

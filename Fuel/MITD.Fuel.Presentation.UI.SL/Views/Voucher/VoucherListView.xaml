@@ -1,0 +1,528 @@
+﻿<UserControl:ViewBase xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit"  x:Class="MITD.Fuel.Presentation.UI.SL.Views.Voucher.VoucherListView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:views="clr-namespace:MITD.Presentation.UI.DateTimePicker.Views;assembly=MITD.Presentation.UI.SL"
+    xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
+   xmlns:UserControl="clr-namespace:MITD.Presentation.UI;assembly=MITD.Presentation.UI.SL"
+   xmlns:controls="clr-namespace:MITD.Fuel.Presentation.UI.SL.Controls"
+  xmlns:converters="clr-namespace:MITD.Fuel.Presentation.Logic.SL.Converters;assembly=MITD.Fuel.Presentation.Logic.SL"
+  xmlns:converters1="clr-namespace:MITD.Fuel.Presentation.UI.SL.Converters"
+   mc:Ignorable="d"
+    d:DesignHeight="600" Style="{StaticResource DefaultStyle}" >
+
+    <UserControl.Resources>
+        <Style x:Name="uxMainFilterControlStyle" TargetType="FrameworkElement">
+            <Setter Property="Width" Value="200"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Height" Value="25"/>
+            <Setter Property="Margin" Value="5,2,5,2"/>
+        </Style>
+        <Style x:Name="uxMainFilterTextboxHalfSizeControlStyle" TargetType="FrameworkElement">
+            <Setter Property="Width" Value="100"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Height" Value="25"/>
+            <Setter Property="Margin" Value="5,2,5,2"/>
+        </Style>
+        <converters:VoucherGridBckgrndConverter x:Key="VoucherGridBckgrndConverter"/>
+        <converters:VoucherGridTxtConverter x:Key="VoucherGridTxtConverter"/>
+        <converters:VoucherGridBoolConverter x:Key="VoucherGridBoolConverter"/>
+        <converters1:GregorianDateToPersianConverter x:Key="GregorianDateToPersianConverter"/>
+    </UserControl.Resources>
+   
+        
+ 
+    
+    <Grid x:Name="uxLayoutGrid" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <!--filter grid-->
+        <Grid x:Name="uxFilterGrid" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <!--company-->
+            <TextBlock x:Name="uxCompanyLabel" Text="شرکت" Grid.Row="0" Grid.Column="0" Height="25"  Margin="5"/>
+            <TextBox IsReadOnly="True"  Grid.Row="0" Grid.Column="1" Width="180" Height="25" Text="{Binding Path=CompanyName,Mode=TwoWay}"  Style="{StaticResource ResourceKey=uxMainFilterControlStyle}" ></TextBox>
+
+
+            <!--VoucherType-->
+            <TextBlock x:Name="uxVoucherTypeLabel" Text="نوع سند" Grid.Row="0" Grid.Column="2" Height="25" Margin="5" />
+            <UserControl:ComboBoxEx x:Name="uxVoucherTypeCombo"
+                    ItemsSource="{Binding Path=VoucherTyps,Mode=TwoWay}"
+                    SelectedValueProper="{Binding Path=VoucherTypeId,Mode=TwoWay}" 
+                    DisplayMemberPath="Name" SelectedValuePath="Id"
+                    Grid.Row="0" Grid.Column="3" Width="180" Height="25" Style="{StaticResource ResourceKey=uxMainFilterControlStyle}"/>
+
+            <!--State-->
+            <TextBlock x:Name="uxStateLabel" Text="وضعیت" Grid.Row="0" Grid.Column="4" Height="25" Margin="5" />
+            <UserControl:ComboBoxEx x:Name="uxStateCombo" 
+                      ItemsSource="{Binding Path=StateItms,Mode=TwoWay}"
+                      SelectedValueProper="{Binding Path=StateId,Mode=TwoWay}" 
+                                    Width="180" Height="25"
+                       DisplayMemberPath="Name" SelectedValuePath="Id"
+                       Grid.Row="0" Grid.Column="5"  Style="{StaticResource ResourceKey=uxMainFilterControlStyle}" />
+
+            <!--FromDate-->
+            <TextBlock x:Name="uxFromDateLabel" Text="از تاریخ" Grid.Row="1" Grid.Column="0" Height="25"  Margin="5"/>
+            <controls:MultiTypeDateTimeControl Margin="5" Height="24" 
+                                           DisplayOrientation="Horizontal"
+                                           CalendarType="Persian"
+                                           DisplayMode="Date" SelectedDate="{Binding Path=FromDate, Mode=TwoWay}" 
+                                Grid.Row="1" Grid.Column="1" 
+                                Style="{StaticResource ResourceKey=uxMainFilterControlStyle}"/>
+            <!--<views:PDatePicker  SelectedDate="{Binding Path=FromDate, Mode=TwoWay}" 
+                                Grid.Row="1" Grid.Column="1" 
+                                Width="180" Height="25" Style="{StaticResource ResourceKey=uxMainFilterControlStyle}"></views:PDatePicker>-->
+
+
+            <!--ToDate-->
+            <TextBlock x:Name="uxToDateLabel" Text="تا تاریخ" Grid.Row="1" Grid.Column="2" Height="25" Margin="5" />
+            <controls:MultiTypeDateTimeControl Margin="5" Height="24" 
+                                           DisplayOrientation="Horizontal"
+                                           CalendarType="Persian"
+                                           DisplayMode="Date" SelectedDate="{Binding Path=ToDate, Mode=TwoWay}" 
+                                Grid.Row="1" Grid.Column="3" 
+                                Style="{StaticResource ResourceKey=uxMainFilterControlStyle}"/>
+            <!--<views:PDatePicker  SelectedDate="{Binding Path=ToDate, Mode=TwoWay}" 
+                                Grid.Row="1" Grid.Column="3" 
+                                Width="180" Height="25" Style="{StaticResource ResourceKey=uxMainFilterControlStyle}"></views:PDatePicker>-->
+
+
+            <!--RefNo-->
+            <TextBlock x:Name="uxRefNoLabel" Text="شماره مرجع" Grid.Row="1" Grid.Column="4" Height="25" Margin="5" />
+            <TextBox Grid.Row="1" Grid.Column="5"  Text="{Binding Path=RefNo,Mode=TwoWay}" Width="180" Height="25"  Style="{StaticResource ResourceKey=uxMainFilterControlStyle}"></TextBox>
+
+
+
+
+            <Button Grid.Column="5" Grid.Row="2" Width="75" Height="25" Content="{Binding SearchCommand.DisplayName}"
+                    Command="{Binding SearchCommand.Command}" HorizontalAlignment="Right" Margin="5"></Button>
+        </Grid>
+
+        <!--Voucher Grid-->
+        <Grid x:Name="uxVoucherGrid" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <sdk:DataGrid AutoGenerateColumns="False" x:Name="uxVoucherDataGrid" VerticalAlignment="Stretch"
+                    SelectionMode="Single" 
+                        ItemsSource="{Binding Vouchers}" SelectedItem="{Binding SelectedVoucherDto, Mode=TwoWay}"
+                    Grid.Row="0">
+
+                <sdk:DataGrid.Columns>
+
+                    <sdk:DataGridTemplateColumn Header="انتخاب جهت ارسال">
+                        <sdk:DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Border HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                                           Background="{Binding State, Converter={StaticResource VoucherGridBckgrndConverter}}"
+                                        >
+                                    <CheckBox IsChecked="{Binding IsSelected,Mode=TwoWay}" HorizontalAlignment="Center" VerticalAlignment="Center"
+                                              IsEnabled="{Binding State, Converter={StaticResource VoucherGridBoolConverter}}"
+                                              ></CheckBox>
+
+                                </Border>
+                            </DataTemplate>
+                        </sdk:DataGridTemplateColumn.CellTemplate>
+                    </sdk:DataGridTemplateColumn>
+
+                    <sdk:DataGridTemplateColumn Header="شناسه">
+                        <sdk:DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Border HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                                           Background="{Binding State, Converter={StaticResource VoucherGridBckgrndConverter}}"
+                                        >
+                                    <TextBlock Text="{Binding Id}" HorizontalAlignment="Center"
+                                            VerticalAlignment="Center" />
+                                </Border>
+                            </DataTemplate>
+                        </sdk:DataGridTemplateColumn.CellTemplate>
+                    </sdk:DataGridTemplateColumn>
+
+
+                    <sdk:DataGridTemplateColumn Header="سريال">
+                        <sdk:DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Border HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                                           Background="{Binding State, Converter={StaticResource VoucherGridBckgrndConverter}}"
+                                        >
+                                    <TextBlock Text="{Binding LocalVoucherNo}" HorizontalAlignment="Center"
+                                            VerticalAlignment="Center" />
+                                </Border>
+                            </DataTemplate>
+                        </sdk:DataGridTemplateColumn.CellTemplate>
+                    </sdk:DataGridTemplateColumn>
+
+                    <sdk:DataGridTemplateColumn Header="نوع سند">
+                        <sdk:DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Border HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                                           Background="{Binding State, Converter={StaticResource VoucherGridBckgrndConverter}}"
+                                        >
+                                    <TextBlock Text="{Binding VoucherDetailTypeName}" HorizontalAlignment="Center"
+                                            VerticalAlignment="Center" />
+                                </Border>
+                            </DataTemplate>
+                        </sdk:DataGridTemplateColumn.CellTemplate>
+                    </sdk:DataGridTemplateColumn>
+
+                    <sdk:DataGridTemplateColumn Header="تاریخ ثبت سند">
+                        <sdk:DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Border HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                                           Background= "{Binding State, Converter={StaticResource VoucherGridBckgrndConverter}}"
+                                        >
+                                    <TextBlock Text="{Binding LocalVoucherDate,Mode=TwoWay}"
+                                            HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                </Border>
+                            </DataTemplate>
+                        </sdk:DataGridTemplateColumn.CellTemplate>
+                    </sdk:DataGridTemplateColumn>
+
+                    <sdk:DataGridTemplateColumn Header="تاریخ ثبت سند شمسی">
+                        <sdk:DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Border HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                                           Background= "{Binding State, Converter={StaticResource VoucherGridBckgrndConverter}}"
+                                        >
+                                    <TextBlock Text="{Binding LocalVoucherDate,Mode=TwoWay,Converter={StaticResource GregorianDateToPersianConverter}}"
+                                            HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                </Border>
+                            </DataTemplate>
+                        </sdk:DataGridTemplateColumn.CellTemplate>
+                    </sdk:DataGridTemplateColumn>
+                    <sdk:DataGridTemplateColumn Header="شرح سند">
+                        <sdk:DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Border HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                                           Background="{Binding State, Converter={StaticResource VoucherGridBckgrndConverter}}"
+                                        >
+                                    <TextBlock Text="{Binding VoucherDetailTypeName}" HorizontalAlignment="Center"
+                                            VerticalAlignment="Center" />
+                                </Border>
+                            </DataTemplate>
+                        </sdk:DataGridTemplateColumn.CellTemplate>
+                    </sdk:DataGridTemplateColumn>
+
+                    <sdk:DataGridTemplateColumn Header="عطف سند">
+                        <sdk:DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Border HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                                           Background="{Binding State, Converter={StaticResource VoucherGridBckgrndConverter}}"
+                                        >
+                                    <TextBlock Text="{Binding VoucherRef}" HorizontalAlignment="Center"
+                                            VerticalAlignment="Center" />
+                                </Border>
+                            </DataTemplate>
+                        </sdk:DataGridTemplateColumn.CellTemplate>
+                    </sdk:DataGridTemplateColumn>
+
+                    <sdk:DataGridTemplateColumn Header="شماره مرجع">
+                        <sdk:DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Border HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                                           Background="{Binding State, Converter={StaticResource VoucherGridBckgrndConverter}}"
+                                        >
+                                    <TextBlock Text="{Binding ReferenceNo}" HorizontalAlignment="Center"
+                                            VerticalAlignment="Center" />
+                                </Border>
+                            </DataTemplate>
+                        </sdk:DataGridTemplateColumn.CellTemplate>
+                    </sdk:DataGridTemplateColumn>
+
+                    <sdk:DataGridTemplateColumn Header="وضعیت">
+                        <sdk:DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Border HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                                        Background="{Binding State, Converter={StaticResource VoucherGridBckgrndConverter}}">
+                                    <TextBlock Text="{Binding State, Converter={StaticResource VoucherGridTxtConverter}}" HorizontalAlignment="Center"
+                                            VerticalAlignment="Center" />
+                                </Border>
+                            </DataTemplate>
+                        </sdk:DataGridTemplateColumn.CellTemplate>
+                    </sdk:DataGridTemplateColumn>
+                    <sdk:DataGridTemplateColumn Header="شماره مرجع درسیستم مالی">
+                        <sdk:DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Border HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                                           Background="{Binding State, Converter={StaticResource VoucherGridBckgrndConverter}}"
+                                        >
+                                    <TextBlock Text="{Binding FinancialVoucherNo}" HorizontalAlignment="Center"
+                                            VerticalAlignment="Center" />
+                                </Border>
+                            </DataTemplate>
+                        </sdk:DataGridTemplateColumn.CellTemplate>
+                    </sdk:DataGridTemplateColumn>
+
+                    <sdk:DataGridTemplateColumn Header="تاریخ سند در سیستم مالی ">
+                        <sdk:DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Border HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                                           Background= "{Binding State, Converter={StaticResource VoucherGridBckgrndConverter}}"
+                                        >
+                                    <TextBlock Text="{Binding FinancialVoucherDate,Mode=TwoWay}"
+                                            HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                </Border>
+                            </DataTemplate>
+                        </sdk:DataGridTemplateColumn.CellTemplate>
+                    </sdk:DataGridTemplateColumn>
+                </sdk:DataGrid.Columns>
+            </sdk:DataGrid>
+
+            <StackPanel Grid.Row="1" HorizontalAlignment="Center" Orientation="Horizontal">
+                <UserControl:CustomDataPager Height="26" FontFamily="Tahoma" FontSize="11" Width="200"
+                                    Source="{Binding Vouchers, Mode=TwoWay}" />
+
+                <Button  Width="75" Height="30" Content="{Binding ShowRefCommand.DisplayName}"
+                    Command="{Binding ShowRefCommand.Command}" HorizontalAlignment="Right" Margin="10,0,20,0"></Button>
+                <Button   Height="30" Content="{Binding ShowPrintCommand.DisplayName}"
+                    Command="{Binding ShowPrintCommand.Command}" HorizontalAlignment="Right" Margin="10,0,20,0"></Button>
+                <Button  Command="{Binding SendCommand.Command}" 
+                        Width="400"
+                        Height="30" Padding="0" Margin="0" >
+                    <Button.Content>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                            <sdk:Label Content="ارسال به مالی"></sdk:Label>
+                            <controls:MultiTypeDateTimeControl 
+                                          Height="24" 
+                                          Width="170"
+                                           DisplayOrientation="Horizontal"
+                                           CalendarType="Persian"
+                                           DisplayMode="Date"
+                                           SelectedDate="{Binding Path=SelectedVoucherDate, Mode=TwoWay}" 
+                             Style="{StaticResource ResourceKey=uxMainFilterControlStyle}"/>
+                            <UserControl:ComboBoxEx Width="130" Height="24" 
+                                                    ItemsSource="{Binding Path=VoucherItms,Mode=TwoWay}"
+                                                    SelectedValueProper="{Binding Path=VoucherItmId,Mode=TwoWay}" 
+                                                    DisplayMemberPath="Name" SelectedValuePath="Id"
+                    />
+
+
+
+                        </StackPanel>
+                    </Button.Content>
+
+                </Button>
+            </StackPanel>
+
+
+        </Grid>
+
+        <!--VoucherDetail Grid-->
+        <Grid x:Name="UxVoucherDetailGrid" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="2">
+            <sdk:DataGrid AutoGenerateColumns="False" x:Name="uxVoucherDetailGrid" VerticalAlignment="Stretch"
+                    SelectionMode="Single" 
+                    ItemsSource="{Binding JournalEntryDtos}"         
+                    >
+
+                <sdk:DataGrid.Columns>
+
+                    <sdk:DataGridTextColumn Binding="{Binding Id}" CanUserResize="True" CanUserSort="True"
+                            Width="Auto" Header="ردیف " />
+
+                    <sdk:DataGridTemplateColumn Header="معین ">
+                        <sdk:DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Border HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                    <TextBlock Text="{Binding AccountNo}" HorizontalAlignment="Center"
+                                            VerticalAlignment="Center" />
+                                </Border>
+                            </DataTemplate>
+                        </sdk:DataGridTemplateColumn.CellTemplate>
+                    </sdk:DataGridTemplateColumn>
+
+                    <sdk:DataGridTemplateColumn Header="نوع">
+                        <sdk:DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Border HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                    <TextBlock Text="{Binding TypeJe,Mode=OneTime}"
+                                            HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                </Border>
+                            </DataTemplate>
+                        </sdk:DataGridTemplateColumn.CellTemplate>
+                    </sdk:DataGridTemplateColumn>
+
+                    <sdk:DataGridTemplateColumn Header="مبلغ ریالی">
+                        <sdk:DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Border HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                    <TextBlock Text="{Binding IrrAmount, StringFormat=\{0:N0\}}" HorizontalAlignment="Center"
+                                            VerticalAlignment="Center" />
+                                </Border>
+                            </DataTemplate>
+                        </sdk:DataGridTemplateColumn.CellTemplate>
+                    </sdk:DataGridTemplateColumn>
+
+                    <sdk:DataGridTemplateColumn Header="مبلغ ارزی">
+                        <sdk:DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Border HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                    <TextBlock Text="{Binding ForeignAmount, StringFormat=\{0:N2\}}" HorizontalAlignment="Center"
+                                            VerticalAlignment="Center" />
+                                </Border>
+                            </DataTemplate>
+                        </sdk:DataGridTemplateColumn.CellTemplate>
+                    </sdk:DataGridTemplateColumn>
+
+                    <sdk:DataGridTemplateColumn Header="کد ارز">
+                        <sdk:DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Border HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                    <TextBlock Text="{Binding CurrencyDto.Abbreviation}" HorizontalAlignment="Center"
+                                            VerticalAlignment="Center" />
+                                </Border>
+                            </DataTemplate>
+                        </sdk:DataGridTemplateColumn.CellTemplate>
+                    </sdk:DataGridTemplateColumn>
+
+                    <sdk:DataGridTemplateColumn Header="تفضیلی">
+                        <sdk:DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Border HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                    <TextBlock Text="{Binding SegmentCode}" HorizontalAlignment="Center"
+                                            VerticalAlignment="Center" />
+                                </Border>
+                            </DataTemplate>
+                        </sdk:DataGridTemplateColumn.CellTemplate>
+                    </sdk:DataGridTemplateColumn>
+
+                    <sdk:DataGridTemplateColumn Header="عطف">
+                        <sdk:DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate >
+                                <Border HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                    <TextBlock Text="{Binding VoucherRef}" HorizontalAlignment="Center" FlowDirection="LeftToRight"
+                                            VerticalAlignment="Center" />
+                                </Border>
+                            </DataTemplate>
+                        </sdk:DataGridTemplateColumn.CellTemplate>
+                    </sdk:DataGridTemplateColumn>
+
+                    <sdk:DataGridTemplateColumn Header="شرح ردیف">
+                        <sdk:DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Border HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                    <TextBlock Text="{Binding Description}" HorizontalAlignment="Center" FlowDirection="RightToLeft"
+                                            VerticalAlignment="Center" />
+                                </Border>
+                            </DataTemplate>
+                        </sdk:DataGridTemplateColumn.CellTemplate>
+                    </sdk:DataGridTemplateColumn>
+
+                </sdk:DataGrid.Columns>
+            </sdk:DataGrid>
+        </Grid>
+
+        <Grid x:Name="UxVoucherErrorGrid" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="3" 
+              Margin="0,20,0,0" Height="200">
+            <sdk:DataGrid AutoGenerateColumns="False" VerticalAlignment="Stretch" VerticalScrollBarVisibility="Visible"
+                    SelectionMode="Single" 
+                    ItemsSource="{Binding Logs}"         
+                    >
+
+                <sdk:DataGrid.Columns>
+
+                    <sdk:DataGridTemplateColumn Header="شناسه اسناد ">
+                        <sdk:DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+
+                                <Border HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                    <TextBlock Text="{Binding VoucherIds}" HorizontalAlignment="Center"
+                                            VerticalAlignment="Center" />
+                                </Border>
+                            </DataTemplate>
+                        </sdk:DataGridTemplateColumn.CellTemplate>
+                    </sdk:DataGridTemplateColumn>
+
+                    <sdk:DataGridTemplateColumn Header="تاریخ ارسال">
+                        <sdk:DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Border HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                    <TextBlock Text="{Binding SendDate,Mode=OneTime}"
+                                            HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                </Border>
+                            </DataTemplate>
+                        </sdk:DataGridTemplateColumn.CellTemplate>
+                    </sdk:DataGridTemplateColumn>
+
+                    <sdk:DataGridTemplateColumn Header="کاربر ">
+                        <sdk:DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Border HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                    <TextBlock Text="{Binding UserName}" HorizontalAlignment="Center"
+                                            VerticalAlignment="Center" />
+                                </Border>
+                            </DataTemplate>
+                        </sdk:DataGridTemplateColumn.CellTemplate>
+                    </sdk:DataGridTemplateColumn>
+
+                    <sdk:DataGridTemplateColumn Header="تاریخ تنظیمی ارسال">
+                        <sdk:DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Border HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                    <TextBlock Text="{Binding ConfigDate}" HorizontalAlignment="Center"
+                                            VerticalAlignment="Center" />
+                                </Border>
+                            </DataTemplate>
+                        </sdk:DataGridTemplateColumn.CellTemplate>
+                    </sdk:DataGridTemplateColumn>
+
+                    <sdk:DataGridTemplateColumn Header="کد تنظیمی ارسال">
+                        <sdk:DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Border HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                    <TextBlock Text="{Binding ConfigCode}" HorizontalAlignment="Center"
+                                            VerticalAlignment="Center" />
+                                </Border>
+                            </DataTemplate>
+                        </sdk:DataGridTemplateColumn.CellTemplate>
+                    </sdk:DataGridTemplateColumn>
+
+                    <sdk:DataGridTemplateColumn Header="پیام خطا">
+                        <sdk:DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+
+                                <!--<toolkit:Expander   IsExpanded="False" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">-->
+                                <!--<toolkit:Accordion VerticalAlignment="Stretch" HorizontalAlignment="Stretch" >-->
+                              
+                                <!--<ScrollViewer VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                                   
+                                </ScrollViewer>-->
+                                <!--</toolkit:Accordion>-->
+                                <!--<ListBox ItemsSource="{Binding FinancialExceptionMessage}"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />-->
+                                <Border HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
+                                    <TextBlock Text="{Binding FinancialExceptionMessage}" 
+                                               HorizontalAlignment="Left"  VerticalAlignment="Top"/>
+                                </Border>
+                            </DataTemplate>
+                        </sdk:DataGridTemplateColumn.CellTemplate>
+                    </sdk:DataGridTemplateColumn>
+
+
+                </sdk:DataGrid.Columns>
+            </sdk:DataGrid>
+
+        </Grid>
+    </Grid>
+</UserControl:ViewBase>

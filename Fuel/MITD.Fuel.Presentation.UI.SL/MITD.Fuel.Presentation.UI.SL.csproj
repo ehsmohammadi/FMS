@@ -1,0 +1,624 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{0CD7ED92-954E-410B-B67B-12FBB61856E6}</ProjectGuid>
+    <ProjectTypeGuids>{A1591282-1198-4647-A2B1-27E5FF5F6F3B};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MITD.Fuel.Presentation.UI.SL</RootNamespace>
+    <AssemblyName>MITD.Fuel.Presentation.UI.SL</AssemblyName>
+    <TargetFrameworkIdentifier>Silverlight</TargetFrameworkIdentifier>
+    <TargetFrameworkVersion>v5.0</TargetFrameworkVersion>
+    <SilverlightVersion>$(TargetFrameworkVersion)</SilverlightVersion>
+    <SilverlightApplication>true</SilverlightApplication>
+    <SupportedCultures>
+    </SupportedCultures>
+    <XapOutputs>true</XapOutputs>
+    <GenerateSilverlightManifest>true</GenerateSilverlightManifest>
+    <XapFilename>MITD.Fuel.Presentation.UI.SL.xap</XapFilename>
+    <SilverlightManifestTemplate>Properties\AppManifest.xml</SilverlightManifestTemplate>
+    <SilverlightAppEntry>MITD.Fuel.Presentation.UI.SL.App</SilverlightAppEntry>
+    <TestPageFileName>MITD.Fuel.Presentation.UI.SLTestPage.html</TestPageFileName>
+    <CreateTestPage>true</CreateTestPage>
+    <ValidateXaml>true</ValidateXaml>
+    <EnableOutOfBrowser>false</EnableOutOfBrowser>
+    <OutOfBrowserSettingsFile>Properties\OutOfBrowserSettings.xml</OutOfBrowserSettingsFile>
+    <UsePlatformExtensions>true</UsePlatformExtensions>
+    <ThrowErrorsInValidation>true</ThrowErrorsInValidation>
+    <LinkedServerProject>
+    </LinkedServerProject>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <!-- This property group is only here to support building this project using the 
+       MSBuild 3.5 toolset. In order to work correctly with this older toolset, it needs 
+       to set the TargetFrameworkVersion to v3.5 -->
+  <PropertyGroup Condition="'$(MSBuildToolsVersion)' == '3.5'">
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>Bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;TRACE;SILVERLIGHT</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>Bin\Release</OutputPath>
+    <DefineConstants>TRACE;SILVERLIGHT</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Without Test|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Without Test\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;SILVERLIGHT</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoStdLib>true</NoStdLib>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <NoConfig>true</NoConfig>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>false</SignManifests>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Castle.Core, Version=3.3.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Castle.Core.3.3.0\lib\sl5\Castle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Windsor, Version=3.3.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Castle.Windsor.3.3.0\lib\sl5\Castle.Windsor.dll</HintPath>
+    </Reference>
+    <Reference Include="MITD.Core.Config.Castle.SL">
+      <HintPath>..\..\Dependencies\MITD.Core.Config.Castle.SL.dll</HintPath>
+    </Reference>
+    <Reference Include="MITD.Core.SL">
+      <HintPath>..\..\Dependencies\MITD.Core.SL.dll</HintPath>
+      <Aliases>MITDCoreSL</Aliases>
+    </Reference>
+    <Reference Include="MITD.Presentation.Config.Castle.SL">
+      <HintPath>..\..\Dependencies\MITD.Presentation.Config.Castle.SL.dll</HintPath>
+    </Reference>
+    <Reference Include="MITD.Presentation.SL">
+      <HintPath>..\..\Dependencies\MITD.Presentation.SL.dll</HintPath>
+    </Reference>
+    <Reference Include="MITD.Presentation.UI.SL">
+      <HintPath>..\..\Dependencies\MITD.Presentation.UI.SL.dll</HintPath>
+    </Reference>
+    <Reference Include="MITD.StorageSpace.Presentation.Contracts.SL">
+      <HintPath>..\..\Dependencies\MITD.StorageSpace.Presentation.Contracts.SL.dll</HintPath>
+    </Reference>
+    <Reference Include="mscorlib">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations, Version=5.0.5.0, Culture=neutral, PublicKeyToken=ddd0da4d3e678217, processorArchitecture=MSIL" />
+    <Reference Include="System.Runtime.Serialization">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Windows">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="system">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Core">
+      <HintPath>$(TargetFrameworkDirectory)System.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="mscorlib">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Windows.Controls, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Windows.Controls.Data, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Windows.Controls.Data.Input, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Windows.Controls.Input.Toolkit, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Windows.Controls.Layout.Toolkit, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Windows.Controls.Toolkit, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Windows.Data, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Windows.Interactivity, Version=4.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Dependencies\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Windows.Browser">
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\BindableColumnsDataGridEx.xaml.cs">
+      <DependentUpon>BindableColumnsDataGridEx.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\DataGridDropdownComboboxControl.xaml.cs">
+      <DependentUpon>DataGridDropdownComboboxControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\MultiTypeDateTimeControl.xaml.cs">
+      <DependentUpon>MultiTypeDateTimeControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Converters\CompanyConveter.cs" />
+    <Compile Include="Converters\EmptyValueConverter.cs" />
+    <Compile Include="Converters\CurrencyTypeToPriceFormatConvertor.cs" />
+    <Compile Include="Converters\DateTimeConcatenationConverter.cs" />
+    <Compile Include="Converters\FuelReportToDisplayBrushConvertor.cs" />
+    <Compile Include="Converters\EnumToDescriptionConvertor.cs" />
+    <Compile Include="Converters\GregorianDateToPersianConverter.cs" />
+    <Compile Include="Converters\Inventory\TransactionStatusConverter.cs" />
+    <Compile Include="Converters\Inventory\TransactionItemPricesConverter.cs" />
+    <Compile Include="Converters\Inventory\TransactionTypeConverter.cs" />
+    <Compile Include="Converters\BooleanToVisibilityConverter.cs" />
+    <Compile Include="Converters\IsNotNullConverter.cs" />
+    <Compile Include="Converters\Order\OrderInvoicedQuantityToBarHeightConverter.cs" />
+    <Compile Include="Converters\Order\OrderReceivedQuantityToBarHeightConverter.cs" />
+    <Compile Include="Converters\VoyageActiveStateConverter.cs" />
+    <Compile Include="Converters\InventoryOperationsCountConvertor.cs" />
+    <Compile Include="Converters\WorkflowStageColorConverter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Infrastructure\FuelAppUIBootstrapper.cs" />
+    <Compile Include="MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Views\BasicInfo\CurrencyExchangeListView.xaml.cs">
+      <DependentUpon>CurrencyExchangeListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\BusyIndicatorView.xaml.cs">
+      <DependentUpon>BusyIndicatorView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ApproveView.xaml.cs">
+      <DependentUpon>ApproveView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\BasicInfo\FinancialAccountListView.xaml.cs">
+      <DependentUpon>FinancialAccountListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Charter\CharterEndView.xaml.cs">
+      <DependentUpon>CharterEndView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Charter\CharterItemView.xaml.cs">
+      <DependentUpon>CharterItemView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Charter\CharterListView.xaml.cs">
+      <DependentUpon>CharterListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Charter\CharterStartView.xaml.cs">
+      <DependentUpon>CharterStartView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Charter\CharterView.xaml.cs">
+      <DependentUpon>CharterView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Inventory\TransactionListView.xaml.cs">
+      <DependentUpon>TransactionListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Offhire\OffhireManagementSystemListView.xaml.cs">
+      <DependentUpon>OffhireManagementSystemListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Offhire\OffhireDetailView.xaml.cs">
+      <DependentUpon>OffhireDetailView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Offhire\OffhireListView.xaml.cs">
+      <DependentUpon>OffhireListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Offhire\OffhireView.xaml.cs">
+      <DependentUpon>OffhireView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Invoice\InvoiceAdditionalPriceListView.xaml.cs">
+      <DependentUpon>InvoiceAdditionalPriceListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Invoice\InvoiceAdditionalPriceView.xaml.cs">
+      <DependentUpon>InvoiceAdditionalPriceView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Invoice\InvoiceListView.xaml.cs">
+      <DependentUpon>InvoiceListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Invoice\InvoiceReferenceLookUp.xaml.cs">
+      <DependentUpon>InvoiceReferenceLookUp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FuelReport\VoyageLogView.xaml.cs">
+      <DependentUpon>VoyageLogView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FuelReport\VoyageListView.xaml.cs">
+      <DependentUpon>VoyageListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FuelReport\FuelReportDetailListView.xaml.cs">
+      <DependentUpon>FuelReportDetailListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FuelReport\FuelReportDetailView.xaml.cs">
+      <DependentUpon>FuelReportDetailView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FuelReport\FuelReportListView.xaml.cs">
+      <DependentUpon>FuelReportListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FuelReport\FuelReportView.xaml.cs">
+      <DependentUpon>FuelReportView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Invoice\InvoiceView.xaml.cs">
+      <DependentUpon>InvoiceView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Invoice\InvoiceItemListView.xaml.cs">
+      <DependentUpon>InvoiceItemListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Invoice\InvoiceItemView.xaml.cs">
+      <DependentUpon>InvoiceItemView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Order\OrderReferenceLookUp.xaml.cs">
+      <DependentUpon>OrderReferenceLookUp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Order\OrderItemListView.xaml.cs">
+      <DependentUpon>OrderItemListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Order\OrderItemView.xaml.cs">
+      <DependentUpon>OrderItemView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Order\OrderListView.xaml.cs">
+      <DependentUpon>OrderListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Order\OrderView.xaml.cs">
+      <DependentUpon>OrderView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Scrap\ScrapDetailView.xaml.cs">
+      <DependentUpon>ScrapDetailView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Scrap\ScrapListView.xaml.cs">
+      <DependentUpon>ScrapListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Scrap\ScrapView.xaml.cs">
+      <DependentUpon>ScrapView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Security\PartyCustomActionsView.xaml.cs">
+      <DependentUpon>PartyCustomActionsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Security\UserGroupListView.xaml.cs">
+      <DependentUpon>UserGroupListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Security\UserGroupView.xaml.cs">
+      <DependentUpon>UserGroupView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Security\UserListView.xaml.cs">
+      <DependentUpon>UserListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Security\ChangePassWord.xaml.cs">
+      <DependentUpon>ChangePassWord.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Security\UserView.xaml.cs">
+      <DependentUpon>UserView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Uploader\UploaderView.xaml.cs">
+      <DependentUpon>UploaderView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Vessel\VesselActivationItemView.xaml.cs">
+      <DependentUpon>VesselActivationItemView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Vessel\VesselListView.xaml.cs">
+      <DependentUpon>VesselListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Vessel\VesselActivationView.xaml.cs">
+      <DependentUpon>VesselActivationView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Vessel\VesselView.xaml.cs">
+      <DependentUpon>VesselView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Voucher\AccountListView.xaml.cs">
+      <DependentUpon>AccountListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Voucher\VoucherListView.xaml.cs">
+      <DependentUpon>VoucherListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Voucher\VoucherSetingDetailView.xaml.cs">
+      <DependentUpon>VoucherSetingDetailView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Voucher\VoucherSetingListView.xaml.cs">
+      <DependentUpon>VoucherSetingListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Voucher\VoucherSetingView.xaml.cs">
+      <DependentUpon>VoucherSetingView.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </ApplicationDefinition>
+    <Page Include="Assets\LocalResource.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\BindableColumnsDataGridEx.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\DataGridDropdownComboboxControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\MultiTypeDateTimeControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\BasicInfo\CurrencyExchangeListView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\BusyIndicatorView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ApproveView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\BasicInfo\FinancialAccountListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Charter\CharterEndView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Charter\CharterItemView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Charter\CharterListView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Charter\CharterStartView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Charter\CharterView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Inventory\TransactionListView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Offhire\OffhireManagementSystemListView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Offhire\OffhireDetailView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Offhire\OffhireListView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Offhire\OffhireView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\FuelReport\VoyageLogView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\FuelReport\VoyageListView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\FuelReport\FuelReportDetailListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\FuelReport\FuelReportDetailView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\FuelReport\FuelReportListView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\FuelReport\FuelReportView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Invoice\InvoiceAdditionalPriceListView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Invoice\InvoiceAdditionalPriceView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Invoice\InvoiceListView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Invoice\InvoiceReferenceLookUp.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Invoice\InvoiceView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Invoice\InvoiceItemListView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Invoice\InvoiceItemView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Order\OrderReferenceLookUp.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Order\OrderItemListView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Order\OrderItemView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Order\OrderListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Order\OrderView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Scrap\ScrapDetailView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Scrap\ScrapListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Scrap\ScrapView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Security\PartyCustomActionsView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Security\UserGroupListView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Security\UserGroupView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Security\UserListView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Security\ChangePassWord.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Security\UserView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Uploader\UploaderView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Vessel\VesselActivationItemView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Vessel\VesselListView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Vessel\VesselActivationView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Vessel\VesselView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Voucher\AccountListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Voucher\VoucherListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Voucher\VoucherSetingDetailView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Voucher\VoucherSetingListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Voucher\VoucherSetingView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+    <None Include="Properties\AppManifest.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MITD.Fuel.Presentation.Contracts.SL\MITD.Fuel.Presentation.Contracts.SL.csproj">
+      <Project>{8d698e1d-b609-4d46-8d0d-33f4843e7af6}</Project>
+      <Name>MITD.Fuel.Presentation.Contracts.SL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MITD.Fuel.Presentation.Logic.SL\MITD.Fuel.Presentation.Logic.SL.csproj">
+      <Project>{d96b1b99-f292-49e1-be71-62156aaa1133}</Project>
+      <Name>MITD.Fuel.Presentation.Logic.SL</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\word.png" />
+    <Resource Include="Assets\pdf.png" />
+    <Resource Include="Assets\image.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\excel.png" />
+    <Resource Include="Assets\text.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\find.png" />
+    <Resource Include="Assets\multiply-.png" />
+    <Resource Include="Assets\refresh.png" />
+    <Resource Include="Assets\Search.png" />
+    <Resource Include="Assets\update.png" />
+    <Resource Include="Assets\x.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{A1591282-1198-4647-A2B1-27E5FF5F6F3B}">
+        <SilverlightProjectProperties />
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

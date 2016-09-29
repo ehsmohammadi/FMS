@@ -1,0 +1,223 @@
+﻿<UserControl:ViewBase
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:UserControl="clr-namespace:MITD.Presentation.UI;assembly=MITD.Presentation.UI.SL"
+    xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
+    xmlns:VM="clr-namespace:MITD.Fuel.Presentation.Logic.SL.ViewModels;assembly=MITD.Fuel.Presentation.Logic.SL"
+    x:Class="MITD.Fuel.Presentation.UI.SL.Views.Invoice.InvoiceListView"
+    xmlns:DTOs="clr-namespace:MITD.Fuel.Presentation.Contracts.DTOs;assembly=MITD.Fuel.Presentation.Contracts.SL"
+    xmlns:Invoice="clr-namespace:MITD.Fuel.Presentation.UI.SL.Views.Invoice"
+    xmlns:converters="clr-namespace:MITD.Fuel.Presentation.UI.SL.Converters"
+    xmlns:controls="clr-namespace:MITD.Fuel.Presentation.UI.SL.Controls"
+    d:DataContext="{d:DesignInstance Type=VM:InvoiceListVM}"
+     Style="{StaticResource DefaultStyle}" 
+    mc:Ignorable="d"         
+    d:DesignHeight="400" d:DesignWidth="800"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+    <UserControl:ViewBase.Resources>
+        <DataTemplate x:Key="uxComboTemplate" >
+            <Grid Height="{Binding Height, RelativeSource={RelativeSource TemplatedParent}}"  Width="{Binding Width, RelativeSource={RelativeSource TemplatedParent}}" >
+                <sdk:Label x:Name="uxName" Content="{Binding Name}"/>
+            </Grid>
+        </DataTemplate>
+        <converters:EmptyValueConverter x:Key="EmptyValueConverter"/>
+        <converters:EnumToDescriptionConvertor x:Key="EnumToDescriptionConvertor" />
+        <converters:GregorianDateToPersianConverter x:Key="GregorianDateToPersianConverter"/>
+        <converters:IsNotNullConverter x:Key="IsNotNullConverter" />
+        <converters:DateTimeConcatenationConverter x:Key="DateTimeConcatenationConverter"/>
+        <converters:WorkflowStageColorConverter x:Key="WorkflowStageColorConverter"/>
+        <converters:WorkflowStageFontWeightConverter x:Key="WorkflowStageFontWeightConverter"/>
+        <Style x:Name="uxMainFilterControlStyle" TargetType="FrameworkElement">
+            <Setter Property="Width" Value="120"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Height" Value="25"/>
+            <Setter Property="Margin" Value="5,2,5,2"/>
+        </Style>
+        <Style x:Name="uxMainFilterTextboxHalfSizeControlStyle" TargetType="FrameworkElement">
+            <Setter Property="Width" Value="120"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Height" Value="25"/>
+            <Setter Property="Margin" Value="5,2,5,2"/>
+        </Style>
+
+    </UserControl:ViewBase.Resources>
+
+    <!--main layout grid-->
+    <Grid x:Name="uxLayoutGrid" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!--filter grid-->
+        <Grid x:Name="uxFilterGrid" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="0" 
+              Visibility="{Binding Path=IsVisibleFilter}">
+            <Grid.RowDefinitions>
+                <RowDefinition  />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock x:Name="uxCompanyLabel" Text="شرکت"  Grid.Row="0" Grid.Column="0" Height="25"/>
+            <ComboBox x:Name="uxCompanyCombo"  ItemsSource="{Binding Path=CompaniesFilter}" SelectedItem="{Binding Path=CompaniesFilterSelected,Mode=TwoWay}"
+                ItemTemplate="{StaticResource ResourceKey=uxComboTemplate}"
+                Grid.Row="0" Grid.Column="1" Width="150" Style="{StaticResource ResourceKey=uxMainFilterControlStyle}"/>
+
+            <TextBlock x:Name="uxVesselLabel" Text="کشتی"  Grid.Row="1" Grid.Column="0" Height="25"/>
+            <controls:DataGridDropdownComboboxControl x:Name="uxVesselCombo" 
+                           ItemsSource="{Binding CompaniesFilterSelected.VesselInCompanies}" 
+                           SelectedValuePath="Id" 
+                           SelectedValueProper="{Binding Path=VesselFilterSelected.Id}" 
+                           SelectedItem="{Binding Path=VesselFilterSelected, Mode=TwoWay}" 
+                           Grid.Row="1" Grid.Column="1" Width="150" Style="{StaticResource uxMainFilterControlStyle}">
+                <controls:DataGridDropdownComboboxControl.DataGridColumns>
+                    <sdk:DataGridTextColumn Binding="{Binding Name}" MinWidth="150" Header="نام"/>
+                    <sdk:DataGridTextColumn Binding="{Binding Code}" MinWidth="100" Header="کد"/>
+                </controls:DataGridDropdownComboboxControl.DataGridColumns>
+                <controls:DataGridDropdownComboboxControl.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <sdk:Label Content="{Binding Name}"/>
+                            <sdk:Label Content="-"/>
+                            <sdk:Label Content="{Binding Code}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </controls:DataGridDropdownComboboxControl.ItemTemplate>
+            </controls:DataGridDropdownComboboxControl>
+            <!--<ComboBox x:Name="uxVesselCombo"  ItemsSource="{Binding Path=CompaniesFilterSelected.VesselInCompanies}" SelectedItem="{Binding VesselFilterSelected,Mode=TwoWay}"
+                      ItemTemplate="{StaticResource ResourceKey=uxComboTemplate}"
+                      Grid.Row="1" Grid.Column="1" Style="{StaticResource ResourceKey=uxMainFilterControlStyle}"/>-->
+
+            <TextBlock x:Name="InvoiceNumberFilterTitle" Text="شماره صورتحساب" Grid.Row="0" Grid.Column="2" Height="25" />
+            <TextBox x:Name="InvoiceNumberFilterText" Text="{Binding InvoiceNumberFilterValue, Mode=TwoWay, Converter={StaticResource EmptyValueConverter}}" Grid.Row="0" Grid.Column="3" Height="25" Style="{StaticResource ResourceKey=uxMainFilterControlStyle}"/>
+
+            <TextBlock x:Name="OrderNumberFilterTitle" Text="شماره سفارش" Grid.Row="1" Grid.Column="2" Height="25" />
+            <TextBox x:Name="OrderNumberFilterText" Text="{Binding OrderNumberFilterValue, Mode=TwoWay, Converter={StaticResource EmptyValueConverter}}" Grid.Row="1" Grid.Column="3" Height="25" Style="{StaticResource ResourceKey=uxMainFilterControlStyle}"/>
+
+            <TextBlock x:Name="uxFromLabel" Text="از تاریخ"  Grid.Row="0" Grid.Column="4" Height="25"/>
+            <!--<controls:MultiTypeDateTimeControl Margin="5" Height="24" 
+                                           DisplayOrientation="Horizontal"
+                                           CalendarType="Persian"
+                                           DisplayMode="Date"-->
+
+            <!--<P:PDatePicker x:Name="uxFromDatePicker" SelectedDate="{Binding Path=FromDateFilter, Mode=TwoWay,Converter={StaticResource EmptyValueConverter}}"   Grid.Row="0" Grid.Column="3"    />-->
+            <controls:MultiTypeDateTimeControl Margin="5" Height="24" 
+                                           DisplayOrientation="Horizontal"
+                                           CalendarType="Persian"
+                                           DisplayMode="Date" x:Name="uxFromDatePicker" SelectedDate="{Binding Path=FromDateFilter, Mode=TwoWay}"   Grid.Row="0" Grid.Column="5"    />
+            
+            <TextBlock x:Name="uxToLabel" Text="تا تاریخ"  Grid.Row="1" Grid.Column="4" Height="25"/>
+            <!--<P:PDatePicker x:Name="uxToDatePicker" SelectedDate="{Binding Path=ToDateFilter, Mode=TwoWay,Converter={StaticResource EmptyValueConverter}}"  Grid.Row="1" Grid.Column="3" />-->
+            <controls:MultiTypeDateTimeControl Margin="5" Height="24" 
+                                           DisplayOrientation="Horizontal"
+                                           CalendarType="Persian"
+                                           DisplayMode="Date" x:Name="uxToDatePicker" SelectedDateTime="{Binding Path=ToDateFilter, Mode=TwoWay}"  Grid.Row="1" Grid.Column="5" />
+
+            <TextBlock x:Name="InvoiceIdsFilterTitle" Text="سریال سربرگ" Grid.Row="0" Grid.Column="6" Height="25" />
+            <TextBox x:Name="InvoiceIdsFilterText" Text="{Binding InvoiceIdsFilterValue, Mode=TwoWay}" Grid.Row="0" Grid.Column="7" Height="25" Style="{StaticResource ResourceKey=uxMainFilterTextboxHalfSizeControlStyle}"/>
+            <TextBlock x:Name="InvoiceItemIdsFilterTitle" Text="سریال جزء" Grid.Row="1" Grid.Column="6" Height="25" />
+            <TextBox x:Name="InvoiceItemIdsFilterText" Text="{Binding InvoiceItemIdsFilterValue, Mode=TwoWay}" Grid.Row="1" Grid.Column="7" Height="25" Style="{StaticResource ResourceKey=uxMainFilterTextboxHalfSizeControlStyle}" />
+            <Button Content="{Binding SearchCommand.DisplayName}" Command="{Binding SearchCommand.Command}" Grid.Column="8" Grid.Row="1"  Height="25" Width="75" HorizontalAlignment="Left" />
+        </Grid>
+        <!--Invoice grid-->
+        <Grid x:Name="uxInvoiceGrid" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <!--invoice data grid-->
+            <sdk:DataGrid AutoGenerateColumns="False" VerticalAlignment="Stretch" SelectionMode="Single" FrozenColumnCount="2"
+                ItemsSource="{Binding Path=Data}"
+                SelectedItem="{Binding Path=SelectedInvoice, Mode=TwoWay}" Grid.Row="0" Grid.ColumnSpan="2"  
+                d:DataContext="{d:DesignInstance Type=DTOs:InvoiceDto}" >
+                <sdk:DataGrid.Columns>
+                    <sdk:DataGridTextColumn Binding="{Binding Path=Id}" Header="سریال"  CanUserReorder="True" CanUserResize="True" CanUserSort="True" Width="Auto" />
+                    <sdk:DataGridTextColumn Binding="{Binding Path=InvoiceNumber}" Header="شماره"  CanUserReorder="True" CanUserResize="True" CanUserSort="True" Width="Auto" />
+                    <sdk:DataGridTextColumn Binding="{Binding Path=VesselsNames}" Header="کشتی(ها)" CanUserReorder="True" CanUserResize="True" CanUserSort="True" MinWidth="100"  />
+                    <sdk:DataGridTextColumn Binding="{Binding Path=VoyagesNumbers}" Header="سفر(ها)" CanUserReorder="True" CanUserResize="True" CanUserSort="True" MinWidth="80"  />
+                    <sdk:DataGridTemplateColumn Header="تاریخ صورتحساب (م)">
+                        <sdk:DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Border HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                    <TextBlock Text="{Binding Path=InvoiceDate, StringFormat='yyyy/MM/dd'}" HorizontalAlignment="Center" VerticalAlignment="Center" FlowDirection="LeftToRight" Margin="3,0"/>
+                                </Border>
+                            </DataTemplate>
+                        </sdk:DataGridTemplateColumn.CellTemplate>
+                    </sdk:DataGridTemplateColumn>
+                    <sdk:DataGridTextColumn Binding="{Binding Path=FuelReportsDateTimes, Converter={StaticResource DateTimeConcatenationConverter}, ConverterParameter='yyyy/MM/dd'}" Header="تاریخ عملیات (م)" CanUserReorder="True" CanUserResize="True" CanUserSort="True" Width="110"   />
+                    <sdk:DataGridTextColumn Binding="{Binding Path=SupplierName}" Header="تأمین کننده" CanUserReorder="True" CanUserResize="True" CanUserSort="True" Width="100"/>
+                    <sdk:DataGridTemplateColumn  Header="وضعیت جاری" CanUserReorder="True" CanUserResize="True" CanUserSort="True" Width="100">
+                        <sdk:DataGridTemplateColumn.CellTemplate>
+                           <DataTemplate>
+                                <TextBlock Margin="3" Text="{Binding ApproveStatusString}" FontWeight="{Binding ApproveStatus, Converter={StaticResource WorkflowStageFontWeightConverter}}" Foreground="{Binding ApproveStatus, Converter={StaticResource WorkflowStageColorConverter}}" VerticalAlignment="Center"/>
+                           </DataTemplate>
+                       </sdk:DataGridTemplateColumn.CellTemplate>
+                    </sdk:DataGridTemplateColumn>
+                    <sdk:DataGridTextColumn Binding="{Binding Path=UserInChargName}" CanUserResize="True" CanUserSort="False" Width="Auto" Header="کاربر مسئول" />
+                    <sdk:DataGridTextColumn Binding="{Binding Path=CurrencyName}" CanUserResize="True" CanUserSort="False" Width="Auto" Header="ارز" />
+                    <sdk:DataGridTextColumn Binding="{Binding Path=OrderNumbers}" CanUserResize="True" CanUserSort="False" Width="100" Header="ش. سفارش(ها)" />
+                    <sdk:DataGridTextColumn Binding="{Binding Path=FuelReportDetailIds}" CanUserResize="True" CanUserSort="False" Width="100" Header="ش. عملیات" />
+                    <sdk:DataGridTextColumn Header="تاریخ صورتحساب (ش)" Binding="{Binding Path=InvoiceDate, Converter={StaticResource GregorianDateToPersianConverter}, ConverterParameter='yyyy/MM/dd'}"  CanUserResize="True" CanUserSort="False" Width="Auto">
+                        <sdk:DataGridTextColumn.ElementStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="FlowDirection" Value="LeftToRight"/>
+                                <Setter Property="Margin" Value="3,0"/>
+                            </Style>
+                        </sdk:DataGridTextColumn.ElementStyle>
+                    </sdk:DataGridTextColumn>
+                    <sdk:DataGridTemplateColumn Header="نوع">
+                        <sdk:DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Border HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                    <TextBlock Text="{Binding InvoiceType, Converter={StaticResource EnumToDescriptionConvertor}}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </DataTemplate>
+                        </sdk:DataGridTemplateColumn.CellTemplate>
+                    </sdk:DataGridTemplateColumn>
+                    <sdk:DataGridTextColumn Binding="{Binding Path=TotalOfDivisionPrice}"    Header="مبلغ عوامل تأثیرگذار" CanUserReorder="True" CanUserResize="True" CanUserSort="True" Width="Auto"   />
+                    <sdk:DataGridTextColumn Binding="{Binding Path=DivisionMethod, Converter={StaticResource EnumToDescriptionConvertor}}"    Header="نوع تسهیم " CanUserReorder="True" CanUserResize="True" CanUserSort="True" Width="Auto"   />
+                    <sdk:DataGridTextColumn Binding="{Binding Path=TransporterName}" Header="انتقال دهنده" CanUserReorder="True" CanUserResize="True" CanUserSort="True" Width="100"  />
+                    
+                    <sdk:DataGridTextColumn Binding="{Binding Path=Description}" Header="توضیحات" CanUserReorder="True" CanUserResize="True" CanUserSort="True" Width="250"     />
+                </sdk:DataGrid.Columns>
+            </sdk:DataGrid>
+        </Grid>
+        <StackPanel Grid.Row="2" HorizontalAlignment="Center" Orientation="Horizontal" Margin="0,0,0,0">
+            <UserControl:CustomDataPager x:Name="uxPager" Height="26" FontFamily="Tahoma" FontSize="11" 
+                        Width="200" 
+                        Source="{Binding Path=Data, Mode=TwoWay}"   
+                        PageSize="{Binding Data.PageSize, Mode=TwoWay, TargetNullValue=10}"
+                        PageIndex="{Binding Data.PageIndex, Mode=TwoWay, TargetNullValue=0}"/>
+
+            <Button Content="{Binding AddCommand.DisplayName}" Command="{Binding AddCommand.Command}" Width="75" Height="25"  Margin="2,0"/>
+            <Button Content="{Binding EditCommand.DisplayName}" Command="{Binding EditCommand.Command}" IsEnabled="{Binding SelectedInvoice, Converter={StaticResource IsNotNullConverter}}" Width="75" Height="25"  Margin="2,0"/>
+            <Button Content="{Binding DeleteCommand.DisplayName}" Command="{Binding DeleteCommand.Command}" IsEnabled="{Binding SelectedInvoice, Converter={StaticResource IsNotNullConverter}}" Width="75" Height="25"  Margin="2,0"/>
+            <Button Content="{Binding ApproveCommand.DisplayName}" Command="{Binding ApproveCommand.Command}" IsEnabled="{Binding SelectedInvoice, Converter={StaticResource IsNotNullConverter}}" Width="75" Height="25"  Margin="2,0"/>
+            <Button Content="{Binding RejectCommand.DisplayName}" Command="{Binding RejectCommand.Command}" IsEnabled="{Binding SelectedInvoice, Converter={StaticResource IsNotNullConverter}}" Width="75" Height="25" Margin="2,0" />
+            <Button Content="{Binding CancelCommand.DisplayName}" Command="{Binding CancelCommand.Command}" IsEnabled="{Binding SelectedInvoice, Converter={StaticResource IsNotNullConverter}}" Width="75" Height="25" Margin="2,0" />
+            <Button Content="{Binding ViewFuelReportDetailsReferencesCommand.DisplayName}" Command="{Binding ViewFuelReportDetailsReferencesCommand.Command}" IsEnabled="{Binding SelectedInvoice, Converter={StaticResource IsNotNullConverter}}" Height="25" Margin="2,0" />
+            <Button Content="{Binding ViewOrdersReferencesCommand.DisplayName}" Command="{Binding ViewOrdersReferencesCommand.Command}" IsEnabled="{Binding SelectedInvoice, Converter={StaticResource IsNotNullConverter}}" Width="75" Height="25" Margin="2,0" />
+        </StackPanel>
+        <Invoice:InvoiceItemListView x:Name="uxInvoiceItemList"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Grid.Row="4"   />
+    </Grid>
+
+</UserControl:ViewBase>

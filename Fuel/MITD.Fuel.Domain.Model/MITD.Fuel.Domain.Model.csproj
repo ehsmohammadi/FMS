@@ -1,0 +1,483 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F75008B5-5BFE-4570-B583-9C3E0468ED68}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MITD.Fuel.Domain.Model</RootNamespace>
+    <AssemblyName>MITD.Fuel.Domain.Model</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Without Test|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Without Test\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Iesi.Collections">
+      <HintPath>..\..\packages\Iesi.Collections.3.2.0.1001\lib\Net35\Iesi.Collections.dll</HintPath>
+    </Reference>
+    <Reference Include="MITD.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\Dependencies\MITD.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="MITD.CurrencyAndMeasurement.Domain.Contracts">
+      <HintPath>..\..\Dependencies\MITD.CurrencyAndMeasurement.Domain.Contracts.dll</HintPath>
+    </Reference>
+    <Reference Include="MITD.Domain.Model, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\Dependencies\MITD.Domain.Model.dll</HintPath>
+    </Reference>
+    <Reference Include="MITD.Domain.Repository, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\Dependencies\MITD.Domain.Repository.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate">
+      <HintPath>..\..\packages\NHibernate.3.3.3.4001\lib\Net35\NHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Commands\InvoiceAdditionalPriceCommand.cs" />
+    <Compile Include="Commands\VesselActivationItem.cs" />
+    <Compile Include="DomainObjects\ApproveFlow\ActivityFlow.cs" />
+    <Compile Include="DomainObjects\ApproveFlow\ApprovalResult.cs" />
+    <Compile Include="DomainObjects\ApproveFlow\CharterWorkflowLog.cs" />
+    <Compile Include="DomainObjects\ApproveFlow\OffhireWorkflowLog.cs" />
+    <Compile Include="DomainObjects\ApproveFlow\ScrapWorkflowLog.cs" />
+    <Compile Include="DomainObjects\ApproveFlow\InvoiceWorkflowLog.cs" />
+    <Compile Include="DomainObjects\ApproveFlow\FuelReportWorkflowLog.cs" />
+    <Compile Include="DomainObjects\ApproveFlow\OrderWorkflowLog.cs" />
+    <Compile Include="DomainObjects\ApproveFlow\Workflow.cs" />
+    <Compile Include="DomainObjects\ApproveFlow\WorkflowLog.cs" />
+    <Compile Include="DomainObjects\ApproveFlow\WorkflowStep.cs" />
+    <Compile Include="Commands\InvoiceItemCommand.cs" />
+    <Compile Include="DomainObjects\Attachment.cs" />
+    <Compile Include="DomainObjects\CharterAggregate\CharterItemHistory.cs" />
+    <Compile Include="DomainObjects\CharterAggregate\DomainServices\InventorySubscriber.cs" />
+    <Compile Include="DomainObjects\CurrencyExchange.cs" />
+    <Compile Include="DomainObjects\FreeAccount.cs" />
+    <Compile Include="DomainObjects\FuelReportAggregate\CharterPreparedData.cs" />
+    <Compile Include="DomainObjects\FuelReportAggregate\Factories\IFuelReportFactory.cs" />
+    <Compile Include="DomainObjects\FuelReportAggregate\Factories\FuelReportFactory.cs" />
+    <Compile Include="DomainObjects\FuelReportAggregate\FuelReportStates\SubmitRejectedState.cs" />
+    <Compile Include="DomainObjects\FuelReportAggregate\Specifications\IsFuelReportSubmittedByCommercial - Copy 1.cs" />
+    <Compile Include="DomainObjects\FuelReportAggregate\Specifications\IsFuelReportSubmittedByCommercial.cs" />
+    <Compile Include="DomainObjects\FuelReportAggregate\Specifications\IsFuelReportSubmitted.cs" />
+    <Compile Include="DomainObjects\FuelReportAggregate\Specifications\IsFuelReportSubmitRejected.cs" />
+    <Compile Include="DomainObjects\FuelReportAggregate\Specifications\IsFuelReportNotCancelled.cs" />
+    <Compile Include="DomainObjects\Inventory\Inventory_User.cs" />
+    <Compile Include="DomainObjects\Inventory\Inventory_Company.cs" />
+    <Compile Include="DomainObjects\Inventory\Inventory_ErrorMessage.cs" />
+    <Compile Include="DomainObjects\Inventory\Inventory_FinancialYear.cs" />
+    <Compile Include="DomainObjects\Inventory\Inventory_Good.cs" />
+    <Compile Include="DomainObjects\Inventory\Inventory_OperationReference.cs" />
+    <Compile Include="DomainObjects\Inventory\Inventory_StoreType.cs" />
+    <Compile Include="DomainObjects\Inventory\Inventory_TimeBucket.cs" />
+    <Compile Include="DomainObjects\Inventory\Inventory_Transaction.cs" />
+    <Compile Include="DomainObjects\Inventory\Inventory_TransactionItem.cs" />
+    <Compile Include="DomainObjects\Inventory\Inventory_TransactionItemPrice.cs" />
+    <Compile Include="DomainObjects\Inventory\Inventory_Unit.cs" />
+    <Compile Include="DomainObjects\Inventory\Inventory_UnitConvert.cs" />
+    <Compile Include="DomainObjects\Inventory\Inventory_Warehouse.cs" />
+    <Compile Include="DomainObjects\Inventory\Specifications\IsTransactionVoucherd.cs" />
+    <Compile Include="DomainObjects\Inventory\Specifications\IsTransactionFullyPriced.cs" />
+    <Compile Include="DomainObjects\InvoiceAggreate\InvoiceStates\SubmitRejectedState.cs" />
+    <Compile Include="DomainObjects\InvoiceAggreate\InvoiceType\PurchaseInvoice - Copy 1.cs" />
+    <Compile Include="DomainObjects\OffhireAggregate\OffhireManagementSystemEntity.cs" />
+    <Compile Include="DomainObjects\OrderAggreate\DomainServices\BalanceDomainService.cs" />
+    <Compile Include="DomainObjects\OffhireAggregate\Commands\OffhireCommand.cs" />
+    <Compile Include="DomainObjects\OffhireAggregate\OffhirePreparedData.cs" />
+    <Compile Include="DomainObjects\OrderAggreate\OrderItemOperatedQuantity.cs" />
+    <Compile Include="DomainObjects\OrderAggreate\OrderItemBalance.cs" />
+    <Compile Include="DomainObjects\OrderAggreate\OrderStates\SubmitRejectedState.cs" />
+    <Compile Include="DomainObjects\OrderAggreate\OrderTypes\SupplyForDeliveredVesselOrder.cs" />
+    <Compile Include="DomainObjects\OrderAggreate\OrderTypes\PurchaseForVesselOrder.cs" />
+    <Compile Include="DomainObjects\OrderAggreate\Specifications\IsSupplyForDeliveredVesselOrderValid.cs" />
+    <Compile Include="DomainObjects\OrderAggreate\Specifications\IsPurchaseForVesselValid.cs" />
+    <Compile Include="DomainObjects\OrderAggreate\Specifications\OrderIsSubmitRejectedState.cs" />
+    <Compile Include="DomainObjects\VesselAggregate\Factories\VesselInCompanyStateFactory.cs" />
+    <Compile Include="DomainObjects\VesselAggregate\Factories\IVesselInCompanyStateFactory.cs" />
+    <Compile Include="DomainObjects\VesselAggregate\Factories\VesselInCompanyConfigurator.cs" />
+    <Compile Include="DomainObjects\VesselAggregate\VesselStates\InactiveVesselInCompanyState.cs" />
+    <Compile Include="DomainObjects\VesselAggregate\VesselStates\VesselInCompanyState.cs" />
+    <Compile Include="DomainObjects\VesselAggregate\VesselStates\ScrappedVesselInCompanyState.cs" />
+    <Compile Include="DomainObjects\VesselAggregate\VesselStates\OwnedVesselInCompanyState.cs" />
+    <Compile Include="DomainObjects\VesselAggregate\VesselStates\CharteredInVesselInCompanyState.cs" />
+    <Compile Include="DomainObjects\VesselAggregate\VesselStates\CharteredOutVesselInCompanyState.cs" />
+    <Compile Include="DomainObjects\VesselAggregate\Vessel.cs" />
+    <Compile Include="DomainObjects\VesselAggregate\VesselInInventory.cs" />
+    <Compile Include="DomainObjects\VoucherAggregate\FinancialVoucherStates.cs" />
+    <Compile Include="DomainObjects\VoucherAggregate\Rule\BusinessRuleBase.cs" />
+    <Compile Include="DomainObjects\VoucherAggregate\Rule\HasAccount.cs" />
+    <Compile Include="DomainObjects\VoucherAggregate\Rule\HasNotHeaderType.cs" />
+    <Compile Include="DomainObjects\VoucherAggregate\Rule\HasSegment.cs" />
+    <Compile Include="DomainObjects\VoucherAggregate\Rule\IBusinessRule.cs" />
+    <Compile Include="DomainObjects\VoucherAggregate\Rule\IsAlonePort.cs" />
+    <Compile Include="DomainObjects\VoucherAggregate\Rule\IsChangeTypeOrCompany.cs" />
+    <Compile Include="DomainObjects\VoucherAggregate\Rule\IsChoseVoyagePortTogether.cs" />
+    <Compile Include="DomainObjects\VoucherAggregate\Rule\IsNotChoseVoyageVessel.cs" />
+    <Compile Include="DomainObjects\VoucherAggregate\Rule\NullValidationHeader.cs" />
+    <Compile Include="DomainObjects\VoucherAggregate\OriginalAccount.cs" />
+    <Compile Include="DomainObjects\VoucherAggregate\Account.cs" />
+    <Compile Include="DomainObjects\VoucherAggregate\AsgnSegmentTypeVoucherSetingDetail.cs" />
+    <Compile Include="DomainObjects\VoucherAggregate\AsgnVoucherAcont.cs" />
+    <Compile Include="DomainObjects\VoucherAggregate\Issue.cs" />
+    <Compile Include="DomainObjects\VoucherAggregate\JournalEntry.cs" />
+    <Compile Include="DomainObjects\VoucherAggregate\Receipt.cs" />
+    <Compile Include="DomainObjects\VoucherAggregate\ReferenceType.cs" />
+    <Compile Include="DomainObjects\VoucherAggregate\Segment.cs" />
+    <Compile Include="DomainObjects\VoucherAggregate\SegmentType.cs" />
+    <Compile Include="DomainObjects\VoucherAggregate\Voucher.cs" />
+    <Compile Include="DomainObjects\VoucherAggregate\VoucherDetailType.cs" />
+    <Compile Include="DomainObjects\VoucherAggregate\VoucherSeting.cs" />
+    <Compile Include="DomainObjects\VoucherAggregate\VoucherSetingDetail.cs" />
+    <Compile Include="DomainObjects\VoyageAggregate\RotationVoyage.cs" />
+    <Compile Include="DomainServices\InventoryAggregate\InventoryCompanyDomainService.cs" />
+    <Compile Include="DomainServices\FuelUserDomainService.cs" />
+    <Compile Include="DomainServices\VesselDomainService.cs" />
+    <Compile Include="DomainServices\VesselInCompanyDomainService.cs" />
+    <Compile Include="Enums\CharteringType.cs" />
+    <Compile Include="Enums\CorrectionPricingTypes.cs" />
+    <Compile Include="Enums\Inventory\InventoryOperationReferenceTypes.cs" />
+    <Compile Include="Enums\Inventory\InventoryOperationType.cs" />
+    <Compile Include="Enums\Inventory\TransactionStatus.cs" />
+    <Compile Include="Enums\Inventory\TransactionType.cs" />
+    <Compile Include="Enums\VoucherType.cs" />
+    <Compile Include="Extensions\DomainExtensions.cs" />
+    <Compile Include="Extensions\InventoryExtensions.cs" />
+    <Compile Include="Factories\IInventoryOperationFactory - Copy 1.cs" />
+    <Compile Include="Factories\TransactionScopeFactory.cs" />
+    <Compile Include="IDomainServices\ApprovableInvoiceDomainService.cs" />
+    <Compile Include="DomainObjects\CharterAggregate\Events\CharterOutDisApproveArg.cs" />
+    <Compile Include="DomainObjects\CharterAggregate\Events\CharterInApproveArg.cs" />
+    <Compile Include="DomainObjects\CharterAggregate\Events\CharterInDisApproveArg.cs" />
+    <Compile Include="DomainObjects\CharterAggregate\Events\CharterInFinalApproveArg.cs" />
+    <Compile Include="DomainObjects\CharterAggregate\Events\CharterOutApproveArg.cs" />
+    <Compile Include="DomainObjects\CharterAggregate\Events\CharterOutFinalApproveArg.cs" />
+    <Compile Include="IDomainServices\Events\IInventorySubscriber.cs" />
+    <Compile Include="IDomainServices\Events\InventoryOperations\InventoryOperationResult.cs" />
+    <Compile Include="IDomainServices\GoodTrustReceiveData.cs" />
+    <Compile Include="IDomainServices\IApprovableInvoiceDomainService.cs" />
+    <Compile Include="IDomainServices\IAutomaticVoucher.cs" />
+    <Compile Include="IDomainServices\IBalanceDomainService.cs" />
+    <Compile Include="IDomainServices\IEffectiveFactorDomainService.cs" />
+    <Compile Include="IDomainServices\IFuelUserDomainService.cs" />
+    <Compile Include="IDomainServices\IInvoiceAdditionalPriceDomainService.cs" />
+    <Compile Include="DomainObjects\InvoiceAggreate\DomainService\InvoiceAdditionalPriceDomainService.cs" />
+    <Compile Include="Commands\InvoiceCommand.cs" />
+    <Compile Include="Enums\EffectiveFactorTypes.cs" />
+    <Compile Include="DomainObjects\CharterAggregate\CharterIn.cs" />
+    <Compile Include="DomainObjects\CharterAggregate\CharterItem.cs" />
+    <Compile Include="DomainObjects\CharterAggregate\CharterOut.cs" />
+    <Compile Include="DomainObjects\CharterAggregate\CharterStates\CharterState.cs" />
+    <Compile Include="DomainObjects\CharterAggregate\CharterStates\OpenState.cs" />
+    <Compile Include="DomainObjects\CharterAggregate\CharterStates\SubmitRejectedState.cs" />
+    <Compile Include="DomainObjects\CharterAggregate\CharterStates\SubmittedState.cs" />
+    <Compile Include="DomainObjects\CharterAggregate\CharterTypes\CharterEnd.cs" />
+    <Compile Include="DomainObjects\CharterAggregate\CharterTypes\CharterStart.cs" />
+    <Compile Include="DomainObjects\CharterAggregate\CharterTypes\CharterTypeBase.cs" />
+    <Compile Include="DomainObjects\CharterAggregate\DomainServices\CharterConfiguration.cs" />
+    <Compile Include="DomainObjects\CharterAggregate\DomainServices\CharterInDomainService.cs" />
+    <Compile Include="DomainObjects\CharterAggregate\DomainServices\CharterOutDomainService.cs" />
+    <Compile Include="DomainObjects\CharterAggregate\Factories\CharterFactory.cs" />
+    <Compile Include="DomainObjects\CharterAggregate\Charter.cs" />
+    <Compile Include="DomainObjects\CharterAggregate\Factories\CharterStateFactory.cs" />
+    <Compile Include="DomainObjects\CharterAggregate\Factories\ICharterStateFactory.cs" />
+    <Compile Include="DomainObjects\CharterAggregate\Specifications\IsCharterInValid.cs" />
+    <Compile Include="DomainObjects\CharterAggregate\Specifications\IsCharterItemValid.cs" />
+    <Compile Include="DomainObjects\CharterAggregate\Specifications\IsCharterOutValid.cs" />
+    <Compile Include="DomainObjects\ActivityLocation.cs" />
+    <Compile Include="DomainObjects\InventoryResultItem.cs" />
+    <Compile Include="DomainObjects\OffhireAggregate\OffhireManagementSystemContracts.cs" />
+    <Compile Include="DomainObjects\OffhireAggregate\Factories\IOffhireFactory.cs" />
+    <Compile Include="DomainObjects\OffhireAggregate\Factories\IOffhireStateFactory.cs" />
+    <Compile Include="DomainObjects\OffhireAggregate\Factories\OffhireConfigurator.cs" />
+    <Compile Include="DomainObjects\OffhireAggregate\Factories\OffhireFactory.cs" />
+    <Compile Include="DomainObjects\OffhireAggregate\Factories\OffhireStateFactory.cs" />
+    <Compile Include="DomainObjects\OffhireAggregate\Offhire.cs" />
+    <Compile Include="DomainObjects\OffhireAggregate\OffhireDetail.cs" />
+    <Compile Include="DomainObjects\OffhireAggregate\OffhireStates\CancelledState.cs" />
+    <Compile Include="DomainObjects\OffhireAggregate\OffhireStates\ClosedState.cs" />
+    <Compile Include="DomainObjects\OffhireAggregate\OffhireStates\OpenState.cs" />
+    <Compile Include="DomainObjects\OffhireAggregate\OffhireStates\OffhireState.cs" />
+    <Compile Include="DomainObjects\OffhireAggregate\OffhireStates\SubmitRejectedState.cs" />
+    <Compile Include="DomainObjects\OffhireAggregate\OffhireStates\SubmittedState.cs" />
+    <Compile Include="DomainObjects\OffhireAggregate\PricingValue.cs" />
+    <Compile Include="DomainObjects\OffhireAggregate\Specifications\IsOffhireCancelled.cs" />
+    <Compile Include="DomainObjects\OffhireAggregate\Specifications\IsOffhireClosed.cs" />
+    <Compile Include="DomainObjects\OffhireAggregate\Specifications\IsOffhireOpen.cs" />
+    <Compile Include="DomainObjects\OffhireAggregate\Specifications\IsOffhireSubmitRejected.cs" />
+    <Compile Include="DomainObjects\OffhireAggregate\Specifications\IsOffhireSubmitted.cs" />
+    <Compile Include="DomainObjects\FuelReportAggregate\Factories\FuelReportConfigurator.cs" />
+    <Compile Include="DomainObjects\FuelReportAggregate\Factories\IFuelReportStateFactory.cs" />
+    <Compile Include="DomainObjects\FuelReportAggregate\Factories\FuelReportStateFactory.cs" />
+    <Compile Include="DomainObjects\FuelReportAggregate\FuelReportStates\InvalidState.cs" />
+    <Compile Include="DomainObjects\FuelReportAggregate\FuelReportStates\ClosedState.cs" />
+    <Compile Include="DomainObjects\FuelReportAggregate\FuelReportStates\OpenState.cs" />
+    <Compile Include="DomainObjects\FuelReportAggregate\FuelReportStates\FuelReportState.cs" />
+    <Compile Include="DomainObjects\FuelReportAggregate\FuelReportStates\SubmittedState.cs" />
+    <Compile Include="DomainObjects\Good.cs" />
+    <Compile Include="DomainObjects\InventoryOperation.cs" />
+    <Compile Include="DomainObjects\EffectiveFactor.cs" />
+    <Compile Include="DomainObjects\InvoiceAggreate\InvoiceAdditionalPrice.cs" />
+    <Compile Include="DomainObjects\InvoiceAggreate\Enums\AccountingTypes.cs" />
+    <Compile Include="DomainObjects\InvoiceAggreate\Factories\IInvoiceStateFactory.cs" />
+    <Compile Include="DomainObjects\InvoiceAggreate\Factories\InvoiceFactory.cs" />
+    <Compile Include="DomainObjects\InvoiceAggreate\Factories\InvoiceStateFactory.cs" />
+    <Compile Include="DomainObjects\InvoiceAggreate\Factories\IInvoiceFactory.cs" />
+    <Compile Include="DomainObjects\InvoiceAggreate\InvoiceType\AttachInvoice.cs" />
+    <Compile Include="DomainObjects\InvoiceAggreate\InvoiceType\InvoiceBaseType.cs" />
+    <Compile Include="DomainObjects\InvoiceAggreate\Enums\DivideMethod.cs" />
+    <Compile Include="DomainObjects\InvoiceAggreate\Invoice.cs" />
+    <Compile Include="DomainObjects\InvoiceAggreate\InvoiceItem.cs" />
+    <Compile Include="DomainObjects\InvoiceAggreate\InvoiceType\PurchaseInvoice.cs" />
+    <Compile Include="DomainObjects\InvoiceAggreate\InvoiceType\TransferInvoiceBase.cs" />
+    <Compile Include="DomainObjects\InvoiceAggreate\Enums\InvoiceTypes.cs" />
+    <Compile Include="DomainObjects\InvoiceAggreate\InvoiceStates\CancelState.cs" />
+    <Compile Include="DomainObjects\InvoiceAggreate\InvoiceStates\CloseState.cs" />
+    <Compile Include="DomainObjects\InvoiceAggreate\InvoiceStates\OpenState.cs" />
+    <Compile Include="DomainObjects\InvoiceAggreate\InvoiceStates\InvoiceState.cs" />
+    <Compile Include="DomainObjects\InvoiceAggreate\InvoiceStates\SubmitState.cs" />
+    <Compile Include="DomainObjects\InvoiceAggreate\Specifications\IsTransferIncoice.cs" />
+    <Compile Include="DomainObjects\MainUnitValue.cs" />
+    <Compile Include="DomainObjects\InvoiceAggreate\InvoiceConfigurator.cs" />
+    <Compile Include="DomainObjects\OrderAggreate\OrderStates\CancelState.cs" />
+    <Compile Include="DomainObjects\OrderAggreate\OrderStates\CloseState.cs" />
+    <Compile Include="DomainObjects\OrderAggreate\Factories\IOrderStateFactory.cs" />
+    <Compile Include="DomainObjects\OrderAggreate\OrderStates\OpenState.cs" />
+    <Compile Include="DomainObjects\OrderAggreate\OrderStates\OrderState.cs" />
+    <Compile Include="DomainObjects\OrderAggreate\Factories\OrderStateFactory.cs" />
+    <Compile Include="DomainObjects\OrderAggreate\OrderStates\SubmitState.cs" />
+    <Compile Include="DomainObjects\OrderAggreate\Specifications\OrderIsSubmitedState.cs" />
+    <Compile Include="DomainObjects\ScrapAggregate\Factories\ScrapConfigurator.cs" />
+    <Compile Include="DomainObjects\ScrapAggregate\Factories\IScrapFactory.cs" />
+    <Compile Include="DomainObjects\ScrapAggregate\Factories\IScrapStateFactory.cs" />
+    <Compile Include="DomainObjects\ScrapAggregate\Factories\ScrapFactory.cs" />
+    <Compile Include="DomainObjects\ScrapAggregate\Factories\ScrapStateFactory.cs" />
+    <Compile Include="DomainObjects\ScrapAggregate\Scrap.cs" />
+    <Compile Include="DomainObjects\ScrapAggregate\ScrapDetail.cs" />
+    <Compile Include="DomainObjects\ScrapAggregate\ScrapStates\ClosedState.cs" />
+    <Compile Include="DomainObjects\ScrapAggregate\ScrapStates\SubmitRejectedState.cs" />
+    <Compile Include="DomainObjects\ScrapAggregate\ScrapStates\ScrapState.cs" />
+    <Compile Include="DomainObjects\ScrapAggregate\ScrapStates\CancelledState.cs" />
+    <Compile Include="DomainObjects\ScrapAggregate\ScrapStates\OpenState.cs" />
+    <Compile Include="DomainObjects\ScrapAggregate\ScrapStates\SubmittedState.cs" />
+    <Compile Include="DomainObjects\ScrapAggregate\Specifications\IsScrapCancelled.cs" />
+    <Compile Include="DomainObjects\ScrapAggregate\Specifications\IsScrapClosed.cs" />
+    <Compile Include="DomainObjects\ScrapAggregate\Specifications\IsScrapSubmitRejected.cs" />
+    <Compile Include="DomainObjects\ScrapAggregate\Specifications\IsScrapSubmitted.cs" />
+    <Compile Include="DomainObjects\ScrapAggregate\Specifications\IsScrapOpen.cs" />
+    <Compile Include="DomainObjects\SharedGood.cs" />
+    <Compile Include="DomainObjects\Unit.cs" />
+    <Compile Include="DomainObjects\VoyageAggregate\VoyageLog.cs" />
+    <Compile Include="DomainServices\CharterAggregate\CharteringDomainService.cs" />
+    <Compile Include="DomainServices\OffhireAggregate\ApprovableOffhireDomainService.cs" />
+    <Compile Include="DomainServices\OffhireAggregate\OffhireDomainService.cs" />
+    <Compile Include="DomainServices\ScrapAggregate\ScrapDomainService.cs" />
+    <Compile Include="DomainObjects\InvoiceAggreate\DomainService\InvoiceItemDomainService.cs" />
+    <Compile Include="DomainServices\VoyageLogDomainService.cs" />
+    <Compile Include="Enums\CharterEndType.cs" />
+    <Compile Include="Enums\CharterType.cs" />
+    <Compile Include="Enums\CharteringPartyType.cs" />
+    <Compile Include="Enums\OffHirePricingType.cs" />
+    <Compile Include="Enums\States.cs" />
+    <Compile Include="Enums\VesselStates.cs" />
+    <Compile Include="Factories\IInventoryOperationFactory.cs" />
+    <Compile Include="Factories\InventoryOperationFactory.cs" />
+    <Compile Include="DomainServices\FuelReportAggregate\ApprovableFuelReportDomainService.cs" />
+    <Compile Include="IDomainServices\ApprovableOrderDomainService.cs" />
+    <Compile Include="DomainServices\ScrapAggregate\ApprovableScrapDomainService.cs" />
+    <Compile Include="IDomainServices\Events\FinanceOperations\IFinanceNotifier.cs" />
+    <Compile Include="IDomainServices\IInventoryManagementDomainService.cs" />
+    <Compile Include="IDomainServices\ICharteringDomainService.cs" />
+    <Compile Include="IDomainServices\Inventory\GoodQuantity.cs" />
+    <Compile Include="IDomainServices\Inventory\IInventoryCompanyDomainService.cs" />
+    <Compile Include="IDomainServices\Inventory\IInventoryOperationManager.cs" />
+    <Compile Include="IDomainServices\Inventory\IInventoryTransactionDomainService.cs" />
+    <Compile Include="IDomainServices\IOffhireManagementSystemDomainService.cs" />
+    <Compile Include="IDomainServices\IActivityLocationDomainService.cs" />
+    <Compile Include="IDomainServices\IOffhireDomainService.cs" />
+    <Compile Include="IDomainServices\IApprovableOffhireDomainService.cs" />
+    <Compile Include="IDomainServices\IApprovableScrapDomainService.cs" />
+    <Compile Include="IDomainServices\ICharterInDomainService.cs" />
+    <Compile Include="IDomainServices\ICharterOutDomainService.cs" />
+    <Compile Include="IDomainServices\IInvoiceItemDomainService.cs" />
+    <Compile Include="DomainObjects\InventoryResult.cs" />
+    <Compile Include="IDomainServices\ITankDomainService.cs" />
+    <Compile Include="IDomainServices\IScrapDomainService.cs" />
+    <Compile Include="IDomainServices\IUpdatePriceSubmitedReciptFactory.cs" />
+    <Compile Include="IDomainServices\IVesselDomainService.cs" />
+    <Compile Include="IDomainServices\IUpdateCountSubmitedReciptFactory.cs" />
+    <Compile Include="IDomainServices\IVesselInInventoryDomainService.cs" />
+    <Compile Include="IDomainServices\IVoyageLogDomainService.cs" />
+    <Compile Include="IDomainServices\ICodeGenerator.cs" />
+    <Compile Include="DomainServices\ApprovableDomainService.cs" />
+    <Compile Include="DomainServices\GoodUnitConvertorDomainService.cs" />
+    <Compile Include="DomainServices\InventoryOperationDomainService.cs" />
+    <Compile Include="Enums\InventoryActionType.cs" />
+    <Compile Include="DomainObjects\GoodFullInfo.cs" />
+    <Compile Include="DomainObjects\Tank.cs" />
+    <Compile Include="DomainServices\FuelReportAggregate\FuelReportDomainService.cs" />
+    <Compile Include="Enums\ReferenceType.cs" />
+    <Compile Include="Exceptions\WorkFlowException.cs" />
+    <Compile Include="IDomainServices\IApprovableDomainService.cs" />
+    <Compile Include="IDomainServices\Events\IEventNotifier.cs" />
+    <Compile Include="IDomainServices\Events\InventoryOperations\IInventoryOperationNotifier.cs" />
+    <Compile Include="IDomainServices\IApprovableFuelReportDomainService.cs" />
+    <Compile Include="IDomainServices\IApprovableOrderDomainService.cs" />
+    <Compile Include="IDomainServices\IFuelReportDomainService.cs" />
+    <Compile Include="DomainObjects\OrderAggreate\DomainServices\OrderDomainService.cs" />
+    <Compile Include="Enums\DecisionTypes.cs" />
+    <Compile Include="IDomainServices\IGoodUnitConvertorDomainService.cs" />
+    <Compile Include="IDomainServices\IInventoryOperationDomainService.cs" />
+    <Compile Include="IDomainServices\IInvoiceDomainService.cs" />
+    <Compile Include="DomainObjects\InvoiceAggreate\DomainService\InvoiceDomainService.cs" />
+    <Compile Include="IDomainServices\IOrderDomainService.cs" />
+    <Compile Include="IDomainServices\IOrderItemDomainService.cs" />
+    <Compile Include="DomainObjects\OrderAggreate\DomainServices\OrderConfigurator.cs" />
+    <Compile Include="DomainObjects\OrderAggreate\DomainServices\OrderItemDomainService.cs" />
+    <Compile Include="Enums\WorkflowEntities.cs" />
+    <Compile Include="Enums\WorkflowActions.cs" />
+    <Compile Include="Enums\WorkflowStages.cs" />
+    <Compile Include="Enums\ReceiveTypes.cs" />
+    <Compile Include="Enums\TransferTypes.cs" />
+    <Compile Include="Exceptions\FuelException.cs" />
+    <Compile Include="Exceptions\InvalidArgument.cs" />
+    <Compile Include="Factories\IApproveWorkFlowFactory.cs" />
+    <Compile Include="Factories\IFactory.cs" />
+    <Compile Include="FakeDomainServices\FakeDomainService.cs" />
+    <Compile Include="IDomainServices\IEntityConfigurator.cs" />
+    <Compile Include="DomainObjects\OrderAggreate\OrderTypes\InternalTransferOrder.cs" />
+    <Compile Include="DomainObjects\OrderAggreate\OrderTypes\OrderTypeBase.cs" />
+    <Compile Include="DomainObjects\OrderAggreate\OrderTypes\PurchaseOrder.cs" />
+    <Compile Include="DomainObjects\OrderAggreate\OrderTypes\PurchaseWithTransferOrder.cs" />
+    <Compile Include="DomainObjects\OrderAggreate\OrderTypes\TransferOrder.cs" />
+    <Compile Include="Exceptions\BusinessRuleException.cs" />
+    <Compile Include="Exceptions\ConcurencyException.cs" />
+    <Compile Include="Exceptions\InvalidOperation.cs" />
+    <Compile Include="Exceptions\ObjectNotFound.cs" />
+    <Compile Include="DomainObjects\Currency.cs" />
+    <Compile Include="DomainObjects\Company.cs" />
+    <Compile Include="DomainObjects\GoodUnit.cs" />
+    <Compile Include="DomainObjects\FuelReportAggregate\FuelReport.cs" />
+    <Compile Include="DomainObjects\FuelReportAggregate\FuelReportDetail.cs" />
+    <Compile Include="DomainObjects\OrderAggreate\Order.cs" />
+    <Compile Include="DomainObjects\OrderAggreate\OrderItem.cs" />
+    <Compile Include="DomainObjects\FuelUser.cs" />
+    <Compile Include="DomainObjects\VesselAggregate\VesselInCompany.cs" />
+    <Compile Include="DomainObjects\VoyageAggregate\Voyage.cs" />
+    <Compile Include="DomainObjects\OrderAggreate\Factories\IOrderFactory.cs" />
+    <Compile Include="DomainObjects\OrderAggreate\Factories\OrderFactory.cs" />
+    <Compile Include="IDomainServices\ICurrencyDomainService.cs" />
+    <Compile Include="IDomainServices\ICompanyDomainService.cs" />
+    <Compile Include="IDomainServices\IGoodDomainService.cs" />
+    <Compile Include="IDomainServices\IGoodUnitDomainService.cs" />
+    <Compile Include="IDomainServices\IOrderCodeGenerator.cs" />
+    <Compile Include="IDomainServices\IVesselInCompanyDomainService.cs" />
+    <Compile Include="Enums\CorrectionTypes.cs" />
+    <Compile Include="Enums\FuelReportTypes.cs" />
+    <Compile Include="Enums\OrderFlowSteps.cs" />
+    <Compile Include="Enums\OrderTypes.cs" />
+    <Compile Include="Factories\ApproveWorkFlowFactory.cs" />
+    <Compile Include="IDomainServices\IVoyageDomainService.cs" />
+    <Compile Include="DomainObjects\FuelReportAggregate\Reference.cs" />
+    <Compile Include="DomainServices\OrderCodeGenerator.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReportObjects\VesselEventReportsView.cs" />
+    <Compile Include="Repositories\IAttachmentRepository.cs" />
+    <Compile Include="Repositories\ICharterItemHostoryRepository.cs" />
+    <Compile Include="Repositories\IOriginalAccountRepository.cs" />
+    <Compile Include="Repositories\IAccountRepository.cs" />
+    <Compile Include="Repositories\Inventory\ITransactionRepository.cs" />
+    <Compile Include="Repositories\IVoucherSetingRepository.cs" />
+    <Compile Include="Repositories\IOffhireRepository.cs" />
+    <Compile Include="Repositories\IGoodRepository.cs" />
+    <Compile Include="Repositories\IScrapRepository.cs" />
+    <Compile Include="Repositories\ICharterInRepository.cs" />
+    <Compile Include="Repositories\ICharterOutRepository.cs" />
+    <Compile Include="Repositories\ICharterRepository.cs" />
+    <Compile Include="Repositories\IVesselInCompanyRepository.cs" />
+    <Compile Include="Repositories\IVesselInInventoryRepository.cs" />
+    <Compile Include="Repositories\IVesselRepository.cs" />
+    <Compile Include="Repositories\IVoucherRepository.cs" />
+    <Compile Include="Repositories\IVoyageLogRepository.cs" />
+    <Compile Include="Repositories\IInvoiceRepository.cs" />
+    <Compile Include="Repositories\IInventoryOperationRepository.cs" />
+    <Compile Include="Repositories\IEnterprisePartyRepository.cs" />
+    <Compile Include="Repositories\IFuelReportRepository.cs" />
+    <Compile Include="Repositories\IWorkflowLogRepository.cs" />
+    <Compile Include="Repositories\IWorkflowStepRepository.cs" />
+    <Compile Include="Repositories\IOrderRepository.cs" />
+    <Compile Include="Repositories\IFuelUserRepository.cs" />
+    <Compile Include="Repositories\IVoyageRepository.cs" />
+    <Compile Include="DomainObjects\OrderAggreate\Specifications\IsFinalApprovedOrderTypeForBuyers.cs" />
+    <Compile Include="DomainObjects\OrderAggreate\Specifications\IsFinalApprovedOrderTypeForSellers.cs" />
+    <Compile Include="DomainObjects\FuelReportAggregate\Specifications\IsFuelReportIssued.cs" />
+    <Compile Include="DomainObjects\FuelReportAggregate\Specifications\IsFuelReportClosed.cs" />
+    <Compile Include="DomainObjects\OrderAggreate\Specifications\OrderIsOpenState.cs" />
+    <Compile Include="DomainObjects\OrderAggreate\Specifications\IsInternalTransferValid.cs" />
+    <Compile Include="DomainObjects\FuelReportAggregate\Specifications\IsFuelReportOperational.cs" />
+    <Compile Include="DomainObjects\FuelReportAggregate\Specifications\IsFuelReportWaitingToBeClosed.cs" />
+    <Compile Include="DomainObjects\FuelReportAggregate\Specifications\IsFuelReportOpen.cs" />
+    <Compile Include="DomainObjects\OrderAggreate\Specifications\IsPurchaseValid.cs" />
+    <Compile Include="DomainObjects\OrderAggreate\Specifications\IsPurchaseWithTransferValid.cs" />
+    <Compile Include="DomainObjects\OrderAggreate\Specifications\IsTransferValid.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="IDomainServices\Events\Charter\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MITD.FuelSecurity.Domain.Model\MITD.FuelSecurity.Domain.Model.csproj">
+      <Project>{081BB795-014B-43AA-BF32-AB4D8D9F0D0C}</Project>
+      <Name>MITD.FuelSecurity.Domain.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SharedDataSet xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2010/01/shareddatasetdefinition">
+  <DataSet Name="DataSet1">
+    <Query>
+      <DataSourceReference>/MITD.FMS.Reports/MiniStock</DataSourceReference>
+      <CommandText>SELECT
+  Inventory.Goods.Id
+  ,Inventory.Goods.Code
+  ,Inventory.Goods.Name
+  ,Inventory.Goods.IsActive
+  ,Inventory.Goods.MainUnitId
+  ,Inventory.Goods.UserCreatorId
+  ,Inventory.Goods.CreateDate
+FROM
+  Inventory.Goods</CommandText>
+      <rd:DesignerState><QueryDefinition xmlns="http://schemas.microsoft.com/ReportingServices/QueryDefinition/Relational"><SelectedColumns><ColumnExpression Schema="Inventory" ColumnOwner="Goods" ColumnName="Id" /><ColumnExpression Schema="Inventory" ColumnOwner="Goods" ColumnName="Code" /><ColumnExpression Schema="Inventory" ColumnOwner="Goods" ColumnName="Name" /><ColumnExpression Schema="Inventory" ColumnOwner="Goods" ColumnName="IsActive" /><ColumnExpression Schema="Inventory" ColumnOwner="Goods" ColumnName="MainUnitId" /><ColumnExpression Schema="Inventory" ColumnOwner="Goods" ColumnName="UserCreatorId" /><ColumnExpression Schema="Inventory" ColumnOwner="Goods" ColumnName="CreateDate" /></SelectedColumns></QueryDefinition></rd:DesignerState>
+    </Query>
+    <Fields>
+      <Field Name="Id">
+        <DataField>Id</DataField>
+        <rd:TypeName>System.Int64</rd:TypeName>
+      </Field>
+      <Field Name="Code">
+        <DataField>Code</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="Name">
+        <DataField>Name</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="IsActive">
+        <DataField>IsActive</DataField>
+        <rd:TypeName>System.Boolean</rd:TypeName>
+      </Field>
+      <Field Name="MainUnitId">
+        <DataField>MainUnitId</DataField>
+        <rd:TypeName>System.Int64</rd:TypeName>
+      </Field>
+      <Field Name="UserCreatorId">
+        <DataField>UserCreatorId</DataField>
+        <rd:TypeName>System.Int32</rd:TypeName>
+      </Field>
+      <Field Name="CreateDate">
+        <DataField>CreateDate</DataField>
+        <rd:TypeName>System.DateTime</rd:TypeName>
+      </Field>
+    </Fields>
+  </DataSet>
+  <rd:ReportServerUrl>http://hatefi-pc:802/ReportServer_SQL2012</rd:ReportServerUrl>
+</SharedDataSet>

@@ -1,0 +1,384 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="VoyageCostModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="EventReport">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DraftID" Type="int" />
+          <Property Name="ShipCode" Type="nvarchar" MaxLength="4" />
+          <Property Name="ConsNo" Type="nvarchar" MaxLength="255" />
+          <Property Name="ShipName" Type="nvarchar" MaxLength="255" />
+          <Property Name="VoyageNo" Type="nvarchar" MaxLength="255" />
+          <Property Name="Year" Type="int" />
+          <Property Name="Month" Type="int" />
+          <Property Name="Day" Type="int" />
+          <Property Name="PortName" Type="nvarchar" MaxLength="255" />
+          <Property Name="PortTime" Type="float" />
+          <Property Name="AtSeaLatitudeDegree" Type="float" />
+          <Property Name="AtSeaLatitudeMinute" Type="float" />
+          <Property Name="AtSeaLongitudeDegree" Type="float" />
+          <Property Name="AtSeaLongitudeMinute" Type="float" />
+          <Property Name="ObsDist" Type="float" />
+          <Property Name="EngDist" Type="float" />
+          <Property Name="SteamTime" Type="float" />
+          <Property Name="AvObsSpeed" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="AvEngSpeed" Type="float" />
+          <Property Name="RPM" Type="int" />
+          <Property Name="Slip" Type="float" />
+          <Property Name="WindDir" Type="float" />
+          <Property Name="WindForce" Type="float" />
+          <Property Name="SeaDir" Type="float" />
+          <Property Name="SeaForce" Type="float" />
+          <Property Name="ROBHO" Type="decimal" Precision="7" Scale="3" />
+          <Property Name="ROBDO" Type="decimal" Precision="7" Scale="3" />
+          <Property Name="ROBMGO" Type="decimal" Precision="7" Scale="3" />
+          <Property Name="ROBFW" Type="decimal" Precision="7" Scale="3" />
+          <Property Name="ConsInPortHO" Type="decimal" Precision="7" Scale="3" />
+          <Property Name="ConsInPortDO" Type="decimal" Precision="7" Scale="3" />
+          <Property Name="ConsInPortMGO" Type="decimal" Precision="7" Scale="3" />
+          <Property Name="ConsInPortFW" Type="decimal" Precision="7" Scale="3" />
+          <Property Name="ConsAtSeaHO" Type="decimal" Precision="7" Scale="3" />
+          <Property Name="ConsAtSeaDO" Type="decimal" Precision="7" Scale="3" />
+          <Property Name="ConsAtSeaMGO" Type="decimal" Precision="7" Scale="3" />
+          <Property Name="ConsAtSeaFW" Type="decimal" Precision="7" Scale="3" />
+          <Property Name="ReceivedHO" Type="decimal" Precision="7" Scale="3" />
+          <Property Name="ReceivedDO" Type="decimal" Precision="7" Scale="3" />
+          <Property Name="ReceivedMGO" Type="decimal" Precision="7" Scale="3" />
+          <Property Name="ReceivedFW" Type="decimal" Precision="7" Scale="3" />
+          <Property Name="ETAPort" Type="nvarchar" MaxLength="255" />
+          <Property Name="ETADate" Type="nvarchar" MaxLength="255" />
+          <Property Name="Date" Type="datetime" StoreGeneratedPattern="Computed" />
+          <Property Name="DateIn" Type="datetime" />
+          <Property Name="DailyFuelCons" Type="float" StoreGeneratedPattern="Computed" />
+          <Property Name="Speed" Type="decimal" Precision="5" Scale="2" StoreGeneratedPattern="Computed" />
+          <Property Name="IsSM" Type="bit" />
+          <Property Name="InPortOrAtSea" Type="nvarchar" MaxLength="50" />
+          <Property Name="ImportDate" Type="char" MaxLength="10" />
+          <Property Name="TransferHo" Type="decimal" Precision="7" Scale="3" />
+          <Property Name="TransferDo" Type="decimal" Precision="7" Scale="3" />
+          <Property Name="TransferFW" Type="decimal" Precision="7" Scale="3" />
+          <Property Name="TransferMGOLS" Type="decimal" Precision="7" Scale="3" />
+          <Property Name="CorrectionHo" Type="decimal" Precision="7" Scale="3" />
+          <Property Name="CorrectionDo" Type="decimal" Precision="7" Scale="3" />
+          <Property Name="CorrectionFW" Type="decimal" Precision="7" Scale="3" />
+          <Property Name="CorrectionMGOLS" Type="decimal" Precision="7" Scale="3" />
+          <Property Name="CorrectionTypeHo" Type="char" MaxLength="1" />
+          <Property Name="CorrectionTypeDo" Type="char" MaxLength="1" />
+          <Property Name="CorrectionTypeFW" Type="char" MaxLength="1" />
+          <Property Name="CorrectionTypeMGOLS" Type="char" MaxLength="1" />
+          <Property Name="Time" Type="time" Precision="7" />
+          <Property Name="FuelReportType" Type="tinyint" />
+          <Property Name="State" Type="tinyint" />
+          <Property Name="ROBatNoonIfo" Type="decimal" Precision="7" Scale="3" />
+          <Property Name="ROBatNoonDoLs" Type="decimal" Precision="7" Scale="3" />
+          <Property Name="ROBatNoonHoLs" Type="decimal" Precision="7" Scale="3" />
+          <Property Name="ROBatNoonIfoLs" Type="decimal" Precision="7" Scale="3" />
+          <Property Name="ConsumpAtSeaIfo" Type="decimal" Precision="7" Scale="3" />
+          <Property Name="ConsumpAtSeaHoLs" Type="decimal" Precision="7" Scale="3" />
+          <Property Name="ConsumpInPortHoLs" Type="decimal" Precision="7" Scale="3" />
+          <Property Name="ConsumpInPortDoLs" Type="decimal" Precision="7" Scale="3" />
+          <Property Name="ConsumpAtSeaIfoLs" Type="decimal" Precision="7" Scale="3" />
+          <Property Name="ConsumpInPortIfo" Type="decimal" Precision="7" Scale="3" />
+          <Property Name="ConsumpAtSeaDoLs" Type="decimal" Precision="7" Scale="3" />
+          <Property Name="ConsumpInPortIfoLs" Type="decimal" Precision="7" Scale="3" />
+          <Property Name="RecivedAtPortIFO" Type="decimal" Precision="7" Scale="3" />
+          <Property Name="RecivedAtPortHoLs" Type="decimal" Precision="7" Scale="3" />
+          <Property Name="TransferIfo" Type="decimal" Precision="7" Scale="3" />
+          <Property Name="RecivedAtPortDoLs" Type="decimal" Precision="7" Scale="3" />
+          <Property Name="RecivedAtPortIfoLs" Type="decimal" Precision="7" Scale="3" />
+          <Property Name="TransferHoLs" Type="decimal" Precision="7" Scale="3" />
+          <Property Name="TransferDoLs" Type="decimal" Precision="7" Scale="3" />
+          <Property Name="TransferIfoLs" Type="decimal" Precision="7" Scale="3" />
+          <Property Name="CorrectionIfo" Type="decimal" Precision="7" Scale="3" />
+          <Property Name="CorrectionHoLs" Type="decimal" Precision="7" Scale="3" />
+          <Property Name="CorrectionDoLs" Type="decimal" Precision="7" Scale="3" />
+          <Property Name="CorrectionIfoLs" Type="decimal" Precision="7" Scale="3" />
+          <Property Name="CorrectionTypeIfo" Type="char" MaxLength="1" />
+          <Property Name="CorrectionTypeHoLs" Type="char" MaxLength="1" />
+          <Property Name="CorrectionTypeDoLs" Type="char" MaxLength="1" />
+          <Property Name="CorrectionTypeIfoLs" Type="char" MaxLength="1" />
+          <Property Name="ETATime" Type="nvarchar" MaxLength="50" />
+          <Property Name="ErrorMessage" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="FuelReportLog">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RecordId" Type="bigint" Nullable="false" />
+          <Property Name="FailureMessage" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="StackTrace" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="VoyageCostModelStoreContainer">
+          <EntitySet Name="EventReport" EntityType="Self.EventReport" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FuelReportLog" EntityType="Self.FuelReportLog" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="VoyageCostModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="VoyageCostEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="FuelReportLogs" EntityType="VoyageCostModel.FuelReportLog" />
+          <EntitySet Name="EventReports" EntityType="VoyageCostModel.EventReport" />
+          </EntityContainer>
+        <EntityType Name="FuelReportLog">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RecordId" Type="Int64" Nullable="false" />
+          <Property Name="FailureMessage" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="StackTrace" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="EventReport">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DraftID" Type="Int32" />
+          <Property Name="ShipCode" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
+          <Property Name="ConsNo" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ShipName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="VoyageNo" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Year" Type="Int32" />
+          <Property Name="Month" Type="Int32" />
+          <Property Name="Day" Type="Int32" />
+          <Property Name="PortName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="PortTime" Type="Double" />
+          <Property Name="AtSeaLatitudeDegree" Type="Double" />
+          <Property Name="AtSeaLatitudeMinute" Type="Double" />
+          <Property Name="AtSeaLongitudeDegree" Type="Double" />
+          <Property Name="AtSeaLongitudeMinute" Type="Double" />
+          <Property Name="ObsDist" Type="Double" />
+          <Property Name="EngDist" Type="Double" />
+          <Property Name="SteamTime" Type="Double" />
+          <Property Name="AvObsSpeed" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="AvEngSpeed" Type="Double" />
+          <Property Name="RPM" Type="Int32" />
+          <Property Name="Slip" Type="Double" />
+          <Property Name="WindDir" Type="Double" />
+          <Property Name="WindForce" Type="Double" />
+          <Property Name="SeaDir" Type="Double" />
+          <Property Name="SeaForce" Type="Double" />
+          <Property Name="ROBHO" Type="Decimal" Precision="7" Scale="3" />
+          <Property Name="ROBDO" Type="Decimal" Precision="7" Scale="3" />
+          <Property Name="ROBMGO" Type="Decimal" Precision="7" Scale="3" />
+          <Property Name="ROBFW" Type="Decimal" Precision="7" Scale="3" />
+          <Property Name="ConsInPortHO" Type="Decimal" Precision="7" Scale="3" />
+          <Property Name="ConsInPortDO" Type="Decimal" Precision="7" Scale="3" />
+          <Property Name="ConsInPortMGO" Type="Decimal" Precision="7" Scale="3" />
+          <Property Name="ConsInPortFW" Type="Decimal" Precision="7" Scale="3" />
+          <Property Name="ConsAtSeaHO" Type="Decimal" Precision="7" Scale="3" />
+          <Property Name="ConsAtSeaDO" Type="Decimal" Precision="7" Scale="3" />
+          <Property Name="ConsAtSeaMGO" Type="Decimal" Precision="7" Scale="3" />
+          <Property Name="ConsAtSeaFW" Type="Decimal" Precision="7" Scale="3" />
+          <Property Name="ReceivedHO" Type="Decimal" Precision="7" Scale="3" />
+          <Property Name="ReceivedDO" Type="Decimal" Precision="7" Scale="3" />
+          <Property Name="ReceivedMGO" Type="Decimal" Precision="7" Scale="3" />
+          <Property Name="ReceivedFW" Type="Decimal" Precision="7" Scale="3" />
+          <Property Name="ETAPort" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ETADate" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="DateTime" annotation:StoreGeneratedPattern="Computed" Precision="3" />
+          <Property Name="DateIn" Type="DateTime" Precision="3" />
+          <Property Name="DailyFuelCons" Type="Double" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="Speed" Type="Decimal" Precision="5" Scale="2" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="IsSM" Type="Boolean" />
+          <Property Name="InPortOrAtSea" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ImportDate" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="TransferHo" Type="Decimal" Precision="7" Scale="3" />
+          <Property Name="TransferDo" Type="Decimal" Precision="7" Scale="3" />
+          <Property Name="TransferFW" Type="Decimal" Precision="7" Scale="3" />
+          <Property Name="TransferMGOLS" Type="Decimal" Precision="7" Scale="3" />
+          <Property Name="CorrectionHo" Type="Decimal" Precision="7" Scale="3" />
+          <Property Name="CorrectionDo" Type="Decimal" Precision="7" Scale="3" />
+          <Property Name="CorrectionFW" Type="Decimal" Precision="7" Scale="3" />
+          <Property Name="CorrectionMGOLS" Type="Decimal" Precision="7" Scale="3" />
+          <Property Name="CorrectionTypeHo" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="CorrectionTypeDo" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="CorrectionTypeFW" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="CorrectionTypeMGOLS" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="Time" Type="Time" Precision="7" />
+          <Property Name="FuelReportType" Type="Byte" />
+          <Property Name="State" Type="Byte" />
+          <Property Name="ROBatNoonIfo" Type="Decimal" Precision="7" Scale="3" />
+          <Property Name="ROBatNoonDoLs" Type="Decimal" Precision="7" Scale="3" />
+          <Property Name="ROBatNoonHoLs" Type="Decimal" Precision="7" Scale="3" />
+          <Property Name="ROBatNoonIfoLs" Type="Decimal" Precision="7" Scale="3" />
+          <Property Name="ConsumpAtSeaIfo" Type="Decimal" Precision="7" Scale="3" />
+          <Property Name="ConsumpAtSeaHoLs" Type="Decimal" Precision="7" Scale="3" />
+          <Property Name="ConsumpInPortHoLs" Type="Decimal" Precision="7" Scale="3" />
+          <Property Name="ConsumpInPortDoLs" Type="Decimal" Precision="7" Scale="3" />
+          <Property Name="ConsumpAtSeaIfoLs" Type="Decimal" Precision="7" Scale="3" />
+          <Property Name="ConsumpInPortIfo" Type="Decimal" Precision="7" Scale="3" />
+          <Property Name="ConsumpAtSeaDoLs" Type="Decimal" Precision="7" Scale="3" />
+          <Property Name="ConsumpInPortIfoLs" Type="Decimal" Precision="7" Scale="3" />
+          <Property Name="RecivedAtPortIFO" Type="Decimal" Precision="7" Scale="3" />
+          <Property Name="RecivedAtPortHoLs" Type="Decimal" Precision="7" Scale="3" />
+          <Property Name="TransferIfo" Type="Decimal" Precision="7" Scale="3" />
+          <Property Name="RecivedAtPortDoLs" Type="Decimal" Precision="7" Scale="3" />
+          <Property Name="RecivedAtPortIfoLs" Type="Decimal" Precision="7" Scale="3" />
+          <Property Name="TransferHoLs" Type="Decimal" Precision="7" Scale="3" />
+          <Property Name="TransferDoLs" Type="Decimal" Precision="7" Scale="3" />
+          <Property Name="TransferIfoLs" Type="Decimal" Precision="7" Scale="3" />
+          <Property Name="CorrectionIfo" Type="Decimal" Precision="7" Scale="3" />
+          <Property Name="CorrectionHoLs" Type="Decimal" Precision="7" Scale="3" />
+          <Property Name="CorrectionDoLs" Type="Decimal" Precision="7" Scale="3" />
+          <Property Name="CorrectionIfoLs" Type="Decimal" Precision="7" Scale="3" />
+          <Property Name="CorrectionTypeIfo" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="CorrectionTypeHoLs" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="CorrectionTypeDoLs" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="CorrectionTypeIfoLs" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="ETATime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ErrorMessage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="VoyageCostModelStoreContainer" CdmEntityContainer="VoyageCostEntities">
+          <EntitySetMapping Name="FuelReportLogs">
+            <EntityTypeMapping TypeName="VoyageCostModel.FuelReportLog">
+              <MappingFragment StoreEntitySet="FuelReportLog">
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="StackTrace" ColumnName="StackTrace" />
+                <ScalarProperty Name="FailureMessage" ColumnName="FailureMessage" />
+                <ScalarProperty Name="RecordId" ColumnName="RecordId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EventReports">
+            <EntityTypeMapping TypeName="VoyageCostModel.EventReport">
+              <MappingFragment StoreEntitySet="EventReport">
+                <ScalarProperty Name="ErrorMessage" ColumnName="ErrorMessage" />
+                <ScalarProperty Name="ETATime" ColumnName="ETATime" />
+                <ScalarProperty Name="CorrectionTypeIfoLs" ColumnName="CorrectionTypeIfoLs" />
+                <ScalarProperty Name="CorrectionTypeDoLs" ColumnName="CorrectionTypeDoLs" />
+                <ScalarProperty Name="CorrectionTypeHoLs" ColumnName="CorrectionTypeHoLs" />
+                <ScalarProperty Name="CorrectionTypeIfo" ColumnName="CorrectionTypeIfo" />
+                <ScalarProperty Name="CorrectionIfoLs" ColumnName="CorrectionIfoLs" />
+                <ScalarProperty Name="CorrectionDoLs" ColumnName="CorrectionDoLs" />
+                <ScalarProperty Name="CorrectionHoLs" ColumnName="CorrectionHoLs" />
+                <ScalarProperty Name="CorrectionIfo" ColumnName="CorrectionIfo" />
+                <ScalarProperty Name="TransferIfoLs" ColumnName="TransferIfoLs" />
+                <ScalarProperty Name="TransferDoLs" ColumnName="TransferDoLs" />
+                <ScalarProperty Name="TransferHoLs" ColumnName="TransferHoLs" />
+                <ScalarProperty Name="RecivedAtPortIfoLs" ColumnName="RecivedAtPortIfoLs" />
+                <ScalarProperty Name="RecivedAtPortDoLs" ColumnName="RecivedAtPortDoLs" />
+                <ScalarProperty Name="TransferIfo" ColumnName="TransferIfo" />
+                <ScalarProperty Name="RecivedAtPortHoLs" ColumnName="RecivedAtPortHoLs" />
+                <ScalarProperty Name="RecivedAtPortIFO" ColumnName="RecivedAtPortIFO" />
+                <ScalarProperty Name="ConsumpInPortIfoLs" ColumnName="ConsumpInPortIfoLs" />
+                <ScalarProperty Name="ConsumpAtSeaDoLs" ColumnName="ConsumpAtSeaDoLs" />
+                <ScalarProperty Name="ConsumpInPortIfo" ColumnName="ConsumpInPortIfo" />
+                <ScalarProperty Name="ConsumpAtSeaIfoLs" ColumnName="ConsumpAtSeaIfoLs" />
+                <ScalarProperty Name="ConsumpInPortDoLs" ColumnName="ConsumpInPortDoLs" />
+                <ScalarProperty Name="ConsumpInPortHoLs" ColumnName="ConsumpInPortHoLs" />
+                <ScalarProperty Name="ConsumpAtSeaHoLs" ColumnName="ConsumpAtSeaHoLs" />
+                <ScalarProperty Name="ConsumpAtSeaIfo" ColumnName="ConsumpAtSeaIfo" />
+                <ScalarProperty Name="ROBatNoonIfoLs" ColumnName="ROBatNoonIfoLs" />
+                <ScalarProperty Name="ROBatNoonHoLs" ColumnName="ROBatNoonHoLs" />
+                <ScalarProperty Name="ROBatNoonDoLs" ColumnName="ROBatNoonDoLs" />
+                <ScalarProperty Name="ROBatNoonIfo" ColumnName="ROBatNoonIfo" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="FuelReportType" ColumnName="FuelReportType" />
+                <ScalarProperty Name="Time" ColumnName="Time" />
+                <ScalarProperty Name="CorrectionTypeMGOLS" ColumnName="CorrectionTypeMGOLS" />
+                <ScalarProperty Name="CorrectionTypeFW" ColumnName="CorrectionTypeFW" />
+                <ScalarProperty Name="CorrectionTypeDo" ColumnName="CorrectionTypeDo" />
+                <ScalarProperty Name="CorrectionTypeHo" ColumnName="CorrectionTypeHo" />
+                <ScalarProperty Name="CorrectionMGOLS" ColumnName="CorrectionMGOLS" />
+                <ScalarProperty Name="CorrectionFW" ColumnName="CorrectionFW" />
+                <ScalarProperty Name="CorrectionDo" ColumnName="CorrectionDo" />
+                <ScalarProperty Name="CorrectionHo" ColumnName="CorrectionHo" />
+                <ScalarProperty Name="TransferMGOLS" ColumnName="TransferMGOLS" />
+                <ScalarProperty Name="TransferFW" ColumnName="TransferFW" />
+                <ScalarProperty Name="TransferDo" ColumnName="TransferDo" />
+                <ScalarProperty Name="TransferHo" ColumnName="TransferHo" />
+                <ScalarProperty Name="ImportDate" ColumnName="ImportDate" />
+                <ScalarProperty Name="InPortOrAtSea" ColumnName="InPortOrAtSea" />
+                <ScalarProperty Name="IsSM" ColumnName="IsSM" />
+                <ScalarProperty Name="Speed" ColumnName="Speed" />
+                <ScalarProperty Name="DailyFuelCons" ColumnName="DailyFuelCons" />
+                <ScalarProperty Name="DateIn" ColumnName="DateIn" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="ETADate" ColumnName="ETADate" />
+                <ScalarProperty Name="ETAPort" ColumnName="ETAPort" />
+                <ScalarProperty Name="ReceivedFW" ColumnName="ReceivedFW" />
+                <ScalarProperty Name="ReceivedMGO" ColumnName="ReceivedMGO" />
+                <ScalarProperty Name="ReceivedDO" ColumnName="ReceivedDO" />
+                <ScalarProperty Name="ReceivedHO" ColumnName="ReceivedHO" />
+                <ScalarProperty Name="ConsAtSeaFW" ColumnName="ConsAtSeaFW" />
+                <ScalarProperty Name="ConsAtSeaMGO" ColumnName="ConsAtSeaMGO" />
+                <ScalarProperty Name="ConsAtSeaDO" ColumnName="ConsAtSeaDO" />
+                <ScalarProperty Name="ConsAtSeaHO" ColumnName="ConsAtSeaHO" />
+                <ScalarProperty Name="ConsInPortFW" ColumnName="ConsInPortFW" />
+                <ScalarProperty Name="ConsInPortMGO" ColumnName="ConsInPortMGO" />
+                <ScalarProperty Name="ConsInPortDO" ColumnName="ConsInPortDO" />
+                <ScalarProperty Name="ConsInPortHO" ColumnName="ConsInPortHO" />
+                <ScalarProperty Name="ROBFW" ColumnName="ROBFW" />
+                <ScalarProperty Name="ROBMGO" ColumnName="ROBMGO" />
+                <ScalarProperty Name="ROBDO" ColumnName="ROBDO" />
+                <ScalarProperty Name="ROBHO" ColumnName="ROBHO" />
+                <ScalarProperty Name="SeaForce" ColumnName="SeaForce" />
+                <ScalarProperty Name="SeaDir" ColumnName="SeaDir" />
+                <ScalarProperty Name="WindForce" ColumnName="WindForce" />
+                <ScalarProperty Name="WindDir" ColumnName="WindDir" />
+                <ScalarProperty Name="Slip" ColumnName="Slip" />
+                <ScalarProperty Name="RPM" ColumnName="RPM" />
+                <ScalarProperty Name="AvEngSpeed" ColumnName="AvEngSpeed" />
+                <ScalarProperty Name="AvObsSpeed" ColumnName="AvObsSpeed" />
+                <ScalarProperty Name="SteamTime" ColumnName="SteamTime" />
+                <ScalarProperty Name="EngDist" ColumnName="EngDist" />
+                <ScalarProperty Name="ObsDist" ColumnName="ObsDist" />
+                <ScalarProperty Name="AtSeaLongitudeMinute" ColumnName="AtSeaLongitudeMinute" />
+                <ScalarProperty Name="AtSeaLongitudeDegree" ColumnName="AtSeaLongitudeDegree" />
+                <ScalarProperty Name="AtSeaLatitudeMinute" ColumnName="AtSeaLatitudeMinute" />
+                <ScalarProperty Name="AtSeaLatitudeDegree" ColumnName="AtSeaLatitudeDegree" />
+                <ScalarProperty Name="PortTime" ColumnName="PortTime" />
+                <ScalarProperty Name="PortName" ColumnName="PortName" />
+                <ScalarProperty Name="Day" ColumnName="Day" />
+                <ScalarProperty Name="Month" ColumnName="Month" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="VoyageNo" ColumnName="VoyageNo" />
+                <ScalarProperty Name="ShipName" ColumnName="ShipName" />
+                <ScalarProperty Name="ConsNo" ColumnName="ConsNo" />
+                <ScalarProperty Name="ShipCode" ColumnName="ShipCode" />
+                <ScalarProperty Name="DraftID" ColumnName="DraftID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="CopyToOutputDirectory" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

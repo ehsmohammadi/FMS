@@ -1,0 +1,93 @@
+﻿<UserControl:ViewBase x:Class="MITD.Fuel.Presentation.UI.SL.Views.Voucher.VoucherSetingDetailView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:UserControl="http://schemas.mitd.com/silverlight/2012/xaml/presentation.ui"
+    mc:Ignorable="d"
+    d:DesignHeight="300" d:DesignWidth="400"  Style="{StaticResource DefaultStyle}" >
+
+    <Grid x:Name="uxLayoutGrid" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="20"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition Width="50"  ></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+
+        </Grid.ColumnDefinitions>
+
+        <!--Field grid-->
+        <Grid x:Name="uxFilterGrid" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3">
+            <Grid.RowDefinitions>
+               <RowDefinition />
+                <RowDefinition  />
+              </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+
+            </Grid.ColumnDefinitions>
+          
+            <!--Good-->
+            <TextBlock x:Name="uxGoodLabel" Text="نوع کالا" Grid.Row="0" Grid.Column="0" Height="25" />
+            <UserControl:ComboBoxEx x:Name="uxGoodCombo" 
+                      ItemsSource="{Binding Path=GoodDtos}"
+                      SelectedValueProper="{Binding Path=SelectedGoodId,Mode=TwoWay}" 
+                      Width="180" Height="25"
+                       DisplayMemberPath="Name" SelectedValuePath="Id"
+                       Grid.Row="0" Grid.Column="1"      />
+
+
+            <!--DebitAccount-->
+            <TextBlock x:Name="uxDebitAccountLabel" Text="معین بدهکار" Grid.Row="0" Grid.Column="2" Height="25" />
+            <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="3" >
+                <TextBox x:Name="uxDebitCombo" Width="145" Height="25" Text="{Binding Path=DebitCode,Mode=OneWay}"/>
+                <Button  Width="35" Height="25" Content="{Binding ShowDebitAccountCommand.DisplayName}"
+        Command="{Binding ShowDebitAccountCommand.Command}"></Button>
+            </StackPanel>
+
+
+            <!--CreditAccount-->
+            <TextBlock x:Name="uxRefNoLabel" Text="معین بستانکار" Grid.Row="0" Grid.Column="4" Height="25" />
+            <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="5"  >
+                <TextBox x:Name="uxCreditCombo"  Width="145" Height="25" Text="{Binding Path=CreditCode,Mode=OneWay}" />
+                <Button  Width="35" Height="25" Content="{Binding ShowAccountCommand.DisplayName}"
+        Command="{Binding ShowAccountCommand.Command}"></Button>
+            </StackPanel>
+
+            <TextBlock x:Name="uxSeg1Label" Text="تفضیل" Grid.Row="1" Grid.Column="2" Height="25" />
+            <StackPanel Grid.Row="1" Grid.Column="3" Orientation="Vertical" >
+                <CheckBox Content="کشتی" IsChecked="{Binding IsDebitVessel,Mode =TwoWay}"></CheckBox>
+                <CheckBox Content="سفر"  IsChecked="{Binding IsDebitVoyage,Mode =TwoWay}"></CheckBox>
+                <CheckBox Content="بندر" IsChecked="{Binding IsDebitPort,Mode =TwoWay}"></CheckBox>
+                <CheckBox Content="شرکت" IsChecked="{Binding IsDebitCompany,Mode =TwoWay}"></CheckBox>
+            </StackPanel>
+
+            <TextBlock x:Name="uxSeg2Label" Text="تفضیل" Grid.Row="1" Grid.Column="4" Height="25" />
+            <StackPanel Grid.Row="1" Grid.Column="5" Orientation="Vertical" >
+                <CheckBox Content="کشتی" IsChecked="{Binding IsCreditVessel,Mode =TwoWay}"></CheckBox>
+                <CheckBox Content="سفر" IsChecked="{Binding IsCreditVoyage,Mode =TwoWay}"></CheckBox>
+                <CheckBox Content="بندر" IsChecked="{Binding IsCreditPort,Mode =TwoWay}"></CheckBox>
+                <CheckBox Content="شرکت" IsChecked="{Binding IsCreditCompany,Mode =TwoWay}"></CheckBox>
+            </StackPanel>
+
+        </Grid>
+
+
+
+        <Button Content="{Binding SubmitCommand.DisplayName}" Command="{Binding SubmitCommand.Command}"
+                        Width="75" Height="25" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right" />
+        <Button Content="{Binding CloseCommand.DisplayName}" Command="{Binding CloseCommand.Command}"
+                        Width="75" Height="25" Grid.Row="2" Grid.Column="2" HorizontalAlignment="left" />
+           
+        
+    </Grid>
+</UserControl:ViewBase>
